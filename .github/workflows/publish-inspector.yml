@@ -93,10 +93,11 @@ jobs:
           PY
           )"
           test "$registry_digest" = "$push_digest"
-          package_visibility="$(GH_TOKEN="$GHCR_TOKEN" gh api --jq .visibility \
-            users/hideouts-io/packages/container/site-artifact-inspector)"
+          package_visibility="$(GH_TOKEN="$GHCR_TOKEN" gh api --paginate \
+            'users/hideouts-io/packages?package_type=container&visibility=private&per_page=100' \
+            --jq '.[] | select(.name == "site-artifact-inspector" and .package_type == "container" and .owner.login == "hideouts-io") | .visibility')"
           if [[ "$package_visibility" != private ]]; then
-            printf 'Expected a private inspector package, got %s\n' "$package_visibility" >&2
+            printf '%s\n' 'Inspector package was not visible as private to this workflow token' >&2
             exit 1
           fi
           printf 'registry_digest=%s\n' "$registry_digest" >> "$GITHUB_OUTPUT"
