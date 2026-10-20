@@ -39,5 +39,5 @@ export const build = {
   trigger: env.GITHUB_EVENT_NAME ? (TRIGGERS[env.GITHUB_EVENT_NAME] ?? env.GITHUB_EVENT_NAME) : 'a local build',
   time: new Date().toISOString(),
   repoUrl: SITE_REPO,
-  workflowUrl: `${SITE_REPO}/blob/main/.github/workflows/deploy.yml`,
+  workflowUrl: `${SITE_REPO}/blob/${sha}/.github/workflows/deploy.yml`,
 };
