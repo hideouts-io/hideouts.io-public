@@ -45,7 +45,7 @@ The reviewed snapshot (`src/generated/`, `public/media/`, `public/og/`, `src/sty
 
 ### Refreshing project content
 
-`npm run content` fetches and renders the allowlisted repositories for review. It is a separate update operation, not a build step. Review its text, images, links, and generated outputs, then update and review the snapshot manifest and page fragments before merging. A changed or missing pinned file makes the normal build fail.
+`npm run content` fetches and renders the allowlisted repositories for review. It is a separate update operation, not a build step. Review its text, images, links, and generated outputs, then update and review the snapshot manifest, page fragments, and colophon source dates before merging. A changed or missing pinned file makes the normal build fail.
 
 The fetch step never leaves a half-written local cache: each repository downloads into a temporary folder and replaces the old copy only when it's complete. If the API fails for a repository that has a cached copy, the fetch can keep that copy and print a warning. It fails when there is nothing to fall back on, or when an allowlisted repository has been deleted or made private: stale copies of those are never published.
 

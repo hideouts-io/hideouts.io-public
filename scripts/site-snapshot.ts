@@ -7,7 +7,7 @@ export type SnapshotFile = { path: string; size: number; sha256: string };
 
 export const ROOT = fileURLToPath(new URL('..', import.meta.url));
 const MANIFEST = join(ROOT, 'site-snapshot/manifest.txt');
-const SNAPSHOT_DIRS = ['src/generated', 'public/media', 'public/og', 'site-snapshot/pages'];
+const SNAPSHOT_DIRS = ['src/generated', 'public/media', 'public/og', 'site-snapshot/data', 'site-snapshot/pages'];
 export const PAGE_TARGETS = [
   ['home', 'dist/index.html'],
   ['drivetrace', 'dist/apps/drivetrace/index.html'],
@@ -34,6 +34,7 @@ function validSnapshotPath(path: string): boolean {
     /^src\/generated\/[a-z0-9-]+\.json$/.test(path) ||
     /^public\/media\/[a-z0-9-]+\/[a-zA-Z0-9_.-]+\.(?:webp|svg)$/.test(path) ||
     /^public\/og\/[a-z0-9-]+\.png$/.test(path) ||
+    path === 'site-snapshot/data/colophon-source-dates.json' ||
     /^site-snapshot\/pages\/[a-z0-9-]+\.main\.html$/.test(path) ||
     path === 'src/styles/shiki.generated.css'
   );
@@ -55,10 +56,11 @@ function parseManifest(text: string): SnapshotFile[] {
   }
   const count = (prefix: string): number => paths.filter((path) => path.startsWith(prefix)).length;
   if (
-    files.length !== 356 ||
+    files.length !== 357 ||
     count('src/generated/') !== 19 ||
     count('public/media/') !== 303 ||
     count('public/og/') !== 19 ||
+    count('site-snapshot/data/') !== 1 ||
     count('site-snapshot/pages/') !== PAGE_TARGETS.length ||
     !paths.includes('src/styles/shiki.generated.css') ||
     PAGE_TARGETS.some(([slug]) => !paths.includes(`site-snapshot/pages/${slug}.main.html`))

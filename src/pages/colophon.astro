@@ -7,8 +7,18 @@ import { entries, fmtDate } from '../lib/content';
 import { build } from '../lib/build';
 import { CSP_DIRECTIVES, CSP_SCRIPT_RESOURCES } from '../data/csp';
 import { pageGraph, webPage } from '../lib/seo';
+import sourceDates from '../../site-snapshot/data/colophon-source-dates.json';
 
 const sources = entries().sort((a, b) => a.repo.localeCompare(b.repo));
+const reviewedSourceDates = new Map(Object.entries(sourceDates));
+if (reviewedSourceDates.size !== sources.length || sources.some((source) => !reviewedSourceDates.has(source.repo))) {
+  throw new Error('Colophon source dates do not match the reviewed source list');
+}
+const reviewedSourceDate = (repo: string): string => {
+  const date = reviewedSourceDates.get(repo);
+  if (!date) throw new Error(`Missing reviewed source date for ${repo}`);
+  return date;
+};
 const policy = [...CSP_DIRECTIVES, `script-src ${CSP_SCRIPT_RESOURCES.join(' ')} 'sha256-…'`, "style-src 'sha256-…'"];
 const builtAt = new Date(build.time).toLocaleString('en-US', {
   dateStyle: 'medium',
@@ -144,7 +154,7 @@ npm run build`
                   <a href={e.href}>{e.name}</a>
                 </td>
                 <td>
-                  <time datetime={e.gh.updatedAt}>{fmtDate(e.gh.updatedAt)}</time>
+                  <time datetime={reviewedSourceDate(e.repo)}>{fmtDate(reviewedSourceDate(e.repo))}</time>
                 </td>
               </tr>
             ))}
