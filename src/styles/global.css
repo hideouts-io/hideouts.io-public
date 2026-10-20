@@ -1,0 +1,1028 @@
+@import 'tailwindcss';
+@import './shiki.generated.css';
+
+/* ── Tokens ─────────────────────────────────────────────────────────────── */
+/* The site is dark by design, whatever the device's appearance setting.
+   Light applies only when the visitor picks it with the toggle. */
+:root {
+  color-scheme: dark;
+  --bg: #0a0c0f;
+  --bg-elev: #0e1115;
+  --surface: #12161b;
+  --surface-2: #181d23;
+  --surface-hover: #1b2128;
+  --border: rgb(255 255 255 / 0.075);
+  --border-strong: rgb(255 255 255 / 0.14);
+  --text: #e8ebef;
+  --text-2: #a9b2bd;
+  --text-3: #8a94a0;
+  --accent: #5eead4;
+  --accent-2: #2dd4bf;
+  --accent-ink: #032420;
+  --accent-soft: rgb(94 234 212 / 0.1);
+  --accent-line: rgb(94 234 212 / 0.28);
+  --glow: rgb(45 212 191 / 0.16);
+  --ios: #7aa7ff;
+  --ios-soft: rgb(122 167 255 / 0.12);
+  --shadow: 0 1px 0 rgb(255 255 255 / 0.04) inset, 0 12px 32px -12px rgb(0 0 0 / 0.6);
+  --note: #7aa7ff;
+  --tip: #5eead4;
+  --important: #c4a1ff;
+  --warning: #f5c66b;
+  --caution: #ff8a80;
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+  --bg: #f7f8fa;
+  --bg-elev: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #f1f3f6;
+  --surface-hover: #f7f9fb;
+  --border: rgb(15 23 32 / 0.09);
+  --border-strong: rgb(15 23 32 / 0.16);
+  --text: #0e1621;
+  --text-2: #475262;
+  --text-3: #5c6674;
+  --accent: #0d7a70;
+  --accent-2: #0f766e;
+  --accent-ink: #ffffff;
+  --accent-soft: rgb(13 122 112 / 0.08);
+  --accent-line: rgb(13 122 112 / 0.3);
+  --glow: rgb(13 148 136 / 0.12);
+  --ios: #2f64d8;
+  --ios-soft: rgb(47 100 216 / 0.08);
+  --shadow: 0 1px 2px rgb(15 23 32 / 0.04), 0 10px 28px -14px rgb(15 23 32 / 0.18);
+  --note: #2f64d8;
+  --tip: #0d7a70;
+  --important: #7c4ddb;
+  --warning: #8a5700;
+  --caution: #c2372c;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-elev: var(--bg-elev);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--border);
+  --color-line-strong: var(--border-strong);
+  --color-ink: var(--text);
+  --color-ink-2: var(--text-2);
+  --color-ink-3: var(--text-3);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-soft: var(--accent-soft);
+  --color-ios: var(--ios);
+  --font-sans:
+    -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Segoe UI', Inter, Roboto, 'Helvetica Neue',
+    Arial, sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, 'JetBrains Mono', Consolas, monospace;
+}
+
+/* ── Base ───────────────────────────────────────────────────────────────── */
+html {
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  scroll-padding-top: 5.5rem;
+}
+body {
+  background: var(--bg);
+  font-family: var(--font-sans);
+  font-feature-settings: 'ss01', 'cv11';
+}
+::selection {
+  background: var(--accent-soft);
+  color: var(--text);
+}
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+.container-x {
+  width: 100%;
+  max-width: 76rem;
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+@media (min-width: 640px) {
+  .container-x {
+    padding-inline: 1.5rem;
+  }
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* Soft grid + glow behind heroes */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(60rem 28rem at 70% -8rem, var(--glow), transparent 70%),
+    radial-gradient(40rem 20rem at 0% 0%, var(--ios-soft), transparent 70%);
+}
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 30%, transparent 75%);
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  box-shadow: var(--shadow);
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+a.card:hover,
+.card-link:hover {
+  border-color: var(--border-strong);
+  background: var(--surface-hover);
+}
+
+/* Stretched link: only the card's title is the <a> (so its accessible name is
+   just the title), and its ::after covers the whole card so any click on the
+   card follows it. The focus ring is drawn on the card instead of the title. */
+.card-link {
+  position: relative;
+  cursor: pointer;
+}
+.stretched-link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+}
+.stretched-link:focus-visible {
+  outline: none;
+}
+.card-link:has(.stretched-link:focus-visible) {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+@media (prefers-reduced-motion: no-preference) {
+  a.card:hover,
+  .card-link:hover {
+    transform: translateY(-2px);
+  }
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  padding: 0.625rem 1.125rem;
+  font-weight: 560;
+  font-size: 0.9375rem;
+  line-height: 1.25rem;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+.btn-primary:hover {
+  background: var(--accent-2);
+}
+.btn-ghost {
+  border: 1px solid var(--border-strong);
+  color: var(--text);
+}
+.btn-ghost:hover {
+  background: var(--surface-2);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  padding: 0.1875rem 0.625rem;
+  font-size: 0.75rem;
+  line-height: 1.1rem;
+  color: var(--text-2);
+  white-space: nowrap;
+}
+.chip-accent {
+  border-color: var(--accent-line);
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+.chip-ios {
+  border-color: color-mix(in srgb, var(--ios) 35%, transparent);
+  background: var(--ios-soft);
+  color: var(--ios);
+}
+
+/* Diagrams: two static SVGs, one per theme */
+.diagram-dark {
+  display: block;
+}
+.diagram-light {
+  display: none;
+}
+:root[data-theme='light'] .diagram-dark {
+  display: none;
+}
+:root[data-theme='light'] .diagram-light {
+  display: block;
+}
+
+/* ── README prose ───────────────────────────────────────────────────────── */
+.prose-readme {
+  color: var(--text-2);
+  font-size: 1rem;
+  line-height: 1.75;
+  overflow-wrap: anywhere;
+}
+.prose-readme > * + * {
+  margin-top: 1.1em;
+}
+.prose-readme h2,
+.prose-readme h3,
+.prose-readme h4,
+.prose-readme h5 {
+  color: var(--text);
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  scroll-margin-top: 5.5rem;
+}
+.prose-readme h2 {
+  font-size: 1.5rem;
+  margin-top: 2.75em;
+  padding-top: 1.25em;
+  border-top: 1px solid var(--border);
+}
+.prose-readme > h2:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+.prose-readme h3 {
+  font-size: 1.1875rem;
+  margin-top: 2em;
+}
+.prose-readme h4 {
+  font-size: 1.0625rem;
+  margin-top: 1.75em;
+}
+.prose-readme h5 {
+  font-size: 1rem;
+  margin-top: 1.5em;
+}
+.prose-readme h2 + *,
+.prose-readme h3 + *,
+.prose-readme h4 + * {
+  margin-top: 0.75em;
+}
+
+/* Section links. The wrapper carries the heading's spacing and rule; the heading
+   sits inline so the "#" follows its last word, and stays hidden until the
+   section is hovered or the link is focused (always shown on touch screens). */
+.prose-readme .heading-wrap {
+  line-height: 1.3;
+}
+.prose-readme .heading-wrap > :is(h2, h3, h4) {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.prose-readme .heading-wrap.level-2 {
+  font-size: 1.5rem;
+  margin-top: 2.75em;
+  padding-top: 1.25em;
+  border-top: 1px solid var(--border);
+}
+.prose-readme .heading-wrap.level-3 {
+  font-size: 1.1875rem;
+  margin-top: 2em;
+}
+.prose-readme .heading-wrap.level-4 {
+  font-size: 1.0625rem;
+  margin-top: 1.75em;
+}
+.prose-readme > .heading-wrap:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+.prose-readme .heading-wrap + * {
+  margin-top: 0.75em;
+}
+.prose-readme .heading-anchor {
+  margin-left: 0.35em;
+  padding: 0 0.15em;
+  border-radius: 0.25rem;
+  color: var(--text-3);
+  font-weight: 500;
+  text-decoration: none;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+.prose-readme .heading-wrap:hover .heading-anchor,
+.prose-readme .heading-anchor:focus-visible {
+  opacity: 1;
+}
+.prose-readme .heading-anchor:hover {
+  color: var(--accent);
+}
+.prose-readme .heading-anchor[data-copied]::after {
+  content: 'Link copied';
+  margin-left: 0.5em;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  vertical-align: middle;
+  color: var(--text-2);
+}
+@media (hover: none) {
+  .prose-readme .heading-anchor {
+    opacity: 1;
+  }
+}
+.prose-readme a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-color: var(--accent-line);
+  text-underline-offset: 3px;
+}
+.prose-readme a:hover {
+  text-decoration-color: var(--accent);
+}
+.prose-readme strong {
+  color: var(--text);
+  font-weight: 620;
+}
+.prose-readme ul,
+.prose-readme ol {
+  padding-left: 1.4em;
+}
+.prose-readme ul {
+  list-style: disc;
+}
+.prose-readme ol {
+  list-style: decimal;
+}
+.prose-readme li + li {
+  margin-top: 0.35em;
+}
+.prose-readme li::marker {
+  color: var(--text-3);
+}
+.prose-readme hr {
+  display: none;
+}
+.prose-readme img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.75rem;
+  border: 1px solid var(--border);
+}
+.prose-readme p[align='center'] {
+  text-align: center;
+}
+.prose-readme p[align='center'] img {
+  display: inline-block;
+}
+.key-findings ol {
+  counter-reset: finding;
+}
+.key-findings li {
+  counter-increment: finding;
+  position: relative;
+  padding-left: 2.25rem;
+}
+.key-findings li::before {
+  content: counter(finding);
+  position: absolute;
+  left: 0;
+  top: 0.2rem;
+  display: grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1;
+}
+.key-findings code,
+.prose-readme :not(pre) > code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  color: var(--text);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 0.375rem;
+  padding: 0.1em 0.35em;
+}
+.prose-readme blockquote {
+  border-left: 3px solid var(--border-strong);
+  padding-left: 1rem;
+  color: var(--text-2);
+}
+.prose-readme details {
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: var(--surface);
+}
+.prose-readme summary {
+  cursor: pointer;
+  color: var(--text);
+  font-weight: 560;
+}
+
+/* Tables */
+.prose-readme .table-scroll {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  background: var(--surface);
+}
+.prose-readme table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  line-height: 1.55;
+}
+.prose-readme th {
+  text-align: left;
+  color: var(--text);
+  font-weight: 600;
+  background: var(--surface-2);
+}
+.prose-readme th,
+.prose-readme td {
+  padding: 0.625rem 0.875rem;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+  min-width: 8rem;
+}
+.prose-readme tr:last-child td {
+  border-bottom: 0;
+}
+.prose-readme td img {
+  border-radius: 0.5rem;
+}
+
+/* Code */
+.prose-readme pre {
+  position: relative;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  line-height: 1.65;
+  padding: 1rem 1.125rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--border);
+  background: var(--bg-elev);
+  color: var(--text);
+}
+.prose-readme pre code {
+  font-family: inherit;
+}
+.code-wrap {
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  background: var(--bg-elev);
+  overflow: hidden;
+}
+.code-wrap .code-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  min-height: 2.125rem;
+  padding: 0.25rem 0.5rem 0.25rem 1rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+.code-wrap .code-lang {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--text-3);
+  text-transform: lowercase;
+}
+.code-wrap .copy-btn {
+  margin-left: auto;
+  font-size: 0.75rem;
+  color: var(--text-2);
+  border-radius: 0.375rem;
+  padding: 0.1875rem 0.5rem;
+}
+.code-wrap .copy-btn:hover {
+  background: var(--surface-2);
+  color: var(--text);
+}
+.code-wrap .copy-btn[data-copied] {
+  color: var(--accent);
+}
+.prose-readme .code-wrap pre {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+/* Shiki: dual theme via CSS variables emitted as classes */
+.prose-readme pre.shiki span {
+  color: var(--shiki-dark);
+}
+:root[data-theme='light'] .prose-readme pre.shiki span {
+  color: var(--shiki-light);
+}
+
+/* Callouts: GitHub alerts */
+.callout {
+  --c: var(--note);
+  border: 1px solid color-mix(in srgb, var(--c) 30%, transparent);
+  background: color-mix(in srgb, var(--c) 7%, transparent);
+  border-radius: 0.75rem;
+  padding: 0.875rem 1.125rem;
+  color: var(--text-2);
+}
+.callout > * + * {
+  margin-top: 0.5em;
+}
+.callout-title {
+  font-weight: 650;
+  font-size: 0.8125rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--c);
+}
+.callout-tip {
+  --c: var(--tip);
+}
+.callout-important {
+  --c: var(--important);
+}
+.callout-warning {
+  --c: var(--warning);
+}
+.callout-caution {
+  --c: var(--caution);
+}
+
+.prose-readme figure.diagram {
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  background: var(--surface);
+  padding: 1rem;
+  overflow-x: auto;
+}
+.prose-readme figure.diagram img {
+  border: 0;
+  border-radius: 0;
+  margin-inline: auto;
+  /* Show diagrams at natural size; the figure scrolls if they're wider. */
+  max-width: none;
+  height: auto;
+}
+
+/* TOC */
+.toc a[aria-current='true'] {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* Segmented filter buttons */
+.filter-btn {
+  border-radius: 999px;
+  padding: 0.3rem 0.85rem;
+  color: var(--text-2);
+}
+.filter-btn:hover {
+  color: var(--text);
+}
+.filter-btn[aria-pressed='true'] {
+  background: var(--surface-2);
+  color: var(--text);
+  box-shadow: inset 0 0 0 1px var(--border);
+}
+
+/* Research evidence panels */
+.prose-readme .panel {
+  position: relative;
+  border: 1px solid var(--border);
+  border-radius: 0.875rem;
+  padding: 1.25rem 1.25rem 1.25rem;
+  background: var(--surface);
+}
+.prose-readme .panel > * + * {
+  margin-top: 0.9em;
+}
+.prose-readme .panel::before {
+  content: attr(data-label);
+  display: inline-block;
+  margin-bottom: 0.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--c, var(--accent));
+}
+.prose-readme .panel > :is(h2, h3, h4, h5):first-of-type,
+.prose-readme .panel > .heading-wrap:first-child {
+  margin-top: 0.25rem;
+  padding-top: 0;
+  border-top: 0;
+}
+.prose-readme .panel-evidence {
+  --c: var(--warning);
+  border-left: 3px solid color-mix(in srgb, var(--warning) 70%, transparent);
+}
+.prose-readme .panel-interpret {
+  --c: var(--note);
+  border-left: 3px solid color-mix(in srgb, var(--note) 70%, transparent);
+}
+.prose-readme .panel .code-wrap,
+.prose-readme .panel pre {
+  background: var(--bg-elev);
+}
+
+/* Screenshot lightbox */
+.lightbox {
+  max-width: min(96vw, 1600px);
+  max-height: 94dvh;
+  padding: 0;
+  border: 1px solid var(--border-strong);
+  border-radius: 0.875rem;
+  background: var(--bg-elev);
+  color: var(--text);
+  overflow: hidden;
+}
+.lightbox::backdrop {
+  background: rgb(0 0 0 / 0.72);
+  backdrop-filter: blur(6px);
+}
+.lightbox img {
+  display: block;
+  max-width: 100%;
+  max-height: calc(94dvh - 3rem);
+  width: auto;
+  height: auto;
+  margin-inline: auto;
+}
+.lightbox .lb-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  height: 3rem;
+  padding: 0 0.5rem 0 1rem;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.8125rem;
+  color: var(--text-2);
+}
+.lightbox .lb-bar p {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.lightbox button {
+  border-radius: 999px;
+  padding: 0.25rem 0.75rem;
+  color: var(--text-2);
+}
+.lightbox button:hover {
+  background: var(--surface-2);
+  color: var(--text);
+}
+
+/* Search dialog */
+.search-dialog {
+  width: min(40rem, calc(100vw - 2rem));
+  margin: 12dvh auto auto;
+  padding: 0;
+  border: 1px solid var(--border-strong);
+  border-radius: 1rem;
+  background: var(--bg-elev);
+  color: var(--text);
+  box-shadow: 0 30px 80px -20px rgb(0 0 0 / 0.6);
+}
+.search-dialog::backdrop {
+  background: rgb(0 0 0 / 0.55);
+  backdrop-filter: blur(4px);
+}
+.search-dialog mark {
+  background: var(--accent-soft);
+  color: var(--accent);
+  border-radius: 0.2rem;
+  padding: 0 0.1rem;
+}
+kbd {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  border: 1px solid var(--border-strong);
+  border-bottom-width: 2px;
+  border-radius: 0.3rem;
+  padding: 0 0.3rem;
+  color: var(--text-3);
+}
+
+.search-dialog input:focus-visible {
+  outline: none;
+}
+
+/* Framing guard (see Base.astro): when the page is framed by another site,
+   hide everything except a link to open it directly. */
+html.framed body > :not(.framed-notice) {
+  display: none !important;
+}
+html.framed .framed-notice {
+  display: block;
+  padding: 2rem 1rem;
+  text-align: center;
+  color: var(--text-2);
+}
+html.framed .framed-notice a {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+/* Controls that need JavaScript: hidden unless the <head> script marked html.js,
+   so they appear from first paint (no layout shift) and never appear broken. */
+html:not(.js) [data-filter-group] {
+  display: none;
+}
+
+/* Page transitions: CSS-only cross-document View Transitions (no router script).
+   Same-origin navigations crossfade; the header stays put. Browsers without
+   support navigate normally, and nothing animates when reduced motion is on. */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 180ms;
+    animation-timing-function: ease-out;
+  }
+}
+header.sticky {
+  view-transition-name: site-header;
+}
+
+/* Terminal-style frame for shell blocks: three muted window dots before the label. */
+.code-wrap[data-kind='terminal'] .code-bar::before {
+  content: '';
+  flex: none;
+  width: 2.25rem;
+  height: 0.5rem;
+  margin-right: 0.25rem;
+  background:
+    radial-gradient(circle at 0.25rem 50%, var(--border-strong) 0.25rem, transparent 0.27rem),
+    radial-gradient(circle at 1.125rem 50%, var(--border-strong) 0.25rem, transparent 0.27rem),
+    radial-gradient(circle at 2rem 50%, var(--border-strong) 0.25rem, transparent 0.27rem);
+}
+.code-wrap[data-kind='terminal'] .code-bar {
+  justify-content: flex-start;
+}
+
+/* Numbered figures in research write-ups */
+.prose-readme figure.figure {
+  margin-block: 1.75em;
+}
+.prose-readme figure.figure img {
+  display: block;
+  margin-inline: auto;
+}
+.prose-readme figure.figure figcaption {
+  margin-top: 0.625rem;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--text-3);
+  text-align: center;
+}
+.prose-readme figure.figure .figure-num {
+  font-weight: 600;
+  color: var(--text-2);
+}
+.prose-readme figure.figure .figure-num::after {
+  content: ' ·';
+  font-weight: 400;
+}
+
+/* Task lists: a check or an empty circle in place of GitHub's checkbox. */
+.prose-readme li.task-list-item {
+  list-style: none;
+  position: relative;
+}
+.prose-readme .task-mark {
+  position: absolute;
+  left: -1.5em;
+  top: 0.45em;
+  width: 0.95em;
+  height: 0.95em;
+  border-radius: 999px;
+  border: 1.5px solid var(--border-strong);
+}
+.prose-readme .task-done {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+.prose-readme .task-done::after {
+  content: '';
+  position: absolute;
+  left: 0.28em;
+  top: 0.1em;
+  width: 0.25em;
+  height: 0.48em;
+  border: solid var(--accent);
+  border-width: 0 1.5px 1.5px 0;
+  transform: rotate(45deg);
+}
+
+/* Citations wrap instead of scrolling, so the whole reference is visible. */
+.cite pre {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+/* ── Print ──────────────────────────────────────────────────────────────── */
+/* Research and app pages print as a clean document: light colors whatever the
+   theme, no site chrome, link targets written out, and figures, tables, and
+   code kept whole where they fit. site.ts opens <details> before printing. */
+@media print {
+  @page {
+    margin: 16mm 14mm;
+  }
+  :root,
+  :root[data-theme='light'] {
+    color-scheme: light;
+    --bg: #fff;
+    --bg-elev: #fff;
+    --surface: #fff;
+    --surface-2: #f3f4f6;
+    --surface-hover: #fff;
+    --border: #d4d8de;
+    --border-strong: #b8bec7;
+    --text: #000;
+    --text-2: #1f2933;
+    --text-3: #3e4955;
+    --accent: #0b5f57;
+    --accent-2: #0b5f57;
+    --accent-ink: #fff;
+    --accent-soft: #e6f2f0;
+    --accent-line: #9cc9c3;
+    --glow: transparent;
+    --ios: #1f4fb5;
+    --ios-soft: #eaf0fb;
+    --shadow: none;
+    --note: #1f4fb5;
+    --tip: #0b5f57;
+    --important: #5b35b0;
+    --warning: #6b4300;
+    --caution: #a02a21;
+  }
+  html,
+  body {
+    background: #fff !important;
+    font-size: 10.5pt;
+  }
+  *,
+  *::before,
+  *::after {
+    box-shadow: none !important;
+    text-shadow: none !important;
+    backdrop-filter: none !important;
+  }
+
+  /* Site chrome and interactive-only controls. */
+  body > header,
+  body > footer,
+  .search-dialog,
+  .lightbox,
+  .toc,
+  details.lg\:hidden,
+  .copy-btn,
+  .heading-anchor,
+  .btn,
+  [data-theme-toggle],
+  [data-filter-group],
+  nav[aria-label='More research'],
+  nav[aria-label='Breadcrumb'],
+  .key-findings nav {
+    display: none !important;
+  }
+  main,
+  .container-x {
+    max-width: none !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  .card,
+  .callout,
+  .panel {
+    break-inside: avoid;
+  }
+  .sticky {
+    position: static !important;
+  }
+  .hero-bg {
+    display: none !important;
+  }
+  .truncate {
+    overflow: visible !important;
+    white-space: normal !important;
+    text-overflow: clip !important;
+    overflow-wrap: anywhere;
+  }
+  /* The screenshot strip scrolls sideways on screen; on paper, wrap it into rows. */
+  [aria-label='Screenshot gallery'] {
+    overflow: visible !important;
+  }
+  [aria-label='Screenshot gallery'] > ul {
+    flex-wrap: wrap;
+  }
+  [aria-label='Screenshot gallery'] li {
+    width: calc(50% - 0.5rem) !important;
+    break-inside: avoid;
+  }
+  section[aria-labelledby] > .container-x:first-child,
+  h2 {
+    break-after: avoid;
+  }
+
+  /* Diagrams and code: always the light versions. */
+  .diagram-dark {
+    display: none !important;
+  }
+  .diagram-light {
+    display: block !important;
+  }
+  .prose-readme pre.shiki span {
+    color: var(--shiki-light) !important;
+  }
+  .prose-readme pre {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+  .table-scroll {
+    overflow: visible !important;
+  }
+
+  /* Keep things whole, and headings with what follows them. */
+  .prose-readme :is(figure, img, table, pre, .code-wrap, blockquote, .callout) {
+    break-inside: avoid;
+  }
+  .prose-readme :is(h2, h3, h4, .heading-wrap) {
+    break-after: avoid;
+  }
+  .prose-readme .heading-wrap.level-2 {
+    break-before: auto;
+  }
+  img {
+    max-width: 100% !important;
+  }
+
+  /* Write out where links go. Section links and same-site links stay as text. */
+  .prose-readme a[href^='http']:not(:has(img))::after {
+    content: ' (' attr(href) ')';
+    font-size: 0.85em;
+    color: var(--text-3);
+    overflow-wrap: anywhere;
+  }
+  .prose-readme a {
+    text-decoration: none;
+  }
+}

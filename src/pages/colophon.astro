@@ -1,0 +1,212 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import AnchorHeading from '../components/AnchorHeading.astro';
+import Icon from '../components/Icon.astro';
+import { entries, fmtDate } from '../lib/content';
+import { build } from '../lib/build';
+import { CSP_DIRECTIVES, CSP_SCRIPT_RESOURCES } from '../data/csp';
+import { pageGraph, webPage } from '../lib/seo';
+
+const sources = entries().sort((a, b) => a.repo.localeCompare(b.repo));
+const policy = [...CSP_DIRECTIVES, `script-src ${CSP_SCRIPT_RESOURCES.join(' ')} 'sha256-…'`, "style-src 'sha256-…'"];
+const builtAt = new Date(build.time).toLocaleString('en-US', {
+  dateStyle: 'medium',
+  timeStyle: 'short',
+  timeZone: 'UTC',
+});
+
+const description =
+  'How hideouts.io is built and deployed: the source commit behind this build, where the content comes from, the Content Security Policy, and the checks every build must pass.';
+const jsonLd = pageGraph(
+  webPage({
+    name: 'How this site is built',
+    path: '/colophon/',
+    description,
+    extra: { isBasedOn: build.repoUrl, dateModified: build.time },
+  }),
+  [{ name: 'How this site is built', path: '/colophon/' }],
+);
+---
+
+<Base title="How this site is built" description={description} jsonLd={jsonLd}>
+  <PageHeader
+    eyebrow="Colophon"
+    title="How this site is built"
+    lead="hideouts.io is static HTML built in public from open source. This page shows exactly which build you’re looking at and how it was made, so you can check it."
+  />
+
+  <div class="container-x grid grid-cols-[minmax(0,1fr)] gap-12 pt-12 lg:grid-cols-[minmax(0,1fr)_22rem]">
+    <div class="prose-readme max-w-[46rem]">
+      <AnchorHeading id="content">Where the content comes from</AnchorHeading>
+      <p>
+        Every app and research page is generated from its GitHub repository’s README when the site is built. GitHub is
+        the source of truth: when a README changes, the site follows on the next build. Builds run on every change to
+        the site, nightly at 06:17 UTC, and whenever a project asks for an update.
+      </p>
+      <p>
+        Only the {sources.length} repositories on an explicit allowlist are ever fetched. Images from READMEs are copied
+        here at build time, so reading a page never contacts GitHub or an image host.
+      </p>
+
+      <AnchorHeading id="browser">What runs in your browser</AnchorHeading>
+      <ul>
+        <li>Plain HTML and one stylesheet. Every page works without JavaScript.</li>
+        <li>
+          A tiny inline script in each page’s <code>&lt;head&gt;</code> applies your theme before the page appears and
+          stops other sites from framing it.
+        </li>
+        <li>
+          One small script adds conveniences: copy buttons, the theme toggle, app filters, the table of contents
+          highlight, section links, and the screenshot viewer.
+        </li>
+        <li>
+          Search is{' '}
+          <a href="https://pagefind.app" rel="noopener noreferrer">
+            Pagefind
+          </a>
+          : a static index that runs locally in your browser, so what you type never leaves it.
+        </li>
+        <li>Fonts are your system’s own. There are no web fonts, frameworks, or third-party scripts.</li>
+      </ul>
+
+      <AnchorHeading id="csp">Content Security Policy</AnchorHeading>
+      <p>
+        Every page carries this policy in a <code>&lt;meta&gt;</code> tag. The browser refuses anything it doesn’t
+        allow, including scripts from other sites and any inline script or style that isn’t hashed.
+      </p>
+      <pre><code>{policy.join(';\n')}</code></pre>
+      <p>
+        <code>'sha256-…'</code> stands for the hash of each script and style on the page, computed at build time.{' '}
+        <code>'wasm-unsafe-eval'</code> lets the search index run as WebAssembly; it doesn’t allow JavaScript{' '}
+        <code>eval</code>.
+      </p>
+      <p>
+        GitHub Pages can’t send custom response headers, so protections that only work as headers are handled
+        differently: a small script stops other sites from showing these pages in a frame, and the referrer policy is
+        set with a <code>&lt;meta&gt;</code> tag.
+      </p>
+
+      <AnchorHeading id="checks">Checks on every build</AnchorHeading>
+      <p>
+        The{' '}
+        <a href={build.workflowUrl} rel="noopener noreferrer">
+          build workflow
+        </a>{' '}
+        must pass all of these before anything is published:
+      </p>
+      <ol>
+        <li>Linting (including accessibility rules), formatting, and type checks.</li>
+        <li>An allowlist check that fails if any repository outside the published list appears in the output.</li>
+        <li>
+          An internal link check covering every link, image, and <code>#section</code> anchor.
+        </li>
+        <li>
+          An external link check, so the site doesn’t point at dead pages (advisory on nightly and README-update runs).
+        </li>
+      </ol>
+      <p>The site is then deployed to GitHub Pages straight from that workflow’s output.</p>
+
+      <AnchorHeading id="reproduce">Reproduce this build</AnchorHeading>
+      <p>
+        To rebuild this version yourself, with{' '}
+        <a href="https://cli.github.com" rel="noopener noreferrer">
+          GitHub CLI
+        </a>{' '}
+        and Node 24:
+      </p>
+      <pre><code
+          >{
+            `git clone ${build.repoUrl}.git
+cd hideouts.io${build.sha ? `\ngit checkout ${build.short}` : ''}
+npm ci
+GITHUB_TOKEN=$(gh auth token) npm run content
+npm run build`
+          }</code
+        ></pre>
+      <p>Pages whose README has changed since this build will differ, and so will the build details on this page.</p>
+
+      <AnchorHeading id="sources">Source repositories</AnchorHeading>
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Source repositories">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Repository</th>
+              <th scope="col">Page</th>
+              <th scope="col">Last commit</th>
+            </tr>
+          </thead>
+          <tbody>
+            {sources.map((e) => (
+              <tr>
+                <th scope="row">
+                  <a href={e.gh.htmlUrl} rel="noopener noreferrer">
+                    {e.repo}
+                  </a>
+                </th>
+                <td>
+                  <a href={e.href}>{e.name}</a>
+                </td>
+                <td>
+                  <time datetime={e.gh.updatedAt}>{fmtDate(e.gh.updatedAt)}</time>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <aside aria-labelledby="build-heading">
+      <div class="card sticky top-24 p-5">
+        <h2 id="build-heading" class="text-sm font-semibold text-ink">
+          This build
+        </h2>
+        <dl class="mt-4 space-y-3 text-sm">
+          <div>
+            <dt class="text-xs text-ink-3">Source commit</dt>
+            <dd class="mt-0.5 font-mono text-ink">
+              {build.commitUrl ? (
+                <a href={build.commitUrl} class="text-accent hover:underline" rel="noopener noreferrer">
+                  {build.short}
+                </a>
+              ) : (
+                'unknown'
+              )}
+            </dd>
+          </div>
+          <div>
+            <dt class="text-xs text-ink-3">Built</dt>
+            <dd class="mt-0.5 text-ink">
+              <time datetime={build.time}>{builtAt} UTC</time>
+            </dd>
+          </div>
+          <div>
+            <dt class="text-xs text-ink-3">Triggered by</dt>
+            <dd class="mt-0.5 text-ink">{build.trigger}</dd>
+          </div>
+          {build.runUrl && (
+            <div>
+              <dt class="text-xs text-ink-3">Build log</dt>
+              <dd class="mt-0.5">
+                <a href={build.runUrl} class="text-accent hover:underline" rel="noopener noreferrer">
+                  GitHub Actions run
+                </a>
+              </dd>
+            </div>
+          )}
+        </dl>
+        <p class="mt-4 flex items-start gap-2 border-t border-line pt-4 text-xs leading-5 text-ink-3">
+          <Icon name="code" size={12} class="mt-0.5 shrink-0" />
+          <span>
+            The site’s code is open source under the MIT License.{' '}
+            <a href={build.repoUrl} class="underline hover:text-ink" rel="noopener noreferrer">
+              View the code
+            </a>
+            .
+          </span>
+        </p>
+      </div>
+    </aside>
+  </div>
+</Base>

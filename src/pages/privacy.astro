@@ -1,0 +1,185 @@
+---
+import Base from '../layouts/Base.astro';
+import { pageGraph, webPage } from '../lib/seo';
+import PageHeader from '../components/PageHeader.astro';
+import AnchorHeading from '../components/AnchorHeading.astro';
+import { fmtDate } from '../lib/content';
+
+// Newest first. Add an entry whenever what the site stores or sends changes.
+const changes = [
+  { date: '2026-09-29', text: 'Added the table of what the site stores or sends, and how to check it yourself.' },
+  { date: '2026-09-25', text: 'hideouts.io launched with this policy.' },
+];
+const jsonLd = pageGraph(
+  webPage({
+    name: 'Privacy',
+    path: '/privacy/',
+    description: 'hideouts.io collects nothing: no cookies, no analytics, no trackers, no third-party requests.',
+    extra: { about: { '@type': 'Thing', name: 'Privacy policy' }, dateModified: changes[0].date },
+  }),
+  [{ name: 'Privacy', path: '/privacy/' }],
+);
+---
+
+<Base
+  jsonLd={jsonLd}
+  title="Privacy"
+  description="hideouts.io collects nothing: no cookies, no analytics, no trackers, no third-party requests."
+>
+  <PageHeader
+    eyebrow="Privacy"
+    title="This site collects nothing."
+    lead="No cookies, no analytics, no trackers, no fingerprinting, no third-party requests. That’s the whole policy; the rest of this page explains how it’s enforced."
+  />
+  <div class="container-x pt-12">
+    <div class="prose-readme max-w-[46rem]">
+      <p class="text-sm text-ink-3">
+        Last updated <time datetime={changes[0].date}>{fmtDate(changes[0].date)}</time>
+      </p>
+
+      <AnchorHeading id="what-this-site-stores">What this site stores or sends</AnchorHeading>
+      <div class="table-scroll" tabindex="0" role="region" aria-label="What this site stores or sends">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">What</th>
+              <th scope="col">Stored or sent</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Cookies</th>
+              <td>
+                <strong>None.</strong> The site sets no cookies, so there’s no consent banner.
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Local storage</th>
+              <td>
+                <strong>Only if you pick the light theme.</strong> One key, <code>theme</code>, set to{' '}
+                <code>light</code>. It’s deleted when you switch back to dark, and it never leaves your device.
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Session storage, IndexedDB, cache storage</th>
+              <td>
+                <strong>None.</strong> Not used.
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Analytics, tracking pixels, fingerprinting</th>
+              <td>
+                <strong>None.</strong> No tracking scripts of any kind, first- or third-party.
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Requests to other sites</th>
+              <td>
+                <strong>None.</strong> Scripts, styles, fonts, images, diagrams, and the search index all load from
+                hideouts.io. README images are copied here at build time.
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Search queries</th>
+              <td>
+                <strong>Stay in your browser.</strong> Search runs locally against a static index. What you type is
+                never sent anywhere.
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Referrer</th>
+              <td>
+                <strong>Not sent.</strong> Sites you follow a link to aren’t told you came from here.
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Server logs</th>
+              <td>
+                <strong>Kept by GitHub, not by hideouts.</strong> GitHub Pages processes your IP address to deliver the
+                page. See <a href="#the-hosting-provider">the hosting provider</a>.
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Accounts, forms, email sign-ups</th>
+              <td>
+                <strong>None.</strong> There’s nothing to sign in to or submit.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <AnchorHeading id="check-it-yourself">Check it yourself</AnchorHeading>
+      <p>You don’t have to take this page’s word for it. Any browser’s developer tools can show you:</p>
+      <ol>
+        <li>
+          Open the developer tools. In Safari, first turn on{' '}
+          <strong>Settings → Advanced → Show features for web developers</strong>, then choose{' '}
+          <strong>Develop → Show Web Inspector</strong>. In Chrome or Edge, choose{' '}
+          <strong>View → Developer → Developer Tools</strong>. In Firefox, choose{' '}
+          <strong>Tools → Browser Tools → Web Developer Tools</strong>.
+        </li>
+        <li>
+          Open the <strong>Network</strong> tab and reload the page. Every request goes to <code>hideouts.io</code>. Try
+          a search: the only requests are for files under <code>/pagefind/</code>, and none of them contains what you
+          typed.
+        </li>
+        <li>
+          Open the <strong>Storage</strong> tab (Safari, Firefox) or <strong>Application</strong> tab (Chrome, Edge).
+          Cookies are empty. Local storage is empty, or holds only <code>theme</code> if you’ve switched to light.
+        </li>
+        <li>
+          To see the rules the browser enforces, view the page source and find the <code>Content-Security-Policy</code>{' '}
+          tag near the top.
+        </li>
+      </ol>
+
+      <AnchorHeading id="how-its-enforced">How it’s enforced</AnchorHeading>
+      <ul>
+        <li>
+          A strict <strong>Content Security Policy</strong> only allows scripts, styles, images, and connections from
+          this origin, and scripts only by hash.
+        </li>
+        <li>
+          <code>Referrer-Policy: no-referrer</code> means sites you follow a link to aren’t told you came from here.
+        </li>
+        <li>Every build fails if a page references anything outside the published project list.</li>
+      </ul>
+
+      <AnchorHeading id="the-hosting-provider">The hosting provider</AnchorHeading>
+      <p>
+        The site is static files served by GitHub Pages. Like any web host, GitHub processes your IP address to deliver
+        the page and may keep standard server logs under{' '}
+        <a
+          href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement"
+          rel="noopener noreferrer"
+        >
+          GitHub’s privacy statement
+        </a>
+        . hideouts doesn’t receive or look at those logs.
+      </p>
+
+      <AnchorHeading id="links-to-github">Links to GitHub</AnchorHeading>
+      <p>Download and source links go to GitHub. Once you follow one, GitHub’s own privacy practices apply.</p>
+
+      <AnchorHeading id="changes">Changes to this page</AnchorHeading>
+      <p>
+        Any change to what the site stores or sends is listed here. The full history is in the{' '}
+        <a
+          href="https://github.com/hideouts-io/hideouts.io-public/commits/main/src/pages/privacy.astro"
+          rel="noopener noreferrer"
+        >
+          site’s repository
+        </a>
+        .
+      </p>
+      <ul>
+        {changes.map((c) => (
+          <li>
+            <time datetime={c.date}>{fmtDate(c.date)}</time>: {c.text}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</Base>

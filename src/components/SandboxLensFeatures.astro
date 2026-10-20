@@ -1,0 +1,57 @@
+---
+import ThemedArtwork from './ThemedArtwork.astro';
+
+const features = [
+  {
+    key: 'inventory',
+    title: 'Profile inventory',
+    description: 'Identify readable policy files and retain their paths and hashes.',
+  },
+  {
+    key: 'comparison',
+    title: 'Precise comparison',
+    description: 'Separate Match, Different, Missing, and Additional results.',
+  },
+  {
+    key: 'build-references',
+    title: 'Build-specific references',
+    description: 'Compare against a selected macOS product version and build.',
+  },
+  {
+    key: 'provenance',
+    title: 'Sourced evidence',
+    description: 'Inspect metadata, source revisions, confidence, and reference provenance.',
+  },
+];
+---
+
+<section class="container-x pt-14" aria-labelledby="sandbox-lens-evidence-heading" data-testid="sandbox-lens-features">
+  <h2 id="sandbox-lens-evidence-heading" class="text-lg font-semibold text-ink">
+    Inspect and compare policy evidence
+  </h2>
+  <p class="mt-2 text-sm leading-6 text-ink-2">
+    Illustrations explain the evidence workflow. Real app captures appear in the screenshot gallery.
+  </p>
+  <div class="mt-5 grid gap-5 sm:grid-cols-2">
+    {features.map((feature) => (
+      <article class="card overflow-hidden">
+        <ThemedArtwork
+          dark={`/branding/sandbox-lens/feature-${feature.key}-dark.webp`}
+          light={`/branding/sandbox-lens/feature-${feature.key}-light.webp`}
+          alt={`${feature.title}: illustrative policy evidence artwork`}
+          width={1800}
+          height={1300}
+          sources={[]}
+          className="border-b border-line"
+          identifier={`sandbox-lens-feature-${feature.key}`}
+          loading="lazy"
+          priority="auto"
+        />
+        <div class="p-5">
+          <h3 class="font-semibold text-ink">{feature.title}</h3>
+          <p class="mt-2 text-sm leading-6 text-ink-2">{feature.description}</p>
+        </div>
+      </article>
+    ))}
+  </div>
+</section>

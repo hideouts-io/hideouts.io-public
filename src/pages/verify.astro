@@ -1,0 +1,225 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import AnchorHeading from '../components/AnchorHeading.astro';
+import Icon from '../components/Icon.astro';
+import { appEntries } from '../lib/content';
+import { pageGraph, webPage } from '../lib/seo';
+
+// Every app with a downloadable release, and what its release offers for verification.
+const releases = appEntries()
+  .filter((e) => e.gh.release && e.gh.release.assets.some((a) => /\.(zip|dmg|pkg)$/i.test(a.name)))
+  .map((e) => {
+    const rel = e.gh.release!;
+    const sums = rel.assets.find((a) => /sha256/i.test(a.name) && !/\.(zip|dmg|pkg)$/i.test(a.name));
+    return { e, rel, sums };
+  });
+
+// A concrete attestation command from a release that actually publishes attestations.
+const attestedExample = releases
+  .filter(({ e }) => e.attested)
+  .map(({ e, rel }) => ({
+    e,
+    rel,
+    repo: `hideouts-io/${e.repo}`,
+    archive:
+      rel.assets.find((a) => /arm64\.zip$/i.test(a.name))?.name ??
+      rel.assets.find((a) => /\.(zip|dmg|pkg)$/i.test(a.name))!.name,
+  }))[0];
+
+const description =
+  'How to check that a hideouts download is authentic and unmodified: SHA-256 checksums, GitHub build attestations, code signatures, and opening an app that is not notarized.';
+const jsonLd = pageGraph(
+  webPage({
+    name: 'Verify a download',
+    path: '/verify/',
+    description,
+    extra: { about: { '@type': 'Thing', name: 'Software download verification' } },
+  }),
+  [{ name: 'Verify a download', path: '/verify/' }],
+);
+---
+
+<Base title="Verify a download" description={description} jsonLd={jsonLd}>
+  <PageHeader
+    eyebrow="Trust"
+    title="Verify a download"
+    lead="hideouts apps are open source and built in public, but they aren’t notarized by Apple. These steps let you confirm that what you downloaded is exactly what was published, before you run it."
+  />
+
+  <div class="container-x grid grid-cols-[minmax(0,1fr)] gap-12 pt-12 lg:grid-cols-[minmax(0,1fr)_22rem]">
+    <div class="prose-readme max-w-[46rem]">
+      <AnchorHeading id="download">1. Download from the release page</AnchorHeading>
+      <p>
+        Every download link on hideouts.io points to the project’s GitHub release page. Download the app archive and,
+        when the release has one, its checksum file (<code>SHA256SUMS.txt</code> or <code>.sha256</code>) into the same
+        folder. Don’t use copies from other sites or file-sharing services.
+      </p>
+
+      <AnchorHeading id="checksum">2. Check the SHA-256 checksum</AnchorHeading>
+      <p>
+        A checksum proves the file wasn’t changed or corrupted after it was published. In Terminal, in the folder with
+        the download:
+      </p>
+      <pre><code>shasum -a 256 NAME-OF-DOWNLOAD.zip</code></pre>
+      <p>
+        Compare the result with the SHA-256 shown next to the download on the app’s page on this site, or on the GitHub
+        release page. When the release includes a checksum file, let <code>shasum</code> compare the line for your
+        download:
+      </p>
+      <pre><code>grep "NAME-OF-DOWNLOAD.zip" SHA256SUMS.txt | shasum -a 256 -c -</code></pre>
+      <p>
+        The result must end in <strong>OK</strong>. If it says <strong>FAILED</strong>, or the digest is different,
+        don’t open the file: delete it and download it again from the release page.
+      </p>
+
+      <AnchorHeading id="attestation">3. Verify the GitHub build attestation (where available)</AnchorHeading>
+      <p>
+        Some releases are built by GitHub Actions and carry a signed <strong>build-provenance attestation</strong>. It
+        proves the archive was produced by that repository’s own workflow, not uploaded from somewhere else. With the{' '}
+        <a href="https://cli.github.com" rel="noopener noreferrer">
+          GitHub CLI
+        </a>{' '}
+        installed:
+      </p>
+      {attestedExample ? (
+        <>
+          <p>
+            For example, for {attestedExample.e.name} {attestedExample.rel.tag} on an Apple silicon Mac:
+          </p>
+          <pre><code>{`gh attestation verify ${attestedExample.archive} \\\n  --repo ${attestedExample.repo}`}</code></pre>
+        </>
+      ) : null}
+      <p>
+        Use the file name you downloaded and the repository it came from. The table on this page shows which releases
+        have attestations. An attestation ties the file to the build; it doesn’t make an app notarized.
+      </p>
+
+      <AnchorHeading id="signature">4. Check the code signature</AnchorHeading>
+      <p>After unzipping and moving the app to Applications, check that the app bundle is intact:</p>
+      <pre><code>codesign --verify --deep --strict --verbose=2 "/Applications/NAME.app"</code></pre>
+      <p>
+        A pass means every file in the app still matches its signature. hideouts apps aren’t signed with an Apple
+        Developer ID; most use an <strong>ad-hoc</strong> signature, which detects modification after signing but
+        doesn’t identify a publisher. Each app’s signing status is listed on its page and in the table here. You can see
+        the signature type with <code>codesign -dv "/Applications/NAME.app"</code>; an ad-hoc signature shows{' '}
+        <code>Signature=adhoc</code>.
+      </p>
+
+      <AnchorHeading id="gatekeeper">5. Open the app the first time</AnchorHeading>
+      <p>
+        Because the apps aren’t notarized, macOS may block the first launch even when every check above passes. That’s
+        expected, and so is <code>spctl --assess</code> reporting <strong>rejected</strong>: it only means Apple hasn’t
+        notarized the app. Use the per-app exception:
+      </p>
+      <ol>
+        <li>Try to open the app once from Applications.</li>
+        <li>
+          If macOS blocks it, Control-click or right-click the app and choose <strong>Open</strong>, then{' '}
+          <strong>Open</strong> again.
+        </li>
+        <li>
+          On macOS 15 Sequoia and later, the dialog may only offer <strong>Done</strong>. Click it, open{' '}
+          <strong>System Settings → Privacy &amp; Security</strong>, and click <strong>Open Anyway</strong> next to the
+          message about the app.
+        </li>
+      </ol>
+      <p>
+        The exception applies to that one app. Never turn off Gatekeeper globally, disable System Integrity Protection,
+        or remove quarantine attributes recursively. On a managed Mac, your administrator may need to approve the app.
+      </p>
+
+      <AnchorHeading id="mismatch">If something doesn’t match</AnchorHeading>
+      <ul>
+        <li>Delete the download and get it again from the GitHub release page.</li>
+        <li>
+          If a checksum, attestation, or signature check still fails, don’t run the app. Report it privately as
+          described on the <a href="/security/">security page</a>, with the file name, the digest you got, and where you
+          downloaded it.
+        </li>
+      </ul>
+
+      <AnchorHeading id="terms">What the terms mean</AnchorHeading>
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Signing terms">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Term</th>
+              <th scope="col">What it proves</th>
+              <th scope="col">What it doesn’t</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>SHA-256 checksum</td>
+              <td>The file is byte-for-byte what was published.</td>
+              <td>Who published it, if the release page itself were compromised.</td>
+            </tr>
+            <tr>
+              <td>Build attestation</td>
+              <td>The file was built by the repository’s own GitHub Actions workflow.</td>
+              <td>That the code is safe, or that Apple has checked it.</td>
+            </tr>
+            <tr>
+              <td>Ad-hoc signature</td>
+              <td>Files in the app haven’t changed since it was signed.</td>
+              <td>A publisher identity. Anyone can ad-hoc sign.</td>
+            </tr>
+            <tr>
+              <td>Developer ID + notarization</td>
+              <td>Apple has identified the developer and scanned the app. hideouts apps don’t have this yet.</td>
+              <td>That the app is free of bugs or vulnerabilities.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <aside aria-labelledby="releases-heading">
+      <div class="card sticky top-24 p-5">
+        <h2 id="releases-heading" class="text-sm font-semibold text-ink">
+          Current releases
+        </h2>
+        <ul class="mt-4 divide-y divide-line text-sm">
+          {releases.map(({ e, rel, sums }) => (
+            <li class="py-3">
+              <div class="flex items-baseline justify-between gap-3">
+                <a href={e.href} class="font-medium text-ink hover:text-accent">
+                  {e.name}
+                </a>
+                <a href={rel.url} class="font-mono text-xs text-ink-3 hover:text-ink" rel="noopener noreferrer">
+                  {rel.tag}
+                </a>
+              </div>
+              <ul class="mt-2 space-y-1 text-xs text-ink-2">
+                <li class="flex items-center gap-2">
+                  <Icon name="fingerprint" size={12} class="shrink-0 text-ink-3" />
+                  {sums ? (
+                    <span>
+                      Checksum file: <code class="font-mono">{sums.name}</code>
+                    </span>
+                  ) : (
+                    <span>SHA-256 on the app page</span>
+                  )}
+                </li>
+                <li class="flex items-center gap-2">
+                  <Icon name="check" size={12} class="shrink-0 text-ink-3" />
+                  {e.attested ? 'GitHub build attestation' : 'No build attestation'}
+                </li>
+                {e.signing && (
+                  <li class="flex items-center gap-2">
+                    <Icon name="shield" size={12} class="shrink-0 text-ink-3" />
+                    {e.signing}
+                  </li>
+                )}
+              </ul>
+            </li>
+          ))}
+        </ul>
+        <p class="mt-3 border-t border-line pt-3 text-xs text-ink-3">
+          Apps without a release are built from source on your own machine; each app’s README has the steps.
+        </p>
+      </div>
+    </aside>
+  </div>
+</Base>

@@ -1,0 +1,64 @@
+---
+interface ArtworkSource {
+  media: string;
+  dark: string;
+  light: string;
+  width: number;
+  height: number;
+}
+
+interface Props {
+  dark: string;
+  light: string;
+  alt: string;
+  width: number;
+  height: number;
+  sources: ArtworkSource[];
+  className: string;
+  identifier: string;
+  loading: 'eager' | 'lazy';
+  priority: 'high' | 'auto';
+}
+
+const { dark, light, alt, width, height, sources, className, identifier, loading, priority } = Astro.props;
+const surfaces = [
+  { theme: 'dark', src: dark },
+  { theme: 'light', src: light },
+] as const;
+---
+
+{surfaces.map((surface) => (
+  <picture
+    class:list={['themed-artwork', `artwork-${surface.theme}`, className]}
+    data-testid={`${identifier}-${surface.theme}`}
+  >
+    {sources.map((source) => (
+      <source media={source.media} srcset={source[surface.theme]} width={source.width} height={source.height} />
+    ))}
+    <img
+      src={surface.src}
+      alt={alt}
+      width={width}
+      height={height}
+      loading={loading}
+      fetchpriority={priority}
+      decoding="async"
+      class="h-auto w-full"
+    />
+  </picture>
+))}
+
+<style>
+  .artwork-dark {
+    display: block;
+  }
+  .artwork-light {
+    display: none;
+  }
+  :global(:root[data-theme='light']) .artwork-dark {
+    display: none;
+  }
+  :global(:root[data-theme='light']) .artwork-light {
+    display: block;
+  }
+</style>

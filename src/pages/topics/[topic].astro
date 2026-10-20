@@ -1,0 +1,86 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import AppCard from '../../components/AppCard.astro';
+import ResearchCard from '../../components/ResearchCard.astro';
+import { topicIndex, topicHref } from '../../lib/topics';
+import type { Entry } from '../../lib/content';
+import { pageGraph, webPage, siteUrl } from '../../lib/seo';
+
+export function getStaticPaths() {
+  return topicIndex().map(({ topic, projects }) => ({ params: { topic }, props: { topic, projects } }));
+}
+
+const { topic, projects } = Astro.props as { topic: string; projects: Entry[] };
+const research = projects.filter((p) => p.kind === 'research');
+const apps = projects.filter((p) => p.kind === 'app');
+const count = (n: number, one: string, many: string) => `${n} ${n === 1 ? one : many}`;
+const parts = [
+  research.length && count(research.length, 'research write-up', 'research write-ups'),
+  apps.length && count(apps.length, 'app', 'apps'),
+].filter(Boolean);
+const description = `hideouts projects tagged “${topic}”: ${parts.join(' and ')}.`;
+
+const jsonLd = pageGraph(
+  webPage({
+    type: 'CollectionPage',
+    name: `Topic: ${topic}`,
+    path: topicHref(topic),
+    description,
+    extra: {
+      about: { '@type': 'Thing', name: topic },
+      mainEntity: {
+        '@type': 'ItemList',
+        numberOfItems: projects.length,
+        itemListElement: projects.map((p, i) => ({
+          '@type': 'ListItem',
+          position: i + 1,
+          url: siteUrl(p.href),
+          name: p.name,
+        })),
+      },
+    },
+  }),
+  [
+    { name: 'Topics', path: '/topics/' },
+    { name: topic, path: topicHref(topic) },
+  ],
+);
+---
+
+<Base title={`Topic: ${topic}`} description={description} jsonLd={jsonLd}>
+  <PageHeader eyebrow="Topic" title={topic} lead={`${parts.join(' and ')} tagged with this topic on GitHub.`}>
+    <a href="/topics/" class="mt-6 inline-flex text-sm text-ink-2 hover:text-ink">
+      All topics
+    </a>
+  </PageHeader>
+
+  {research.length > 0 && (
+    <section class="container-x pt-10" aria-labelledby="topic-research">
+      <h2 id="topic-research" class="text-xl font-semibold tracking-tight text-ink">
+        Research
+      </h2>
+      <ul class="mt-4 grid gap-4 md:grid-cols-2">
+        {research.map((e) => (
+          <li>
+            <ResearchCard entry={e} />
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+  {apps.length > 0 && (
+    <section class="container-x pt-10" aria-labelledby="topic-apps">
+      <h2 id="topic-apps" class="text-xl font-semibold tracking-tight text-ink">
+        Apps
+      </h2>
+      <ul class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {apps.map((e) => (
+          <li>
+            <AppCard entry={e} />
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+</Base>

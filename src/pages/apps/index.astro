@@ -1,0 +1,105 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import AppCard from '../../components/AppCard.astro';
+import { appEntries, appsByCategory } from '../../lib/content';
+import { breadcrumbs, organization, siteUrl } from '../../lib/seo';
+
+const apps = appEntries();
+const groups = appsByCategory();
+const iosCount = apps.filter((a) => a.platforms.includes('iOS')).length;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    organization,
+    {
+      '@type': 'CollectionPage',
+      name: 'hideouts apps',
+      url: siteUrl('/apps/'),
+      mainEntity: {
+        '@type': 'ItemList',
+        itemListElement: apps.map((a, i) => ({
+          '@type': 'ListItem',
+          position: i + 1,
+          url: siteUrl(a.href),
+          name: a.name,
+        })),
+      },
+    },
+    breadcrumbs([{ name: 'Apps', path: '/apps/' }]),
+  ],
+};
+---
+
+<Base
+  title="Apps"
+  description="Open-source macOS and iOS apps for security posture, code-signing inspection, iPhone diagnostics and forensics, packet capture, and storage troubleshooting."
+  jsonLd={jsonLd}
+>
+  <PageHeader
+    eyebrow="Applications"
+    title="Tools for your Mac and iPhone"
+    lead="Native, open-source utilities for inspecting, diagnosing, and protecting Apple devices. Each one documents what it does, what it doesn’t, and which protections it never bypasses."
+  />
+  <section class="container-x pt-10" aria-label="All apps">
+    <!-- Filters only show when JavaScript runs (html.js); without it, every app is listed. -->
+    <div data-filter-group="app-grid" class="flex flex-col gap-3">
+      <div class="flex flex-wrap items-center gap-3">
+        <span class="w-20 text-xs font-medium tracking-wider text-ink-3 uppercase" id="platform-label">
+          Platform
+        </span>
+        <div
+          class="inline-flex gap-1 rounded-full border border-line bg-surface p-1 text-sm"
+          role="group"
+          aria-labelledby="platform-label"
+        >
+          <button type="button" data-filter-platform="all" aria-pressed="true" class="filter-btn">
+            All <span class="text-ink-3">{apps.length}</span>
+          </button>
+          <button type="button" data-filter-platform="macOS" aria-pressed="false" class="filter-btn">
+            Mac only
+          </button>
+          <button type="button" data-filter-platform="iOS" aria-pressed="false" class="filter-btn">
+            iPhone &amp; iPad <span class="text-ink-3">{iosCount}</span>
+          </button>
+        </div>
+      </div>
+      <div class="flex flex-wrap items-center gap-3">
+        <span class="w-20 text-xs font-medium tracking-wider text-ink-3 uppercase" id="category-label">
+          Category
+        </span>
+        <div class="flex flex-wrap gap-1.5 text-sm" role="group" aria-labelledby="category-label">
+          <button type="button" data-filter-category="all" aria-pressed="true" class="filter-btn border border-line">
+            All
+          </button>
+          {groups.map((g) => (
+            <button
+              type="button"
+              data-filter-category={g.key}
+              aria-pressed="false"
+              class="filter-btn border border-line"
+            >
+              {g.label} <span class="text-ink-3">{g.apps.length}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+      <p data-filter-status class="min-h-5 text-sm text-ink-3" aria-live="polite"></p>
+    </div>
+
+    <ul id="app-grid" class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {apps.map((e) => (
+        <li>
+          <AppCard entry={e} headingLevel="h2" />
+        </li>
+      ))}
+    </ul>
+    <p data-filter-empty hidden class="mt-6 text-ink-2">
+      No apps match those filters.{' '}
+      <button type="button" data-filter-reset class="text-accent underline underline-offset-4">
+        Show all apps
+      </button>
+    </p>
+  </section>
+</Base>

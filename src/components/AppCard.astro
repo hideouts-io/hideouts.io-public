@@ -1,0 +1,69 @@
+---
+import type { Entry } from '../lib/content';
+import { displayLogo, releaseStatus } from '../lib/content';
+import AppIcon from './AppIcon.astro';
+import Platforms from './Platforms.astro';
+import Icon from './Icon.astro';
+import ThemedArtwork from './ThemedArtwork.astro';
+interface Props {
+  entry: Entry;
+  /** Heading level for the card title, so cards fit the page outline. */
+  headingLevel?: 'h2' | 'h3';
+}
+const { entry: e, headingLevel: H = 'h3' } = Astro.props;
+const status = releaseStatus(e.gh);
+const logo = displayLogo(e);
+---
+
+<article
+  class="card card-link group flex h-full flex-col p-5"
+  data-platforms={e.platforms.join(' ')}
+  data-categories={(e.categories ?? []).join(' ')}
+>
+  {e.cardImage && (
+    <ThemedArtwork
+      dark={e.cardImage.dark}
+      light={e.cardImage.light}
+      alt={e.cardImage.alt}
+      width={1200}
+      height={675}
+      sources={[]}
+      className="mb-5 overflow-hidden rounded-xl border border-line"
+      identifier={`${e.slug}-card-artwork`}
+      loading="lazy"
+      priority="auto"
+    />
+  )}
+  <div class="flex items-start gap-4">
+    <AppIcon src={logo.src} shaped={logo.shaped} name={e.name} />
+    <div class="min-w-0">
+      <H class="font-semibold tracking-tight text-ink">
+        <a href={e.href} class="stretched-link">
+          {e.name}
+        </a>
+      </H>
+      <p class="mt-1 text-sm leading-6 text-ink-2">{e.tagline}</p>
+    </div>
+  </div>
+  <div class="mt-auto flex flex-wrap items-center gap-1.5 pt-5">
+    <Platforms platforms={e.platforms} compact />
+    {e.gh.language && (
+      <span class="chip">
+        <Icon name="code" size={12} />
+        {e.gh.language}
+      </span>
+    )}
+    {e.gh.release ? (
+      <span class="chip font-mono" title={status.label}>
+        {e.gh.release.tag}
+      </span>
+    ) : (
+      <span class="chip">{status.label}</span>
+    )}
+    <Icon
+      name="arrow-right"
+      size={16}
+      class="ml-auto text-ink-3 transition-transform group-hover:translate-x-0.5 group-hover:text-accent"
+    />
+  </div>
+</article>

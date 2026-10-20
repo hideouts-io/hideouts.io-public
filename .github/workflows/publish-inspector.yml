@@ -1,0 +1,104 @@
+name: Publish site artifact inspector
+
+on:
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: inspector-publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && github.repository == 'hideouts-io/hideouts.io-public'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    environment: inspector-publish
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+
+      - name: Build and inspect the policy-free image
+        id: build
+        shell: bash
+        run: |
+          set -euo pipefail
+          [[ "$GITHUB_SHA" =~ ^[0-9a-f]{40}$ ]]
+          [[ "$GITHUB_RUN_ID" =~ ^[0-9]+$ ]]
+          [[ "$GITHUB_RUN_ATTEMPT" =~ ^[0-9]+$ ]]
+
+          image_ref="ghcr.io/hideouts-io/site-artifact-inspector:sha-${GITHUB_SHA}-run-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          docker build --pull --platform linux/amd64 \
+            --file .github/docker/artifact-inspector.Dockerfile \
+            --tag "$image_ref" .github/docker
+
+          source_label="$(docker image inspect --format '{{ index .Config.Labels "org.opencontainers.image.source" }}' "$image_ref")"
+          test "$source_label" = 'https://github.com/hideouts-io/hideouts.io-public'
+          local_image_id="$(docker image inspect --format '{{.Id}}' "$image_ref")"
+          [[ "$local_image_id" =~ ^sha256:[0-9a-f]{64}$ ]]
+
+          node_version="$(docker run --rm --network none --entrypoint node "$image_ref" --version)"
+          python_version="$(docker run --rm --network none --entrypoint python3 "$image_ref" --version 2>&1)"
+          tesseract_version="$(docker run --rm --network none --entrypoint tesseract "$image_ref" --version 2>&1 | sed -n '1p')"
+          exiftool_version="$(docker run --rm --network none --entrypoint exiftool "$image_ref" -ver)"
+          dockerfile_sha256="$(sha256sum .github/docker/artifact-inspector.Dockerfile | cut -d ' ' -f1)"
+
+          printf 'image_ref=%s\nlocal_image_id=%s\n' "$image_ref" "$local_image_id" >> "$GITHUB_OUTPUT"
+          {
+            printf '### Site artifact inspector\n\n'
+            printf 'Source: `%s`\n\n' "$GITHUB_SHA"
+            printf 'Dockerfile SHA-256: `%s`\n\n' "$dockerfile_sha256"
+            printf 'Local image ID: `%s`\n\n' "$local_image_id"
+            printf 'Node: `%s`; Python: `%s`; Tesseract: `%s`; ExifTool: `%s`\n\n' \
+              "$node_version" "$python_version" "$tesseract_version" "$exiftool_version"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Push and record the registry manifest digest
+        id: publish
+        shell: bash
+        env:
+          GHCR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          IMAGE_REF: ${{ steps.build.outputs.image_ref }}
+        run: |
+          set -euo pipefail
+          printf '%s' "$GHCR_TOKEN" | docker login ghcr.io -u "$GITHUB_ACTOR" --password-stdin >/dev/null
+          docker push "$IMAGE_REF" | tee "$RUNNER_TEMP/inspector-push.log"
+          push_digest="$(python3 - "$RUNNER_TEMP/inspector-push.log" <<'PY'
+          import re
+          import sys
+
+          with open(sys.argv[1], encoding="utf-8") as push_log:
+              matches = re.findall(r"digest:\s*(sha256:[0-9a-f]{64})\b", push_log.read())
+          if len(matches) != 1:
+              raise ValueError("push did not report exactly one manifest digest")
+          print(matches[0])
+          PY
+          )"
+          docker buildx imagetools inspect "$IMAGE_REF" --format '{{json .Manifest}}' > "$RUNNER_TEMP/inspector-manifest.json"
+          registry_digest="$(python3 - "$RUNNER_TEMP/inspector-manifest.json" <<'PY'
+          import json
+          import re
+          import sys
+
+          with open(sys.argv[1], encoding="utf-8") as manifest_file:
+              digest = json.load(manifest_file)["digest"]
+          if not isinstance(digest, str) or re.fullmatch(r"sha256:[0-9a-f]{64}", digest) is None:
+              raise ValueError("registry manifest digest is missing or invalid")
+          print(digest)
+          PY
+          )"
+          test "$registry_digest" = "$push_digest"
+          package_visibility="$(GH_TOKEN="$GHCR_TOKEN" gh api --jq .visibility \
+            users/hideouts-io/packages/container/site-artifact-inspector)"
+          if [[ "$package_visibility" != private ]]; then
+            printf 'Expected a private inspector package, got %s\n' "$package_visibility" >&2
+            exit 1
+          fi
+          printf 'registry_digest=%s\n' "$registry_digest" >> "$GITHUB_OUTPUT"
+          printf 'Registry image: `%s@%s`\n' "${IMAGE_REF%:*}" "$registry_digest" >> "$GITHUB_STEP_SUMMARY"
+          printf 'Package visibility: `%s`\n' "$package_visibility" >> "$GITHUB_STEP_SUMMARY"

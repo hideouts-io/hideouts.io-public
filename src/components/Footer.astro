@@ -1,0 +1,121 @@
+---
+import Logo from './Logo.astro';
+import { build } from '../lib/build';
+const year = new Date().getFullYear();
+const builtOn = new Date(build.time).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'short',
+  day: 'numeric',
+  timeZone: 'UTC',
+});
+---
+
+<footer class="mt-24 border-t border-line">
+  <div class="container-x grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
+    <div class="max-w-xs">
+      <Logo class="footer-logo" />
+      <p class="mt-4 text-sm leading-6 text-ink-2">
+        Open-source tools and evidence-first research for macOS and iOS privacy and security.
+      </p>
+      <p class="mt-4 inline-flex items-center gap-2 text-xs text-ink-3">
+        <span class="size-1.5 rounded-full bg-accent"></span>
+        This site uses no cookies, analytics, or trackers.
+      </p>
+    </div>
+    <div>
+      <h2 class="text-sm font-semibold text-ink">Explore</h2>
+      <ul class="mt-3 space-y-2 text-sm text-ink-2">
+        <li>
+          <a class="hover:text-ink" href="/apps/">
+            Apps
+          </a>
+        </li>
+        <li>
+          <a class="hover:text-ink" href="/research/">
+            Research
+          </a>
+        </li>
+        <li>
+          <a class="hover:text-ink" href="/contribute/">
+            Contribute
+          </a>
+        </li>
+        <li>
+          <a class="hover:text-ink" href="/about/">
+            About
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div>
+      <h2 class="text-sm font-semibold text-ink">Trust</h2>
+      <ul class="mt-3 space-y-2 text-sm text-ink-2">
+        <li>
+          <a class="hover:text-ink" href="/verify/">
+            Verify a download
+          </a>
+        </li>
+        <li>
+          <a class="hover:text-ink" href="/security/">
+            Report a vulnerability
+          </a>
+        </li>
+        <li>
+          <a class="hover:text-ink" href="/privacy/">
+            Privacy
+          </a>
+        </li>
+        <li>
+          <a class="hover:text-ink" href="/about/#responsible-use">
+            Responsible use
+          </a>
+        </li>
+        <li>
+          <a class="hover:text-ink" href="/colophon/">
+            How this site is built
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div>
+      <h2 class="text-sm font-semibold text-ink">Source</h2>
+      <ul class="mt-3 space-y-2 text-sm text-ink-2">
+        <li>
+          <a class="hover:text-ink" href="https://github.com/hideouts-io" rel="noopener noreferrer">
+            GitHub
+          </a>
+        </li>
+        <li>
+          <a class="hover:text-ink" href="/research/rss.xml">
+            Research feed
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="container-x flex flex-col gap-2 border-t border-line py-6 text-xs text-ink-3 sm:flex-row sm:justify-between">
+    <p>
+      © {year} hideouts.io. Projects are released under their own open-source licenses.
+      <span class="block sm:mt-1">
+        Built{' '}
+        {build.commitUrl && (
+          <>
+            from{' '}
+            <a
+              class="font-mono underline decoration-line underline-offset-2 hover:text-ink"
+              href={build.commitUrl}
+              rel="noopener noreferrer"
+            >
+              {build.short}
+            </a>{' '}
+          </>
+        )}
+        on <time datetime={build.time}>{builtOn}</time> ·{' '}
+        <a class="underline decoration-line underline-offset-2 hover:text-ink" href="/colophon/">
+          How this site is built
+        </a>
+      </span>
+    </p>
+    <p>Apple, macOS, and iOS are trademarks of Apple Inc. hideouts.io is not affiliated with Apple.</p>
+  </div>
+</footer>

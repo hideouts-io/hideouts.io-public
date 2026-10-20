@@ -1,0 +1,31 @@
+---
+// A prose heading with a "#" link to itself. Same markup the README renderer
+// produces (anchorHeading() in scripts/render-content.ts), so both share CSS.
+interface Props {
+  id: string;
+  level?: 2 | 3 | 4;
+  /** Accessible text for the link; defaults to the heading's text. */
+  label?: string;
+}
+const { id, level = 2, label } = Astro.props;
+const Tag = `h${level}` as const;
+const entities: Record<string, string> = { amp: '&', lt: '<', gt: '>', quot: '"', '#39': "'" };
+const text =
+  label ??
+  (await Astro.slots.render('default'))
+    .replace(/<[^>]+>/g, '')
+    .replace(/&(amp|lt|gt|quot|#39);/g, (_, e: string) => entities[e])
+    .trim();
+---
+
+<div class={`heading-wrap level-${level}`}>
+  <Tag id={id}>
+    <slot />
+  </Tag>
+  <a class="heading-anchor" href={`#${id}`} data-pagefind-ignore>
+    <span aria-hidden="true">#</span>
+    <span class="sr-only">
+      Link to section: <Fragment set:text={text} />
+    </span>
+  </a>
+</div>

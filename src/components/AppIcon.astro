@@ -1,0 +1,33 @@
+---
+/** Project logo from the README, or a monogram tile when there isn't one. */
+interface Props {
+  src: string | null;
+  name: string;
+  size?: 'sm' | 'lg';
+  /** The logo has its own shape (transparent corners): show it without the tile. */
+  shaped?: boolean;
+}
+const { src, name, size = 'sm', shaped = false } = Astro.props;
+const box = size === 'lg' ? 'size-20 sm:size-24' : 'size-12';
+const dim = `${box} ${size === 'lg' ? 'rounded-[1.4rem]' : 'rounded-[0.8rem]'}`;
+const initials = name
+  .replace(/^The |^Inside /, '')
+  .split(/\s+/)
+  .map((w) => w[0])
+  .join('')
+  .slice(0, 2)
+  .toUpperCase();
+---
+
+{src && shaped ? (
+  <img src={src} alt="" width="96" height="96" class={`${box} shrink-0 object-contain`} />
+) : src ? (
+  <img src={src} alt="" width="96" height="96" class={`${dim} shrink-0 border border-line bg-surface-2 object-cover`} />
+) : (
+  <span
+    aria-hidden="true"
+    class={`${dim} grid shrink-0 place-items-center border border-line bg-gradient-to-br from-surface-2 to-surface font-mono font-semibold text-accent ${size === 'lg' ? 'text-2xl' : 'text-sm'}`}
+  >
+    {initials}
+  </span>
+)}

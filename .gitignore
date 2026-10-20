@@ -1,0 +1,18 @@
+# build output
+dist/
+.astro/
+.cache/
+
+# generated from GitHub by `npm run content`
+src/generated/
+public/media/
+src/styles/shiki.generated.css
+
+node_modules/
+npm-debug.log*
+.env
+.env.*
+.DS_Store
+
+# generated share images
+public/og/

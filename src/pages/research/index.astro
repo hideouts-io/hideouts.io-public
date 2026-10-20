@@ -1,0 +1,92 @@
+---
+import Base from '../../layouts/Base.astro';
+import { pageGraph, webPage, siteUrl } from '../../lib/seo';
+import PageHeader from '../../components/PageHeader.astro';
+import ResearchCard from '../../components/ResearchCard.astro';
+import Icon from '../../components/Icon.astro';
+import { researchEntries } from '../../lib/content';
+
+const research = researchEntries();
+const [lead, ...rest] = research;
+const description =
+  'Evidence-first research into Apple internals: firmware restore, iOS artifacts, Apple network infrastructure, and macOS kernel networking.';
+const jsonLd = pageGraph(
+  webPage({
+    type: 'CollectionPage',
+    name: 'hideouts research',
+    path: '/research/',
+    description,
+    extra: {
+      mainEntity: {
+        '@type': 'ItemList',
+        numberOfItems: research.length,
+        itemListElement: research.map((r, i) => ({
+          '@type': 'ListItem',
+          position: i + 1,
+          url: siteUrl(r.href),
+          name: r.name,
+        })),
+      },
+    },
+  }),
+  [{ name: 'Research', path: '/research/' }],
+);
+---
+
+<Base
+  jsonLd={jsonLd}
+  title="Research"
+  image="/branding/hideouts/research-cover-1600x900.png"
+  imageDimensions={{ width: 1600, height: 900 }}
+  imageAlt="hideouts.io: Evidence-first research. macOS & iOS privacy and security."
+  description="Evidence-first research into Apple internals: firmware restore, iOS artifacts, Apple network infrastructure, and macOS kernel networking."
+>
+  <PageHeader
+    eyebrow="Research"
+    title="Evidence-first write‑ups on Apple internals"
+    lead="Every investigation keeps direct observations apart from interpretation, with the original artifacts published alongside."
+  >
+    <a href="/research/rss.xml" class="mt-6 inline-flex items-center gap-2 text-sm text-ink-2 hover:text-ink">
+      <Icon name="doc" size={14} class="text-accent" /> Subscribe via RSS
+    </a>
+    <a href="/topics/" class="mt-6 ml-6 inline-flex items-center gap-2 text-sm text-ink-2 hover:text-ink">
+      <Icon name="tag" size={14} class="text-accent" /> Browse by topic
+    </a>
+  </PageHeader>
+
+  <section class="container-x pt-10">
+    {lead && (
+      <article class="card card-link group grid gap-6 p-6 sm:p-8 lg:grid-cols-[1.4fr_1fr] lg:items-center">
+        <div>
+          <p class="eyebrow">Featured</p>
+          <h2 class="mt-3 text-2xl leading-snug font-semibold tracking-tight text-ink sm:text-3xl">
+            <a href={lead.href} class="stretched-link">
+              {lead.name}
+            </a>
+          </h2>
+          <p class="mt-3 text-ink-2">{lead.tagline}</p>
+          <p class="mt-4 text-sm leading-6 text-ink-3">{lead.summary}</p>
+          <span class="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-accent" aria-hidden="true">
+            Read the research{' '}
+            <Icon name="arrow-right" size={14} class="transition-transform group-hover:translate-x-0.5" />
+          </span>
+        </div>
+        <img
+          src={`/og/${lead.slug}.png`}
+          alt=""
+          width="1200"
+          height="630"
+          loading="lazy"
+          class="hidden rounded-xl border border-line lg:block"
+        />
+      </article>
+    )}
+    <ul class="mt-4 grid gap-4 md:grid-cols-2">
+      {rest.map((e) => (
+        <li>
+          <ResearchCard entry={e} headingLevel="h2" />
+        </li>
+      ))}
+    </ul>
+  </section>
+</Base>

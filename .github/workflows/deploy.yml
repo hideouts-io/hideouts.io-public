@@ -1,0 +1,732 @@
+name: Build and deploy
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    # Nightly build validation against project READMEs (06:17 UTC).
+    - cron: '17 6 * * *'
+  repository_dispatch:
+    # Fire from a project repo to validate its README change:
+    #   gh api repos/hideouts-io/hideouts.io-public/dispatches -f event_type=content-update
+    types: [content-update]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    timeout-minutes: 45
+    runs-on: ubuntu-24.04
+    outputs:
+      cipher_artifact_id: ${{ steps.upload_cipher.outputs.artifact-id }}
+      cipher_artifact_digest: ${{ steps.upload_cipher.outputs.artifact-digest }}
+      cipher_artifact_name: ${{ steps.stage.outputs.cipher_artifact_name }}
+      cipher_sha256: ${{ steps.stage.outputs.cipher_sha256 }}
+      site_tar_sha256: ${{ steps.stage.outputs.site_tar_sha256 }}
+      source_tar_sha256: ${{ steps.source.outputs.source_tar_sha256 }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Record committed source before build hooks
+        id: source
+        if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main'
+        shell: bash
+        run: |
+          set -euo pipefail
+          git archive "$GITHUB_SHA" > "$RUNNER_TEMP/source.tar"
+          echo "source_tar_sha256=$(sha256sum "$RUNNER_TEMP/source.tar" | cut -d ' ' -f1)" >> "$GITHUB_OUTPUT"
+
+      - run: npm ci
+
+      - name: Lint, formatting, and type checks
+        run: |
+          npm run lint
+          npm run format:check
+          npm run typecheck
+
+      # The last good GitHub snapshot. If the API is down or rate-limited, the
+      # fetch step keeps these copies instead of failing the build.
+      - name: Restore content cache
+        if: github.event_name != 'workflow_dispatch' || github.ref != 'refs/heads/main'
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6
+        with:
+          path: .cache/github
+          key: github-content-${{ github.run_id }}
+          restore-keys: github-content-
+
+      - name: Fetch and render content from the allowlisted repositories
+        run: npm run content
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build site and search index
+        run: npm run build
+        env:
+          # The commit shown in the footer and on /colophon/. On pull requests,
+          # the PR head rather than GitHub's temporary merge commit.
+          SITE_COMMIT: ${{ github.event.pull_request.head.sha || github.sha }}
+
+      - name: Allowlist and internal link checks
+        run: npm run verify
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REQUIRE_LIVE_ALLOWLIST: ${{ github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && '1' || '0' }}
+
+      - name: External link check
+        if: github.event_name != 'workflow_dispatch' || github.ref != 'refs/heads/main'
+        uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2
+        # Blocking on pushes and pull requests; advisory on scheduled and
+        # dispatched runs so a flaky third-party link can't stop a content sync.
+        # 429 and 503 are accepted: GitHub throttles bursts of requests from
+        # Actions runners to its file pages, which says nothing about whether a
+        # link is dead (404/410 still fail).
+        continue-on-error: ${{ github.event_name == 'schedule' || github.event_name == 'repository_dispatch' }}
+        with:
+          args: >-
+            --no-progress
+            --root-dir ${{ github.workspace }}/dist
+            --max-retries 3
+            --retry-wait-time 5
+            --max-concurrency 8
+            --accept 200,206,429,503
+            --exclude '^https://hideouts\.io'
+            --exclude-path dist/pagefind
+            'dist/**/*.html'
+          fail: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Confirm build hooks did not modify committed source
+        if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main'
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - "$RUNNER_TEMP/source.tar" "$GITHUB_WORKSPACE" <<'PY_CHECK'
+          import hashlib
+          import os
+          import pathlib
+          import stat
+          import sys
+          import tarfile
+
+          def digest(stream):
+              value = hashlib.sha256()
+              for chunk in iter(lambda: stream.read(65536), b""):
+                  value.update(chunk)
+              return value.digest()
+
+          try:
+              root = pathlib.Path(sys.argv[2])
+              with tarfile.open(sys.argv[1], "r:") as archive:
+                  for member in archive:
+                      name = pathlib.PurePosixPath(member.name)
+                      if name.is_absolute() or ".." in name.parts:
+                          raise ValueError("unsafe committed path")
+                      target = root.joinpath(*name.parts)
+                      mode = os.lstat(target).st_mode
+                      if member.isdir():
+                          if not stat.S_ISDIR(mode):
+                              raise ValueError("committed directory changed")
+                      elif member.isfile():
+                          stream = archive.extractfile(member)
+                          if not stat.S_ISREG(mode) or stream is None:
+                              raise ValueError("committed file changed")
+                          with stream, target.open("rb") as current:
+                              if digest(stream) != digest(current):
+                                  raise ValueError("committed file changed")
+                      elif member.issym():
+                          if not stat.S_ISLNK(mode) or os.readlink(target) != member.linkname:
+                              raise ValueError("committed link changed")
+                      else:
+                          raise ValueError("unsupported committed entry")
+          except (OSError, ValueError, tarfile.TarError):
+              print("Committed source changed during build", file=sys.stderr)
+              sys.exit(1)
+          PY_CHECK
+
+      - name: Package and encrypt the intermediate site
+        id: stage
+        if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main'
+        shell: bash
+        env:
+          APPROVED_CERT_SHA256: ${{ vars.SITE_ARTIFACT_CERT_SHA256 }}
+        run: |
+          set -euo pipefail
+          umask 077
+          [[ "$APPROVED_CERT_SHA256" =~ ^[a-f0-9]{64}$ ]]
+          test "$(sha256sum .github/release/site-artifact-recipient.pem | cut -d ' ' -f1)" = "$APPROVED_CERT_SHA256"
+          openssl x509 -checkend 0 -noout -in .github/release/site-artifact-recipient.pem
+          python3 - "$GITHUB_WORKSPACE" <<'PY_CHECK'
+          import os
+          import pathlib
+          import stat
+          import sys
+
+          root = pathlib.Path(sys.argv[1])
+          count = 0
+          size = 0
+          for relative in ("dist", ".cache/github"):
+              folder = root / relative
+              if not folder.is_dir() or folder.is_symlink():
+                  raise SystemExit("Intermediate site input missing or invalid")
+              for current, directories, files in os.walk(folder, followlinks=False):
+                  for name in directories + files:
+                      entry = pathlib.Path(current) / name
+                      mode = entry.lstat().st_mode
+                      if not (stat.S_ISDIR(mode) or stat.S_ISREG(mode)):
+                          raise SystemExit("Intermediate site has an unsupported entry")
+                      if stat.S_ISREG(mode):
+                          count += 1
+                          size += entry.stat().st_size
+                          if count > 20000 or size > 536870912:
+                              raise SystemExit("Intermediate site exceeds release limits")
+          if count == 0:
+              raise SystemExit("Intermediate site is empty")
+          PY_CHECK
+          tar --sort=name --mtime='@0' --owner=0 --group=0 --numeric-owner \
+            --dereference --hard-dereference \
+            --format=posix -cf "$RUNNER_TEMP/site-input.tar" -C "$GITHUB_WORKSPACE" dist .cache/github
+          openssl cms -encrypt -binary -aes-256-gcm \
+            -in "$RUNNER_TEMP/site-input.tar" -outform DER \
+            -out "$RUNNER_TEMP/encrypted-site.cms" .github/release/site-artifact-recipient.pem
+          echo "cipher_sha256=$(sha256sum "$RUNNER_TEMP/encrypted-site.cms" | cut -d ' ' -f1)" >> "$GITHUB_OUTPUT"
+          echo "site_tar_sha256=$(sha256sum "$RUNNER_TEMP/site-input.tar" | cut -d ' ' -f1)" >> "$GITHUB_OUTPUT"
+          echo "cipher_artifact_name=encrypted-site-input-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT" >> "$GITHUB_OUTPUT"
+
+      # Only authenticated ciphertext leaves the untrusted build runner.
+      - name: Upload encrypted intermediate
+        id: upload_cipher
+        if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main'
+        uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
+        with:
+          name: encrypted-site-input-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/encrypted-site.cms
+          retention-days: 1
+          if-no-files-found: error
+          compression-level: 0
+
+      - name: Record preapproval identities
+        if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main'
+        shell: bash
+        env:
+          CIPHER_ARTIFACT_ID: ${{ steps.upload_cipher.outputs.artifact-id }}
+        run: |
+          set -euo pipefail
+          {
+            echo "Source commit: $GITHUB_SHA"
+            echo "Committed source tar SHA-256: $(sha256sum "$RUNNER_TEMP/source.tar" | cut -d ' ' -f1)"
+            echo "Encrypted intermediate artifact ID: $CIPHER_ARTIFACT_ID"
+            echo "Encrypted intermediate SHA-256: $(sha256sum "$RUNNER_TEMP/encrypted-site.cms" | cut -d ' ' -f1)"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+  package_pages:
+    timeout-minutes: 45
+    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-24.04
+    permissions:
+      actions: read
+      contents: read
+      packages: read
+    environment:
+      name: site-policy-review
+    outputs:
+      artifact_id: ${{ steps.upload.outputs.artifact-id }}
+      artifact_digest: ${{ steps.upload.outputs.artifact-digest }}
+      artifact_name: ${{ steps.privacy.outputs.artifact_name }}
+      policy_sha256: ${{ steps.privacy.outputs.policy_sha256 }}
+      tree_manifest_sha256: ${{ steps.privacy.outputs.tree_manifest_sha256 }}
+      tar_sha256: ${{ steps.privacy.outputs.tar_sha256 }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version-file: .nvmrc
+
+      - name: Stage fresh committed source and trusted verifier
+        shell: bash
+        env:
+          SOURCE_TAR_SHA256: ${{ needs.build.outputs.source_tar_sha256 }}
+        run: |
+          set -euo pipefail
+          umask 077
+          mkdir -m 700 "$RUNNER_TEMP/build" "$RUNNER_TEMP/trusted" "$RUNNER_TEMP/inspected"
+          git archive "$GITHUB_SHA" > "$RUNNER_TEMP/trusted/source.tar"
+          [[ "$SOURCE_TAR_SHA256" =~ ^[a-f0-9]{64}$ ]]
+          test "$(sha256sum "$RUNNER_TEMP/trusted/source.tar" | cut -d ' ' -f1)" = "$SOURCE_TAR_SHA256"
+          python3 - "$RUNNER_TEMP/trusted/source.tar" "$GITHUB_SHA" <<'PY_TREE'
+          import pathlib
+          import re
+          import subprocess
+          import sys
+          import tarfile
+
+          try:
+              tree = subprocess.run(
+                  ["git", "ls-tree", "-r", "-z", sys.argv[2]],
+                  check=True, capture_output=True, timeout=30,
+              ).stdout
+              expected = {}
+              for record in tree.split(b"\0"):
+                  if not record:
+                      continue
+                  metadata, raw_path = record.split(b"\t", 1)
+                  mode, kind, object_id = metadata.split(b" ")
+                  path = raw_path.decode("utf-8", errors="strict")
+                  parts = pathlib.PurePosixPath(path).parts
+                  if mode not in (b"100644", b"100755") or kind != b"blob" or not re.fullmatch(rb"[a-f0-9]{40,64}", object_id) or not parts or ".." in parts or path.startswith("/") or path in expected:
+                      raise ValueError("unsupported committed Git entry")
+                  expected[path] = object_id.decode("ascii")
+              if not expected or len(expected) > 20000:
+                  raise ValueError("committed Git tree exceeds file limit")
+              seen = set()
+              total = 0
+              with tarfile.open(sys.argv[1], "r:") as archive:
+                  for member in archive:
+                      path = member.name
+                      parts = pathlib.PurePosixPath(path).parts
+                      if not parts or ".." in parts or path.startswith("/"):
+                          raise ValueError("unsafe source archive entry")
+                      if member.isdir():
+                          continue
+                      if not member.isfile() or path not in expected or path in seen or member.size > 33554432:
+                          raise ValueError("source archive differs from Git tree")
+                      seen.add(path)
+                      total += member.size
+                      if total > 536870912:
+                          raise ValueError("source archive exceeds size limit")
+                      archived = archive.extractfile(member)
+                      if archived is None:
+                          raise ValueError("unreadable source archive")
+                      blob = subprocess.run(
+                          ["git", "cat-file", "blob", expected[path]],
+                          check=True, capture_output=True, timeout=30,
+                      ).stdout
+                      with archived:
+                          if archived.read() != blob:
+                              raise ValueError("source archive differs from Git blob")
+              if seen != expected.keys():
+                  raise ValueError("source archive omits committed files")
+          except (OSError, ValueError, UnicodeError, subprocess.SubprocessError, tarfile.TarError):
+              print("Committed source archive is incomplete or altered", file=sys.stderr)
+              sys.exit(1)
+          PY_TREE
+          tar -xf "$RUNNER_TEMP/trusted/source.tar" -C "$RUNNER_TEMP/build"
+          cp scripts/check-private-artifact.ts "$RUNNER_TEMP/trusted/check-private-artifact.ts"
+          cp scripts/extract-artifact-text.py "$RUNNER_TEMP/trusted/extract-artifact-text.py"
+          cp .github/docker/artifact-inspector.Dockerfile "$RUNNER_TEMP/trusted/artifact-inspector.Dockerfile"
+          cp .github/workflows/deploy.yml "$RUNNER_TEMP/trusted/deploy.yml"
+          cp .github/release/site-artifact-recipient.pem "$RUNNER_TEMP/trusted/recipient.pem"
+
+      - name: Fetch authenticated encrypted intermediate
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          CIPHER_ID: ${{ needs.build.outputs.cipher_artifact_id }}
+          CIPHER_DIGEST: ${{ needs.build.outputs.cipher_artifact_digest }}
+          CIPHER_NAME: ${{ needs.build.outputs.cipher_artifact_name }}
+          CIPHER_SHA256: ${{ needs.build.outputs.cipher_sha256 }}
+        run: |
+          set -euo pipefail
+          umask 077
+          [[ "$CIPHER_ID" =~ ^[1-9][0-9]*$ ]]
+          [[ "$GITHUB_RUN_ID" =~ ^[1-9][0-9]*$ && "$GITHUB_RUN_ATTEMPT" =~ ^[1-9][0-9]*$ ]]
+          test "$CIPHER_NAME" = "encrypted-site-input-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT"
+          [[ "$CIPHER_SHA256" =~ ^[a-f0-9]{64}$ ]]
+          expected_zip_sha=$(printf '%s' "$CIPHER_DIGEST" | sed 's/^sha256://')
+          [[ "$expected_zip_sha" =~ ^[a-f0-9]{64}$ ]]
+          gh api "repos/$GITHUB_REPOSITORY/actions/artifacts/$CIPHER_ID" |
+            jq -e --arg name "$CIPHER_NAME" --arg digest "$CIPHER_DIGEST" --arg sha "$GITHUB_SHA" --argjson run "$GITHUB_RUN_ID" \
+              '.name == $name and .expired == false and .digest == $digest and .workflow_run.id == $run and .workflow_run.head_sha == $sha' > /dev/null
+          curl --fail --silent --show-error --location --max-time 180 --max-filesize 600000000 \
+            --header "Authorization: Bearer $GH_TOKEN" --header 'Accept: application/vnd.github+json' \
+            "https://api.github.com/repos/$GITHUB_REPOSITORY/actions/artifacts/$CIPHER_ID/zip" \
+            --output "$RUNNER_TEMP/trusted/cipher.zip"
+          test "$(sha256sum "$RUNNER_TEMP/trusted/cipher.zip" | cut -d ' ' -f1)" = "$expected_zip_sha"
+          python3 - "$RUNNER_TEMP/trusted" <<'PY_ZIP'
+          import pathlib
+          import stat
+          import sys
+          import zipfile
+          root = pathlib.Path(sys.argv[1])
+          try:
+              with zipfile.ZipFile(root / "cipher.zip") as archive:
+                  entries = archive.infolist()
+                  if len(entries) != 1 or entries[0].filename != "encrypted-site.cms" or entries[0].file_size > 600000000 or stat.S_ISLNK(entries[0].external_attr >> 16):
+                      raise ValueError("invalid encrypted entry")
+                  with archive.open(entries[0]) as source, (root / "encrypted-site.cms").open("xb") as output:
+                      copied = 0
+                      while chunk := source.read(65536):
+                          copied += len(chunk)
+                          if copied > 600000000:
+                              raise ValueError("encrypted entry exceeds limit")
+                          output.write(chunk)
+          except (OSError, ValueError, zipfile.BadZipFile):
+              print("Encrypted intermediate extraction failed", file=sys.stderr)
+              sys.exit(1)
+          PY_ZIP
+          test "$(sha256sum "$RUNNER_TEMP/trusted/encrypted-site.cms" | cut -d ' ' -f1)" = "$CIPHER_SHA256"
+
+      - name: Authenticate and load immutable inspector runtime
+        shell: bash
+        env:
+          PRIVATE_POLICY_GZIP_B64: ${{ secrets.PRIVATE_SITE_POLICY_GZIP_B64 }}
+          SITE_INSPECTOR_IMAGE_REF: ${{ vars.SITE_INSPECTOR_IMAGE_REF }}
+          APPROVED_POLICY_SHA256: ${{ secrets.SITE_POLICY_SHA256 }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          umask 077
+          [[ "$SITE_INSPECTOR_IMAGE_REF" =~ ^ghcr\.io/hideouts-io/site-artifact-inspector@sha256:[a-f0-9]{64}$ ]]
+          test -n "$PRIVATE_POLICY_GZIP_B64"
+          printf '%s' "$PRIVATE_POLICY_GZIP_B64" | base64 --decode | gzip --decompress > "$RUNNER_TEMP/trusted/policy.json"
+          unset PRIVATE_POLICY_GZIP_B64
+          test "$(wc -c < "$RUNNER_TEMP/trusted/policy.json")" -le 1048576
+          [[ "$APPROVED_POLICY_SHA256" =~ ^[a-f0-9]{64}$ ]]
+          test "$(sha256sum "$RUNNER_TEMP/trusted/policy.json" | cut -d ' ' -f1)" = "$APPROVED_POLICY_SHA256"
+          python3 - "$RUNNER_TEMP/trusted" "$SITE_INSPECTOR_IMAGE_REF" <<'PY_POLICY'
+          import hashlib
+          import json
+          import pathlib
+          import re
+          import sys
+          root = pathlib.Path(sys.argv[1])
+          try:
+              policy = json.loads((root / "policy.json").read_text(encoding="utf-8"))
+              with (root / "recipient.pem").open("rb") as certificate:
+                  cert = hashlib.file_digest(certificate, "sha256").hexdigest()
+              image_ref = sys.argv[2]
+              if not isinstance(policy, dict) or not re.fullmatch(r"ghcr\.io/hideouts-io/site-artifact-inspector@sha256:[a-f0-9]{64}", image_ref) or policy["recipient_cert_sha256"] != cert or policy["inspector_image_ref"] != image_ref or not re.fullmatch(r"[a-f0-9]{64}", policy["inspector_image_sha256"]):
+                  raise ValueError("unapproved release dependency")
+          except (OSError, KeyError, TypeError, ValueError, json.JSONDecodeError):
+              print("Protected policy or release dependency invalid", file=sys.stderr)
+              sys.exit(1)
+          PY_POLICY
+          printf '%s' "$GH_TOKEN" | docker login ghcr.io -u "$GITHUB_ACTOR" --password-stdin > /dev/null
+          docker pull --quiet "$SITE_INSPECTOR_IMAGE_REF" > /dev/null
+          docker logout ghcr.io > /dev/null
+          actual_image_id=$(docker image inspect --format '{{.Id}}' "$SITE_INSPECTOR_IMAGE_REF")
+          python3 - "$RUNNER_TEMP/trusted/policy.json" "$actual_image_id" <<'PY_ID'
+          import json
+          import pathlib
+          import sys
+          try:
+              expected = json.loads(pathlib.Path(sys.argv[1]).read_text(encoding="utf-8"))["inspector_image_sha256"]
+              if sys.argv[2] != "sha256:" + expected:
+                  raise ValueError("unexpected image identity")
+          except (OSError, KeyError, TypeError, ValueError, json.JSONDecodeError):
+              print("Inspector image identity is not approved", file=sys.stderr)
+              sys.exit(1)
+          PY_ID
+          docker tag "$SITE_INSPECTOR_IMAGE_REF" site-artifact-inspector:local
+          docker save --output "$RUNNER_TEMP/trusted/inspector-image.tar" site-artifact-inspector:local
+          printf '%s\n' "$SITE_INSPECTOR_IMAGE_REF" > "$RUNNER_TEMP/trusted/image-ref"
+          printf '%s\n' "$actual_image_id" > "$RUNNER_TEMP/trusted/image-id"
+          sha256sum "$RUNNER_TEMP/trusted/inspector-image.tar" | cut -d ' ' -f1 > "$RUNNER_TEMP/trusted/image-tar-sha256"
+
+      - name: Authenticated decryption and safe site unpack
+        shell: bash
+        env:
+          DECRYPT_KEY_B64: ${{ secrets.SITE_ARTIFACT_DECRYPT_KEY_B64 }}
+          SITE_TAR_SHA256: ${{ needs.build.outputs.site_tar_sha256 }}
+        run: |
+          set -euo pipefail
+          umask 077
+          [[ "$SITE_TAR_SHA256" =~ ^[a-f0-9]{64}$ ]]
+          test -n "$DECRYPT_KEY_B64"
+          printf '%s' "$DECRYPT_KEY_B64" | base64 --decode > "$RUNNER_TEMP/trusted/decrypt-key.pem"
+          unset DECRYPT_KEY_B64
+          if ! openssl cms -decrypt -binary -inform DER \
+            -in "$RUNNER_TEMP/trusted/encrypted-site.cms" -recip "$RUNNER_TEMP/trusted/recipient.pem" \
+            -inkey "$RUNNER_TEMP/trusted/decrypt-key.pem" -out "$RUNNER_TEMP/trusted/site-input.tar" 2>/dev/null; then
+            rm -f "$RUNNER_TEMP/trusted/decrypt-key.pem" "$RUNNER_TEMP/trusted/site-input.tar"
+            echo 'Authenticated site input decryption failed' >&2
+            exit 1
+          fi
+          rm -f "$RUNNER_TEMP/trusted/decrypt-key.pem"
+          test "$(sha256sum "$RUNNER_TEMP/trusted/site-input.tar" | cut -d ' ' -f1)" = "$SITE_TAR_SHA256"
+          python3 - "$RUNNER_TEMP/trusted/site-input.tar" "$RUNNER_TEMP/build" <<'PY_UNPACK'
+          import pathlib
+          import sys
+          import tarfile
+          root = pathlib.Path(sys.argv[2])
+          count = 0
+          size = 0
+          seen = set()
+          try:
+              with tarfile.open(sys.argv[1], "r:") as archive:
+                  for member in archive:
+                      parts = pathlib.PurePosixPath(member.name).parts
+                      allowed = parts in (("dist",), (".cache",)) or parts[:1] == ("dist",) or parts[:2] == (".cache", "github")
+                      if not allowed or ".." in parts or "." in parts or member.name.startswith("/") or member.name in seen or not (member.isdir() or member.isfile()):
+                          raise ValueError("unsafe site input")
+                      seen.add(member.name)
+                      target = root.joinpath(*parts)
+                      if member.isdir():
+                          target.mkdir(parents=True, exist_ok=True)
+                      else:
+                          count += 1
+                          size += member.size
+                          if count > 20000 or size > 536870912:
+                              raise ValueError("site input exceeds limit")
+                          target.parent.mkdir(parents=True, exist_ok=True)
+                          source = archive.extractfile(member)
+                          if source is None:
+                              raise ValueError("unreadable site input")
+                          with source, target.open("xb") as output:
+                              remaining = member.size
+                              while remaining:
+                                  chunk = source.read(min(65536, remaining))
+                                  if not chunk:
+                                      raise ValueError("truncated site input")
+                                  output.write(chunk)
+                                  remaining -= len(chunk)
+              if count == 0 or not (root / "dist").is_dir() or not (root / ".cache/github").is_dir():
+                  raise ValueError("incomplete site input")
+          except (OSError, ValueError, tarfile.TarError):
+              print("Intermediate site validation failed", file=sys.stderr)
+              sys.exit(1)
+          PY_UNPACK
+
+      - name: Inspect binary content in policy-free parser container
+        shell: bash
+        run: |
+          set -euo pipefail
+          docker run --rm --network=none --read-only --cap-drop=ALL \
+            --security-opt=no-new-privileges site-artifact-inspector:local \
+            sh -ec 'python3 --version; tesseract --version 2>&1; exiftool -ver' \
+            > "$RUNNER_TEMP/trusted/inspector-versions.txt"
+          docker run --rm --init --network=none --read-only \
+            --cap-drop=ALL --security-opt=no-new-privileges \
+            --pids-limit=128 --memory=4g --cpus=2 \
+            --user "$(id -u):$(id -g)" --tmpfs /tmp:rw,nosuid,nodev,size=1g \
+            --mount "type=bind,source=$RUNNER_TEMP/build,target=/artifact,readonly" \
+            --mount "type=bind,source=$RUNNER_TEMP/trusted/extract-artifact-text.py,target=/trusted/extract-artifact-text.py,readonly" \
+            --mount "type=bind,source=$RUNNER_TEMP/inspected,target=/scratch" \
+            site-artifact-inspector:local \
+            python3 -I /trusted/extract-artifact-text.py /artifact /scratch/extractions.json
+
+      - name: Check, package, and recheck the exact Pages tar
+        id: privacy
+        shell: bash
+        run: |
+          set -euo pipefail
+          umask 077
+          trap 'rm -f "$RUNNER_TEMP/trusted/policy.json" "$RUNNER_TEMP/inspected/extractions.json" "$RUNNER_TEMP/trusted/site-input.tar"' EXIT
+          node "$RUNNER_TEMP/trusted/check-private-artifact.ts" \
+            "$RUNNER_TEMP/build" "$RUNNER_TEMP/build/dist" "$RUNNER_TEMP/inspected/extractions.json" \
+            "$RUNNER_TEMP/trusted/policy.json" "$RUNNER_TEMP/trusted/extract-artifact-text.py" \
+            "$RUNNER_TEMP/trusted/artifact-inspector.Dockerfile" "$RUNNER_TEMP/trusted/deploy.yml" \
+            "$RUNNER_TEMP/trusted/recipient.pem" "$RUNNER_TEMP/trusted/image-ref" "$RUNNER_TEMP/trusted/image-id" \
+            "$RUNNER_TEMP/trusted/image-tar-sha256" "$RUNNER_TEMP/trusted/source.tar" \
+            "$RUNNER_TEMP/trusted/manifest.json" "$RUNNER_TEMP/trusted/receipt.json" \
+            "$GITHUB_SHA" "$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT"
+          tar --sort=name --mtime='@0' --owner=0 --group=0 --numeric-owner \
+            --dereference --hard-dereference \
+            --format=posix -cf "$RUNNER_TEMP/artifact.tar" -C "$RUNNER_TEMP/build/dist" .
+          mkdir -m 700 "$RUNNER_TEMP/unpacked"
+          tar -xf "$RUNNER_TEMP/artifact.tar" -C "$RUNNER_TEMP/unpacked"
+          node "$RUNNER_TEMP/trusted/check-private-artifact.ts" \
+            "$RUNNER_TEMP/build" "$RUNNER_TEMP/unpacked" "$RUNNER_TEMP/inspected/extractions.json" \
+            "$RUNNER_TEMP/trusted/policy.json" "$RUNNER_TEMP/trusted/extract-artifact-text.py" \
+            "$RUNNER_TEMP/trusted/artifact-inspector.Dockerfile" "$RUNNER_TEMP/trusted/deploy.yml" \
+            "$RUNNER_TEMP/trusted/recipient.pem" "$RUNNER_TEMP/trusted/image-ref" "$RUNNER_TEMP/trusted/image-id" \
+            "$RUNNER_TEMP/trusted/image-tar-sha256" "$RUNNER_TEMP/trusted/source.tar" \
+            "$RUNNER_TEMP/trusted/unpacked-manifest.json" "$RUNNER_TEMP/trusted/unpacked-receipt.json" \
+            "$GITHUB_SHA" "$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT"
+          cmp "$RUNNER_TEMP/trusted/manifest.json" "$RUNNER_TEMP/trusted/unpacked-manifest.json"
+          echo "policy_sha256=$(jq -r .policy_sha256 "$RUNNER_TEMP/trusted/receipt.json")" >> "$GITHUB_OUTPUT"
+          echo "tree_manifest_sha256=$(sha256sum "$RUNNER_TEMP/trusted/manifest.json" | cut -d ' ' -f1)" >> "$GITHUB_OUTPUT"
+          echo "tar_sha256=$(sha256sum "$RUNNER_TEMP/artifact.tar" | cut -d ' ' -f1)" >> "$GITHUB_OUTPUT"
+          echo "artifact_name=github-pages-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT" >> "$GITHUB_OUTPUT"
+
+      # upload-pages-artifact v5 uses this same pinned action on artifact.tar.
+      - name: Upload the checked Pages tar
+        id: upload
+        uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
+        with:
+          name: github-pages-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/artifact.tar
+          retention-days: 1
+          if-no-files-found: error
+          compression-level: 0
+
+      - name: Record candidate identity for the production approver
+        shell: bash
+        env:
+          ARTIFACT_ID: ${{ steps.upload.outputs.artifact-id }}
+          ARTIFACT_DIGEST: ${{ steps.upload.outputs.artifact-digest }}
+          POLICY_SHA256: ${{ steps.privacy.outputs.policy_sha256 }}
+          TREE_SHA256: ${{ steps.privacy.outputs.tree_manifest_sha256 }}
+          TAR_SHA256: ${{ steps.privacy.outputs.tar_sha256 }}
+        run: |
+          set -euo pipefail
+          {
+            echo "Source commit: $GITHUB_SHA"
+            echo "Run attempt: $GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT"
+            echo "Private policy SHA-256: $POLICY_SHA256"
+            echo "Tree manifest SHA-256: $TREE_SHA256"
+            echo "Packaged tar SHA-256: $TAR_SHA256"
+            echo "Pages artifact ID: $ARTIFACT_ID"
+            echo "Pages artifact digest: $ARTIFACT_DIGEST"
+            echo "Inspector image ID: $(cat "$RUNNER_TEMP/trusted/image-id")"
+            echo "Inspector image tar SHA-256: $(cat "$RUNNER_TEMP/trusted/image-tar-sha256")"
+            echo "Committed source tar SHA-256: $(sha256sum "$RUNNER_TEMP/trusted/source.tar" | cut -d ' ' -f1)"
+            echo 'Inspector tools:'
+            sed 's/^/  /' "$RUNNER_TEMP/trusted/inspector-versions.txt"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+  links:
+    timeout-minutes: 10
+    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main'
+    needs: package_pages
+    runs-on: ubuntu-24.04
+    permissions:
+      actions: read
+      contents: read
+    steps:
+      - name: Recover the approved public artifact on a policy-free runner
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ARTIFACT_ID: ${{ needs.package_pages.outputs.artifact_id }}
+          ARTIFACT_DIGEST: ${{ needs.package_pages.outputs.artifact_digest }}
+          ARTIFACT_NAME: ${{ needs.package_pages.outputs.artifact_name }}
+          TAR_SHA256: ${{ needs.package_pages.outputs.tar_sha256 }}
+        run: |
+          set -euo pipefail
+          [[ "$ARTIFACT_ID" =~ ^[1-9][0-9]*$ ]]
+          [[ "$GITHUB_RUN_ID" =~ ^[1-9][0-9]*$ && "$GITHUB_RUN_ATTEMPT" =~ ^[1-9][0-9]*$ ]]
+          test "$ARTIFACT_NAME" = "github-pages-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT"
+          [[ "$TAR_SHA256" =~ ^[a-f0-9]{64}$ ]]
+          zip_sha=$(printf '%s' "$ARTIFACT_DIGEST" | sed 's/^sha256://')
+          [[ "$zip_sha" =~ ^[a-f0-9]{64}$ ]]
+          gh api "repos/$GITHUB_REPOSITORY/actions/artifacts/$ARTIFACT_ID" |
+            jq -e --arg name "$ARTIFACT_NAME" --arg digest "$ARTIFACT_DIGEST" --arg sha "$GITHUB_SHA" --argjson run "$GITHUB_RUN_ID" \
+              '.name == $name and .expired == false and .digest == $digest and .workflow_run.id == $run and .workflow_run.head_sha == $sha' > /dev/null
+          curl --fail --silent --show-error --location --max-time 120 --max-filesize 600000000 \
+            --header "Authorization: Bearer $GH_TOKEN" --header 'Accept: application/vnd.github+json' \
+            "https://api.github.com/repos/$GITHUB_REPOSITORY/actions/artifacts/$ARTIFACT_ID/zip" \
+            --output "$RUNNER_TEMP/approved-artifact.zip"
+          test "$(sha256sum "$RUNNER_TEMP/approved-artifact.zip" | cut -d ' ' -f1)" = "$zip_sha"
+          test "$(unzip -Z -1 "$RUNNER_TEMP/approved-artifact.zip")" = 'artifact.tar'
+          unzip -p "$RUNNER_TEMP/approved-artifact.zip" artifact.tar > "$RUNNER_TEMP/artifact.tar"
+          test "$(sha256sum "$RUNNER_TEMP/artifact.tar" | cut -d ' ' -f1)" = "$TAR_SHA256"
+          mkdir "$RUNNER_TEMP/site"
+          tar -xf "$RUNNER_TEMP/artifact.tar" -C "$RUNNER_TEMP/site"
+
+      - name: External links in the checked candidate
+        uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2
+        with:
+          args: >-
+            --no-progress
+            --root-dir ${{ runner.temp }}/site
+            --max-retries 3
+            --retry-wait-time 5
+            --max-concurrency 8
+            --accept 200,206,429,503
+            --exclude '^https://hideouts\.io'
+            --exclude-path ${{ runner.temp }}/site/pagefind
+            '${{ runner.temp }}/site/**/*.html'
+          fail: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  deploy:
+    timeout-minutes: 10
+    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main'
+    needs: [package_pages, links]
+    runs-on: ubuntu-24.04
+    permissions:
+      actions: read
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Recheck approved source, policy and uploaded artifact
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PRIVATE_POLICY_GZIP_B64: ${{ secrets.PRIVATE_SITE_POLICY_GZIP_B64 }}
+          ARTIFACT_ID: ${{ needs.package_pages.outputs.artifact_id }}
+          ARTIFACT_NAME: ${{ needs.package_pages.outputs.artifact_name }}
+          ARTIFACT_DIGEST: ${{ needs.package_pages.outputs.artifact_digest }}
+          POLICY_SHA256: ${{ needs.package_pages.outputs.policy_sha256 }}
+          APPROVED_POLICY_SHA256: ${{ secrets.SITE_POLICY_SHA256 }}
+          TAR_SHA256: ${{ needs.package_pages.outputs.tar_sha256 }}
+        run: |
+          set -euo pipefail
+          [[ "$ARTIFACT_ID" =~ ^[1-9][0-9]*$ ]]
+          [[ "$GITHUB_RUN_ID" =~ ^[1-9][0-9]*$ && "$GITHUB_RUN_ATTEMPT" =~ ^[1-9][0-9]*$ ]]
+          test "$ARTIFACT_NAME" = "github-pages-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT"
+          [[ "$POLICY_SHA256" =~ ^[a-f0-9]{64}$ ]]
+          [[ "$APPROVED_POLICY_SHA256" =~ ^[a-f0-9]{64}$ ]]
+          current_main=$(gh api "repos/$GITHUB_REPOSITORY/commits/main" --jq .sha)
+          test "$current_main" = "$GITHUB_SHA"
+          umask 077
+          test -n "${PRIVATE_POLICY_GZIP_B64:-}"
+          printf '%s' "$PRIVATE_POLICY_GZIP_B64" | base64 --decode | gzip --decompress > "$RUNNER_TEMP/approved-policy.json"
+          unset PRIVATE_POLICY_GZIP_B64
+          trap 'rm -f "$RUNNER_TEMP/approved-policy.json"' EXIT
+          test "$(wc -c < "$RUNNER_TEMP/approved-policy.json")" -le 1048576
+          current_policy=$(sha256sum "$RUNNER_TEMP/approved-policy.json" | cut -d ' ' -f1)
+          test "$current_policy" = "$POLICY_SHA256"
+          test "$current_policy" = "$APPROVED_POLICY_SHA256"
+          python3 - "$RUNNER_TEMP/approved-policy.json" <<'PY'
+          import datetime
+          import json
+          import pathlib
+          import sys
+
+          try:
+              policy = json.loads(pathlib.Path(sys.argv[1]).read_text(encoding="utf-8"))
+              expiries = [policy["valid_until_utc"]]
+              expiries.extend(review["valid_until_utc"] for review in policy["binary_reviews"])
+              now = datetime.datetime.now(datetime.timezone.utc)
+              for value in expiries:
+                  if not isinstance(value, str) or not value.endswith("Z"):
+                      raise ValueError("invalid expiry")
+                  expiry = datetime.datetime.fromisoformat(value.replace("Z", "+00:00"))
+                  if expiry <= now:
+                      raise ValueError("expired review or policy")
+          except (OSError, KeyError, TypeError, ValueError, json.JSONDecodeError):
+              print("Private policy or review expired or invalid", file=sys.stderr)
+              sys.exit(1)
+          PY
+          expected_digest="${ARTIFACT_DIGEST#sha256:}"
+          [[ "$expected_digest" =~ ^[a-f0-9]{64}$ ]]
+          gh api "repos/$GITHUB_REPOSITORY/actions/artifacts/$ARTIFACT_ID" |
+            jq -e --arg name "$ARTIFACT_NAME" --arg digest "sha256:$expected_digest" --arg sha "$GITHUB_SHA" --argjson run "$GITHUB_RUN_ID" \
+              '.name == $name and .expired == false and .digest == $digest and .workflow_run.id == $run and .workflow_run.head_sha == $sha' > /dev/null
+          [[ "$TAR_SHA256" =~ ^[a-f0-9]{64}$ ]]
+          curl --fail --silent --show-error --location --max-time 120 --max-filesize 600000000 \
+            --header "Authorization: Bearer $GH_TOKEN" \
+            --header 'Accept: application/vnd.github+json' \
+            "https://api.github.com/repos/$GITHUB_REPOSITORY/actions/artifacts/$ARTIFACT_ID/zip" \
+            --output "$RUNNER_TEMP/approved-artifact.zip"
+          test "$(sha256sum "$RUNNER_TEMP/approved-artifact.zip" | cut -d ' ' -f1)" = "$expected_digest"
+          test "$(unzip -Z -1 "$RUNNER_TEMP/approved-artifact.zip")" = 'artifact.tar'
+          actual_tar=$(unzip -p "$RUNNER_TEMP/approved-artifact.zip" artifact.tar | sha256sum | cut -d ' ' -f1)
+          test "$actual_tar" = "$TAR_SHA256"
+
+      - id: deployment
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5
+        with:
+          artifact_name: ${{ needs.package_pages.outputs.artifact_name }}

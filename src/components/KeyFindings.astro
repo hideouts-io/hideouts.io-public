@@ -1,0 +1,43 @@
+---
+// "Key findings" box at the top of a research write-up. The points are curated
+// in src/data/projects.ts; each one restates something the README says.
+interface Props {
+  findings: string[];
+  bottomLine?: string;
+  jumpTo?: { label: string; id: string }[];
+}
+const { findings, bottomLine, jumpTo = [] } = Astro.props;
+
+// `code` spans in backticks; everything else is plain text.
+const parts = (s: string) => s.split(/`([^`]+)`/).map((text, i) => ({ text, code: i % 2 === 1 }));
+---
+
+<section class="key-findings card mb-8 max-w-[48rem] p-5 sm:p-6" aria-labelledby="key-findings">
+  <h2 id="key-findings" class="eyebrow">
+    Key findings
+  </h2>
+  <ol class="mt-4 space-y-3">
+    {findings.map((f) => (
+      <li class="leading-7 text-ink-2">{parts(f).map((p) => (p.code ? <code>{p.text}</code> : p.text))}</li>
+    ))}
+  </ol>
+  {bottomLine && (
+    <p class="mt-5 border-t border-line pt-4 leading-7 font-medium text-ink">
+      <span class="text-ink-3">Bottom line: </span>
+      {parts(bottomLine).map((p) => (p.code ? <code>{p.text}</code> : p.text))}
+    </p>
+  )}
+  {jumpTo.length > 0 && (
+    <nav class="mt-5 flex flex-wrap items-center gap-2 text-sm" aria-label="Jump to a section">
+      <span class="mr-1 text-ink-3">Jump to</span>
+      {jumpTo.map((j) => (
+        <a href={`#${j.id}`} class="chip hover:border-accent hover:text-ink">
+          {j.label}
+        </a>
+      ))}
+    </nav>
+  )}
+  <p class="mt-5 text-xs leading-5 text-ink-3">
+    Summary written for this site. Each point is covered, with its evidence, in the write-up below.
+  </p>
+</section>
