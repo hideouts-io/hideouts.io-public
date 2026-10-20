@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1436.7359999999999 116.9" width="1436.7359999999999" height="116.9" style="--bg:#ffffff;--fg:#1b1f24;--accent:#0f766e;--surface:#f5f7f9;--border:#d5dbe1">
+<style>
+  
+  text { font-family: '-apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Inter, sans-serif', system-ui, sans-serif; }
+  svg {
+    /* Derived from --bg and --fg (overridable via --line, --accent, etc.) */
+    --_text:          var(--fg);
+    --_text-sec:      var(--muted, color-mix(in srgb, var(--fg) 60%, var(--bg)));
+    --_text-muted:    var(--muted, color-mix(in srgb, var(--fg) 40%, var(--bg)));
+    --_text-faint:    color-mix(in srgb, var(--fg) 25%, var(--bg));
+    --_line:          var(--line, color-mix(in srgb, var(--fg) 50%, var(--bg)));
+    --_arrow:         var(--accent, color-mix(in srgb, var(--fg) 85%, var(--bg)));
+    --_node-fill:     var(--surface, color-mix(in srgb, var(--fg) 3%, var(--bg)));
+    --_node-stroke:   var(--border, color-mix(in srgb, var(--fg) 20%, var(--bg)));
+    --_group-fill:    var(--bg);
+    --_group-hdr:     color-mix(in srgb, var(--fg) 5%, var(--bg));
+    --_inner-stroke:  color-mix(in srgb, var(--fg) 12%, var(--bg));
+    --_key-badge:     color-mix(in srgb, var(--fg) 10%, var(--bg));
+  }
+</style>
+<defs>
+  <marker id="arrowhead" markerWidth="8" markerHeight="5" refX="7" refY="2.5" orient="auto">
+    <polygon points="0 0, 8 2.5, 0 5" fill="var(--_arrow)" stroke="var(--_arrow)" stroke-width="0.75" stroke-linejoin="round" />
+  </marker>
+  <marker id="arrowhead-start" markerWidth="8" markerHeight="5" refX="1" refY="2.5" orient="auto-start-reverse">
+    <polygon points="8 0, 0 2.5, 8 5" fill="var(--_arrow)" stroke="var(--_arrow)" stroke-width="0.75" stroke-linejoin="round" />
+  </marker>
+</defs>
+<polyline class="edge" data-from="App" data-to="Framework" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="147.15800000000002,58.45 195.15800000000002,58.45" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="Framework" data-to="NSP" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="351.22200000000004,58.45 399.22200000000004,58.45" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="NSP" data-to="QUIC" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="570.106,58.45 618.106,58.45" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="QUIC" data-to="Relay" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="740.825,58.45 788.8249999999999,58.45" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="Relay" data-to="Provider" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="981.939,58.45 1029.9389999999999,58.45" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="Provider" data-to="Destination" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="1241.578,58.45 1289.578,58.45" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<g class="node" data-id="App" data-label="Application" data-shape="rectangle">
+  <rect x="40" y="40" width="107.158" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="93.57900000000001" y="58.45" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Application</text>
+</g>
+<g class="node" data-id="Framework" data-label="Network.framework" data-shape="rectangle">
+  <rect x="195.15800000000002" y="40" width="156.06400000000002" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="273.19000000000005" y="58.45" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Network.framework</text>
+</g>
+<g class="node" data-id="NSP" data-label="networkserviceproxy" data-shape="rectangle">
+  <rect x="399.22200000000004" y="40" width="170.88399999999996" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="484.664" y="58.45" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">networkserviceproxy</text>
+</g>
+<g class="node" data-id="QUIC" data-label="QUIC / HTTP3" data-shape="rectangle">
+  <rect x="618.106" y="40" width="122.719" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="679.4655" y="58.45" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">QUIC / HTTP3</text>
+</g>
+<g class="node" data-id="Relay" data-label="Apple relay infrastructure" data-shape="rectangle">
+  <rect x="788.8249999999999" y="40" width="193.114" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="885.382" y="58.45" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Apple relay infrastructure</text>
+</g>
+<g class="node" data-id="Provider" data-label="Akamai / other relay provider" data-shape="rectangle">
+  <rect x="1029.9389999999999" y="40" width="211.639" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="1135.7585" y="58.45" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Akamai / other relay provider</text>
+</g>
+<g class="node" data-id="Destination" data-label="Destination" data-shape="rectangle">
+  <rect x="1289.578" y="40" width="107.158" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="1343.157" y="58.45" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Destination</text>
+</g>
+</svg>

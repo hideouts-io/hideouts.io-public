@@ -1,0 +1,32 @@
+---
+import type { Entry } from '../lib/content';
+import { fmtDate } from '../lib/content';
+import Platforms from './Platforms.astro';
+import Icon from './Icon.astro';
+interface Props {
+  entry: Entry;
+  headingLevel?: 'h2' | 'h3';
+}
+const { entry: e, headingLevel: H = 'h3' } = Astro.props;
+---
+
+<article class="card card-link group flex h-full flex-col p-6">
+  <div class="flex items-center gap-2 text-xs text-ink-3">
+    <Icon name="doc" size={14} class="text-accent" />
+    <span>{e.gh.readingMinutes} min read</span>
+    <span aria-hidden="true">·</span>
+    <time datetime={e.gh.updatedAt}>Updated {fmtDate(e.gh.updatedAt)}</time>
+  </div>
+  <H class="mt-3 text-lg font-semibold leading-snug tracking-tight text-ink">
+    <a href={e.href} class="stretched-link">
+      {e.name}
+    </a>
+  </H>
+  <p class="mt-2 text-sm leading-6 text-ink-2">{e.tagline}</p>
+  <div class="mt-auto flex items-center gap-1.5 pt-5">
+    <Platforms platforms={e.platforms} compact />
+    <span class="ml-auto inline-flex items-center gap-1 text-sm text-accent" aria-hidden="true">
+      Read <Icon name="arrow-right" size={14} class="transition-transform group-hover:translate-x-0.5" />
+    </span>
+  </div>
+</article>

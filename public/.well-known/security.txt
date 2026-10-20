@@ -1,0 +1,8 @@
+# Security contact for hideouts.io and the hideouts-io GitHub projects.
+# Please report vulnerabilities privately through GitHub's private vulnerability reporting.
+Contact: https://github.com/hideouts-io/iOS-Developer-Toolkit/security/advisories/new
+Contact: https://hideouts.io/security/
+Policy: https://hideouts.io/security/
+Preferred-Languages: en
+Canonical: https://hideouts.io/.well-known/security.txt
+Expires: 2027-09-24T00:00:00.000Z

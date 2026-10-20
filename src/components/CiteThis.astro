@@ -1,0 +1,48 @@
+---
+// "Cite this" for a research write-up: APA and BibTeX, built from the page's
+// own metadata. Copy buttons come from site.ts (it frames every .prose-readme pre).
+interface Props {
+  name: string;
+  url: string;
+  repoUrl: string;
+  slug: string;
+  /** The write-up's last change (the README's last commit). */
+  updatedAt: string;
+}
+const { name, url, repoUrl, slug, updatedAt } = Astro.props;
+
+const AUTHOR = 'hideouts';
+const d = new Date(updatedAt);
+const year = d.getUTCFullYear();
+const monthLong = d.toLocaleString('en-US', { month: 'long', timeZone: 'UTC' });
+const monthBib = d.toLocaleString('en-US', { month: 'short', timeZone: 'UTC' }).toLowerCase();
+const day = d.getUTCDate();
+
+const apa = `${AUTHOR}. (${year}, ${monthLong} ${day}). ${name}. hideouts.io. ${url}`;
+const key = `${AUTHOR}${year}${slug.replace(/[^a-z0-9]/gi, '')}`;
+const bibtex = `@misc{${key},
+  author       = {{${AUTHOR}}},
+  title        = {{${name}}},
+  year         = {${year}},
+  month        = ${monthBib},
+  howpublished = {\\url{${url}}},
+  note         = {Source and evidence: \\url{${repoUrl}}}
+}`;
+---
+
+<details class="cite card p-5">
+  <summary class="cursor-pointer font-semibold text-ink">Cite this write-up</summary>
+  <div class="prose-readme mt-4">
+    <p class="text-sm font-medium text-ink-2">APA</p>
+    <pre><code>{apa}</code></pre>
+    <p class="text-sm font-medium text-ink-2">BibTeX</p>
+    <pre><code>{bibtex}</code></pre>
+    <p class="text-sm text-ink-3">
+      The date is the write-up’s last update. Write-ups can change; to cite an exact version, link to a commit in the{' '}
+      <a href={`${repoUrl}/commits/`} rel="noopener noreferrer">
+        repository’s history
+      </a>
+      .
+    </p>
+  </div>
+</details>

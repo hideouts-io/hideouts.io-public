@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1022.0415 371.6" width="1022.0415" height="371.6" style="--bg:#0f1216;--fg:#e7eaee;--accent:#5eead4;--surface:#161b21;--border:#2a313a">
+<style>
+  
+  text { font-family: '-apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Inter, sans-serif', system-ui, sans-serif; }
+  svg {
+    /* Derived from --bg and --fg (overridable via --line, --accent, etc.) */
+    --_text:          var(--fg);
+    --_text-sec:      var(--muted, color-mix(in srgb, var(--fg) 60%, var(--bg)));
+    --_text-muted:    var(--muted, color-mix(in srgb, var(--fg) 40%, var(--bg)));
+    --_text-faint:    color-mix(in srgb, var(--fg) 25%, var(--bg));
+    --_line:          var(--line, color-mix(in srgb, var(--fg) 50%, var(--bg)));
+    --_arrow:         var(--accent, color-mix(in srgb, var(--fg) 85%, var(--bg)));
+    --_node-fill:     var(--surface, color-mix(in srgb, var(--fg) 3%, var(--bg)));
+    --_node-stroke:   var(--border, color-mix(in srgb, var(--fg) 20%, var(--bg)));
+    --_group-fill:    var(--bg);
+    --_group-hdr:     color-mix(in srgb, var(--fg) 5%, var(--bg));
+    --_inner-stroke:  color-mix(in srgb, var(--fg) 12%, var(--bg));
+    --_key-badge:     color-mix(in srgb, var(--fg) 10%, var(--bg));
+  }
+</style>
+<defs>
+  <marker id="arrowhead" markerWidth="8" markerHeight="5" refX="7" refY="2.5" orient="auto">
+    <polygon points="0 0, 8 2.5, 0 5" fill="var(--_arrow)" stroke="var(--_arrow)" stroke-width="0.75" stroke-linejoin="round" />
+  </marker>
+  <marker id="arrowhead-start" markerWidth="8" markerHeight="5" refX="1" refY="2.5" orient="auto-start-reverse">
+    <polygon points="8 0, 0 2.5, 8 5" fill="var(--_arrow)" stroke="var(--_arrow)" stroke-width="0.75" stroke-linejoin="round" />
+  </marker>
+</defs>
+<polyline class="edge" data-from="A" data-to="B" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="453.408,76.9 453.408,106.9 123.5895,106.9 123.5895,136.9" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="A" data-to="C" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="453.408,76.9 453.408,106.9 326.549,106.9 326.549,136.9" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="A" data-to="D" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="453.408,76.9 453.408,106.9 580.2669999999999,106.9 580.2669999999999,136.9" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="A" data-to="I" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="453.408,76.9 453.408,106.9 855.1034999999999,106.9 855.1034999999999,136.9" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="B" data-to="E" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="123.58950000000004,173.8 123.58949999999993,221.8" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="C" data-to="F" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="326.549,173.8 326.5489999999999,221.8" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="D" data-to="G" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="580.2669999999999,173.8 580.2669999999999,221.8" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="I" data-to="J" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="855.1034999999999,173.8 855.1034999999999,221.8" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="E" data-to="H" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="123.58949999999999,258.70000000000005 123.58949999999999,276.70000000000005 453.4079999999999,276.70000000000005 453.4079999999999,294.70000000000005" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="F" data-to="H" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="326.5489999999999,258.70000000000005 326.5489999999999,276.70000000000005 453.4079999999999,276.70000000000005 453.4079999999999,294.70000000000005" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="G" data-to="H" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="580.2669999999999,258.70000000000005 580.2669999999999,276.70000000000005 453.4079999999999,276.70000000000005 453.4079999999999,294.70000000000005" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="J" data-to="H" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="855.1034999999999,258.70000000000005 855.1034999999999,276.70000000000005 453.4079999999999,276.70000000000005 453.4079999999999,294.70000000000005" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<g class="node" data-id="A" data-label="iPhone Diagnostic Evidence" data-shape="rectangle">
+  <rect x="350.182" y="40" width="206.45199999999994" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="453.408" y="58.45" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">iPhone Diagnostic Evidence</text>
+</g>
+<g class="node" data-id="B" data-label="Carrier Configuration" data-shape="rectangle">
+  <rect x="40" y="136.9" width="167.179" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="123.5895" y="155.35000000000002" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Carrier Configuration</text>
+</g>
+<g class="node" data-id="C" data-label="Software Update Activity" data-shape="rectangle">
+  <rect x="235.17899999999997" y="136.9" width="182.73999999999995" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="326.549" y="155.35000000000002" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Software Update Activity</text>
+</g>
+<g class="node" data-id="D" data-label="Application / Web / Service References" data-shape="rectangle">
+  <rect x="445.919" y="136.9" width="268.69599999999997" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="580.2669999999999" y="155.35000000000002" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Application / Web / Service References</text>
+</g>
+<g class="node" data-id="I" data-label="Managed-Configuration History" data-shape="rectangle">
+  <rect x="742.615" y="136.9" width="224.97699999999995" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="855.1034999999999" y="155.35000000000002" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Managed-Configuration History</text>
+</g>
+<g class="node" data-id="E" data-label="T-Mobile Profiles" data-shape="rectangle">
+  <rect x="52.59699999999998" y="221.8" width="141.985" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="123.58949999999999" y="240.25" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">T-Mobile Profiles</text>
+</g>
+<g class="node" data-id="F" data-label="OTAUpload" data-shape="rectangle">
+  <rect x="271.48799999999994" y="221.8" width="110.122" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="326.5489999999999" y="240.25" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">OTAUpload</text>
+</g>
+<g class="node" data-id="G" data-label="LambdaTest Reference" data-shape="rectangle">
+  <rect x="490.00849999999997" y="221.8" width="180.517" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="580.2669999999999" y="240.25" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">LambdaTest Reference</text>
+</g>
+<g class="node" data-id="J" data-label="Bushel / Jamf Now Removal Records" data-shape="rectangle">
+  <rect x="728.1655" y="221.8" width="253.87599999999995" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="855.1034999999999" y="240.25" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Bushel / Jamf Now Removal Records</text>
+</g>
+<g class="node" data-id="H" data-label="Repository Analysis" data-shape="rectangle">
+  <rect x="372.7824999999999" y="294.70000000000005" width="161.251" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="453.4079999999999" y="313.15000000000003" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Repository Analysis</text>
+</g>
+</svg>

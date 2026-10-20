@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1617.9929999999997 246.70000000000002" width="1617.9929999999997" height="246.70000000000002" style="--bg:#0f1216;--fg:#e7eaee;--accent:#5eead4;--surface:#161b21;--border:#2a313a">
+<style>
+  
+  text { font-family: '-apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Inter, sans-serif', system-ui, sans-serif; }
+  svg {
+    /* Derived from --bg and --fg (overridable via --line, --accent, etc.) */
+    --_text:          var(--fg);
+    --_text-sec:      var(--muted, color-mix(in srgb, var(--fg) 60%, var(--bg)));
+    --_text-muted:    var(--muted, color-mix(in srgb, var(--fg) 40%, var(--bg)));
+    --_text-faint:    color-mix(in srgb, var(--fg) 25%, var(--bg));
+    --_line:          var(--line, color-mix(in srgb, var(--fg) 50%, var(--bg)));
+    --_arrow:         var(--accent, color-mix(in srgb, var(--fg) 85%, var(--bg)));
+    --_node-fill:     var(--surface, color-mix(in srgb, var(--fg) 3%, var(--bg)));
+    --_node-stroke:   var(--border, color-mix(in srgb, var(--fg) 20%, var(--bg)));
+    --_group-fill:    var(--bg);
+    --_group-hdr:     color-mix(in srgb, var(--fg) 5%, var(--bg));
+    --_inner-stroke:  color-mix(in srgb, var(--fg) 12%, var(--bg));
+    --_key-badge:     color-mix(in srgb, var(--fg) 10%, var(--bg));
+  }
+</style>
+<defs>
+  <marker id="arrowhead" markerWidth="8" markerHeight="5" refX="7" refY="2.5" orient="auto">
+    <polygon points="0 0, 8 2.5, 0 5" fill="var(--_arrow)" stroke="var(--_arrow)" stroke-width="0.75" stroke-linejoin="round" />
+  </marker>
+  <marker id="arrowhead-start" markerWidth="8" markerHeight="5" refX="1" refY="2.5" orient="auto-start-reverse">
+    <polygon points="8 0, 0 2.5, 8 5" fill="var(--_arrow)" stroke="var(--_arrow)" stroke-width="0.75" stroke-linejoin="round" />
+  </marker>
+</defs>
+<polyline class="edge" data-from="Device" data-to="Trust" data-style="solid" data-arrow-start="true" data-arrow-end="true" points="167.906,90.9 215.906,90.9" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" marker-start="url(#arrowhead-start)" />
+<polyline class="edge" data-from="Trust" data-to="Usbmux" data-style="solid" data-arrow-start="true" data-arrow-end="true" points="387.53099999999995,90.9 435.53099999999995,90.9" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" marker-start="url(#arrowhead-start)" />
+<polyline class="edge" data-from="Usbmux" data-to="Toolkit" data-style="solid" data-arrow-start="true" data-arrow-end="true" points="530.833,90.9 571.279,90.9" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" marker-start="url(#arrowhead-start)" />
+<polyline class="edge" data-from="Toolkit" data-to="Lockdown" data-style="solid" data-arrow-start="true" data-arrow-end="true" points="740.6809999999999,90.9 768.4579999999999,90.9 768.4579999999999,58.45 796.2349999999999,58.45" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" marker-start="url(#arrowhead-start)" />
+<polyline class="edge" data-from="Lockdown" data-to="Basic" data-style="solid" data-arrow-start="true" data-arrow-end="true" points="957.4859999999999,58.45 1005.4859999999999,58.45" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" marker-start="url(#arrowhead-start)" />
+<polyline class="edge" data-from="Toolkit" data-to="RSD" data-style="solid" data-arrow-start="true" data-arrow-end="true" points="740.6809999999999,90.9 768.4579999999999,90.9 768.4579999999999,123.35000000000001 839.6659999999999,123.35000000000001" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" marker-start="url(#arrowhead-start)" />
+<polyline class="edge" data-from="RSD" data-to="Dev" data-style="solid" data-arrow-start="true" data-arrow-end="true" points="1023.8879999999999,123.35000000000001 1047.888,123.35000000000001 1047.888,155.8 1071.888,155.8" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" marker-start="url(#arrowhead-start)" />
+<polyline class="edge" data-from="Mode" data-to="DDI" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="711.0409999999999,188.25 751.487,188.25" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="DDI" data-to="Dev" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="1023.8879999999999,188.25 1047.888,188.25 1047.888,155.8 1071.888,155.8" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="Basic" data-to="Case" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="1317.9009999999998,58.45 1329.9009999999998,58.45 1329.9009999999998,120.275 1341.9009999999998,120.275" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="Dev" data-to="Case" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="1293.9009999999998,155.8 1329.9009999999998,155.8 1329.9009999999998,120.275 1341.9009999999998,120.275" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<g class="node" data-id="Device" data-label="iPhone or iPad" data-shape="rectangle">
+  <rect x="40" y="72.45" width="127.90599999999999" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="103.953" y="90.9" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">iPhone or iPad</text>
+</g>
+<g class="node" data-id="Trust" data-label="USB pairing and Trust" data-shape="rectangle">
+  <rect x="215.906" y="72.45" width="171.62499999999997" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="301.7185" y="90.9" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">USB pairing and Trust</text>
+</g>
+<g class="node" data-id="Usbmux" data-label="usbmuxd" data-shape="rectangle">
+  <rect x="435.53099999999995" y="72.45" width="95.30199999999999" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="483.18199999999996" y="90.9" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">usbmuxd</text>
+</g>
+<g class="node" data-id="Lockdown" data-label="lockdownd services" data-shape="rectangle">
+  <rect x="796.2349999999999" y="40" width="161.251" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="876.8604999999999" y="58.45" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">lockdownd services</text>
+</g>
+<g class="node" data-id="Basic" data-label="AFC, apps, backup, diagnostics, syslog, PCAP" data-shape="rectangle">
+  <rect x="1005.4859999999999" y="40" width="312.415" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="1161.6934999999999" y="58.45" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">AFC, apps, backup, diagnostics, syslog, PCAP</text>
+</g>
+<g class="node" data-id="Mode" data-label="Developer Mode" data-shape="rectangle">
+  <rect x="571.279" y="169.8" width="139.762" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="641.16" y="188.25" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Developer Mode</text>
+</g>
+<g class="node" data-id="DDI" data-label="Personalized DDI at /System/Developer" data-shape="rectangle">
+  <rect x="751.487" y="169.8" width="272.40099999999995" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="887.6875" y="188.25" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Personalized DDI at /System/Developer</text>
+</g>
+<g class="node" data-id="RSD" data-label="RemoteXPC / RSD tunnel" data-shape="rectangle">
+  <rect x="839.6659999999999" y="104.9" width="184.22199999999998" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="931.7769999999999" y="123.35000000000001" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">RemoteXPC / RSD tunnel</text>
+</g>
+<g class="node" data-id="Dev" data-label="DVT and CoreDevice services" data-shape="rectangle">
+  <rect x="1071.888" y="137.35000000000002" width="222.01299999999995" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="1182.8944999999999" y="155.8" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">DVT and CoreDevice services</text>
+</g>
+<g class="node" data-id="Toolkit" data-label="iOS Developer Toolkit" data-shape="rectangle">
+  <rect x="571.279" y="72.45" width="169.40199999999996" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="655.98" y="90.9" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">iOS Developer Toolkit</text>
+</g>
+<g class="node" data-id="Case" data-label="Local evidence or working output" data-shape="rectangle">
+  <rect x="1341.9009999999998" y="101.825" width="236.09199999999996" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="1459.947" y="120.275" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Local evidence or working output</text>
+</g>
+</svg>

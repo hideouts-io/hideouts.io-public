@@ -1,0 +1,157 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  imageDimensions?: { width: number; height: number };
+  /** Describes the share image for screen readers on social platforms. */
+  imageAlt?: string;
+  favicon?: { ico: string; png32: string; appleTouch: string };
+  manifest?: string;
+  applicationTitle?: string;
+  type?: 'website' | 'article';
+  jsonLd?: Record<string, unknown>;
+}
+
+const SITE = 'hideouts.io';
+const {
+  title,
+  description = 'Open-source tools and evidence-first research for macOS and iOS privacy and security.',
+  image = '/og.png',
+  imageDimensions,
+  imageAlt = 'hideouts.io: See what your Mac and iPhone are really doing. Open-source macOS and iOS privacy and security tools.',
+  favicon,
+  manifest,
+  applicationTitle,
+  type = 'website',
+  jsonLd,
+} = Astro.props;
+const fullTitle = title ? `${title} · ${SITE}` : `${SITE} · macOS & iOS privacy and security`;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL(image, Astro.site);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {favicon ? (
+      <>
+        <link rel="icon" href={favicon.ico} sizes="any" />
+        <link rel="icon" href={favicon.png32} sizes="32x32" type="image/png" />
+        <link rel="apple-touch-icon" href={favicon.appleTouch} />
+      </>
+    ) : (
+      <>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/favicon-16.png" sizes="16x16" type="image/png" />
+        <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+      </>
+    )}
+    <link rel="manifest" href={manifest ?? '/site.webmanifest'} />
+    <meta name="apple-mobile-web-app-title" content={applicationTitle ?? SITE} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta name="referrer" content="no-referrer" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#0a0c0f" />
+
+    <meta property="og:type" content={type} />
+    <meta property="og:site_name" content={SITE} />
+    <meta property="og:title" content={title ?? fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content={String(imageDimensions?.width ?? 1200)} />
+    <meta property="og:image:height" content={String(imageDimensions?.height ?? 630)} />
+    <meta property="og:image:alt" content={imageAlt} />
+    <meta property="og:locale" content="en_US" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title ?? fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={imageAlt} />
+    <link rel="alternate" type="application/rss+xml" title="hideouts.io · Research" href="/research/rss.xml" />
+
+    {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+    <slot name="head" />
+
+    <!--
+      Runs before first paint:
+      1. Framing guard. GitHub Pages can't send X-Frame-Options or a CSP
+         frame-ancestors header, so if another site loads this page in a frame,
+         hide it, show a notice, and try to break out to the top window.
+      2. Dark by default; apply a saved light choice without a flash.
+      Also marks <html class="js"> so script-only controls render in place
+      from the first paint instead of shifting the layout when revealed.
+    -->
+    <script is:inline>
+      document.documentElement.classList.add('js');
+      // Cross-document view transitions (global.css) are skipped when the page is
+      // hidden or the navigation can't animate; that rejects promises on both the
+      // outgoing (pageswap) and incoming (pagereveal) page. Accept skips quietly
+      // instead of logging an uncaught error.
+      const quiet = (e) => {
+        if (e.viewTransition) {
+          e.viewTransition.ready.catch(() => {});
+          e.viewTransition.finished.catch(() => {});
+          e.viewTransition.updateCallbackDone?.catch(() => {});
+        }
+      };
+      addEventListener('pageswap', quiet);
+      addEventListener('pagereveal', quiet);
+      if (window.top !== window.self) {
+        document.documentElement.classList.add('framed');
+        // Created only when framed, so the notice never appears in the page's
+        // text for crawlers, text extraction, or screen readers otherwise.
+        document.addEventListener('DOMContentLoaded', function () {
+          const notice = document.createElement('p');
+          notice.className = 'framed-notice';
+          notice.textContent = 'This page can’t be shown inside another site. ';
+          const link = document.createElement('a');
+          link.href = location.href;
+          link.target = '_top';
+          link.textContent = 'Open hideouts.io';
+          notice.appendChild(link);
+          document.body.prepend(notice);
+        });
+        try {
+          window.top.location.replace(window.self.location.href);
+        } catch {
+          // Sandboxed frames can block navigation; the page stays hidden either way.
+        }
+      }
+      try {
+        if (localStorage.getItem('theme') === 'light') {
+          document.documentElement.dataset.theme = 'light';
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f8fa');
+          document.querySelector('meta[name="color-scheme"]').setAttribute('content', 'light');
+        }
+      } catch {
+        // Storage can be unavailable (private mode, blocked site data); stay dark.
+      }
+    </script>
+  </head>
+  <body class="min-h-dvh flex flex-col">
+    <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 btn btn-primary">
+      Skip to content
+    </a>
+    <Header />
+    <main id="main" class="flex-1">
+      <slot />
+    </main>
+    <Footer />
+    <script>
+      import '../scripts/site.ts';
+    </script>
+  </body>
+</html>

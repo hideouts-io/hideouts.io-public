@@ -1,0 +1,586 @@
+<main id="main" class="flex-1"><section class="relative overflow-hidden border-b border-line"><div class="hero-bg"></div><div class="container-x relative pt-8 pb-14 sm:pb-16"><nav aria-label="Breadcrumb" class="text-sm text-ink-3"><ol class="flex items-center gap-2"><li><a href="/apps/" class="hover:text-ink">Apps</a></li><li aria-hidden="true">/</li><li aria-current="page" class="truncate text-ink-2">iOS Developer Toolkit (Swift)</li></ol></nav><div class="mt-10 grid gap-10 lg:grid-cols-[1.25fr_1fr]"><div><div class="flex flex-col items-start gap-5 sm:flex-row sm:items-center"><img src="/media/ios-developer-toolkit-swift/img-11-640.webp" alt="" width="96" height="96" class="size-20 sm:size-24 shrink-0 object-contain"><div class="min-w-0"><h1 class="text-3xl font-semibold tracking-[-0.025em] text-ink sm:text-[2.75rem] sm:leading-tight">iOS Developer Toolkit (Swift)</h1><div class="mt-3 flex flex-wrap gap-1.5"><span class="chip chip-ios"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class><rect x="6.5" y="2.5" width="11" height="19" rx="2.6"/><path d="M10.5 5h3"/></svg>iOS</span><span class="chip chip-accent"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class><rect x="3" y="4.5" width="18" height="11.5" rx="1.8"/><path d="M1.5 19.5h21"/><path d="M9.5 16v3.5M14.5 16v3.5"/></svg>macOS</span><span class="chip chip-accent">Released</span><span class="chip">Authorized use only</span><span class="chip">No shell</span><span class="chip">Physical-device testing in progress</span></div></div></div><p class="mt-8 text-xl leading-8 font-medium tracking-tight text-pretty text-ink">The iPhone and iPad workbench, rebuilt as a native Mac app.</p><p class="mt-3 max-w-2xl leading-7 text-pretty text-ink-2">A native SwiftUI app and command-line tool for iPhones, iPads, and simulators: device details, readiness checks, live logs, location simulation, app installs, encrypted backups, packet capture, and hashed evidence cases, through macOS’s own device services.</p><p class="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-ink-3"><span>Categories:</span><a href="/apps/?category=developer" class="text-ink-2 underline decoration-line-strong underline-offset-4 hover:text-ink">Developer tools</a><a href="/apps/?category=forensics" class="text-ink-2 underline decoration-line-strong underline-offset-4 hover:text-ink">Forensics &amp; evidence</a><a href="/apps/?category=diagnostics" class="text-ink-2 underline decoration-line-strong underline-offset-4 hover:text-ink">Diagnostics</a></p><p class="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-ink-3"><span>Topics:</span><a href="/topics/developer-tools/" class="font-mono text-ink-2 underline decoration-line-strong underline-offset-4 hover:text-ink">developer-tools</a><a href="/topics/ios/" class="font-mono text-ink-2 underline decoration-line-strong underline-offset-4 hover:text-ink">ios</a><a href="/topics/ios-forensics/" class="font-mono text-ink-2 underline decoration-line-strong underline-offset-4 hover:text-ink">ios-forensics</a><a href="/topics/macos/" class="font-mono text-ink-2 underline decoration-line-strong underline-offset-4 hover:text-ink">macos</a><a href="/topics/packet-capture/" class="font-mono text-ink-2 underline decoration-line-strong underline-offset-4 hover:text-ink">packet-capture</a></p><p class="mt-5 flex items-start gap-2.5 rounded-xl border border-line bg-surface/60 px-4 py-3 text-sm leading-6 text-ink-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="mt-1 shrink-0 text-accent"><path d="m8 7-5 5 5 5M16 7l5 5-5 5M13.5 4.5l-3 15"/></svg><span><span class="text-ink">Also available:</span> <a href="/apps/ios-developer-toolkit/" class="font-medium text-accent hover:underline">iOS Developer Toolkit</a><span class="text-ink-3"> (Python)</span>. The original Python app, built on pymobiledevice3.</span></p><div class="mt-8 flex flex-wrap gap-3"><a href="https://github.com/hideouts-io/iOS-Developer-Toolkit-Swift/releases/tag/v1.0.0" class="btn btn-primary" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class><path d="M12 3.5v12M7 11l5 5 5-5M4.5 20.5h15"/></svg> Download v1.0.0</a><a href="#install" class="btn btn-ghost">Installation guide</a><a href="https://github.com/hideouts-io/iOS-Developer-Toolkit-Swift" class="btn btn-ghost" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class><path fill="currentColor" stroke="none" d="M12 1.5a10.5 10.5 0 0 0-3.32 20.46c.53.1.72-.23.72-.5v-1.86c-2.92.64-3.54-1.24-3.54-1.24-.48-1.21-1.17-1.54-1.17-1.54-.95-.65.08-.64.08-.64 1.06.08 1.61 1.08 1.61 1.08.94 1.6 2.46 1.14 3.06.87.1-.68.37-1.14.66-1.4-2.33-.27-4.78-1.17-4.78-5.19 0-1.14.41-2.08 1.08-2.82-.11-.26-.47-1.33.1-2.77 0 0 .88-.28 2.89 1.08a10 10 0 0 1 5.26 0c2-1.36 2.88-1.08 2.88-1.08.58 1.44.22 2.51.11 2.77.67.74 1.08 1.68 1.08 2.82 0 4.03-2.46 4.92-4.8 5.18.38.33.72.97.72 1.96v2.9c0 .28.19.61.73.5A10.5 10.5 0 0 0 12 1.5Z"/></svg> View on GitHub</a></div><!-- Download facts, next to the button (Objective-See pattern) --><div class="mt-5 space-y-2 text-sm text-ink-3"><p class="flex flex-wrap items-center gap-x-2 gap-y-1"><span class="font-mono text-ink-2">v1.0.0</span><span aria-hidden="true">·</span><time datetime="2026-09-30T06:49:27Z">Sep 30, 2026</time><span aria-hidden="true">·</span><span><span class="sr-only">Requires </span>macOS 14 or later, Apple silicon or Intel, Xcode for simulators and some developer features</span><span aria-hidden="true">·</span><a href="https://github.com/hideouts-io/iOS-Developer-Toolkit-Swift/releases" class="underline decoration-line-strong underline-offset-4 hover:text-ink" rel="noopener noreferrer">Changelog</a><span aria-hidden="true">·</span><a href="https://github.com/hideouts-io/iOS-Developer-Toolkit-Swift" class="underline decoration-line-strong underline-offset-4 hover:text-ink" rel="noopener noreferrer">Source</a></p><p class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="shrink-0"><path d="M12 2.8 4.5 5.6v5.7c0 4.6 3.1 8.6 7.5 9.9 4.4-1.3 7.5-5.3 7.5-9.9V5.6Z"/><path d="m9 12 2.2 2.2L15.5 10"/></svg><span>Ad-hoc signed · not notarized · GitHub build attestation</span></p><details class="group/sha max-w-2xl rounded-lg border border-line bg-surface/60"><summary class="flex cursor-pointer items-center gap-2 px-3 py-2 text-ink-2 hover:text-ink [&amp;::-webkit-details-marker]:hidden"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="shrink-0"><path d="M12 11v3.5a8 8 0 0 1-1.6 4.8M8.5 9.5a3.5 3.5 0 0 1 7 0v3M5.5 16.5a13 13 0 0 0 .5-4V9.5a6 6 0 0 1 10.3-4.2M18 9.5v3c0 2.8-.5 5.5-1.6 8M8.9 21a11 11 0 0 0 1.4-2.5"/></svg>SHA-256 checksums<span class="ml-auto text-xs transition-transform group-open/sha:rotate-180" aria-hidden="true">▾</span></summary><div class="space-y-3 border-t border-line px-3 py-3"><ul class="space-y-2"><li><p class="text-xs text-ink-2">iOS-Developer-Toolkit-Swift-1.0.0-macOS-universal.zip</p><code class="block font-mono text-[0.6875rem] break-all text-ink-3 select-all">ec3662f1b7f3d2865522e390ac7a5b28b8928b0058bd422c3ee570963def6354</code></li></ul><p class="text-xs">Check a download with <code class="font-mono text-ink-2">shasum -a 256 iOS-Developer-Toolkit-Swift-1.0.0-macOS-universal.zip</code> and compare the result. <a href="/verify/" class="text-accent underline underline-offset-4">Full verification guide</a></p></div></details></div></div><aside class="flex flex-col gap-4" aria-label="Project details"><dl class="card divide-y divide-line text-sm"><div class="flex items-center justify-between gap-4 px-5 py-3"><dt class="flex items-center gap-2 text-ink-3"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8Z"/><circle cx="7.5" cy="7.5" r="1.3"/></svg>Status</dt><dd class="text-right text-ink">Released · v1.0.0</dd></div><div class="flex items-center justify-between gap-4 px-5 py-3"><dt class="flex items-center gap-2 text-ink-3"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Released</dt><dd class="text-right text-ink">Sep 30, 2026</dd></div><div class="flex items-center justify-between gap-4 px-5 py-3"><dt class="flex items-center gap-2 text-ink-3"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Last commit</dt><dd class="text-right text-ink">Sep 30, 2026</dd></div><div class="flex items-center justify-between gap-4 px-5 py-3"><dt class="flex items-center gap-2 text-ink-3"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class><path d="m8 7-5 5 5 5M16 7l5 5-5 5M13.5 4.5l-3 15"/></svg>Language</dt><dd class="text-right text-ink">Swift</dd></div><div class="flex items-center justify-between gap-4 px-5 py-3"><dt class="flex items-center gap-2 text-ink-3"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class><path d="M12 3v18M5 21h14M5 7h14M5 7l-3 7a3.5 3.5 0 0 0 6 0Zm14 0-3 7a3.5 3.5 0 0 0 6 0Z"/></svg>License</dt><dd class="text-right text-ink">MIT</dd></div><div class="flex items-center justify-between gap-4 px-5 py-3"><dt class="flex items-center gap-2 text-ink-3"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9Z"/></svg>GitHub stars</dt><dd class="text-right text-ink">1</dd></div></dl></aside></div></div></section><section class="container-x grid gap-4 pt-14 lg:grid-cols-[minmax(0,1fr)_20rem]" aria-label="Highlights and resources"><ul class="grid content-start gap-3 sm:grid-cols-2"><li class="card flex gap-3 p-4 text-sm leading-6 text-ink-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="mt-1 shrink-0 text-accent"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>No Python, no Homebrew packages, and no administrator rights</li><li class="card flex gap-3 p-4 text-sm leading-6 text-ink-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="mt-1 shrink-0 text-accent"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>A read-only Readiness Check with a next step for anything not ready</li><li class="card flex gap-3 p-4 text-sm leading-6 text-ink-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="mt-1 shrink-0 text-accent"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>Over 40 guided actions, each showing its risk and exactly how it runs</li><li class="card flex gap-3 p-4 text-sm leading-6 text-ink-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="mt-1 shrink-0 text-accent"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>Evidence Capture builds a case folder with a manifest and SHA-256 hashes</li></ul><nav class="card p-5" aria-labelledby="resources-heading"><h2 id="resources-heading" class="text-sm font-semibold text-ink">Resources</h2><ul class="mt-3 space-y-1 text-sm"><li><a href="https://github.com/hideouts-io/iOS-Developer-Toolkit-Swift" class="flex items-center gap-2.5 rounded-lg px-2 py-1.5 -mx-2 text-ink-2 hover:bg-surface-2 hover:text-ink" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="shrink-0 text-ink-3"><path fill="currentColor" stroke="none" d="M12 1.5a10.5 10.5 0 0 0-3.32 20.46c.53.1.72-.23.72-.5v-1.86c-2.92.64-3.54-1.24-3.54-1.24-.48-1.21-1.17-1.54-1.17-1.54-.95-.65.08-.64.08-.64 1.06.08 1.61 1.08 1.61 1.08.94 1.6 2.46 1.14 3.06.87.1-.68.37-1.14.66-1.4-2.33-.27-4.78-1.17-4.78-5.19 0-1.14.41-2.08 1.08-2.82-.11-.26-.47-1.33.1-2.77 0 0 .88-.28 2.89 1.08a10 10 0 0 1 5.26 0c2-1.36 2.88-1.08 2.88-1.08.58 1.44.22 2.51.11 2.77.67.74 1.08 1.68 1.08 2.82 0 4.03-2.46 4.92-4.8 5.18.38.33.72.97.72 1.96v2.9c0 .28.19.61.73.5A10.5 10.5 0 0 0 12 1.5Z"/></svg>Source code<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="ml-auto text-ink-3"><path d="M7 17 17 7M8 7h9v9"/></svg></a></li><li><a href="https://github.com/hideouts-io/iOS-Developer-Toolkit-Swift#readme" class="flex items-center gap-2.5 rounded-lg px-2 py-1.5 -mx-2 text-ink-2 hover:bg-surface-2 hover:text-ink" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="shrink-0 text-ink-3"><path d="M14 2.5H6.5a2 2 0 0 0-2 2v15a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V8Z"/><path d="M14 2.5V8h5.5M8.5 13h7M8.5 17h7"/></svg>Documentation (README)<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="ml-auto text-ink-3"><path d="M7 17 17 7M8 7h9v9"/></svg></a></li><li><a href="https://github.com/hideouts-io/iOS-Developer-Toolkit-Swift/releases" class="flex items-center gap-2.5 rounded-lg px-2 py-1.5 -mx-2 text-ink-2 hover:bg-surface-2 hover:text-ink" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="shrink-0 text-ink-3"><path d="M12 3.5v12M7 11l5 5 5-5M4.5 20.5h15"/></svg>Releases<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="ml-auto text-ink-3"><path d="M7 17 17 7M8 7h9v9"/></svg></a></li><li><a href="https://github.com/hideouts-io/iOS-Developer-Toolkit-Swift/issues" class="flex items-center gap-2.5 rounded-lg px-2 py-1.5 -mx-2 text-ink-2 hover:bg-surface-2 hover:text-ink" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="shrink-0 text-ink-3"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>Issues<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="ml-auto text-ink-3"><path d="M7 17 17 7M8 7h9v9"/></svg></a></li><li><a href="https://github.com/hideouts-io/iOS-Developer-Toolkit-Swift/discussions" class="flex items-center gap-2.5 rounded-lg px-2 py-1.5 -mx-2 text-ink-2 hover:bg-surface-2 hover:text-ink" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="shrink-0 text-ink-3"><path d="M14 2.5H6.5a2 2 0 0 0-2 2v15a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V8Z"/><path d="M14 2.5V8h5.5M8.5 13h7M8.5 17h7"/></svg>Discussions<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="ml-auto text-ink-3"><path d="M7 17 17 7M8 7h9v9"/></svg></a></li><li><a href="https://github.com/hideouts-io/iOS-Developer-Toolkit-Swift/blob/main/CONTRIBUTING.md" class="flex items-center gap-2.5 rounded-lg px-2 py-1.5 -mx-2 text-ink-2 hover:bg-surface-2 hover:text-ink" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="shrink-0 text-ink-3"><path d="m8 7-5 5 5 5M16 7l5 5-5 5M13.5 4.5l-3 15"/></svg>Contributing guide<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="ml-auto text-ink-3"><path d="M7 17 17 7M8 7h9v9"/></svg></a></li><li><a href="https://github.com/hideouts-io/iOS-Developer-Toolkit-Swift/blob/main/LICENSE" class="flex items-center gap-2.5 rounded-lg px-2 py-1.5 -mx-2 text-ink-2 hover:bg-surface-2 hover:text-ink" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="shrink-0 text-ink-3"><path d="M12 3v18M5 21h14M5 7h14M5 7l-3 7a3.5 3.5 0 0 0 6 0Zm14 0-3 7a3.5 3.5 0 0 0 6 0Z"/></svg>License (MIT)<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="ml-auto text-ink-3"><path d="M7 17 17 7M8 7h9v9"/></svg></a></li><li><a href="https://github.com/hideouts-io/iOS-Developer-Toolkit-Swift/security/advisories/new" class="flex items-center gap-2.5 rounded-lg px-2 py-1.5 -mx-2 text-ink-2 hover:bg-surface-2 hover:text-ink" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="shrink-0 text-ink-3"><rect x="4.5" y="10.5" width="15" height="10.5" rx="2.2"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg>Report a vulnerability<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="ml-auto text-ink-3"><path d="M7 17 17 7M8 7h9v9"/></svg></a></li></ul></nav></section><section class="pt-14" aria-labelledby="shots-heading"><div class="container-x flex items-end justify-between gap-4"><h2 id="shots-heading" class="text-lg font-semibold text-ink">Screenshots</h2><p class="text-xs text-ink-3 print:hidden">Select an image to view full size</p></div><div class="container-x mt-5 overflow-x-auto pb-4 [scrollbar-width:thin]" role="region" aria-label="Screenshot gallery" tabindex="0"><ul class="flex snap-x snap-mandatory gap-4"><li class="w-[85%] shrink-0 snap-start sm:w-[46%] lg:w-[31%]"><a href="/media/ios-developer-toolkit-swift/img-01.webp" data-lightbox data-caption="Overview" class="card block overflow-hidden rounded-xl hover:border-line-strong"><img src="/media/ios-developer-toolkit-swift/img-01.webp" srcset="/media/ios-developer-toolkit-swift/img-01-640.webp 640w, /media/ios-developer-toolkit-swift/img-01-1200.webp 1200w, /media/ios-developer-toolkit-swift/img-01.webp 1400w" sizes="(min-width: 1024px) 400px, (min-width: 640px) 46vw, 85vw" alt="Overview" width="1400" height="830" loading="lazy" decoding="async" class="aspect-[16/10] w-full bg-surface-2 object-cover object-top"></a><p class="mt-2 line-clamp-2 text-xs leading-5 text-ink-3">Overview</p></li><li class="w-[85%] shrink-0 snap-start sm:w-[46%] lg:w-[31%]"><a href="/media/ios-developer-toolkit-swift/img-02.webp" data-lightbox data-caption="Readiness Check" class="card block overflow-hidden rounded-xl hover:border-line-strong"><img src="/media/ios-developer-toolkit-swift/img-02.webp" srcset="/media/ios-developer-toolkit-swift/img-02-640.webp 640w, /media/ios-developer-toolkit-swift/img-02-1200.webp 1200w, /media/ios-developer-toolkit-swift/img-02.webp 1400w" sizes="(min-width: 1024px) 400px, (min-width: 640px) 46vw, 85vw" alt="Readiness Check" width="1400" height="830" loading="lazy" decoding="async" class="aspect-[16/10] w-full bg-surface-2 object-cover object-top"></a><p class="mt-2 line-clamp-2 text-xs leading-5 text-ink-3">Readiness Check</p></li><li class="w-[85%] shrink-0 snap-start sm:w-[46%] lg:w-[31%]"><a href="/media/ios-developer-toolkit-swift/img-03.webp" data-lightbox data-caption="Device" class="card block overflow-hidden rounded-xl hover:border-line-strong"><img src="/media/ios-developer-toolkit-swift/img-03.webp" srcset="/media/ios-developer-toolkit-swift/img-03-640.webp 640w, /media/ios-developer-toolkit-swift/img-03-1200.webp 1200w, /media/ios-developer-toolkit-swift/img-03.webp 1400w" sizes="(min-width: 1024px) 400px, (min-width: 640px) 46vw, 85vw" alt="Device" width="1400" height="830" loading="lazy" decoding="async" class="aspect-[16/10] w-full bg-surface-2 object-cover object-top"></a><p class="mt-2 line-clamp-2 text-xs leading-5 text-ink-3">Device</p></li><li class="w-[85%] shrink-0 snap-start sm:w-[46%] lg:w-[31%]"><a href="/media/ios-developer-toolkit-swift/img-04.webp" data-lightbox data-caption="Live Logs" class="card block overflow-hidden rounded-xl hover:border-line-strong"><img src="/media/ios-developer-toolkit-swift/img-04.webp" srcset="/media/ios-developer-toolkit-swift/img-04-640.webp 640w, /media/ios-developer-toolkit-swift/img-04-1200.webp 1200w, /media/ios-developer-toolkit-swift/img-04.webp 1400w" sizes="(min-width: 1024px) 400px, (min-width: 640px) 46vw, 85vw" alt="Live Logs" width="1400" height="830" loading="lazy" decoding="async" class="aspect-[16/10] w-full bg-surface-2 object-cover object-top"></a><p class="mt-2 line-clamp-2 text-xs leading-5 text-ink-3">Live Logs</p></li><li class="w-[85%] shrink-0 snap-start sm:w-[46%] lg:w-[31%]"><a href="/media/ios-developer-toolkit-swift/img-05.webp" data-lightbox data-caption="Location Lab" class="card block overflow-hidden rounded-xl hover:border-line-strong"><img src="/media/ios-developer-toolkit-swift/img-05.webp" srcset="/media/ios-developer-toolkit-swift/img-05-640.webp 640w, /media/ios-developer-toolkit-swift/img-05-1200.webp 1200w, /media/ios-developer-toolkit-swift/img-05.webp 1400w" sizes="(min-width: 1024px) 400px, (min-width: 640px) 46vw, 85vw" alt="Location Lab" width="1400" height="830" loading="lazy" decoding="async" class="aspect-[16/10] w-full bg-surface-2 object-cover object-top"></a><p class="mt-2 line-clamp-2 text-xs leading-5 text-ink-3">Location Lab</p></li><li class="w-[85%] shrink-0 snap-start sm:w-[46%] lg:w-[31%]"><a href="/media/ios-developer-toolkit-swift/img-06.webp" data-lightbox data-caption="Actions" class="card block overflow-hidden rounded-xl hover:border-line-strong"><img src="/media/ios-developer-toolkit-swift/img-06.webp" srcset="/media/ios-developer-toolkit-swift/img-06-640.webp 640w, /media/ios-developer-toolkit-swift/img-06-1200.webp 1200w, /media/ios-developer-toolkit-swift/img-06.webp 1400w" sizes="(min-width: 1024px) 400px, (min-width: 640px) 46vw, 85vw" alt="Actions" width="1400" height="830" loading="lazy" decoding="async" class="aspect-[16/10] w-full bg-surface-2 object-cover object-top"></a><p class="mt-2 line-clamp-2 text-xs leading-5 text-ink-3">Actions</p></li><li class="w-[85%] shrink-0 snap-start sm:w-[46%] lg:w-[31%]"><a href="/media/ios-developer-toolkit-swift/img-07.webp" data-lightbox data-caption="Apps" class="card block overflow-hidden rounded-xl hover:border-line-strong"><img src="/media/ios-developer-toolkit-swift/img-07.webp" srcset="/media/ios-developer-toolkit-swift/img-07-640.webp 640w, /media/ios-developer-toolkit-swift/img-07-1200.webp 1200w, /media/ios-developer-toolkit-swift/img-07.webp 1400w" sizes="(min-width: 1024px) 400px, (min-width: 640px) 46vw, 85vw" alt="Apps" width="1400" height="830" loading="lazy" decoding="async" class="aspect-[16/10] w-full bg-surface-2 object-cover object-top"></a><p class="mt-2 line-clamp-2 text-xs leading-5 text-ink-3">Apps</p></li><li class="w-[85%] shrink-0 snap-start sm:w-[46%] lg:w-[31%]"><a href="/media/ios-developer-toolkit-swift/img-08.webp" data-lightbox data-caption="Backup" class="card block overflow-hidden rounded-xl hover:border-line-strong"><img src="/media/ios-developer-toolkit-swift/img-08.webp" srcset="/media/ios-developer-toolkit-swift/img-08-640.webp 640w, /media/ios-developer-toolkit-swift/img-08-1200.webp 1200w, /media/ios-developer-toolkit-swift/img-08.webp 1400w" sizes="(min-width: 1024px) 400px, (min-width: 640px) 46vw, 85vw" alt="Backup" width="1400" height="830" loading="lazy" decoding="async" class="aspect-[16/10] w-full bg-surface-2 object-cover object-top"></a><p class="mt-2 line-clamp-2 text-xs leading-5 text-ink-3">Backup</p></li></ul></div></section><section class="container-x pt-10" aria-labelledby="dl-heading"><div class="card p-5 sm:p-6"><div class="flex flex-wrap items-baseline justify-between gap-2"><h2 id="dl-heading" class="font-semibold text-ink">Downloads · <span class="font-mono">v1.0.0</span></h2><a href="https://github.com/hideouts-io/iOS-Developer-Toolkit-Swift/releases/tag/v1.0.0" class="text-sm text-accent" rel="noopener noreferrer">Release notes <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="inline"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div><ul class="mt-4 divide-y divide-line"><li class="flex flex-col gap-1 py-3 sm:flex-row sm:items-center sm:gap-4"><a href="https://github.com/hideouts-io/iOS-Developer-Toolkit-Swift/releases/download/v1.0.0/iOS-Developer-Toolkit-Swift-1.0.0-firmware-helpers-source.tar.gz" class="inline-flex min-w-0 items-center gap-2 text-sm font-medium text-ink hover:text-accent" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="shrink-0 text-ink-3"><path d="M12 3.5v12M7 11l5 5 5-5M4.5 20.5h15"/></svg><span class="truncate">iOS-Developer-Toolkit-Swift-1.0.0-firmware-helpers-source.tar.gz</span></a><span class="text-xs text-ink-3 sm:ml-auto">55.6 MB</span><code class="block truncate font-mono text-[0.6875rem] text-ink-3 sm:max-w-[22rem]" title="SHA-256 324a8fc25329aa95a22bef960670624f465d96c85ab4f86e85de47f750b042f9">sha256:324a8fc25329aa95a22bef960670624f465d96c85ab4f86e85de47f750b042f9</code></li><li class="flex flex-col gap-1 py-3 sm:flex-row sm:items-center sm:gap-4"><a href="https://github.com/hideouts-io/iOS-Developer-Toolkit-Swift/releases/download/v1.0.0/iOS-Developer-Toolkit-Swift-1.0.0-macOS-universal.zip" class="inline-flex min-w-0 items-center gap-2 text-sm font-medium text-ink hover:text-accent" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="shrink-0 text-ink-3"><path d="M12 3.5v12M7 11l5 5 5-5M4.5 20.5h15"/></svg><span class="truncate">iOS-Developer-Toolkit-Swift-1.0.0-macOS-universal.zip</span></a><span class="text-xs text-ink-3 sm:ml-auto">26.1 MB</span><code class="block truncate font-mono text-[0.6875rem] text-ink-3 sm:max-w-[22rem]" title="SHA-256 ec3662f1b7f3d2865522e390ac7a5b28b8928b0058bd422c3ee570963def6354">sha256:ec3662f1b7f3d2865522e390ac7a5b28b8928b0058bd422c3ee570963def6354</code></li><li class="flex flex-col gap-1 py-3 sm:flex-row sm:items-center sm:gap-4"><a href="https://github.com/hideouts-io/iOS-Developer-Toolkit-Swift/releases/download/v1.0.0/iOS-Developer-Toolkit-Swift-1.0.0.spdx.json" class="inline-flex min-w-0 items-center gap-2 text-sm font-medium text-ink hover:text-accent" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="shrink-0 text-ink-3"><path d="M12 3.5v12M7 11l5 5 5-5M4.5 20.5h15"/></svg><span class="truncate">iOS-Developer-Toolkit-Swift-1.0.0.spdx.json</span></a><span class="text-xs text-ink-3 sm:ml-auto">6 KB</span><code class="block truncate font-mono text-[0.6875rem] text-ink-3 sm:max-w-[22rem]" title="SHA-256 c80322440e9c8f69d23a940ff0ad2b0492b8948cc1fac843f00a6351734b7743">sha256:c80322440e9c8f69d23a940ff0ad2b0492b8948cc1fac843f00a6351734b7743</code></li><li class="flex flex-col gap-1 py-3 sm:flex-row sm:items-center sm:gap-4"><a href="https://github.com/hideouts-io/iOS-Developer-Toolkit-Swift/releases/download/v1.0.0/SHA256SUMS.txt" class="inline-flex min-w-0 items-center gap-2 text-sm font-medium text-ink hover:text-accent" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="shrink-0 text-ink-3"><path d="M12 3.5v12M7 11l5 5 5-5M4.5 20.5h15"/></svg><span class="truncate">SHA256SUMS.txt</span></a><span class="text-xs text-ink-3 sm:ml-auto">361 B</span><code class="block truncate font-mono text-[0.6875rem] text-ink-3 sm:max-w-[22rem]" title="SHA-256 46172b0b55bf94ab2abecfec561748e500eff4631c5fa6e4db8b76ba450150ad">sha256:46172b0b55bf94ab2abecfec561748e500eff4631c5fa6e4db8b76ba450150ad</code></li></ul><p class="mt-3 text-xs text-ink-3">Verify after downloading: <code class="font-mono">shasum -a 256 iOS-Developer-Toolkit-Swift-1.0.0-macOS-universal.zip</code> · <a href="/verify/" class="text-accent underline underline-offset-4">How to verify a download</a></p></div></section><section class="container-x pt-16" aria-label="Documentation"><div class="flex flex-wrap items-baseline justify-between gap-2 border-b border-line pb-4"><p class="text-2xl font-semibold tracking-tight text-ink">Documentation</p><a href="https://github.com/hideouts-io/iOS-Developer-Toolkit-Swift#readme" class="inline-flex items-center gap-1 text-sm text-ink-3 hover:text-ink" rel="noopener noreferrer">Synced from the README on GitHub · Oct 8, 2026<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class><path d="M7 17 17 7M8 7h9v9"/></svg></a></div><div class="mt-10"><div class="grid gap-12 lg:grid-cols-[15rem_minmax(0,1fr)]"><nav class="toc hidden lg:block" aria-label="On this page"><div data-toc-scroll class="sticky top-24 max-h-[calc(100dvh-8rem)] overflow-y-auto pr-2"><p class="text-xs font-semibold tracking-wider text-ink-3 uppercase">On this page</p><ul class="mt-3 space-y-0.5 border-l border-line text-sm"><li><a href="#what-it-does" class="-ml-px block border-l border-transparent py-1 leading-5 text-ink-2 hover:border-line-strong hover:text-ink pl-3">What it does</a></li><li><a href="#screenshots" class="-ml-px block border-l border-transparent py-1 leading-5 text-ink-2 hover:border-line-strong hover:text-ink pl-3">Screenshots</a></li><li><a href="#requirements" class="-ml-px block border-l border-transparent py-1 leading-5 text-ink-2 hover:border-line-strong hover:text-ink pl-3">Requirements</a></li><li><a href="#install" class="-ml-px block border-l border-transparent py-1 leading-5 text-ink-2 hover:border-line-strong hover:text-ink pl-3">Install</a></li><li><a href="#first-steps" class="-ml-px block border-l border-transparent py-1 leading-5 text-ink-2 hover:border-line-strong hover:text-ink pl-3">First steps</a></li><li><a href="#workspaces" class="-ml-px block border-l border-transparent py-1 leading-5 text-ink-2 hover:border-line-strong hover:text-ink pl-3">Workspaces</a></li><li><a href="#developer-images" class="-ml-px block border-l border-transparent py-1 leading-5 text-ink-2 hover:border-line-strong hover:text-ink pl-3">Developer images</a></li><li><a href="#firmware" class="-ml-px block border-l border-transparent py-1 leading-5 text-ink-2 hover:border-line-strong hover:text-ink pl-3">Firmware</a></li><li><a href="#command-line-tool" class="-ml-px block border-l border-transparent py-1 leading-5 text-ink-2 hover:border-line-strong hover:text-ink pl-3">Command-line tool</a></li><li><a href="#security-and-privacy" class="-ml-px block border-l border-transparent py-1 leading-5 text-ink-2 hover:border-line-strong hover:text-ink pl-3">Security and privacy</a></li><li><a href="#troubleshooting" class="-ml-px block border-l border-transparent py-1 leading-5 text-ink-2 hover:border-line-strong hover:text-ink pl-3">Troubleshooting</a></li><li><a href="#build-from-source" class="-ml-px block border-l border-transparent py-1 leading-5 text-ink-2 hover:border-line-strong hover:text-ink pl-3">Build from source</a></li><li><a href="#project-status-and-limitations" class="-ml-px block border-l border-transparent py-1 leading-5 text-ink-2 hover:border-line-strong hover:text-ink pl-3">Project status and limitations</a></li><li><a href="#contributing-support-and-license" class="-ml-px block border-l border-transparent py-1 leading-5 text-ink-2 hover:border-line-strong hover:text-ink pl-3">Contributing, support, and license</a></li></ul></div></nav><div class="min-w-0"><details class="card mb-8 p-4 lg:hidden"><summary class="cursor-pointer text-sm font-medium text-ink">On this page</summary><ul class="mt-3 space-y-1.5 text-sm"><li><a href="#what-it-does" class="text-ink-2 hover:text-ink">What it does</a></li><li><a href="#screenshots" class="text-ink-2 hover:text-ink">Screenshots</a></li><li><a href="#requirements" class="text-ink-2 hover:text-ink">Requirements</a></li><li><a href="#install" class="text-ink-2 hover:text-ink">Install</a></li><li><a href="#first-steps" class="text-ink-2 hover:text-ink">First steps</a></li><li><a href="#workspaces" class="text-ink-2 hover:text-ink">Workspaces</a></li><li><a href="#developer-images" class="text-ink-2 hover:text-ink">Developer images</a></li><li><a href="#firmware" class="text-ink-2 hover:text-ink">Firmware</a></li><li><a href="#command-line-tool" class="text-ink-2 hover:text-ink">Command-line tool</a></li><li><a href="#security-and-privacy" class="text-ink-2 hover:text-ink">Security and privacy</a></li><li><a href="#troubleshooting" class="text-ink-2 hover:text-ink">Troubleshooting</a></li><li><a href="#build-from-source" class="text-ink-2 hover:text-ink">Build from source</a></li><li><a href="#project-status-and-limitations" class="text-ink-2 hover:text-ink">Project status and limitations</a></li><li><a href="#contributing-support-and-license" class="text-ink-2 hover:text-ink">Contributing, support, and license</a></li></ul></details><article class="prose-readme max-w-[48rem]" data-pagefind-body data-pagefind-meta="title:iOS Developer Toolkit (Swift)" data-pagefind-filter="kind:App"><p><strong>A native macOS app for working with iPhones, iPads, and simulators — device information, live logs, location simulation, app installs, backups, packet capture, readiness checks, and documented evidence collection.</strong></p>
+<p><img src="/media/ios-developer-toolkit-swift/img-01.webp" alt="Overview" srcset="/media/ios-developer-toolkit-swift/img-01-640.webp 640w, /media/ios-developer-toolkit-swift/img-01-1200.webp 1200w, /media/ios-developer-toolkit-swift/img-01.webp 1400w" sizes="(min-width: 1024px) 768px, calc(100vw - 2rem)" width="1400" height="830" loading="lazy" decoding="async"></p>
+<p>iOS Developer Toolkit is written in Swift and SwiftUI. It talks to devices through macOS's own
+device service (usbmuxd and lockdown), Xcode's CoreDevice service (<code>devicectl</code>), <code>simctl</code>, and
+Instruments. It needs no Python, no Homebrew packages, and no administrator rights.</p>
+<blockquote>
+<p><strong>Scope.</strong> This is a tool for devices you own or are authorized to examine. It does not
+jailbreak iOS, bypass a passcode, disable the sandbox, defeat code signing, decrypt protected
+traffic, or provide unrestricted file-system access.</p>
+</blockquote>
+<div class="heading-wrap level-2"><h2 id="what-it-does">What it does</h2><a class="heading-anchor" href="#what-it-does" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: What it does</span></a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-scroll" tabindex="0"><table><thead><tr><th>Area</th><th>What you get</th></tr></thead><tbody><tr><td><strong>Devices</strong></td><td>Automatic discovery of USB and Wi-Fi–synced devices (event-driven, no polling), Xcode-paired network devices, and simulators — shown in separate <em>Physical Devices</em> and <em>Simulators</em> sections.</td></tr><tr><td><strong>Plain-language device details</strong></td><td>Name, model, hardware identifier, UDID, iOS version and build, architecture, connection, trust, Developer Mode, and developer-service status, each with an explanation. Identifying values stay hidden until you choose to show them.</td></tr><tr><td><strong>Readiness Check</strong></td><td>A read-only check of every prerequisite (Xcode, the macOS device service, connection, trust, Developer Mode, Xcode's device service, developer services, Instruments, lock state, logging and backup services, Safari Web Inspector) with a next step for anything not ready.</td></tr><tr><td><strong>Live Logs</strong></td><td>Unified Logging and classic syslog streamed from physical devices, and the simulator's unified log; plus two collected sources: an <strong>OSLog archive</strong> (the device's saved log history for a time window, kept as a <code>.logarchive</code> for Console) and <strong>DVT logging</strong> (os_log recorded through Instruments, kept as a <code>.trace</code>). Every byte is spooled and hashed; the view can be paused and filtered (literal or regex) without affecting capture. Mark findings, then export the raw capture, filtered lines, or an evidence bundle.</td></tr><tr><td><strong>Location Lab</strong></td><td>Set a coordinate (offline world map, map-link parsing, nudges, saved places), move along a route at constant speed, or replay a GPX track. Always clearable; every change is logged.</td></tr><tr><td><strong>Firmware</strong></td><td>Apple's firmware (IPSW) for the connected model with whether Apple still signs it; download with resume and SHA-1 verification; a local IPSW library; recovery and DFU mode; and Update (keeps data) or Restore (erases) with the bundled <code>idevicerestore</code>, after a check that changes nothing.</td></tr><tr><td><strong>Apps</strong></td><td>Search and sort installed apps (with sizes over USB), launch, and remove with confirmation.</td></tr><tr><td><strong>Install App</strong></td><td>Inspect an <code>.ipa</code> on the Mac first — contents, provisioning profile, and code signature verified with Security.framework — then install it on a device, or install an <code>.app</code> on a simulator.</td></tr><tr><td><strong>Actions</strong></td><td>Over 40 guided actions (diagnostics, battery, IORegistry, provisioning and configuration profiles, crash reports, screenshots, sysdiagnose, Instruments recordings, packet capture, Bluetooth capture, Safari and web view tabs, network discovery, launch, open URL, simulated location, restart, simulator controls), each showing its risk, what it needs, and exactly how it runs. An Advanced Mode runs <code>devicectl</code> subcommands bound to the selected device.</td></tr><tr><td><strong>Backup</strong></td><td>Encrypted local backups with the same protocol Finder uses, full or incremental, with progress. Turn on backup encryption with a new password (never stored or logged).</td></tr><tr><td><strong>Evidence Capture</strong></td><td>A documented case folder with snapshots, optional timed streams (Unified Logs, syslog, packet capture), a screenshot, and crash reports, plus a manifest and SHA-256 hashes. Failed steps are recorded as coverage gaps.</td></tr><tr><td><strong>Packet capture</strong></td><td>Device-side network packets written as a standard <code>.pcap</code> file for Wireshark or tcpdump, as an action or as part of Evidence Capture.</td></tr><tr><td><strong>External tools</strong></td><td>Optional handoffs to separately installed <a href="https://github.com/mvt-project/mvt" rel="noopener noreferrer">MVT</a>, <a href="https://github.com/prosch88/UFADE" rel="noopener noreferrer">UFADE</a>, and <a href="https://github.com/facebook/idb" rel="noopener noreferrer">idb Companion</a>, validated by path and SHA-256.</td></tr><tr><td><strong>Session Activity</strong></td><td>Everything run in this session, with exportable manifests (output hashes, never raw output).</td></tr><tr><td><strong>Tool Reference</strong></td><td>The exact help text of the installed <code>devicectl</code>, <code>simctl</code>, and <code>xctrace</code>, and a Toolchain Check that confirms every command the app relies on exists in your Xcode.</td></tr></tbody></table></div>
+<div class="heading-wrap level-2"><h2 id="screenshots">Screenshots</h2><a class="heading-anchor" href="#screenshots" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: Screenshots</span></a></div>
+<p>The demo screenshots use the built-in <strong>Demo Mode</strong> (a clearly labelled simulated iPhone) or a
+real iOS simulator. They contain no real device data.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-scroll" tabindex="0"><table><thead><tr><th>Readiness Check</th><th>Device details (simulator)</th></tr></thead><tbody><tr><td><a href="/media/ios-developer-toolkit-swift/img-02.webp"><img src="/media/ios-developer-toolkit-swift/img-02.webp" alt="Readiness Check" srcset="/media/ios-developer-toolkit-swift/img-02-640.webp 640w, /media/ios-developer-toolkit-swift/img-02-1200.webp 1200w, /media/ios-developer-toolkit-swift/img-02.webp 1400w" sizes="(min-width: 1024px) 768px, calc(100vw - 2rem)" width="1400" height="830" loading="lazy" decoding="async"></a></td><td><a href="/media/ios-developer-toolkit-swift/img-03.webp"><img src="/media/ios-developer-toolkit-swift/img-03.webp" alt="Device" srcset="/media/ios-developer-toolkit-swift/img-03-640.webp 640w, /media/ios-developer-toolkit-swift/img-03-1200.webp 1200w, /media/ios-developer-toolkit-swift/img-03.webp 1400w" sizes="(min-width: 1024px) 768px, calc(100vw - 2rem)" width="1400" height="830" loading="lazy" decoding="async"></a></td></tr></tbody></table></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-scroll" tabindex="0"><table><thead><tr><th>Live Logs (simulator)</th><th>Location Lab</th></tr></thead><tbody><tr><td><a href="/media/ios-developer-toolkit-swift/img-04.webp"><img src="/media/ios-developer-toolkit-swift/img-04.webp" alt="Live Logs" srcset="/media/ios-developer-toolkit-swift/img-04-640.webp 640w, /media/ios-developer-toolkit-swift/img-04-1200.webp 1200w, /media/ios-developer-toolkit-swift/img-04.webp 1400w" sizes="(min-width: 1024px) 768px, calc(100vw - 2rem)" width="1400" height="830" loading="lazy" decoding="async"></a></td><td><a href="/media/ios-developer-toolkit-swift/img-05.webp"><img src="/media/ios-developer-toolkit-swift/img-05.webp" alt="Location Lab" srcset="/media/ios-developer-toolkit-swift/img-05-640.webp 640w, /media/ios-developer-toolkit-swift/img-05-1200.webp 1200w, /media/ios-developer-toolkit-swift/img-05.webp 1400w" sizes="(min-width: 1024px) 768px, calc(100vw - 2rem)" width="1400" height="830" loading="lazy" decoding="async"></a></td></tr></tbody></table></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-scroll" tabindex="0"><table><thead><tr><th>Actions</th><th>Apps</th></tr></thead><tbody><tr><td><a href="/media/ios-developer-toolkit-swift/img-06.webp"><img src="/media/ios-developer-toolkit-swift/img-06.webp" alt="Actions" srcset="/media/ios-developer-toolkit-swift/img-06-640.webp 640w, /media/ios-developer-toolkit-swift/img-06-1200.webp 1200w, /media/ios-developer-toolkit-swift/img-06.webp 1400w" sizes="(min-width: 1024px) 768px, calc(100vw - 2rem)" width="1400" height="830" loading="lazy" decoding="async"></a></td><td><a href="/media/ios-developer-toolkit-swift/img-07.webp"><img src="/media/ios-developer-toolkit-swift/img-07.webp" alt="Apps" srcset="/media/ios-developer-toolkit-swift/img-07-640.webp 640w, /media/ios-developer-toolkit-swift/img-07-1200.webp 1200w, /media/ios-developer-toolkit-swift/img-07.webp 1400w" sizes="(min-width: 1024px) 768px, calc(100vw - 2rem)" width="1400" height="830" loading="lazy" decoding="async"></a></td></tr></tbody></table></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-scroll" tabindex="0"><table><thead><tr><th>Backup</th><th>Evidence Capture</th></tr></thead><tbody><tr><td><a href="/media/ios-developer-toolkit-swift/img-08.webp"><img src="/media/ios-developer-toolkit-swift/img-08.webp" alt="Backup" srcset="/media/ios-developer-toolkit-swift/img-08-640.webp 640w, /media/ios-developer-toolkit-swift/img-08-1200.webp 1200w, /media/ios-developer-toolkit-swift/img-08.webp 1400w" sizes="(min-width: 1024px) 768px, calc(100vw - 2rem)" width="1400" height="830" loading="lazy" decoding="async"></a></td><td><a href="/media/ios-developer-toolkit-swift/img-09.webp"><img src="/media/ios-developer-toolkit-swift/img-09.webp" alt="Evidence Capture" srcset="/media/ios-developer-toolkit-swift/img-09-640.webp 640w, /media/ios-developer-toolkit-swift/img-09-1200.webp 1200w, /media/ios-developer-toolkit-swift/img-09.webp 1400w" sizes="(min-width: 1024px) 768px, calc(100vw - 2rem)" width="1400" height="830" loading="lazy" decoding="async"></a></td></tr></tbody></table></div>
+<p>More: <a href="/media/ios-developer-toolkit-swift/img-12.webp">Install App</a> · <a href="/media/ios-developer-toolkit-swift/img-13.webp">External Tools</a> · <a href="/media/ios-developer-toolkit-swift/img-14.webp">Scope &#x26; Safety</a></p>
+<div class="heading-wrap level-2"><h2 id="requirements">Requirements</h2><a class="heading-anchor" href="#requirements" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: Requirements</span></a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-scroll" tabindex="0"><table><thead><tr><th></th><th></th></tr></thead><tbody><tr><td><strong>macOS</strong></td><td>macOS 14 Sonoma or later.</td></tr><tr><td><strong>Mac</strong></td><td>Apple silicon or Intel (universal binary). Tested on Apple silicon.</td></tr><tr><td><strong>Devices</strong></td><td>iPhone and iPad (iOS/iPadOS). Developer-service features on physical devices need iOS 17 or later through Xcode's device service; iOS 16 and earlier are supported for identity, logs, backups, diagnostics, and apps.</td></tr><tr><td><strong>Simulators</strong></td><td>Any iOS simulator installed with Xcode.</td></tr><tr><td><strong>Connection</strong></td><td>A data-capable USB cable, or Wi-Fi sync / Xcode network pairing after first pairing over USB.</td></tr><tr><td><strong>Xcode</strong></td><td>Optional — see below.</td></tr></tbody></table></div>
+<div class="heading-wrap level-3"><h3 id="what-needs-xcode">What needs Xcode</h3><a class="heading-anchor" href="#what-needs-xcode" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: What needs Xcode</span></a></div>
+<p>Many features use only macOS's built-in device service and work on a Mac <strong>without Xcode</strong>.
+Features that use Xcode's developer tools need Xcode installed (open it once to finish setup):</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-scroll" tabindex="0"><table><thead><tr><th>Works without Xcode</th><th>Needs Xcode</th></tr></thead><tbody><tr><td>Device discovery (USB and Wi-Fi sync), identity, trust, Developer Mode status</td><td>Simulators (everything in the Simulators section)</td></tr><tr><td>Live Logs from physical devices (Unified and classic syslog)</td><td>Location simulation on iOS 17 and later</td></tr><tr><td>Packet capture; Bluetooth capture (with Apple's logging profile); Safari and web view tab listing (with Web Inspector on); checking the developer image, and mounting it over USB from an image Xcode installed or a folder you choose (<a href="#developer-images">Developer images</a>)</td><td>Xcode's device service (<code>devicectl</code>) route for the developer image</td></tr><tr><td>Encrypted backups and encryption setup</td><td>Screenshots, launch app, open URL, stop a process</td></tr><tr><td>Diagnostics, battery, IORegistry, MobileGestalt, running processes, configuration profiles</td><td>Lock state, displays</td></tr><tr><td>Installed apps (with sizes), removing apps, installing <code>.ipa</code> packages</td><td>Sysdiagnose and Instruments recordings</td></tr><tr><td>Provisioning profiles, crash reports, Media folder listing</td><td>Restart device, Advanced Mode (<code>devicectl</code>), Tool Reference</td></tr><tr><td>IPA inspection, Evidence Capture (without the Xcode-only steps)</td><td>Readiness rows for Xcode's device service and Instruments</td></tr></tbody></table></div>
+<p>The Command Line Tools alone are not enough for the Xcode column: <code>devicectl</code>, <code>simctl</code>, and
+<code>xctrace</code> ship with Xcode.app.</p>
+<div class="heading-wrap level-2"><h2 id="install">Install</h2><a class="heading-anchor" href="#install" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: Install</span></a></div>
+<div class="heading-wrap level-3"><h3 id="download-a-release">Download a release</h3><a class="heading-anchor" href="#download-a-release" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: Download a release</span></a></div>
+<ol>
+<li>
+<p>Download <code>iOS-Developer-Toolkit-Swift-VERSION-macOS-universal.zip</code> and <code>SHA256SUMS.txt</code> from the
+<a href="https://github.com/hideouts-io/iOS-Developer-Toolkit-Swift/releases/latest" rel="noopener noreferrer">latest release</a>.</p>
+</li>
+<li>
+<p>Verify the download:</p>
+<div class="code-wrap" data-kind="terminal"><div class="code-bar"><span class="code-lang">Terminal</span></div><pre class="shiki shiki-themes github-light github-dark-dimmed sk-1cqee4" tabindex="0" data-lang="bash"><code class="language-bash"><span class="line"><span class="sk-yh2ys2">shasum</span><span class="sk-1xptx7"> -a</span><span class="sk-1xptx7"> 256</span><span class="sk-1xptx7"> -c</span><span class="sk-1cxcxs"> SHA256SUMS.txt</span><span class="sk-1xptx7"> --ignore-missing</span></span></code></pre></div>
+<p>Optionally verify GitHub's build attestation:</p>
+<div class="code-wrap" data-kind="terminal"><div class="code-bar"><span class="code-lang">Terminal</span></div><pre class="shiki shiki-themes github-light github-dark-dimmed sk-1cqee4" tabindex="0" data-lang="bash"><code class="language-bash"><span class="line"><span class="sk-yh2ys2">gh</span><span class="sk-1cxcxs"> attestation</span><span class="sk-1cxcxs"> verify</span><span class="sk-1cxcxs"> iOS-Developer-Toolkit-Swift-VERSION-macOS-universal.zip</span><span class="sk-1xptx7"> --repo</span><span class="sk-1cxcxs"> hideouts-io/iOS-Developer-Toolkit-Swift</span></span></code></pre></div>
+</li>
+<li>
+<p>Unzip it and move <strong>iOS Developer Toolkit (Swift).app</strong> to <code>/Applications</code>.</p>
+</li>
+<li>
+<p>Release builds are ad-hoc signed and not notarized, so macOS asks for confirmation the first
+time. Control-click the app, choose <strong>Open</strong>, and confirm. If there is no Open button, go to
+<strong>System Settings › Privacy &#x26; Security</strong> and choose <strong>Open Anyway</strong>. Do not disable Gatekeeper.</p>
+</li>
+</ol>
+<p>Nothing else needs to be installed. The release also contains <code>idt</code>, the command-line tool, at
+<code>iOS Developer Toolkit (Swift).app/Contents/MacOS/idt</code>.</p>
+<div class="heading-wrap level-3"><h3 id="build-it-yourself">Build it yourself</h3><a class="heading-anchor" href="#build-it-yourself" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: Build it yourself</span></a></div>
+<p>See <a href="#build-from-source">Build from source</a>.</p>
+<div class="heading-wrap level-2"><h2 id="first-steps">First steps</h2><a class="heading-anchor" href="#first-steps" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: First steps</span></a></div>
+<ol>
+<li><strong>Connect and trust.</strong> Connect the iPhone or iPad with a USB cable, unlock it, and tap
+<strong>Trust</strong>. Enter the passcode on the device — never in this app.</li>
+<li><strong>Choose the target.</strong> Use the device menu at the left of the toolbar. Physical devices and
+simulators are listed separately, and every page shows which one it acts on.</li>
+<li><strong>Run the Readiness Check.</strong> It tells you exactly what works and what to fix next.</li>
+<li><strong>Turn on Developer Mode if needed</strong> (iOS 16+): <em>Settings › Privacy &#x26; Security › Developer
+Mode</em>, then restart and confirm. <strong>Device › Developer Mode Guide</strong> walks through it.</li>
+<li><strong>Mount the developer image</strong> for screenshots, location simulation, and launching apps: the
+<strong>Developer Image</strong> page (in the sidebar, under Device) shows its state; click <strong>Mount Developer Image</strong>.
+See <a href="#developer-images">Developer images</a>.</li>
+<li><strong>Clean up</strong> when finished: stop streams and clear simulated locations. Quitting the app
+clears a location this session simulated.</li>
+</ol>
+<p>No device handy? Turn on <strong>Device › Demo Mode</strong> to explore every workspace with a simulated iPhone.</p>
+<div class="heading-wrap level-2"><h2 id="workspaces">Workspaces</h2><a class="heading-anchor" href="#workspaces" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: Workspaces</span></a></div>
+<ul>
+<li><strong>Overview</strong> — status of the selected device, a suggested next step, and entry points.</li>
+<li><strong>Device</strong> — identity and status with explanations, a summary of the developer image, Apple developer tool handoffs (open a project in Xcode, open an <code>.xcresult</code> or
+<code>.trace</code>, list Remote Virtual Interfaces), simulator controls, raw records, and connection
+diagnostics.</li>
+<li><strong>Developer Image</strong> — the developer image on the selected device (state, details, mount,
+unmount), how to mount it (automatic, Xcode's device service, or the built-in client), the
+images on this Mac and folders you add, and what is mounted on the device.</li>
+<li><strong>Firmware</strong> — the device and its mode (normal, recovery, or DFU), Apple's firmware for it and
+its signing status, downloads, the IPSW library (add, check signing, verify, show in Finder,
+move to the Trash), and installation.</li>
+<li><strong>Readiness Check</strong> — the read-only prerequisite check, a copyable report, and a local history
+of tested devices that can be exported as sanitized JSON or Markdown.</li>
+<li><strong>Apps</strong> — installed apps with search, sort, sizes, launch, and confirmed removal.</li>
+<li><strong>Install App</strong> — inspect an <code>.ipa</code> (or choose a simulator <code>.app</code>), see whether the device is in
+the provisioning profile, then install.</li>
+<li><strong>Location Lab</strong> — coordinates, map, saved places (stored only on this Mac), routes, GPX playback.
+Location events are appended to <code>~/Documents/iOS Developer Toolkit (Swift) Location Logs/location-events.jsonl</code>.</li>
+<li><strong>Live Logs</strong> — several concurrent streams; pop out any stream into its own window.</li>
+<li><strong>Actions</strong> — the guided action catalog and Advanced Mode.</li>
+<li><strong>Backup</strong> — encryption status and setup, full or incremental backups.</li>
+<li><strong>Evidence Capture</strong> — optional guided case intake (title, purpose, authorization), collection,
+and a summary of every step.</li>
+<li><strong>External Tools</strong> — MVT, UFADE, and idb Companion.</li>
+<li><strong>Session Activity</strong>, <strong>Tool Reference</strong>, <strong>Scope &#x26; Safety</strong> — history, built-in tool help, and
+the app's boundaries.</li>
+</ul>
+<p>Press <strong>⌘K</strong> for the command palette, <strong>⌘R</strong> to refresh devices, <strong>⇧⌘R</strong> to run the Readiness
+Check, <strong>⌘1–⌘9</strong> to switch workspaces, and <strong>⌥⌘←</strong> / <strong>⌥⌘→</strong> for the previous or next
+workspace. <strong>Help › Keyboard Shortcuts</strong> (<strong>⌘/</strong>) lists them all.</p>
+<div class="heading-wrap level-3"><h3 id="how-changes-are-confirmed">How changes are confirmed</h3><a class="heading-anchor" href="#how-changes-are-confirmed" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: How changes are confirmed</span></a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-scroll" tabindex="0"><table><thead><tr><th>Risk</th><th>Example</th><th>Confirmation</th></tr></thead><tbody><tr><td>Read-only</td><td>Battery snapshot, lock state</td><td>Runs immediately</td></tr><tr><td>Saves files on this Mac</td><td>Screenshot, crash reports, backup</td><td>Review sheet; files are never overwritten</td></tr><tr><td>Changes the device</td><td>Launch app, set location, install</td><td>Type <code>RUN</code> plus the last six characters of the device's UDID</td></tr><tr><td>High impact</td><td>Restart device, remove an app, erase a simulator</td><td>Also confirm a current backup and type <code>IRREVERSIBLE</code> plus the same code</td></tr></tbody></table></div>
+<p>Because the code comes from the target's UDID, a confirmation can never apply to a different
+device. Each operation also captures its target when it starts, and lockdown sessions verify
+that the device answering is the one you selected.</p>
+<div class="heading-wrap level-2"><h2 id="developer-images">Developer images</h2><a class="heading-anchor" href="#developer-images" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: Developer images</span></a></div>
+<p>Screenshots, location simulation, launching apps, and Instruments need Apple's developer image
+(Developer Disk Image) mounted on the device. The <strong>Developer Image</strong> page (sidebar, under Device)
+checks it automatically and shows one of these states; the Device page shows a summary:</p>
+<p><a href="/media/ios-developer-toolkit-swift/img-10.webp"><img src="/media/ios-developer-toolkit-swift/img-10.webp" alt="Developer image card" srcset="/media/ios-developer-toolkit-swift/img-10-640.webp 640w, /media/ios-developer-toolkit-swift/img-10-1200.webp 1200w, /media/ios-developer-toolkit-swift/img-10.webp 1400w" sizes="(min-width: 1024px) 768px, calc(100vw - 2rem)" width="1400" height="830" loading="lazy" decoding="async"></a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-scroll" tabindex="0"><table><thead><tr><th>State</th><th>Meaning</th></tr></thead><tbody><tr><td>Mounted</td><td>A compatible image is mounted. Nothing is mounted again.</td></tr><tr><td>Available</td><td>A compatible image is on this Mac and can be mounted now (the device already holds Apple's personalization for it, or it is an iOS 16-or-earlier image).</td></tr><tr><td>Personalization required</td><td>A compatible image is on this Mac; Apple must sign it for this device first (iOS 17 and later, needs the internet).</td></tr><tr><td>Missing</td><td>No compatible image is on this Mac.</td></tr><tr><td>Incompatible</td><td>The image on this Mac (or the one mounted) does not fit this device or iOS version.</td></tr><tr><td>Needs attention</td><td>Trust, Developer Mode, unlocking, or a USB connection is needed first.</td></tr><tr><td>Failed</td><td>The check or the last mount attempt failed; the card shows why and what to do.</td></tr><tr><td>Not required</td><td>Simulators and the demo device.</td></tr></tbody></table></div>
+<p>The details list the iOS version and build, model, architecture, chip and board used to choose the
+image, where it is mounted, and which image on this Mac would be used.</p>
+<p><strong>iOS 17 and later</strong> use a <em>personalized</em> image. Xcode installs it in
+<code>/Library/Developer/DeveloperDiskImages/iOS_DDI</code>. Mounting picks the build identity for the
+device's chip and board and, unless the device already holds a personalization for that image,
+asks Apple's signing server (<code>gs.apple.com</code>) for one — sending the device's chip, board, and ECID
+with a one-time nonce, exactly as Xcode does. The confirmation says so before anything is sent.</p>
+<p><strong>iOS 16 and earlier</strong> use <code>DeveloperDiskImage.dmg</code> and its <code>.signature</code> for the exact iOS
+<code>major.minor</code> version. Current Xcode versions no longer include them; add a folder that contains
+them (for example an older Xcode's <code>Platforms/iPhoneOS.platform/DeviceSupport/16.4</code>) with
+<strong>Add Image Folder…</strong> on the Developer Image page.</p>
+<p><strong>How it mounts</strong> (Developer Image › How to mount): <em>Automatic</em> uses Xcode's device service (<code>devicectl</code>)
+when it can reach the device on iOS 17 and later, and otherwise the built-in client, which talks
+to the device's image-mounter service over USB and works without Xcode's device service. The app
+never downloads images from third parties.</p>
+<div class="heading-wrap level-2"><h2 id="firmware">Firmware</h2><a class="heading-anchor" href="#firmware" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: Firmware</span></a></div>
+<p>The <strong>Firmware</strong> page (sidebar, under Device) installs iPhone and iPad firmware (IPSW files) the
+way Finder does, using <code>idevicerestore</code> and <code>irecovery</code> from the
+<a href="https://libimobiledevice.org" rel="noopener noreferrer">libimobiledevice</a> project, bundled with the app as separate programs
+(see <a href="https://github.com/hideouts-io/iOS-Developer-Toolkit-Swift/blob/main/THIRD_PARTY_NOTICES.md" rel="noopener noreferrer">THIRD_PARTY_NOTICES.md</a>).</p>
+<ul>
+<li><strong>Device and mode.</strong> The selected iPhone or iPad, or a device in recovery or DFU mode (found
+every few seconds while the page is open). <strong>Enter Recovery Mode</strong> and <strong>Exit Recovery Mode</strong>,
+and step-by-step DFU instructions.</li>
+<li><strong>Apple's firmware.</strong> Apple's firmware list (<code>itunes.apple.com/check/version</code>, the one Finder
+uses) gives the current firmware for the model, with Apple's SHA-1. <strong>Check Signing</strong> asks
+Apple's signing server whether it still signs that build — reading only the build manifest from
+Apple's server, and sending a random device ID, never the device's. <strong>Download</strong> saves the IPSW
+to the library, continues an interrupted download where it stopped, and keeps the file only if
+its SHA-1 matches Apple's.</li>
+<li><strong>Library.</strong> IPSW files in <code>~/Library/Application Support/iOS Developer Toolkit (Swift)/Firmware</code>.
+Add your own, check signing, verify (SHA-1 and SHA-256), show in Finder, or move to the Trash.</li>
+<li><strong>Install.</strong> Choose an IPSW and <strong>Update</strong> (keeps apps and data) or <strong>Restore</strong> (erases the
+device). <strong>Check Before Installing</strong> confirms the firmware is for this model, has the right
+install type, is signed by Apple, and that the installer finds the device — without changing
+anything. Update needs the typed <code>RUN</code> confirmation; Restore is high impact. Progress is shown
+step by step; <strong>Stop</strong> works until the system starts being written, after which the install
+always finishes, since stopping then would leave the device unusable. Logs are kept in the
+library's <code>Logs</code> folder.</li>
+</ul>
+<p>During an install, Apple's signing server receives the device's chip, board, and ECID to sign
+the firmware for it, as with Finder. Firmware that Apple no longer signs cannot be installed.
+The app does not offer jailbreak-style exploits or downgrades.</p>
+<div class="heading-wrap level-2"><h2 id="command-line-tool">Command-line tool</h2><a class="heading-anchor" href="#command-line-tool" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: Command-line tool</span></a></div>
+<p><code>idt</code> provides the automation-friendly parts of the app:</p>
+<div class="code-wrap" data-kind="terminal"><div class="code-bar"><span class="code-lang">Terminal</span></div><pre class="shiki shiki-themes github-light github-dark-dimmed sk-1cqee4" tabindex="0" data-lang="bash"><code class="language-bash"><span class="line"><span class="sk-yh2ys2">idt</span><span class="sk-1cxcxs"> devices</span><span class="sk-1xptx7"> --simulators</span><span class="sk-unek2x">                      # list devices and simulators</span></span>
+<span class="line"><span class="sk-yh2ys2">idt</span><span class="sk-1cxcxs"> readiness</span><span class="sk-1xptx7"> --udid</span><span class="sk-26q00h"> &#x3C;</span><span class="sk-1cxcxs">UDI</span><span class="sk-5ep9om">D</span><span class="sk-26q00h">></span><span class="sk-unek2x">                   # read-only readiness check</span></span>
+<span class="line"><span class="sk-yh2ys2">idt</span><span class="sk-1cxcxs"> inspect-ipa</span><span class="sk-1cxcxs"> App.ipa</span><span class="sk-5ep9om"> [--json]              </span><span class="sk-unek2x"># inspect a package</span></span>
+<span class="line"><span class="sk-yh2ys2">idt</span><span class="sk-1cxcxs"> collect</span><span class="sk-1xptx7"> --udid</span><span class="sk-26q00h"> &#x3C;</span><span class="sk-1cxcxs">UDI</span><span class="sk-5ep9om">D</span><span class="sk-26q00h">></span><span class="sk-1xptx7"> --output-root</span><span class="sk-1cxcxs"> ~/Cases</span><span class="sk-1xptx7"> --duration</span><span class="sk-1xptx7"> 120</span><span class="sk-1xptx7"> --include-unified-logs</span></span>
+<span class="line"><span class="sk-yh2ys2">idt</span><span class="sk-1cxcxs"> ddi</span><span class="sk-1cxcxs"> status</span><span class="sk-1xptx7"> --udid</span><span class="sk-26q00h"> &#x3C;</span><span class="sk-1cxcxs">UDI</span><span class="sk-5ep9om">D</span><span class="sk-26q00h">></span><span class="sk-5ep9om"> [--json]         </span><span class="sk-unek2x"># developer image state (exit 0 mounted, 2 mountable)</span></span>
+<span class="line"><span class="sk-yh2ys2">idt</span><span class="sk-1cxcxs"> ddi</span><span class="sk-1cxcxs"> mount</span><span class="sk-1xptx7"> --udid</span><span class="sk-26q00h"> &#x3C;</span><span class="sk-1cxcxs">UDI</span><span class="sk-5ep9om">D</span><span class="sk-26q00h">></span><span class="sk-1xptx7"> --confirm</span><span class="sk-1cxcxs"> "RUN ABC123"</span><span class="sk-5ep9om"> [--mechanism </span><span class="sk-1cxcxs">automatic</span><span class="sk-26q00h">|</span><span class="sk-yh2ys2">core-device</span><span class="sk-26q00h">|</span><span class="sk-yh2ys2">native]</span></span>
+<span class="line"><span class="sk-yh2ys2">idt</span><span class="sk-1cxcxs"> ddi</span><span class="sk-1cxcxs"> unmount</span><span class="sk-1xptx7"> --udid</span><span class="sk-26q00h"> &#x3C;</span><span class="sk-1cxcxs">UDI</span><span class="sk-5ep9om">D</span><span class="sk-26q00h">></span><span class="sk-1xptx7"> --confirm</span><span class="sk-1cxcxs"> "RUN ABC123"</span></span>
+<span class="line"><span class="sk-yh2ys2">idt</span><span class="sk-1cxcxs"> toolchain</span><span class="sk-unek2x">                                 # check the installed Xcode</span></span></code></pre></div>
+<p><code>--include-oslog-archive</code> adds the device's saved Unified Log history for the last hour (<code>log collect</code>); <code>--include-dvt-logs</code> records os_log through Instruments (DVT) for the stream duration. <code>--include-oslog</code>, the 0.3.x flag for the DVT OSLog stream, is still accepted and selects DVT logging.</p>
+<p><code>idt collect</code> exits with <code>0</code> when complete, <code>2</code> when finished with coverage gaps, and <code>1</code> when the
+device could not be identified.</p>
+<div class="heading-wrap level-2"><h2 id="security-and-privacy">Security and privacy</h2><a class="heading-anchor" href="#security-and-privacy" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: Security and privacy</span></a></div>
+<ul>
+<li><strong>Least privilege.</strong> No administrator rights and no <code>sudo</code>. The app never reads
+<code>/var/db/lockdown</code>, never creates pairing records, and never restarts system services. Pairing
+material is requested from macOS's device service and kept only in memory.</li>
+<li><strong>Verified connections.</strong> Lockdown sessions use TLS with this Mac's pairing certificate, pin the
+device certificate from the pairing record, and confirm the device's UDID before any request.</li>
+<li><strong>No shell.</strong> External tools run from fixed paths with an argument vector and a minimal
+environment; nothing is interpreted by a shell. All process launches go through one audited
+runner with timeouts and cancellation.</li>
+<li><strong>Untrusted input.</strong> Device responses, backup file paths, IPA archives, GPX files, and workspace
+profiles are validated; path traversal, symbolic links, encrypted or oversized archive entries,
+and XML entities are rejected.</li>
+<li><strong>Local only.</strong> Nothing is uploaded, with one confirmed exception: mounting a developer image on
+iOS 17 and later asks Apple's signing server (<code>gs.apple.com</code>) to personalize it, sending the
+device's chip, board, and ECID with a one-time nonce — as Xcode does. Installing firmware sends
+the same kind of request, as Finder does; checking whether Apple signs a firmware uses a random
+device ID. The Firmware page reads Apple's firmware list and downloads IPSWs from Apple. Captures, backups, cases, and reports are written with
+owner-only permissions. The app's own log records outcomes rather than device content, and marks
+identifiers as private.</li>
+<li><strong>Sanitized sharing.</strong> <strong>iOS Developer Toolkit › Create Support Bundle…</strong> and the readiness
+report exports remove names, identifiers, paths, and addresses. Review them before sharing.</li>
+<li><strong>Hardened runtime</strong>, no App Sandbox: the app must reach the system's device service socket and
+run Xcode's tools. See <a href="https://github.com/hideouts-io/iOS-Developer-Toolkit-Swift/blob/main/SECURITY.md" rel="noopener noreferrer">SECURITY.md</a> to report a vulnerability.</li>
+</ul>
+<div class="heading-wrap level-2"><h2 id="troubleshooting">Troubleshooting</h2><a class="heading-anchor" href="#troubleshooting" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: Troubleshooting</span></a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-scroll" tabindex="0"><table><thead><tr><th>Problem</th><th>Try this</th></tr></thead><tbody><tr><td>The device does not appear</td><td>Use a data cable, unlock the device, tap <strong>Trust</strong>, try another port, and check <strong>Connection diagnostics</strong> on the Device page. If nothing appears after reconnecting, restart the Mac.</td></tr><tr><td>“This device has not trusted this Mac”</td><td>Unlock the device and reconnect it; tap <strong>Trust</strong>. If no prompt appears, reset <em>Settings › General › Transfer or Reset › Reset › Reset Location &#x26; Privacy</em>.</td></tr><tr><td>Developer Mode is missing on the device</td><td>Connect it and open Xcode › <em>Window › Devices and Simulators</em> once.</td></tr><tr><td>Developer features say they need Xcode</td><td>Install Xcode, open it once, and check <em>Xcode › Settings › Locations › Command Line Tools</em>.</td></tr><tr><td>The developer image will not mount</td><td>Read the Developer Image page: it names the problem (Developer Mode, lock, missing or incompatible image) and the fix. On iOS 17 and later keep the Mac online (Apple personalizes the image); if one route fails, switch <strong>How to mount</strong> on the Developer Image page.</td></tr><tr><td>A backup stops with “must stay unlocked”</td><td>Unlock the device and keep it awake until the backup finishes.</td></tr><tr><td>Firmware will not install</td><td>Run <strong>Check Before Installing</strong> on the Firmware page. Apple must still sign the firmware; keep the device connected by USB and the Mac online. If the device is left in recovery mode, install again with <strong>Restore</strong>. The log is in the library's <code>Logs</code> folder.</td></tr><tr><td>An <code>.ipa</code> cannot be installed</td><td>Check the inspection: the signature must be valid and the profile must include the device.</td></tr><tr><td>Live logs are very busy</td><td>Filter the view or pause it; capture continues in the background.</td></tr><tr><td>Something else</td><td>Run the <strong>Readiness Check</strong>, then create a support bundle and open a discussion.</td></tr></tbody></table></div>
+<p>More detail: <a href="https://github.com/hideouts-io/iOS-Developer-Toolkit-Swift/blob/main/docs/troubleshooting.md" rel="noopener noreferrer">docs/troubleshooting.md</a>.</p>
+<div class="heading-wrap level-2"><h2 id="build-from-source">Build from source</h2><a class="heading-anchor" href="#build-from-source" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: Build from source</span></a></div>
+<p>Requirements: macOS 14+, Xcode 16 or later (Swift 6).</p>
+<div class="code-wrap" data-kind="terminal"><div class="code-bar"><span class="code-lang">Terminal</span></div><pre class="shiki shiki-themes github-light github-dark-dimmed sk-1cqee4" tabindex="0" data-lang="bash"><code class="language-bash"><span class="line"><span class="sk-yh2ys2">git</span><span class="sk-1cxcxs"> clone</span><span class="sk-1cxcxs"> https://github.com/hideouts-io/iOS-Developer-Toolkit-Swift.git</span></span>
+<span class="line"><span class="sk-1xptx7">cd</span><span class="sk-1cxcxs"> iOS-Developer-Toolkit</span></span>
+<span class="line"></span>
+<span class="line"><span class="sk-yh2ys2">swift</span><span class="sk-1cxcxs"> test</span><span class="sk-unek2x">                                    # unit and integration tests</span></span>
+<span class="line"><span class="sk-yh2ys2">swift</span><span class="sk-1cxcxs"> build</span><span class="sk-1xptx7"> -c</span><span class="sk-1cxcxs"> release</span><span class="sk-1xptx7"> --product</span><span class="sk-1cxcxs"> idt</span><span class="sk-unek2x">          # the command-line tool</span></span>
+<span class="line"></span>
+<span class="line"><span class="sk-yh2ys2">xcodebuild</span><span class="sk-1xptx7"> -project</span><span class="sk-1cxcxs"> iOSDeveloperToolkit.xcodeproj</span><span class="sk-1xptx7"> -scheme</span><span class="sk-1cxcxs"> iOSDeveloperToolkit</span><span class="sk-12cj2w"> \</span></span>
+<span class="line"><span class="sk-1xptx7">  -configuration</span><span class="sk-1cxcxs"> Release</span><span class="sk-1xptx7"> -destination</span><span class="sk-1cxcxs"> 'platform=macOS'</span><span class="sk-1cxcxs"> build</span></span>
+<span class="line"></span>
+<span class="line"><span class="sk-yh2ys2">scripts/build-release.sh</span><span class="sk-unek2x">                      # universal, ad-hoc-signed release ZIP, SBOM, checksums in build-output/release/</span></span></code></pre></div>
+<p>The release includes the firmware helpers, which <code>scripts/build-release.sh</code> builds with
+<code>scripts/build-restore-helpers.sh</code> from pinned sources. That needs
+<code>brew install autoconf automake libtool pkg-config cmake</code>. To try the Firmware page from a
+development build, build the helpers once and point the app at them:</p>
+<div class="code-wrap" data-kind="terminal"><div class="code-bar"><span class="code-lang">Terminal</span></div><pre class="shiki shiki-themes github-light github-dark-dimmed sk-1cqee4" tabindex="0" data-lang="bash"><code class="language-bash"><span class="line"><span class="sk-yh2ys2">scripts/build-restore-helpers.sh</span></span>
+<span class="line"><span class="sk-yh2ys2">open</span><span class="sk-1xptx7"> --env</span><span class="sk-1cxcxs"> IDT_RESTORE_HELPERS="</span><span class="sk-5ep9om">$PWD</span><span class="sk-1cxcxs">/build-output/restore-helpers/out/bin"</span><span class="sk-1cxcxs"> "iOS Developer Toolkit (Swift).app"</span></span></code></pre></div>
+<p>The app icon and logo come from one image, <code>docs/brand/logo-source.png</code>:
+<code>xcrun swift scripts/generate-icons.swift</code> writes the app icon at every size, the in-app logo, and
+<code>docs/brand/</code> (<code>icon-1024.png</code>, <code>iOSDeveloperToolkitSwift.icns</code>, <code>logo-1024.png</code>, <code>logo-512.png</code>,
+<code>logo.svg</code>, and the repository's <code>social-preview.png</code>).</p>
+<p>The Xcode project is generated from <code>project.yml</code> with <a href="https://github.com/yonaskolb/XcodeGen" rel="noopener noreferrer">XcodeGen</a>
+and committed, so you only need XcodeGen when you change the project structure (<code>xcodegen generate</code>).</p>
+<p>Optional test suites:</p>
+<div class="code-wrap" data-kind="terminal"><div class="code-bar"><span class="code-lang">Terminal</span></div><pre class="shiki shiki-themes github-light github-dark-dimmed sk-1cqee4" tabindex="0" data-lang="bash"><code class="language-bash"><span class="line"><span class="sk-5ep9om">IDT_SIMULATOR_TESTS</span><span class="sk-26q00h">=</span><span class="sk-1cxcxs">1</span><span class="sk-yh2ys2"> swift</span><span class="sk-1cxcxs"> test</span><span class="sk-1xptx7"> --filter</span><span class="sk-1cxcxs"> RealSimulator</span><span class="sk-unek2x">   # boots a simulator end to end</span></span>
+<span class="line"><span class="sk-5ep9om">IDT_NETWORK_TESTS</span><span class="sk-26q00h">=</span><span class="sk-1cxcxs">1</span><span class="sk-5ep9om"> IDT_RESTORE_HELPERS</span><span class="sk-26q00h">=</span><span class="sk-1cxcxs">"</span><span class="sk-5ep9om">$PWD</span><span class="sk-1cxcxs">/build-output/restore-helpers/out/bin"</span><span class="sk-yh2ys2"> \</span></span>
+<span class="line"><span class="sk-1cxcxs">  swift</span><span class="sk-1cxcxs"> test</span><span class="sk-1xptx7"> --filter</span><span class="sk-1cxcxs"> RealFirmware</span><span class="sk-unek2x">                        # Apple's firmware list, signing, the helpers</span></span>
+<span class="line"><span class="sk-yh2ys2">xcodebuild</span><span class="sk-1xptx7"> -project</span><span class="sk-1cxcxs"> iOSDeveloperToolkit.xcodeproj</span><span class="sk-1xptx7"> -scheme</span><span class="sk-1cxcxs"> iOSDeveloperToolkit</span><span class="sk-12cj2w"> \</span></span>
+<span class="line"><span class="sk-1xptx7">  -destination</span><span class="sk-1cxcxs"> 'platform=macOS'</span><span class="sk-1cxcxs"> test</span><span class="sk-unek2x">                      # UI tests (macOS asks to allow automation)</span></span></code></pre></div>
+<p>Documentation screenshots are produced by the app itself:</p>
+<div class="code-wrap" data-kind="terminal"><div class="code-bar"><span class="code-lang">Terminal</span></div><pre class="shiki shiki-themes github-light github-dark-dimmed sk-1cqee4" tabindex="0" data-lang="bash"><code class="language-bash"><span class="line"><span class="sk-yh2ys2">"iOS Developer Toolkit (Swift).app/Contents/MacOS/iOS Developer Toolkit (Swift)"</span><span class="sk-12cj2w"> \</span></span>
+<span class="line"><span class="sk-1xptx7">  -demo-mode</span><span class="sk-1cxcxs"> YES</span><span class="sk-1xptx7"> -populate-demo</span><span class="sk-1cxcxs"> YES</span><span class="sk-1xptx7"> -window-size</span><span class="sk-1cxcxs"> 1180x700</span><span class="sk-1xptx7"> -capture-screenshots</span><span class="sk-1cxcxs"> ~/Desktop/shots</span></span></code></pre></div>
+<p>Layout: <code>Sources/ToolkitCore</code> (process runner, errors, logging, secure files),
+<code>Sources/DeviceKit</code> (usbmuxd, lockdown and its services, CoreDevice, simctl, discovery),
+<code>Sources/ToolkitFeatures</code> (Location Lab, IPA inspection, logs, actions, readiness, evidence,
+external tools), <code>Sources/idt</code> (CLI), <code>App/</code> (SwiftUI app and UI tests), <code>Tests/</code>.
+See <a href="https://github.com/hideouts-io/iOS-Developer-Toolkit-Swift/blob/main/docs/architecture.md" rel="noopener noreferrer">docs/architecture.md</a>.</p>
+<div class="heading-wrap level-2"><h2 id="project-status-and-limitations">Project status and limitations</h2><a class="heading-anchor" href="#project-status-and-limitations" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: Project status and limitations</span></a></div>
+<p>Version 1.0 is a native rewrite of the Python/PySide6 app (<a href="/apps/ios-developer-toolkit/">iOS Developer Toolkit</a>, 0.3.x), which depends on
+<code>pymobiledevice3</code>. See <a href="https://github.com/hideouts-io/iOS-Developer-Toolkit-Swift/blob/main/MIGRATION.md" rel="noopener noreferrer">MIGRATION.md</a> for the feature-by-feature mapping. Workspace
+profiles exported by 0.3.x can be imported in <strong>Settings › Profiles</strong>; the preview explains how each
+setting carries over.</p>
+<p>Firmware installation (Update, Restore, recovery and DFU mode) has been tested against Apple's
+servers and with the bundled helpers, but not yet by installing firmware on a device; see
+<a href="https://github.com/hideouts-io/iOS-Developer-Toolkit-Swift/blob/main/MIGRATION.md#10-firmware-ipsw-manager-and-installation" rel="noopener noreferrer">MIGRATION.md</a>.</p>
+<div class="heading-wrap level-3"><h3 id="the-python-app">The Python app</h3><a class="heading-anchor" href="#the-python-app" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: The Python app</span></a></div>
+<p>The Python/PySide6 app, <strong>iOS Developer Toolkit</strong>, is maintained separately in
+<a href="/apps/ios-developer-toolkit/">hideouts-io/iOS-Developer-Toolkit</a>, with its releases. It uses <code>pymobiledevice3</code> and
+Python; this app needs neither. The two install side by side and keep their data in separate
+folders, and this app imports workspace profiles exported by the Python app.</p>
+<ul>
+<li>The native lockdown services (logs, packet capture, backup, diagnostics, app installation over
+USB, developer-image checking and mounting including Apple personalization) are tested end to
+end against a protocol-accurate simulated device and against macOS's real device service. Their
+read-only protocol layer has been checked on one iPhone (iOS 26, Developer Mode off); mounting,
+location, installation, backup, and the app's pages <strong>have not yet been tested on physical
+iPhones or iPads</strong>. Please report results using the
+<a href="https://github.com/hideouts-io/iOS-Developer-Toolkit-Swift/blob/main/docs/PHYSICAL_DEVICE_TEST_PROTOCOL.md" rel="noopener noreferrer">physical-device test protocol</a>.</li>
+<li>Not available in 1.0: the developer-service file listing. Details and alternatives are in <a href="https://github.com/hideouts-io/iOS-Developer-Toolkit-Swift/blob/main/MIGRATION.md#6-known-limitations-and-features-not-reproduced" rel="noopener noreferrer">MIGRATION.md</a>.</li>
+<li>Release builds are ad-hoc signed and not notarized.</li>
+<li>Release builds are universal (Apple silicon and Intel). If the Intel half is run under Rosetta on
+an Apple silicon Mac, macOS warns that the app includes a component that will not open in
+macOS 28; the Apple silicon half, which runs by default, is not affected.</li>
+</ul>
+<div class="heading-wrap level-2"><h2 id="contributing-support-and-license">Contributing, support, and license</h2><a class="heading-anchor" href="#contributing-support-and-license" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: Contributing, support, and license</span></a></div>
+<ul>
+<li><a href="https://github.com/hideouts-io/iOS-Developer-Toolkit-Swift/blob/main/CONTRIBUTING.md" rel="noopener noreferrer">CONTRIBUTING.md</a> — setup, design rules, and checks.</li>
+<li><a href="https://github.com/hideouts-io/iOS-Developer-Toolkit-Swift/blob/main/SUPPORT.md" rel="noopener noreferrer">SUPPORT.md</a> — where to ask questions.</li>
+<li><a href="https://github.com/hideouts-io/iOS-Developer-Toolkit-Swift/blob/main/SECURITY.md" rel="noopener noreferrer">SECURITY.md</a> — private vulnerability reporting.</li>
+<li><a href="https://github.com/hideouts-io/iOS-Developer-Toolkit-Swift/blob/main/THIRD_PARTY_NOTICES.md" rel="noopener noreferrer">THIRD_PARTY_NOTICES.md</a> and <a href="https://github.com/hideouts-io/iOS-Developer-Toolkit-Swift/blob/main/SOURCE_AVAILABILITY.md" rel="noopener noreferrer">SOURCE_AVAILABILITY.md</a>.</li>
+</ul>
+<p>iOS Developer Toolkit is released under the <a href="https://github.com/hideouts-io/iOS-Developer-Toolkit-Swift/blob/main/LICENSE" rel="noopener noreferrer">MIT License</a>. The bundled world map uses
+public-domain <a href="https://www.naturalearthdata.com" rel="noopener noreferrer">Natural Earth</a> data. iPhone, iPad, Xcode, and
+macOS are trademarks of Apple Inc.; this project is not affiliated with Apple.</p></article></div></div></div></section><section class="container-x pt-24" aria-labelledby="more-heading"><h2 id="more-heading" class="text-lg font-semibold text-ink">Related apps</h2><ul class="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3"><li><article class="card card-link group flex h-full flex-col p-5" data-platforms="macOS" data-categories="developer forensics"><picture class="themed-artwork artwork-dark mb-5 overflow-hidden rounded-xl border border-line" data-testid="sandbox-lens-card-artwork-dark" data-astro-cid-x22fbo52><img src="/branding/sandbox-lens/project-card-dark.webp" alt="Sandbox Lens logo with layered policy evidence" width="1200" height="675" loading="lazy" fetchpriority="auto" decoding="async" class="h-auto w-full" data-astro-cid-x22fbo52></picture><picture class="themed-artwork artwork-light mb-5 overflow-hidden rounded-xl border border-line" data-testid="sandbox-lens-card-artwork-light" data-astro-cid-x22fbo52><img src="/branding/sandbox-lens/project-card-light.webp" alt="Sandbox Lens logo with layered policy evidence" width="1200" height="675" loading="lazy" fetchpriority="auto" decoding="async" class="h-auto w-full" data-astro-cid-x22fbo52></picture><div class="flex items-start gap-4"><img src="/branding/sandbox-lens/app-icon.png" alt="" width="96" height="96" class="size-12 shrink-0 object-contain"><div class="min-w-0"><h3 class="font-semibold tracking-tight text-ink"><a href="/apps/sandbox-lens/" class="stretched-link">Sandbox Lens</a></h3><p class="mt-1 text-sm leading-6 text-ink-2">Inspect sandbox policy files and compare precise evidence.</p></div></div><div class="mt-auto flex flex-wrap items-center gap-1.5 pt-5"><span class="chip chip-accent"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class><rect x="3" y="4.5" width="18" height="11.5" rx="1.8"/><path d="M1.5 19.5h21"/><path d="M9.5 16v3.5M14.5 16v3.5"/></svg>macOS</span><span class="chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class><path d="m8 7-5 5 5 5M16 7l5 5-5 5M13.5 4.5l-3 15"/></svg>Swift</span><span class="chip font-mono" title="Pre-1.0">v0.1.1</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="ml-auto text-ink-3 transition-transform group-hover:translate-x-0.5 group-hover:text-accent"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div></article></li><li><article class="card card-link group flex h-full flex-col p-5" data-platforms="iOS macOS Windows Linux ChromeOS" data-categories="networking forensics"><div class="flex items-start gap-4"><img src="/branding/rvi-sentinel/app-icon.png" alt="" width="96" height="96" class="size-12 shrink-0 object-contain"><div class="min-w-0"><h3 class="font-semibold tracking-tight text-ink"><a href="/apps/rvi-sentinel/" class="stretched-link">RVI-Sentinel</a></h3><p class="mt-1 text-sm leading-6 text-ink-2">iPhone packet capture with a memory for what changed.</p></div></div><div class="mt-auto flex flex-wrap items-center gap-1.5 pt-5"><span class="chip chip-ios"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class><rect x="6.5" y="2.5" width="11" height="19" rx="2.6"/><path d="M10.5 5h3"/></svg>iOS</span><span class="chip chip-accent"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class><rect x="3" y="4.5" width="18" height="11.5" rx="1.8"/><path d="M1.5 19.5h21"/><path d="M9.5 16v3.5M14.5 16v3.5"/></svg>macOS</span><span class="chip" title="Also runs on Windows, Linux, ChromeOS"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class><rect x="3" y="4" width="18" height="12.5" rx="1.8"/><path d="M9 20.5h6M12 16.5v4"/></svg>Cross-platform<span class="sr-only">: also runs on Windows, Linux, ChromeOS</span></span><span class="chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class><path d="m8 7-5 5 5 5M16 7l5 5-5 5M13.5 4.5l-3 15"/></svg>Python</span><span class="chip">Source only</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="ml-auto text-ink-3 transition-transform group-hover:translate-x-0.5 group-hover:text-accent"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div></article></li></ul></section></main>

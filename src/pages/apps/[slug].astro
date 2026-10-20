@@ -1,0 +1,553 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import AppIcon from '../../components/AppIcon.astro';
+import AppCard from '../../components/AppCard.astro';
+import Platforms from '../../components/Platforms.astro';
+import ReadmeBody from '../../components/ReadmeBody.astro';
+import ThemedArtwork from '../../components/ThemedArtwork.astro';
+import SandboxLensFeatures from '../../components/SandboxLensFeatures.astro';
+import { linkedTopics, topicHref } from '../../lib/topics';
+import {
+  appEntries,
+  displayLogo,
+  fmtDate,
+  fmtBytes,
+  releaseStatus,
+  relatedApps,
+  categoryLabel,
+  type Entry,
+} from '../../lib/content';
+import { siteUrl, breadcrumbs, organization } from '../../lib/seo';
+
+export function getStaticPaths() {
+  return appEntries().map((entry) => ({ params: { slug: entry.slug }, props: { entry } }));
+}
+
+const { entry: e } = Astro.props as { entry: Entry };
+const gh = e.gh;
+const logo = displayLogo(e);
+const gallery = e.siteScreenshots ?? gh.gallery;
+const rel = gh.release;
+const status = releaseStatus(gh);
+const primaryAsset = rel?.assets.find((a) => /\.(zip|dmg|pkg)$/i.test(a.name));
+// Downloadable app archives (not SBOMs or checksum lists), for the checksum panel.
+const archives = rel?.assets.filter((a) => /\.(zip|dmg|pkg)$/i.test(a.name) && a.sha256) ?? [];
+// Other editions of the same tool (e.g. Python and Swift), linked both ways.
+const editions = (e.editions ?? []).map((ed) => {
+  const entry = appEntries().find((a) => a.slug === ed.slug);
+  if (!entry) throw new Error(`${e.slug}: edition "${ed.slug}" is not a published app`);
+  return { ...ed, entry };
+});
+const topics = gh.topics.filter((t) => linkedTopics().has(t));
+const more = relatedApps(e).filter((a) => !editions.some((ed) => ed.entry.slug === a.slug));
+
+// Jump straight to the README's install section when it has one.
+const installHeading = gh.toc.find((t) =>
+  /^(install|installation|quick start|quickstart|getting started|start here|download)/i.test(t.text),
+);
+
+const facts = [
+  { icon: 'tag', label: 'Status', value: rel ? `${status.label} · ${rel.tag}` : status.label },
+  rel && { icon: 'clock', label: 'Released', value: fmtDate(rel.publishedAt) },
+  { icon: 'clock', label: 'Last commit', value: fmtDate(gh.updatedAt) },
+  gh.language && { icon: 'code', label: 'Language', value: gh.language },
+  { icon: 'scale', label: 'License', value: gh.license ?? 'Not yet licensed' },
+  { icon: 'star', label: 'GitHub stars', value: String(gh.stars) },
+].filter(Boolean) as { icon: 'code' | 'scale' | 'tag' | 'clock' | 'star'; label: string; value: string }[];
+
+const resources = [
+  { label: 'Source code', href: gh.htmlUrl, icon: 'github' },
+  { label: 'Documentation (README)', href: `${gh.htmlUrl}#readme`, icon: 'doc' },
+  rel && { label: 'Releases', href: `${gh.htmlUrl}/releases`, icon: 'download' },
+  gh.hasIssues && { label: 'Issues', href: `${gh.htmlUrl}/issues`, icon: 'check' },
+  gh.hasDiscussions && { label: 'Discussions', href: `${gh.htmlUrl}/discussions`, icon: 'doc' },
+  gh.contributingUrl && {
+    label: gh.contributingShared ? 'Contributing guide (shared)' : 'Contributing guide',
+    href: gh.contributingUrl,
+    icon: 'code',
+  },
+  gh.licenseUrl && { label: `License${gh.license ? ` (${gh.license})` : ''}`, href: gh.licenseUrl, icon: 'scale' },
+  gh.privateReporting && {
+    label: 'Report a vulnerability',
+    href: `${gh.htmlUrl}/security/advisories/new`,
+    icon: 'lock',
+  },
+].filter(Boolean) as {
+  label: string;
+  href: string;
+  icon: 'github' | 'doc' | 'download' | 'check' | 'code' | 'scale' | 'lock';
+}[];
+
+const pageUrl = siteUrl(e.href);
+const socialImage = e.socialImage ?? `/og/${e.slug}.png`;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    organization,
+    {
+      '@type': 'SoftwareApplication',
+      '@id': `${pageUrl}#app`,
+      name: e.name,
+      description: e.summary,
+      url: pageUrl,
+      applicationCategory: e.categories?.includes('developer') ? 'DeveloperApplication' : 'SecurityApplication',
+      // Host operating systems; iOS is the target device, not where the app runs.
+      operatingSystem: e.platforms.filter((p) => p !== 'iOS').join(', ') || 'macOS',
+      image: siteUrl(socialImage),
+      ...(gh.license ? { license: `https://spdx.org/licenses/${gh.license}.html` } : {}),
+      ...(rel
+        ? { softwareVersion: rel.tag.replace(/^v/, ''), downloadUrl: rel.url, datePublished: rel.publishedAt }
+        : {}),
+      dateModified: gh.updatedAt,
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+      author: { '@id': siteUrl('/#organization') },
+    },
+    {
+      '@type': 'SoftwareSourceCode',
+      name: e.name,
+      codeRepository: gh.htmlUrl,
+      ...(gh.language ? { programmingLanguage: gh.language } : {}),
+      ...(gh.license ? { license: `https://spdx.org/licenses/${gh.license}.html` } : {}),
+      targetProduct: { '@id': `${pageUrl}#app` },
+      author: { '@id': siteUrl('/#organization') },
+    },
+    breadcrumbs([
+      { name: 'Apps', path: '/apps/' },
+      { name: e.name, path: e.href },
+    ]),
+  ],
+};
+---
+
+<Base
+  title={e.name}
+  description={`${e.tagline} ${e.summary}`}
+  image={socialImage}
+  imageDimensions={e.socialImageDimensions}
+  imageAlt={`${e.name}: ${e.tagline}`}
+  favicon={e.siteFavicon}
+  manifest={e.siteManifest}
+  applicationTitle={e.siteManifest ? e.name : undefined}
+  jsonLd={jsonLd}
+>
+  <!-- Hero -->
+  <section class="relative overflow-hidden border-b border-line">
+    <div class="hero-bg"></div>
+    <div class="container-x relative pt-8 pb-14 sm:pb-16">
+      <nav aria-label="Breadcrumb" class="text-sm text-ink-3">
+        <ol class="flex items-center gap-2">
+          <li>
+            <a href="/apps/" class="hover:text-ink">
+              Apps
+            </a>
+          </li>
+          <li aria-hidden="true">/</li>
+          <li aria-current="page" class="truncate text-ink-2">
+            {e.name}
+          </li>
+        </ol>
+      </nav>
+
+      {e.heroImage?.light ? (
+        <ThemedArtwork
+          dark={e.heroImage.desktop}
+          light={e.heroImage.light.desktop}
+          alt={e.heroImage.alt}
+          width={2000}
+          height={667}
+          sources={[
+            {
+              media: '(max-width: 639px)',
+              dark: e.heroImage.mobile,
+              light: e.heroImage.light.mobile,
+              width: 941,
+              height: 1672,
+            },
+            {
+              media: '(max-width: 1023px)',
+              dark: e.heroImage.tablet,
+              light: e.heroImage.light.tablet,
+              width: 1536,
+              height: 1024,
+            },
+          ]}
+          className="mt-8 overflow-hidden rounded-2xl border border-line bg-surface-2 shadow-sm"
+          identifier={`${e.slug}-hero`}
+          loading="eager"
+          priority="high"
+        />
+      ) : (
+        e.heroImage && (
+          <picture class="mt-8 block overflow-hidden rounded-2xl border border-line bg-surface-2 shadow-sm">
+            <source media="(max-width: 639px)" srcset={e.heroImage.mobile} />
+            <source media="(max-width: 1023px)" srcset={e.heroImage.tablet} />
+            <img
+              src={e.heroImage.desktop}
+              alt={e.heroImage.alt}
+              width={e.heroImage.dimensions?.width ?? 2000}
+              height={e.heroImage.dimensions?.height ?? 667}
+              class="h-auto w-full"
+              fetchpriority="high"
+            />
+          </picture>
+        )
+      )}
+
+      <div class="mt-10 grid gap-10 lg:grid-cols-[1.25fr_1fr]">
+        <div>
+          <div class="flex flex-col items-start gap-5 sm:flex-row sm:items-center">
+            <AppIcon src={logo.src} shaped={logo.shaped} name={e.name} size="lg" />
+            <div class="min-w-0">
+              <h1 class="text-3xl font-semibold tracking-[-0.025em] text-ink sm:text-[2.75rem] sm:leading-tight">
+                {e.name}
+              </h1>
+              <div class="mt-3 flex flex-wrap gap-1.5">
+                <Platforms platforms={e.platforms} />
+                <span class:list={['chip', status.tone === 'accent' && 'chip-accent']}>{status.label}</span>
+                {e.traits?.map((t) => (
+                  <span class="chip">{t}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+          <p class="mt-8 text-xl leading-8 font-medium tracking-tight text-pretty text-ink">{e.tagline}</p>
+          <p class="mt-3 max-w-2xl leading-7 text-pretty text-ink-2">{e.summary}</p>
+          {e.categories && (
+            <p class="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-ink-3">
+              <span>Categories:</span>
+              {e.categories.map((c) => (
+                <a
+                  href={`/apps/?category=${c}`}
+                  class="text-ink-2 underline decoration-line-strong underline-offset-4 hover:text-ink"
+                >
+                  {categoryLabel(c)}
+                </a>
+              ))}
+            </p>
+          )}
+          {topics.length > 0 && (
+            <p class="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-ink-3">
+              <span>Topics:</span>
+              {topics.map((t) => (
+                <a
+                  href={topicHref(t)}
+                  class="font-mono text-ink-2 underline decoration-line-strong underline-offset-4 hover:text-ink"
+                >
+                  {t}
+                </a>
+              ))}
+            </p>
+          )}
+
+          {editions.map((ed) => (
+            <p class="mt-5 flex items-start gap-2.5 rounded-xl border border-line bg-surface/60 px-4 py-3 text-sm leading-6 text-ink-2">
+              <Icon name="code" size={16} class="mt-1 shrink-0 text-accent" />
+              <span>
+                <span class="text-ink">Also available:</span>{' '}
+                <a href={ed.entry.href} class="font-medium text-accent hover:underline">
+                  {ed.entry.name}
+                </a>
+                {ed.entry.gh.language && <span class="text-ink-3"> ({ed.entry.gh.language})</span>}. {ed.note}
+              </span>
+            </p>
+          ))}
+
+          <div class="mt-8 flex flex-wrap gap-3">
+            {rel ? (
+              <a href={rel.url} class="btn btn-primary" rel="noopener noreferrer">
+                <Icon name="download" size={16} /> Download {rel.tag}
+              </a>
+            ) : (
+              <a href={installHeading ? `#${installHeading.id}` : `${gh.htmlUrl}#readme`} class="btn btn-primary">
+                <Icon name="code" size={16} /> Build from source
+              </a>
+            )}
+            {rel && installHeading && (
+              <a href={`#${installHeading.id}`} class="btn btn-ghost">
+                Installation guide
+              </a>
+            )}
+            <a href={gh.htmlUrl} class="btn btn-ghost" rel="noopener noreferrer">
+              <Icon name="github" size={16} /> View on GitHub
+            </a>
+            {gh.homepage && (
+              <a href={gh.homepage} class="btn btn-ghost" rel="noopener noreferrer">
+                Project site <Icon name="arrow-up-right" size={14} />
+              </a>
+            )}
+          </div>
+
+          <!-- Download facts, next to the button (Objective-See pattern) -->
+          <div class="mt-5 space-y-2 text-sm text-ink-3">
+            <p class="flex flex-wrap items-center gap-x-2 gap-y-1">
+              {rel && (
+                <>
+                  <span class="font-mono text-ink-2">{rel.tag}</span>
+                  <span aria-hidden="true">·</span>
+                  <time datetime={rel.publishedAt}>{fmtDate(rel.publishedAt)}</time>
+                  <span aria-hidden="true">·</span>
+                </>
+              )}
+              {e.requires && (
+                <>
+                  <span>
+                    <span class={rel ? 'sr-only' : ''}>Requires </span>
+                    {e.requires.join(', ')}
+                  </span>
+                  {rel && <span aria-hidden="true">·</span>}
+                </>
+              )}
+              {rel && (
+                <>
+                  <a
+                    href={`${gh.htmlUrl}/releases`}
+                    class="underline decoration-line-strong underline-offset-4 hover:text-ink"
+                    rel="noopener noreferrer"
+                  >
+                    Changelog
+                  </a>
+                  <span aria-hidden="true">·</span>
+                  <a
+                    href={gh.htmlUrl}
+                    class="underline decoration-line-strong underline-offset-4 hover:text-ink"
+                    rel="noopener noreferrer"
+                  >
+                    Source
+                  </a>
+                </>
+              )}
+            </p>
+            {e.signing && (
+              <p class="flex items-center gap-2">
+                <Icon name="shield" size={14} class="shrink-0" />
+                <span>
+                  {e.signing}
+                  {e.attested && ' · GitHub build attestation'}
+                </span>
+              </p>
+            )}
+            {archives.length > 0 && (
+              <details class="group/sha max-w-2xl rounded-lg border border-line bg-surface/60">
+                <summary class="flex cursor-pointer items-center gap-2 px-3 py-2 text-ink-2 hover:text-ink [&::-webkit-details-marker]:hidden">
+                  <Icon name="fingerprint" size={14} class="shrink-0" />
+                  SHA-256 checksums
+                  <span class="ml-auto text-xs transition-transform group-open/sha:rotate-180" aria-hidden="true">
+                    ▾
+                  </span>
+                </summary>
+                <div class="space-y-3 border-t border-line px-3 py-3">
+                  <ul class="space-y-2">
+                    {archives.map((a) => (
+                      <li>
+                        <p class="text-xs text-ink-2">{a.name}</p>
+                        <code class="block font-mono text-[0.6875rem] break-all text-ink-3 select-all">{a.sha256}</code>
+                      </li>
+                    ))}
+                  </ul>
+                  <p class="text-xs">
+                    Check a download with <code class="font-mono text-ink-2">shasum -a 256 {archives[0].name}</code> and
+                    compare the result.{' '}
+                    <a href="/verify/" class="text-accent underline underline-offset-4">
+                      Full verification guide
+                    </a>
+                  </p>
+                </div>
+              </details>
+            )}
+          </div>
+        </div>
+
+        <aside class="flex flex-col gap-4" aria-label="Project details">
+          {gh.scope && (
+            <div class="card border-l-2 p-5 [border-left-color:var(--accent)]">
+              <p class="flex items-center gap-2 text-sm font-semibold text-ink">
+                <Icon name="shield" size={16} class="text-accent" /> Scope &amp; boundaries
+              </p>
+              <p class="mt-2 text-sm leading-6 text-ink-2">{gh.scope}</p>
+            </div>
+          )}
+          <dl class="card divide-y divide-line text-sm">
+            {facts.map((f) => (
+              <div class="flex items-center justify-between gap-4 px-5 py-3">
+                <dt class="flex items-center gap-2 text-ink-3">
+                  <Icon name={f.icon} size={14} />
+                  {f.label}
+                </dt>
+                <dd class="text-right text-ink">{f.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- Highlights + resources -->
+  <section
+    class="container-x grid gap-4 pt-14 lg:grid-cols-[minmax(0,1fr)_20rem]"
+    aria-label="Highlights and resources"
+  >
+    {e.highlights ? (
+      <ul class="grid content-start gap-3 sm:grid-cols-2">
+        {e.highlights.map((h) => (
+          <li class="card flex gap-3 p-4 text-sm leading-6 text-ink-2">
+            <Icon name="check" size={16} class="mt-1 shrink-0 text-accent" />
+            {h}
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <div />
+    )}
+    <nav class="card p-5" aria-labelledby="resources-heading">
+      <h2 id="resources-heading" class="text-sm font-semibold text-ink">
+        Resources
+      </h2>
+      <ul class="mt-3 space-y-1 text-sm">
+        {resources.map((r) => (
+          <li>
+            <a
+              href={r.href}
+              class="flex items-center gap-2.5 rounded-lg px-2 py-1.5 -mx-2 text-ink-2 hover:bg-surface-2 hover:text-ink"
+              rel="noopener noreferrer"
+            >
+              <Icon name={r.icon} size={14} class="shrink-0 text-ink-3" />
+              {r.label}
+              <Icon name="arrow-up-right" size={12} class="ml-auto text-ink-3" />
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </section>
+
+  <!-- Screenshots -->
+  {e.slug === 'sandbox-lens' && <SandboxLensFeatures />}
+
+  {gallery.length > 0 && (
+    <section class="pt-14" aria-labelledby="shots-heading">
+      <div class="container-x flex items-end justify-between gap-4">
+        <h2 id="shots-heading" class="text-lg font-semibold text-ink">
+          Screenshots
+        </h2>
+        <p class="text-xs text-ink-3 print:hidden">Select an image to view full size</p>
+      </div>
+      <div
+        class="container-x mt-5 overflow-x-auto pb-4 [scrollbar-width:thin]"
+        role="region"
+        aria-label="Screenshot gallery"
+        tabindex="0"
+      >
+        <ul class="flex snap-x snap-mandatory gap-4">
+          {gallery.map((g) => (
+            <li class="w-[85%] shrink-0 snap-start sm:w-[46%] lg:w-[31%]">
+              <a
+                href={g.src}
+                data-lightbox
+                data-caption={g.alt}
+                class="card block overflow-hidden rounded-xl hover:border-line-strong"
+              >
+                <img
+                  src={g.src}
+                  srcset={g.srcset}
+                  sizes="(min-width: 1024px) 400px, (min-width: 640px) 46vw, 85vw"
+                  alt={g.alt}
+                  width={g.width}
+                  height={g.height}
+                  loading="lazy"
+                  decoding="async"
+                  class:list={[
+                    'aspect-[16/10] w-full bg-surface-2',
+                    e.siteScreenshots ? 'object-contain' : 'object-cover object-top',
+                  ]}
+                />
+              </a>
+              {g.alt && <p class="mt-2 line-clamp-2 text-xs leading-5 text-ink-3">{g.alt}</p>}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  <!-- Release downloads -->
+  {rel && rel.assets.length > 0 && (
+    <section class="container-x pt-10" aria-labelledby="dl-heading">
+      <div class="card p-5 sm:p-6">
+        <div class="flex flex-wrap items-baseline justify-between gap-2">
+          <h2 id="dl-heading" class="font-semibold text-ink">
+            Downloads · <span class="font-mono">{rel.tag}</span>
+          </h2>
+          <a href={rel.url} class="text-sm text-accent" rel="noopener noreferrer">
+            Release notes <Icon name="arrow-up-right" size={12} class="inline" />
+          </a>
+        </div>
+        <ul class="mt-4 divide-y divide-line">
+          {rel.assets.map((a) => (
+            <li class="flex flex-col gap-1 py-3 sm:flex-row sm:items-center sm:gap-4">
+              <a
+                href={a.url}
+                class="inline-flex min-w-0 items-center gap-2 text-sm font-medium text-ink hover:text-accent"
+                rel="noopener noreferrer"
+              >
+                <Icon name="download" size={14} class="shrink-0 text-ink-3" />
+                <span class="truncate">{a.name}</span>
+              </a>
+              <span class="text-xs text-ink-3 sm:ml-auto">{fmtBytes(a.size)}</span>
+              {a.sha256 && (
+                <code
+                  class="block truncate font-mono text-[0.6875rem] text-ink-3 sm:max-w-[22rem]"
+                  title={`SHA-256 ${a.sha256}`}
+                >
+                  sha256:{a.sha256}
+                </code>
+              )}
+            </li>
+          ))}
+        </ul>
+        {primaryAsset && primaryAsset.sha256 && (
+          <p class="mt-3 text-xs text-ink-3">
+            Verify after downloading: <code class="font-mono">shasum -a 256 {primaryAsset.name}</code> ·{' '}
+            <a href="/verify/" class="text-accent underline underline-offset-4">
+              How to verify a download
+            </a>
+          </p>
+        )}
+      </div>
+    </section>
+  )}
+
+  <!-- Documentation: the README, whose own h2 sections follow the page h1 -->
+  <section class="container-x pt-16" aria-label="Documentation">
+    <div class="flex flex-wrap items-baseline justify-between gap-2 border-b border-line pb-4">
+      <p class="text-2xl font-semibold tracking-tight text-ink">Documentation</p>
+      <a
+        href={`${gh.htmlUrl}#readme`}
+        class="inline-flex items-center gap-1 text-sm text-ink-3 hover:text-ink"
+        rel="noopener noreferrer"
+      >
+        Synced from the README on GitHub · {fmtDate(gh.fetchedAt)}
+        <Icon name="arrow-up-right" size={12} />
+      </a>
+    </div>
+
+    <div class="mt-10">
+      <ReadmeBody gh={gh} title={e.name} kind="App" />
+    </div>
+  </section>
+
+  <!-- Related -->
+  <section class="container-x pt-24" aria-labelledby="more-heading">
+    <h2 id="more-heading" class="text-lg font-semibold text-ink">
+      Related apps
+    </h2>
+    <ul class="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {more.map((m) => (
+        <li>
+          <AppCard entry={m} />
+        </li>
+      ))}
+    </ul>
+  </section>
+</Base>

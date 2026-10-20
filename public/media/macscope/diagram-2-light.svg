@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1782.494 181.8" width="1782.494" height="181.8" style="--bg:#ffffff;--fg:#1b1f24;--accent:#0f766e;--surface:#f5f7f9;--border:#d5dbe1">
+<style>
+  
+  text { font-family: '-apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Inter, sans-serif', system-ui, sans-serif; }
+  svg {
+    /* Derived from --bg and --fg (overridable via --line, --accent, etc.) */
+    --_text:          var(--fg);
+    --_text-sec:      var(--muted, color-mix(in srgb, var(--fg) 60%, var(--bg)));
+    --_text-muted:    var(--muted, color-mix(in srgb, var(--fg) 40%, var(--bg)));
+    --_text-faint:    color-mix(in srgb, var(--fg) 25%, var(--bg));
+    --_line:          var(--line, color-mix(in srgb, var(--fg) 50%, var(--bg)));
+    --_arrow:         var(--accent, color-mix(in srgb, var(--fg) 85%, var(--bg)));
+    --_node-fill:     var(--surface, color-mix(in srgb, var(--fg) 3%, var(--bg)));
+    --_node-stroke:   var(--border, color-mix(in srgb, var(--fg) 20%, var(--bg)));
+    --_group-fill:    var(--bg);
+    --_group-hdr:     color-mix(in srgb, var(--fg) 5%, var(--bg));
+    --_inner-stroke:  color-mix(in srgb, var(--fg) 12%, var(--bg));
+    --_key-badge:     color-mix(in srgb, var(--fg) 10%, var(--bg));
+  }
+</style>
+<defs>
+  <marker id="arrowhead" markerWidth="8" markerHeight="5" refX="7" refY="2.5" orient="auto">
+    <polygon points="0 0, 8 2.5, 0 5" fill="var(--_arrow)" stroke="var(--_arrow)" stroke-width="0.75" stroke-linejoin="round" />
+  </marker>
+  <marker id="arrowhead-start" markerWidth="8" markerHeight="5" refX="1" refY="2.5" orient="auto-start-reverse">
+    <polygon points="8 0, 0 2.5, 8 5" fill="var(--_arrow)" stroke="var(--_arrow)" stroke-width="0.75" stroke-linejoin="round" />
+  </marker>
+</defs>
+<polyline class="edge" data-from="Update" data-to="Status" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="256.085,58.45 304.085,58.45" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="Status" data-to="Hash" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="544.623,58.45 606.702,58.45" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="SBOM" data-to="Match" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="810.1899999999999,123.35000000000001 855.3085,123.35000000000001 855.3085,90.9 872.269,90.9" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="Hash" data-to="Match" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="838.348,58.45 855.3085,58.45 855.3085,90.9 872.269,90.9" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="Match" data-to="Normalize" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="1160.972,90.9 1208.972,90.9" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="Normalize" data-to="Finding" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="1456.1789999999999,90.9 1504.1789999999999,90.9" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<g class="node" data-id="Update" data-label="Update project-local database" data-shape="rectangle">
+  <rect x="40" y="40" width="216.08499999999998" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="148.0425" y="58.45" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Update project-local database</text>
+</g>
+<g class="node" data-id="Status" data-label="Read and validate database status" data-shape="rectangle">
+  <rect x="304.085" y="40" width="240.53799999999998" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="424.354" y="58.45" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Read and validate database status</text>
+</g>
+<g class="node" data-id="Hash" data-label="Hash database metadata and tool" data-shape="rectangle">
+  <rect x="606.702" y="40" width="231.64599999999996" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="722.525" y="58.45" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Hash database metadata and tool</text>
+</g>
+<g class="node" data-id="SBOM" data-label="Read preserved Syft SBOM" data-shape="rectangle">
+  <rect x="606.702" y="104.9" width="203.48799999999997" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="708.446" y="123.35000000000001" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Read preserved Syft SBOM</text>
+</g>
+<g class="node" data-id="Match" data-label="Run Grype with automatic updates disabled" data-shape="rectangle">
+  <rect x="872.269" y="72.45" width="288.703" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="1016.6205" y="90.9" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Run Grype with automatic updates disabled</text>
+</g>
+<g class="node" data-id="Normalize" data-label="Normalize and deduplicate matches" data-shape="rectangle">
+  <rect x="1208.972" y="72.45" width="247.20699999999997" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="1332.5755" y="90.9" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Normalize and deduplicate matches</text>
+</g>
+<g class="node" data-id="Finding" data-label="Produce evidence-linked findings" data-shape="rectangle">
+  <rect x="1504.1789999999999" y="72.45" width="238.31499999999994" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="1623.3365" y="90.9" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Produce evidence-linked findings</text>
+</g>
+</svg>

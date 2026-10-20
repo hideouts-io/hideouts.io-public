@@ -1,0 +1,75 @@
+---
+interface Props {
+  class?: string;
+}
+const { class: cls } = Astro.props;
+---
+
+<span class:list={['brand-logo', cls]} role="img" aria-label="hideouts.io">
+  <img
+    src="/branding/hideouts/hideouts-horizontal-dark.svg"
+    class="brand-lockup brand-dark"
+    width="176"
+    height="44"
+    alt=""
+  />
+  <img
+    src="/branding/hideouts/hideouts-horizontal-mono-black.svg"
+    class="brand-lockup brand-light"
+    width="176"
+    height="44"
+    alt=""
+  />
+  <img src="/branding/hideouts/hideouts-symbol.svg" class="brand-symbol brand-dark" width="44" height="44" alt="" />
+  <img
+    src="/branding/hideouts/hideouts-symbol-mono-black.svg"
+    class="brand-symbol brand-light"
+    width="44"
+    height="44"
+    alt=""
+  />
+</span>
+
+<style>
+  .brand-logo {
+    display: inline-block;
+    width: 176px;
+    flex-shrink: 0;
+    vertical-align: middle;
+  }
+  .brand-logo img {
+    width: 100%;
+    height: auto;
+  }
+  .brand-light,
+  .brand-symbol {
+    display: none;
+  }
+  :global(:root[data-theme='light']) .brand-dark {
+    display: none;
+  }
+  :global(:root[data-theme='light']) .brand-lockup.brand-light {
+    display: block;
+  }
+  .footer-logo {
+    width: 220px;
+  }
+  @media (max-width: 439px) {
+    .header-logo {
+      width: 44px;
+    }
+    .header-logo .brand-lockup {
+      display: none;
+    }
+    .header-logo .brand-symbol.brand-dark {
+      display: block;
+    }
+    :global(:root[data-theme='light']) .header-logo .brand-lockup,
+    :global(:root[data-theme='light']) .header-logo .brand-symbol.brand-dark {
+      display: none;
+    }
+    :global(:root[data-theme='light']) .header-logo .brand-symbol.brand-light {
+      display: block;
+    }
+  }
+</style>

@@ -1,0 +1,165 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1427.8579999999997 1615.3110000000001" width="1427.8579999999997" height="1615.3110000000001" style="--bg:#0f1216;--fg:#e7eaee;--accent:#5eead4;--surface:#161b21;--border:#2a313a">
+<style>
+  
+  text { font-family: '-apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Inter, sans-serif', system-ui, sans-serif; }
+  svg {
+    /* Derived from --bg and --fg (overridable via --line, --accent, etc.) */
+    --_text:          var(--fg);
+    --_text-sec:      var(--muted, color-mix(in srgb, var(--fg) 60%, var(--bg)));
+    --_text-muted:    var(--muted, color-mix(in srgb, var(--fg) 40%, var(--bg)));
+    --_text-faint:    color-mix(in srgb, var(--fg) 25%, var(--bg));
+    --_line:          var(--line, color-mix(in srgb, var(--fg) 50%, var(--bg)));
+    --_arrow:         var(--accent, color-mix(in srgb, var(--fg) 85%, var(--bg)));
+    --_node-fill:     var(--surface, color-mix(in srgb, var(--fg) 3%, var(--bg)));
+    --_node-stroke:   var(--border, color-mix(in srgb, var(--fg) 20%, var(--bg)));
+    --_group-fill:    var(--bg);
+    --_group-hdr:     color-mix(in srgb, var(--fg) 5%, var(--bg));
+    --_inner-stroke:  color-mix(in srgb, var(--fg) 12%, var(--bg));
+    --_key-badge:     color-mix(in srgb, var(--fg) 10%, var(--bg));
+  }
+</style>
+<defs>
+  <marker id="arrowhead" markerWidth="8" markerHeight="5" refX="7" refY="2.5" orient="auto">
+    <polygon points="0 0, 8 2.5, 0 5" fill="var(--_arrow)" stroke="var(--_arrow)" stroke-width="0.75" stroke-linejoin="round" />
+  </marker>
+  <marker id="arrowhead-start" markerWidth="8" markerHeight="5" refX="1" refY="2.5" orient="auto-start-reverse">
+    <polygon points="8 0, 0 2.5, 8 5" fill="var(--_arrow)" stroke="var(--_arrow)" stroke-width="0.75" stroke-linejoin="round" />
+  </marker>
+</defs>
+<g class="subgraph" data-id="Discovery" data-label="Typed external-storage discovery">
+  <rect x="244.9006333333333" y="40" width="387.393" height="351.6" rx="0" ry="0" fill="var(--_group-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <rect x="244.9006333333333" y="40" width="387.393" height="28" rx="0" ry="0" fill="var(--_group-hdr)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <text x="256.9006333333333" y="54" font-size="12" font-weight="600" fill="var(--_text-sec)" dy="4.199999999999999">Typed external-storage discovery</text>
+</g>
+<g class="subgraph" data-id="Evidence" data-label="Read-only evidence collection">
+  <rect x="40" y="1151.7109999999998" width="881.4909999999999" height="96.9" rx="0" ry="0" fill="var(--_group-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <rect x="40" y="1151.7109999999998" width="881.4909999999999" height="28" rx="0" ry="0" fill="var(--_group-hdr)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <text x="52" y="1165.7109999999998" font-size="12" font-weight="600" fill="var(--_text-sec)" dy="4.199999999999999">Read-only evidence collection</text>
+</g>
+<g class="subgraph" data-id="Action" data-label="Explicit selected-volume actions">
+  <rect x="463.2580833333333" y="536.5" width="924.5999166666666" height="555.2109999999999" rx="0" ry="0" fill="var(--_group-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <rect x="463.2580833333333" y="536.5" width="924.5999166666666" height="28" rx="0" ry="0" fill="var(--_group-hdr)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <text x="475.2580833333333" y="550.5" font-size="12" font-weight="600" fill="var(--_text-sec)" dy="4.199999999999999">Explicit selected-volume actions</text>
+</g>
+<g class="subgraph" data-id="Output" data-label="Reviewable result">
+  <rect x="251.0019999999999" y="1308.6109999999999" width="472.9039999999999" height="266.70000000000005" rx="0" ry="0" fill="var(--_group-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <rect x="251.0019999999999" y="1308.6109999999999" width="472.9039999999999" height="28" rx="0" ry="0" fill="var(--_group-hdr)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <text x="263.0019999999999" y="1322.6109999999999" font-size="12" font-weight="600" fill="var(--_text-sec)" dy="4.199999999999999">Reviewable result</text>
+</g>
+<polyline class="edge" data-from="User" data-to="UI" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="778.3396333333332,421.6 778.3396333333332,433.6 522.96625,433.6 522.96625,445.6" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="Selector" data-to="UI" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="438.5971333333333,375.6 438.5971333333333,433.6 522.96625,433.6 522.96625,445.6" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="UI" data-to="Info" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="522.96625,482.5 522.96625,531.5 157.003,531.5 157.003,1195.7109999999998" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="UI" data-to="IOKit" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="522.96625,482.5 522.96625,531.5 471.11249999999995,531.5 471.11249999999995,1195.7109999999998" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="UI" data-to="Choice" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="522.96625,482.5 522.96625,531.5 964.3598333333332,531.5 964.3598333333332,580.5" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="Inspect" data-to="Logs" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="569.8870833333333,821.011 569.8870833333333,524.5 794.8549999999998,524.5 794.8549999999998,1195.7109999999998" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="Unmount" data-to="Logs" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="803.9685833333332,821.011 803.9685833333332,524.5 794.8549999999998,524.5 794.8549999999998,1195.7109999999998" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="Eject" data-to="Logs" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="1283.0814999999998,821.011 1283.0814999999998,524.5 794.8549999999998,524.5 794.8549999999998,1195.7109999999998" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="Verify" data-to="Logs" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="1012.8517499999998,1075.711 1012.8517499999998,1135.7109999999998 794.8549999999998,1135.7109999999998 794.8549999999998,1195.7109999999998" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="Info" data-to="Console" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="157.003,1232.6109999999999 157.003,1292.6109999999999 484.86049999999983,1292.6109999999999 484.86049999999983,1352.6109999999999" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="IOKit" data-to="Console" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="471.11249999999995,1232.6109999999999 471.11249999999995,1292.6109999999999 484.86049999999983,1292.6109999999999 484.86049999999983,1352.6109999999999" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="Logs" data-to="Console" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="794.8549999999998,1232.6109999999999 794.8549999999998,1292.6109999999999 484.86049999999983,1292.6109999999999 484.86049999999983,1352.6109999999999" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="Verify" data-to="Console" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="1012.8517499999998,1075.711 1012.8517499999998,1135.7109999999998 484.86049999999983,1135.7109999999998 484.86049999999983,1352.6109999999999" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="DA" data-to="List" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="438.5971333333333,120.9 438.5971333333333,168.9" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="List" data-to="APFS" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="438.5971333333333,205.8 438.5971333333333,253.8" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="APFS" data-to="Selector" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="438.5971333333333,290.70000000000005 438.5971333333333,338.70000000000005" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="Choice" data-to="Inspect" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="908.784476190476,680.5356428571428 908.784476190476,748.111 569.8870833333333,748.111 569.8870833333333,784.111" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="Choice" data-to="Normal" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="953.2447619047617,724.9959285714285 953.2447619047617,772.111 929.4210833333332,772.111 929.4210833333332,869.011" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="Choice" data-to="ReadOnly" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="964.3598333333332,736.111 964.3598333333332,929.911 1062.5547499999998,929.911 1062.5547499999998,953.911" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="Choice" data-to="Confirm" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="writable volume" points="997.7050476190474,702.7657857142858 997.7050476190474,760.111 1125.781,760.111 1125.781,869.011" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="Choice" data-to="Unmount" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="931.0146190476189,702.7657857142857 931.0146190476189,760.111 803.9685833333332,760.111 803.9685833333332,784.111" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="Choice" data-to="Eject" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="1019.9351904761903,680.5356428571428 1019.9351904761903,748.111 1283.0814999999998,748.111 1283.0814999999998,784.111" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="Confirm" data-to="ReadOnly" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="1125.781,905.911 1125.781,929.911 1062.5547499999998,929.911 1062.5547499999998,953.911" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="Normal" data-to="Verify" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="929.4210833333332,905.911 929.4210833333332,1014.8109999999999 1012.8517499999998,1014.8109999999999 1012.8517499999998,1038.811" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="ReadOnly" data-to="Verify" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="1062.5547499999998,990.8109999999999 1062.5547499999998,1014.8109999999999 1012.8517499999998,1014.8109999999999 1012.8517499999998,1038.811" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="Console" data-to="Guide" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="484.86049999999983,1389.511 484.86049999999983,1413.511 370.22799999999984,1413.511 370.22799999999984,1437.511" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="Console" data-to="Redact" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="484.86049999999983,1389.511 484.86049999999983,1413.511 599.4929999999998,1413.511 599.4929999999998,1437.511" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="Redact" data-to="Report" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="599.4929999999997,1474.4109999999998 599.4929999999997,1522.4109999999998" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<g class="edge-label" data-from="Choice" data-to="Confirm" data-label="writable volume">
+  <rect x="1080.7809999999997" y="787.411" width="89.524" height="30.3" rx="2" ry="2" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+  <text x="1125.5429999999997" y="802.5609999999999" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-sec)" dy="3.8499999999999996">writable volume</text>
+</g>
+<g class="node" data-id="User" data-label="User selects one external volume" data-shape="rectangle">
+  <rect x="660.2936333333332" y="384.70000000000005" width="236.09199999999996" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="778.3396333333332" y="403.15000000000003" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">User selects one external volume</text>
+</g>
+<g class="node" data-id="UI" data-label="Native AppKit GUI and live console" data-shape="rectangle">
+  <rect x="403.06774999999993" y="445.6" width="239.79699999999994" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="522.96625" y="464.05" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Native AppKit GUI and live console</text>
+</g>
+<g class="node" data-id="DA" data-label="Disk Arbitration appeared and disappeared callbacks" data-shape="rectangle">
+  <rect x="260.9006333333333" y="84" width="355.393" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="438.5971333333333" y="102.45" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Disk Arbitration appeared and disappeared callbacks</text>
+</g>
+<g class="node" data-id="List" data-label="diskutil external physical plist" data-shape="rectangle">
+  <rect x="332.0366333333333" y="168.9" width="213.12099999999995" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="438.5971333333333" y="187.35000000000002" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">diskutil external physical plist</text>
+</g>
+<g class="node" data-id="APFS" data-label="APFS container and volume plist" data-shape="rectangle">
+  <rect x="323.5151333333333" y="253.8" width="230.16399999999993" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="438.5971333333333" y="272.25" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">APFS container and volume plist</text>
+</g>
+<g class="node" data-id="Selector" data-label="User-facing volume selector" data-shape="rectangle">
+  <rect x="335.7416333333333" y="338.70000000000005" width="205.71099999999996" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="438.5971333333333" y="357.15000000000003" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">User-facing volume selector</text>
+</g>
+<g class="node" data-id="Info" data-label="diskutil disk and volume info" data-shape="rectangle">
+  <rect x="56" y="1195.7109999999998" width="202.00599999999997" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="157.003" y="1214.1609999999998" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">diskutil disk and volume info</text>
+</g>
+<g class="node" data-id="IOKit" data-label="Selected IOMedia ancestry and USB transport coverage" data-shape="rectangle">
+  <rect x="286.006" y="1195.7109999999998" width="370.2129999999999" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="471.11249999999995" y="1214.1609999999998" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Selected IOMedia ancestry and USB transport coverage</text>
+</g>
+<g class="node" data-id="Logs" data-label="Recent diskarbitrationd errors" data-shape="rectangle">
+  <rect x="684.2189999999998" y="1195.7109999999998" width="221.27200000000002" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="794.8549999999998" y="1214.1609999999998" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Recent diskarbitrationd errors</text>
+</g>
+<g class="node" data-id="Choice" data-label="Pressed button" data-shape="diamond">
+  <polygon points="964.3598333333332,580.5 1042.1653333333331,658.3054999999999 964.3598333333332,736.1109999999999 886.5543333333333,658.3054999999999" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="964.3598333333332" y="658.3054999999999" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Pressed button</text>
+</g>
+<g class="node" data-id="Inspect" data-label="Inspect without mounting" data-shape="rectangle">
+  <rect x="479.2580833333333" y="784.111" width="181.25799999999995" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="569.8870833333333" y="802.561" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Inspect without mounting</text>
+</g>
+<g class="node" data-id="Normal" data-label="diskutil mount" data-shape="rectangle">
+  <rect x="869.5435833333331" y="869.011" width="119.75500000000001" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="929.4210833333332" y="887.461" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">diskutil mount</text>
+</g>
+<g class="node" data-id="Confirm" data-label="Confirm writable-volume unmount" data-shape="rectangle">
+  <rect x="1010.3284999999998" y="869.011" width="230.90499999999997" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="1125.781" y="887.461" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Confirm writable-volume unmount</text>
+</g>
+<g class="node" data-id="ReadOnly" data-label="diskutil mount readOnly" data-shape="rectangle">
+  <rect x="974.1487499999998" y="953.911" width="176.81199999999998" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="1062.5547499999998" y="972.361" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">diskutil mount readOnly</text>
+</g>
+<g class="node" data-id="Unmount" data-label="diskutil unmount selected volume" data-shape="rectangle">
+  <rect x="688.5160833333332" y="784.111" width="230.90499999999997" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="803.9685833333332" y="802.561" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">diskutil unmount selected volume</text>
+</g>
+<g class="node" data-id="Eject" data-label="diskutil eject whole disk" data-shape="rectangle">
+  <rect x="1194.3049999999998" y="784.111" width="177.55299999999997" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="1283.0814999999998" y="802.561" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">diskutil eject whole disk</text>
+</g>
+<g class="node" data-id="Verify" data-label="Verify mount point and writable state" data-shape="rectangle">
+  <rect x="889.2482499999999" y="1038.811" width="247.20699999999997" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="1012.8517499999998" y="1057.261" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Verify mount point and writable state</text>
+</g>
+<g class="node" data-id="Console" data-label="Exact commands, output, and exit status" data-shape="rectangle">
+  <rect x="350.1419999999999" y="1352.6109999999999" width="269.4369999999999" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="484.86049999999983" y="1371.061" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Exact commands, output, and exit status</text>
+</g>
+<g class="node" data-id="Guide" data-label="Error-signature explanation" data-shape="rectangle">
+  <rect x="267.0019999999999" y="1437.511" width="206.45199999999994" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="370.22799999999984" y="1455.961" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Error-signature explanation</text>
+</g>
+<g class="node" data-id="Redact" data-label="Optional privacy redaction" data-shape="rectangle">
+  <rect x="501.45399999999984" y="1437.511" width="196.07799999999997" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="599.4929999999998" y="1455.961" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Optional privacy redaction</text>
+</g>
+<g class="node" data-id="Report" data-label="Clipboard or saved text report" data-shape="rectangle">
+  <rect x="491.0799999999998" y="1522.4109999999998" width="216.826" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="599.4929999999998" y="1540.8609999999999" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Clipboard or saved text report</text>
+</g>
+</svg>

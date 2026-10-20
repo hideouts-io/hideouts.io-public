@@ -1,0 +1,192 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import AnchorHeading from '../components/AnchorHeading.astro';
+import Icon from '../components/Icon.astro';
+import { entries } from '../lib/content';
+import { pageGraph, webPage } from '../lib/seo';
+
+const all = entries().sort((a, b) => (a.kind === b.kind ? a.order - b.order : a.kind === 'app' ? -1 : 1));
+
+const ways = [
+  {
+    icon: 'check',
+    title: 'Report a bug',
+    body: 'Open an issue with your macOS or iOS version and build, the steps to reproduce, and what you expected. Sanitized logs and screenshots help.',
+  },
+  {
+    icon: 'code',
+    title: 'Send a pull request',
+    body: 'Keep changes focused on one problem, explain the reasoning, and run the project’s own build and tests first. Read its contributing guide if it has one.',
+  },
+  {
+    icon: 'doc',
+    title: 'Improve the research',
+    body: 'Corrections are welcome. Point to the artifact, log line, or public source that supports the change, and keep observation separate from interpretation.',
+  },
+  {
+    icon: 'lock',
+    title: 'Report a vulnerability privately',
+    body: 'Security problems go through GitHub’s private vulnerability reporting, never a public issue. See the security page for the process.',
+  },
+] as const;
+
+const jsonLd = pageGraph(
+  webPage({
+    name: 'Contribute to hideouts',
+    path: '/contribute/',
+    description:
+      'How to report bugs, send pull requests, correct research, and report vulnerabilities for the hideouts open-source projects.',
+    extra: {
+      significantLink: all.map((e) => e.gh.htmlUrl),
+    },
+  }),
+  [{ name: 'Contribute', path: '/contribute/' }],
+);
+---
+
+<Base
+  title="Contribute"
+  description="How to report bugs, send pull requests, correct research, and report vulnerabilities for the hideouts open-source projects."
+  jsonLd={jsonLd}
+>
+  <PageHeader
+    eyebrow="Contribute"
+    title="Help improve the tools and the research"
+    lead="Every hideouts project is open source on GitHub. Useful contributions are specific, reproducible, and free of anyone’s personal data."
+  />
+
+  <section class="container-x pt-12" aria-labelledby="ways-heading">
+    <h2 id="ways-heading" class="sr-only">
+      Ways to contribute
+    </h2>
+    <ul class="grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+      {ways.map((w) => (
+        <li class="bg-surface p-6">
+          <span class="grid size-9 place-items-center rounded-lg bg-accent-soft text-accent">
+            <Icon name={w.icon} size={18} />
+          </span>
+          <h3 class="mt-4 font-semibold text-ink">{w.title}</h3>
+          <p class="mt-2 text-sm leading-6 text-ink-2">{w.body}</p>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="container-x pt-16" aria-labelledby="projects-heading">
+    <h2 id="projects-heading" class="text-2xl font-semibold tracking-tight text-ink">
+      Where to go for each project
+    </h2>
+    <p class="mt-2 max-w-2xl text-ink-2">Links come straight from each repository’s settings on GitHub.</p>
+    <div
+      class="table-scroll mt-6 overflow-x-auto rounded-xl border border-line bg-surface"
+      tabindex="0"
+      role="region"
+      aria-labelledby="projects-heading"
+    >
+      <table class="w-full min-w-[40rem] text-left text-sm">
+        <thead class="bg-surface-2 text-ink">
+          <tr>
+            <th scope="col" class="px-4 py-3 font-semibold">
+              Project
+            </th>
+            <th scope="col" class="px-4 py-3 font-semibold">
+              Issues
+            </th>
+            <th scope="col" class="px-4 py-3 font-semibold">
+              Discussions
+            </th>
+            <th scope="col" class="px-4 py-3 font-semibold">
+              Contributing guide
+            </th>
+            <th scope="col" class="px-4 py-3 font-semibold">
+              Security report
+            </th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-line text-ink-2">
+          {all.map((e) => (
+            <tr>
+              <th scope="row" class="px-4 py-3 font-medium text-ink">
+                <a href={e.href} class="hover:text-accent">
+                  {e.name}
+                </a>
+                <span class="ml-2 text-xs font-normal text-ink-3">{e.kind === 'app' ? 'App' : 'Research'}</span>
+              </th>
+              <td class="px-4 py-3">
+                {e.gh.hasIssues ? (
+                  <a href={`${e.gh.htmlUrl}/issues`} class="text-accent hover:underline" rel="noopener noreferrer">
+                    Open issues
+                  </a>
+                ) : (
+                  <span class="text-ink-3">Not enabled</span>
+                )}
+              </td>
+              <td class="px-4 py-3">
+                {e.gh.hasDiscussions ? (
+                  <a href={`${e.gh.htmlUrl}/discussions`} class="text-accent hover:underline" rel="noopener noreferrer">
+                    Discussions
+                  </a>
+                ) : (
+                  <span class="text-ink-3">Not enabled</span>
+                )}
+              </td>
+              <td class="px-4 py-3">
+                {e.gh.contributingUrl ? (
+                  <a href={e.gh.contributingUrl} class="text-accent hover:underline" rel="noopener noreferrer">
+                    {e.gh.contributingShared ? 'Shared guide' : 'CONTRIBUTING.md'}
+                  </a>
+                ) : (
+                  <span class="text-ink-3">Follow this page</span>
+                )}
+              </td>
+              <td class="px-4 py-3">
+                {e.gh.privateReporting ? (
+                  <a
+                    href={`${e.gh.htmlUrl}/security/advisories/new`}
+                    class="text-accent hover:underline"
+                    rel="noopener noreferrer"
+                  >
+                    Private report
+                  </a>
+                ) : (
+                  <a href="/security/" class="hover:text-ink">
+                    See security page
+                  </a>
+                )}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="container-x pt-16" aria-labelledby="ground-rules">
+    <div class="prose-readme max-w-[46rem]">
+      <AnchorHeading id="ground-rules">Ground rules</AnchorHeading>
+      <ul>
+        <li>
+          <strong>Never attach sensitive data</strong> to an issue or pull request: no credentials, private keys, device
+          backups, pairing records, UDIDs, personal data, or unrestricted forensic evidence.
+        </li>
+        <li>
+          <strong>Stay within authorized use.</strong> Test on devices you own or are allowed to examine. Contributions
+          that bypass Apple’s protections, jailbreak devices, or target other people’s data won’t be accepted.
+        </li>
+        <li>
+          <strong>Keep claims evidence-based.</strong> Describe what you observed and how, and label interpretation as
+          interpretation.
+        </li>
+        <li>
+          <strong>Be respectful.</strong> Where a project has a code of conduct, it applies to every issue, discussion,
+          and review.
+        </li>
+      </ul>
+      <p>
+        By contributing, you agree that your work is released under the license of the project you contribute to. Every
+        project’s license is shown on its page.
+      </p>
+    </div>
+  </section>
+</Base>

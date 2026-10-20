@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 591.299 456.5" width="591.299" height="456.5" style="--bg:#0f1216;--fg:#e7eaee;--accent:#5eead4;--surface:#161b21;--border:#2a313a">
+<style>
+  
+  text { font-family: '-apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Inter, sans-serif', system-ui, sans-serif; }
+  svg {
+    /* Derived from --bg and --fg (overridable via --line, --accent, etc.) */
+    --_text:          var(--fg);
+    --_text-sec:      var(--muted, color-mix(in srgb, var(--fg) 60%, var(--bg)));
+    --_text-muted:    var(--muted, color-mix(in srgb, var(--fg) 40%, var(--bg)));
+    --_text-faint:    color-mix(in srgb, var(--fg) 25%, var(--bg));
+    --_line:          var(--line, color-mix(in srgb, var(--fg) 50%, var(--bg)));
+    --_arrow:         var(--accent, color-mix(in srgb, var(--fg) 85%, var(--bg)));
+    --_node-fill:     var(--surface, color-mix(in srgb, var(--fg) 3%, var(--bg)));
+    --_node-stroke:   var(--border, color-mix(in srgb, var(--fg) 20%, var(--bg)));
+    --_group-fill:    var(--bg);
+    --_group-hdr:     color-mix(in srgb, var(--fg) 5%, var(--bg));
+    --_inner-stroke:  color-mix(in srgb, var(--fg) 12%, var(--bg));
+    --_key-badge:     color-mix(in srgb, var(--fg) 10%, var(--bg));
+  }
+</style>
+<defs>
+  <marker id="arrowhead" markerWidth="8" markerHeight="5" refX="7" refY="2.5" orient="auto">
+    <polygon points="0 0, 8 2.5, 0 5" fill="var(--_arrow)" stroke="var(--_arrow)" stroke-width="0.75" stroke-linejoin="round" />
+  </marker>
+  <marker id="arrowhead-start" markerWidth="8" markerHeight="5" refX="1" refY="2.5" orient="auto-start-reverse">
+    <polygon points="8 0, 0 2.5, 8 5" fill="var(--_arrow)" stroke="var(--_arrow)" stroke-width="0.75" stroke-linejoin="round" />
+  </marker>
+</defs>
+<polyline class="edge" data-from="Mac" data-to="Bag" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="285.46074999999996,76.9 285.46074999999996,124.9" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="Bag" data-to="Daiquiri" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="285.46074999999996,161.8 285.46074999999996,209.8" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="Daiquiri" data-to="AWS" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="285.46074999999996,246.70000000000002 285.46074999999996,270.70000000000005 150.63599999999997,270.70000000000005 150.63599999999997,294.70000000000005" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="Daiquiri" data-to="K8s" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="285.46074999999996,246.70000000000002 285.46074999999996,270.70000000000005 420.28549999999996,270.70000000000005 420.28549999999996,294.70000000000005" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="AWS" data-to="Services" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="150.63599999999997,331.6 150.63599999999997,355.6 285.46074999999996,355.6 285.46074999999996,379.6" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="K8s" data-to="Services" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="420.28549999999996,331.6 420.28549999999996,355.6 285.46074999999996,355.6 285.46074999999996,379.6" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<g class="node" data-id="Mac" data-label="macOS client" data-shape="rectangle">
+  <rect x="227.06525" y="40" width="116.791" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="285.46074999999996" y="58.45" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">macOS client</text>
+</g>
+<g class="node" data-id="Bag" data-label="bag.itunes.apple.com / Apple service endpoint" data-shape="rectangle">
+  <rect x="131.47625" y="124.9" width="307.96899999999994" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="285.46074999999996" y="143.35000000000002" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">bag.itunes.apple.com / Apple service endpoint</text>
+</g>
+<g class="node" data-id="Daiquiri" data-label="Daiquiri" data-shape="rectangle">
+  <rect x="241.51475" y="209.8" width="87.892" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="285.46074999999996" y="228.25" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Daiquiri</text>
+</g>
+<g class="node" data-id="AWS" data-label="AWS-labelled Daiquiri instance" data-shape="rectangle">
+  <rect x="40" y="294.70000000000005" width="221.27199999999996" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="150.63599999999997" y="313.15000000000003" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">AWS-labelled Daiquiri instance</text>
+</g>
+<g class="node" data-id="K8s" data-label="Kubernetes-labelled Daiquiri instance" data-shape="rectangle">
+  <rect x="289.272" y="294.70000000000005" width="262.02699999999993" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="420.28549999999996" y="313.15000000000003" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Kubernetes-labelled Daiquiri instance</text>
+</g>
+<g class="node" data-id="Services" data-label="Apple backend services" data-shape="rectangle">
+  <rect x="192.60875" y="379.6" width="185.70399999999998" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="285.46074999999996" y="398.05" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Apple backend services</text>
+</g>
+</svg>

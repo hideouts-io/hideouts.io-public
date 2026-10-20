@@ -1,0 +1,11 @@
+dist/
+.astro/
+.cache/
+node_modules/
+public/
+src/generated/
+src/styles/shiki.generated.css
+site-snapshot/
+package-lock.json
+# Generated brand packages, preview evidence, and preserved originals.
+output/

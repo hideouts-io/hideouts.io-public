@@ -1,0 +1,19 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      astro:
+        patterns: ['astro', '@astrojs/*']
+      lint-and-format:
+        patterns: ['eslint*', '@eslint/*', 'typescript-eslint', 'prettier*', 'globals']
+      content-pipeline:
+        patterns:
+          ['unified', 'remark-*', 'rehype-*', '@shikijs/*', 'shiki', 'sharp', 'beautiful-mermaid', 'hast-*', 'unist-*']
+    open-pull-requests-limit: 5
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly

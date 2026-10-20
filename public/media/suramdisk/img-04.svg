@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 420" width="100%" height="100%">
+  <rect width="920" height="420" fill="#0d1117" rx="10"/>
+  <rect x="20" y="20" width="880" height="380" fill="#161b22" stroke="#30363d" stroke-width="1.5" rx="8"/>
+  <text x="40" y="55" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,monospace" font-size="16" font-weight="bold">PIPELINE: APFS Sealed System Volume (SSV) Merkle-Tree Sealing</text>
+  <text x="40" y="80" fill="#8b949e" font-family="-apple-system,BlinkMacSystemFont,monospace" font-size="12">Source: /System/Library/Filesystems/apfs.fs/Contents/Resources/ (apfs_sealvolume &amp; apfs_checkseal)</text>
+
+  <!-- Step 1 -->
+  <rect x="40" y="110" width="200" height="260" fill="#0d1117" stroke="#388bfd" rx="6"/>
+  <text x="55" y="140" fill="#58a6ff" font-family="SFMono-Regular,Consolas,monospace" font-size="13" font-weight="bold">Step 1: Staging</text>
+  <text x="55" y="170" fill="#7ee787" font-family="SFMono-Regular,Consolas,monospace" font-size="11">ASR Image Write</text>
+  <text x="55" y="190" fill="#e6edf3" font-family="SFMono-Regular,Consolas,monospace" font-size="10">Decompresses macOS base</text>
+  <text x="55" y="220" fill="#7ee787" font-family="SFMono-Regular,Consolas,monospace" font-size="11">Firmlink Mapping</text>
+  <text x="55" y="240" fill="#e6edf3" font-family="SFMono-Regular,Consolas,monospace" font-size="10">Creates synthetic links</text>
+  <text x="55" y="270" fill="#7ee787" font-family="SFMono-Regular,Consolas,monospace" font-size="11">B-Tree Fixup</text>
+  <text x="55" y="290" fill="#e6edf3" font-family="SFMono-Regular,Consolas,monospace" font-size="10">Runs apfs_condenser</text>
+
+  <!-- Step 2 -->
+  <rect x="265" y="110" width="200" height="260" fill="#0d1117" stroke="#d29922" rx="6"/>
+  <text x="280" y="140" fill="#f0883e" font-family="SFMono-Regular,Consolas,monospace" font-size="13" font-weight="bold">Step 2: Hashing</text>
+  <text x="280" y="170" fill="#f0883e" font-family="SFMono-Regular,Consolas,monospace" font-size="11">Leaf Node Hashing</text>
+  <text x="280" y="190" fill="#e6edf3" font-family="SFMono-Regular,Consolas,monospace" font-size="10">Computes SHA-256 for files</text>
+  <text x="280" y="220" fill="#f0883e" font-family="SFMono-Regular,Consolas,monospace" font-size="11">Directory Merkle Tree</text>
+  <text x="280" y="240" fill="#e6edf3" font-family="SFMono-Regular,Consolas,monospace" font-size="10">Aggregates parent hashes</text>
+  <text x="280" y="270" fill="#f0883e" font-family="SFMono-Regular,Consolas,monospace" font-size="11">apfs_sealvolume</text>
+  <text x="280" y="290" fill="#e6edf3" font-family="SFMono-Regular,Consolas,monospace" font-size="10">Calculates root tree digest</text>
+
+  <!-- Step 3 -->
+  <rect x="490" y="110" width="200" height="260" fill="#0d1117" stroke="#a371f7" rx="6"/>
+  <text x="505" y="140" fill="#bc8cff" font-family="SFMono-Regular,Consolas,monospace" font-size="13" font-weight="bold">Step 3: Snapshot</text>
+  <text x="505" y="170" fill="#bc8cff" font-family="SFMono-Regular,Consolas,monospace" font-size="11">apfs_systemsnapshot</text>
+  <text x="505" y="190" fill="#e6edf3" font-family="SFMono-Regular,Consolas,monospace" font-size="10">Takes frozen APFS snapshot</text>
+  <text x="505" y="220" fill="#bc8cff" font-family="SFMono-Regular,Consolas,monospace" font-size="11">Root Seal Injection</text>
+  <text x="505" y="240" fill="#e6edf3" font-family="SFMono-Regular,Consolas,monospace" font-size="10">Stores root seal in superblock</text>
+  <text x="505" y="270" fill="#bc8cff" font-family="SFMono-Regular,Consolas,monospace" font-size="11">Read-Only Lock</text>
+  <text x="505" y="290" fill="#e6edf3" font-family="SFMono-Regular,Consolas,monospace" font-size="10">Locks snapshot against edits</text>
+
+  <!-- Step 4 -->
+  <rect x="715" y="110" width="165" height="260" fill="#0d1117" stroke="#2ea043" rx="6"/>
+  <text x="730" y="140" fill="#7ee787" font-family="SFMono-Regular,Consolas,monospace" font-size="13" font-weight="bold">Step 4: Bless</text>
+  <text x="730" y="170" fill="#7ee787" font-family="SFMono-Regular,Consolas,monospace" font-size="11">usr/sbin/bless</text>
+  <text x="730" y="190" fill="#e6edf3" font-family="SFMono-Regular,Consolas,monospace" font-size="10">Points EFI boot to snapshot</text>
+  <text x="730" y="220" fill="#7ee787" font-family="SFMono-Regular,Consolas,monospace" font-size="11">apfs_checkseal</text>
+  <text x="730" y="240" fill="#e6edf3" font-family="SFMono-Regular,Consolas,monospace" font-size="10">Final verification pass</text>
+  <text x="730" y="270" fill="#7ee787" font-family="SFMono-Regular,Consolas,monospace" font-size="11">Reboot</text>
+  <text x="730" y="290" fill="#e6edf3" font-family="SFMono-Regular,Consolas,monospace" font-size="10">Transitions to sealed macOS</text>
+</svg>

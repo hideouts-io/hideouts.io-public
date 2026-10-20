@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1420.7229999999997 116.9" width="1420.7229999999997" height="116.9" style="--bg:#ffffff;--fg:#1b1f24;--accent:#0f766e;--surface:#f5f7f9;--border:#d5dbe1">
+<style>
+  
+  text { font-family: '-apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Inter, sans-serif', system-ui, sans-serif; }
+  svg {
+    /* Derived from --bg and --fg (overridable via --line, --accent, etc.) */
+    --_text:          var(--fg);
+    --_text-sec:      var(--muted, color-mix(in srgb, var(--fg) 60%, var(--bg)));
+    --_text-muted:    var(--muted, color-mix(in srgb, var(--fg) 40%, var(--bg)));
+    --_text-faint:    color-mix(in srgb, var(--fg) 25%, var(--bg));
+    --_line:          var(--line, color-mix(in srgb, var(--fg) 50%, var(--bg)));
+    --_arrow:         var(--accent, color-mix(in srgb, var(--fg) 85%, var(--bg)));
+    --_node-fill:     var(--surface, color-mix(in srgb, var(--fg) 3%, var(--bg)));
+    --_node-stroke:   var(--border, color-mix(in srgb, var(--fg) 20%, var(--bg)));
+    --_group-fill:    var(--bg);
+    --_group-hdr:     color-mix(in srgb, var(--fg) 5%, var(--bg));
+    --_inner-stroke:  color-mix(in srgb, var(--fg) 12%, var(--bg));
+    --_key-badge:     color-mix(in srgb, var(--fg) 10%, var(--bg));
+  }
+</style>
+<defs>
+  <marker id="arrowhead" markerWidth="8" markerHeight="5" refX="7" refY="2.5" orient="auto">
+    <polygon points="0 0, 8 2.5, 0 5" fill="var(--_arrow)" stroke="var(--_arrow)" stroke-width="0.75" stroke-linejoin="round" />
+  </marker>
+  <marker id="arrowhead-start" markerWidth="8" markerHeight="5" refX="1" refY="2.5" orient="auto-start-reverse">
+    <polygon points="8 0, 0 2.5, 8 5" fill="var(--_arrow)" stroke="var(--_arrow)" stroke-width="0.75" stroke-linejoin="round" />
+  </marker>
+</defs>
+<polyline class="edge" data-from="Start" data-to="Alias" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="147.899,58.45 195.899,58.45" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="Alias" data-to="CNAME" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="317.136,58.45 365.136,58.45" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="CNAME" data-to="AAAA" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="494.524,58.45 542.524,58.45" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="AAAA" data-to="A" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="662.279,58.45 710.279,58.45" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="A" data-to="Cache" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="803.358,58.45 851.358,58.45" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="Cache" data-to="Result" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="1060.033,58.45 1108.033,58.45" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="Result" data-to="Stop" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="1226.3059999999998,58.45 1274.3059999999998,58.45" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<g class="node" data-id="Start" data-label="Start query" data-shape="rectangle">
+  <rect x="40" y="40" width="107.899" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="93.9495" y="58.45" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Start query</text>
+</g>
+<g class="node" data-id="Alias" data-label="Resolve alias" data-shape="rectangle">
+  <rect x="195.899" y="40" width="121.23700000000001" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="256.5175" y="58.45" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Resolve alias</text>
+</g>
+<g class="node" data-id="CNAME" data-label="Follow CNAME" data-shape="rectangle">
+  <rect x="365.136" y="40" width="129.38799999999998" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="429.83000000000004" y="58.45" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Follow CNAME</text>
+</g>
+<g class="node" data-id="AAAA" data-label="AAAA lookup" data-shape="rectangle">
+  <rect x="542.524" y="40" width="119.755" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="602.4014999999999" y="58.45" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">AAAA lookup</text>
+</g>
+<g class="node" data-id="A" data-label="A lookup" data-shape="rectangle">
+  <rect x="710.279" y="40" width="93.07900000000001" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="756.8185" y="58.45" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">A lookup</text>
+</g>
+<g class="node" data-id="Cache" data-label="Cache/update resolver state" data-shape="rectangle">
+  <rect x="851.358" y="40" width="208.67499999999998" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="955.6954999999999" y="58.45" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Cache/update resolver state</text>
+</g>
+<g class="node" data-id="Result" data-label="Return result" data-shape="rectangle">
+  <rect x="1108.033" y="40" width="118.273" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="1167.1695" y="58.45" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Return result</text>
+</g>
+<g class="node" data-id="Stop" data-label="Stop query" data-shape="rectangle">
+  <rect x="1274.3059999999998" y="40" width="106.41699999999999" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="1327.5144999999998" y="58.45" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Stop query</text>
+</g>
+</svg>
