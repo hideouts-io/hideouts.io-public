@@ -49,48 +49,144 @@ jobs:
           git archive "$GITHUB_SHA" > "$RUNNER_TEMP/source.tar"
           echo "source_tar_sha256=$(sha256sum "$RUNNER_TEMP/source.tar" | cut -d ' ' -f1)" >> "$GITHUB_OUTPUT"
 
-      - run: npm ci
+      - name: Install dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          if npm ci > "$RUNNER_TEMP/site-dependencies.log" 2>&1; then
+            echo 'Dependency installation passed'
+          else
+            status=$?
+            printf 'Dependency installation failed; status=%s. Reproduce in the restricted workspace.\n' "$status"
+            exit "$status"
+          fi
 
       - name: Lint, formatting, and type checks
+        shell: bash
         run: |
-          npm run lint
-          npm run format:check
-          npm run typecheck
+          set -euo pipefail
+          for check in lint format:check typecheck; do
+            if npm run "$check" > "$RUNNER_TEMP/site-$check.log" 2>&1; then
+              printf 'Validation stage %s passed\n' "$check"
+            else
+              status=$?
+              printf 'Validation stage %s failed; status=%s. Reproduce in the restricted workspace.\n' "$check" "$status"
+              exit "$status"
+            fi
+          done
 
       - name: Build site and search index
-        run: npm run build
+        shell: bash
+        run: |
+          set -euo pipefail
+          if npm run build > "$RUNNER_TEMP/site-build.log" 2>&1; then
+            echo 'Site build passed'
+          else
+            status=$?
+            printf 'Site build failed; status=%s. Reproduce in the restricted workspace.\n' "$status"
+            exit "$status"
+          fi
         env:
           # The commit shown in the footer and on /colophon/. On pull requests,
           # the PR head rather than GitHub's temporary merge commit.
           SITE_COMMIT: ${{ github.event.pull_request.head.sha || github.sha }}
 
       - name: Allowlist and internal link checks
-        run: npm run verify
+        shell: bash
+        run: |
+          set -euo pipefail
+          if npm run verify > "$RUNNER_TEMP/site-verification.log" 2>&1; then
+            echo 'Site verification passed'
+          else
+            status=$?
+            printf 'Site verification failed; status=%s. Reproduce in the restricted workspace.\n' "$status"
+            exit "$status"
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REQUIRE_LIVE_ALLOWLIST: ${{ github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && '1' || '0' }}
 
       - name: External link check
         if: github.event_name != 'workflow_dispatch' || github.ref != 'refs/heads/main'
-        uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2
         # Blocking on pushes and pull requests; advisory on scheduled and
         # dispatched runs so a flaky third-party link can't stop validation.
         # 429 and 503 are accepted: GitHub throttles bursts of requests from
         # Actions runners to its file pages, which says nothing about whether a
         # link is dead (404/410 still fail).
         continue-on-error: ${{ github.event_name == 'schedule' || github.event_name == 'repository_dispatch' }}
-        with:
-          args: >-
-            --no-progress
-            --root-dir ${{ github.workspace }}/dist
-            --max-retries 3
-            --retry-wait-time 5
-            --max-concurrency 8
-            --accept 200,206,429,503
-            --exclude '^https://hideouts\.io'
-            --exclude-path dist/pagefind
-            'dist/**/*.html'
-          fail: true
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/site-link-check"
+          archive="$RUNNER_TEMP/site-link-check/lychee.tar.gz"
+          if ! curl --fail --silent --show-error --location --max-time 90 \
+            'https://github.com/lycheeverse/lychee/releases/download/lychee-v0.24.2/lychee-x86_64-unknown-linux-gnu.tar.gz' \
+            --output "$archive" >"$RUNNER_TEMP/site-link-check/download.log" 2>&1; then
+            echo 'External link checker download failed'
+            exit 1
+          fi
+          if ! printf '%s  %s\n' \
+            '1f4e0ef7f6554a6ed33dd7ac144fb2e1bbed98598e7af973042fc5cd43951c9a' "$archive" \
+            | sha256sum --check --status; then
+            echo 'External link checker digest mismatch'
+            exit 1
+          fi
+          if ! tar -xzf "$archive" -C "$RUNNER_TEMP/site-link-check" --strip-components=1 \
+            lychee-x86_64-unknown-linux-gnu/lychee >"$RUNNER_TEMP/site-link-check/extract.log" 2>&1; then
+            echo 'External link checker extraction failed'
+            exit 1
+          fi
+          checker="$RUNNER_TEMP/site-link-check/lychee"
+          if [[ ! -f "$checker" || -L "$checker" || ! -x "$checker" ]]; then
+            echo 'External link checker binary is invalid'
+            exit 1
+          fi
+          report="$RUNNER_TEMP/site-link-check/report.md"
+          diagnostics="$RUNNER_TEMP/site-link-check/process.log"
+          status=0
+          "$checker" \
+            --format markdown --mode task --output "$report" \
+            --no-progress --root-dir "$GITHUB_WORKSPACE/dist" \
+            --max-retries 3 --retry-wait-time 5 --max-concurrency 8 \
+            --accept 200,206,429,503 \
+            --exclude '^https://hideouts\.io' \
+            --exclude-path dist/pagefind \
+            'dist/**/*.html' >"$diagnostics" 2>&1 || status=$?
+          if [[ ! -s "$report" ]]; then
+            printf 'External link check produced no report; status=%s\n' "$status"
+            exit 1
+          fi
+          if ! counts=$(python3 - "$report" <<'PY'
+          import pathlib
+          import re
+          import sys
+
+          try:
+              report = pathlib.Path(sys.argv[1]).read_text(encoding="utf-8")
+              if not report.startswith("# Summary\n"):
+                  raise ValueError("missing summary")
+              table = report.split("\n## ", 1)[0]
+              values = []
+              for label in ("Total", "Errors"):
+                  matches = re.findall(r"(?m)^\|[^|\n]*" + label + r"\s*\|\s*(\d+)\s*\|", table)
+                  if len(matches) != 1:
+                      raise ValueError("missing count")
+                  values.append(matches[0])
+              print(*values)
+          except (OSError, UnicodeError, ValueError):
+              raise SystemExit(1)
+          PY
+          ); then
+            echo 'External link report could not be summarized'
+            exit 1
+          fi
+          read -r total errors <<< "$counts"
+          printf 'External links checked=%s errors=%s status=%s\n' "$total" "$errors" "$status"
+          if [[ "$total" == 0 ]]; then
+            echo 'External link check found zero links'
+            exit 1
+          fi
+          exit "$status"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -615,19 +711,79 @@ jobs:
           tar -xf "$RUNNER_TEMP/artifact.tar" -C "$RUNNER_TEMP/site"
 
       - name: External links in the checked candidate
-        uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2
-        with:
-          args: >-
-            --no-progress
-            --root-dir ${{ runner.temp }}/site
-            --max-retries 3
-            --retry-wait-time 5
-            --max-concurrency 8
-            --accept 200,206,429,503
-            --exclude '^https://hideouts\.io'
-            --exclude-path ${{ runner.temp }}/site/pagefind
-            '${{ runner.temp }}/site/**/*.html'
-          fail: true
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/site-link-check"
+          archive="$RUNNER_TEMP/site-link-check/lychee.tar.gz"
+          if ! curl --fail --silent --show-error --location --max-time 90 \
+            'https://github.com/lycheeverse/lychee/releases/download/lychee-v0.24.2/lychee-x86_64-unknown-linux-gnu.tar.gz' \
+            --output "$archive" >"$RUNNER_TEMP/site-link-check/download.log" 2>&1; then
+            echo 'External link checker download failed'
+            exit 1
+          fi
+          if ! printf '%s  %s\n' \
+            '1f4e0ef7f6554a6ed33dd7ac144fb2e1bbed98598e7af973042fc5cd43951c9a' "$archive" \
+            | sha256sum --check --status; then
+            echo 'External link checker digest mismatch'
+            exit 1
+          fi
+          if ! tar -xzf "$archive" -C "$RUNNER_TEMP/site-link-check" --strip-components=1 \
+            lychee-x86_64-unknown-linux-gnu/lychee >"$RUNNER_TEMP/site-link-check/extract.log" 2>&1; then
+            echo 'External link checker extraction failed'
+            exit 1
+          fi
+          checker="$RUNNER_TEMP/site-link-check/lychee"
+          if [[ ! -f "$checker" || -L "$checker" || ! -x "$checker" ]]; then
+            echo 'External link checker binary is invalid'
+            exit 1
+          fi
+          report="$RUNNER_TEMP/site-link-check/report.md"
+          diagnostics="$RUNNER_TEMP/site-link-check/process.log"
+          status=0
+          "$checker" \
+            --format markdown --mode task --output "$report" \
+            --no-progress --root-dir "$RUNNER_TEMP/site" \
+            --max-retries 3 --retry-wait-time 5 --max-concurrency 8 \
+            --accept 200,206,429,503 \
+            --exclude '^https://hideouts\.io' \
+            --exclude-path "$RUNNER_TEMP/site/pagefind" \
+            "$RUNNER_TEMP/site/**/*.html" >"$diagnostics" 2>&1 || status=$?
+          if [[ ! -s "$report" ]]; then
+            printf 'External link check produced no report; status=%s\n' "$status"
+            exit 1
+          fi
+          if ! counts=$(python3 - "$report" <<'PY'
+          import pathlib
+          import re
+          import sys
+
+          try:
+              report = pathlib.Path(sys.argv[1]).read_text(encoding="utf-8")
+              if not report.startswith("# Summary\n"):
+                  raise ValueError("missing summary")
+              table = report.split("\n## ", 1)[0]
+              values = []
+              for label in ("Total", "Errors"):
+                  matches = re.findall(r"(?m)^\|[^|\n]*" + label + r"\s*\|\s*(\d+)\s*\|", table)
+                  if len(matches) != 1:
+                      raise ValueError("missing count")
+                  values.append(matches[0])
+              print(*values)
+          except (OSError, UnicodeError, ValueError):
+              raise SystemExit(1)
+          PY
+          ); then
+            echo 'External link report could not be summarized'
+            exit 1
+          fi
+          read -r total errors <<< "$counts"
+          printf 'External links checked=%s errors=%s status=%s\n' "$total" "$errors" "$status"
+          if [[ "$total" == 0 ]]; then
+            echo 'External link check found zero links'
+            exit 1
+          fi
+          exit "$status"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
