@@ -40,13 +40,13 @@ const jsonLd = pageGraph(
     <div class="prose-readme max-w-[46rem]">
       <AnchorHeading id="content">Where the content comes from</AnchorHeading>
       <p>
-        Every app and research page is generated from its GitHub repository’s README when the site is built. GitHub is
-        the source of truth: when a README changes, the site follows on the next build. Builds run on every change to
-        the site, nightly at 06:17 UTC, and whenever a project asks for an update.
+        Every app and research page is generated from a reviewed snapshot of its GitHub repository’s README. A README
+        change reaches this site after a separate content update and review. Builds run on every change to the site,
+        nightly at 06:17 UTC, and whenever a project asks for validation, using the same pinned content.
       </p>
       <p>
-        Only the {sources.length} repositories on an explicit allowlist are ever fetched. Images from READMEs are copied
-        here at build time, so reading a page never contacts GitHub or an image host.
+        Only the {sources.length} repositories on an explicit allowlist can enter the reviewed snapshot. Images from
+        READMEs are kept with that snapshot, so reading a page never contacts GitHub or an image host.
       </p>
 
       <AnchorHeading id="browser">What runs in your browser</AnchorHeading>
@@ -105,26 +105,22 @@ const jsonLd = pageGraph(
           An external link check, so the site doesn’t point at dead pages (advisory on nightly and README-update runs).
         </li>
       </ol>
-      <p>The site is then deployed to GitHub Pages straight from that workflow’s output.</p>
+      <p>
+        A manual production run also checks the exact packaged site against a private release policy before approval and
+        deployment to GitHub Pages.
+      </p>
 
       <AnchorHeading id="reproduce">Reproduce this build</AnchorHeading>
-      <p>
-        To rebuild this version yourself, with{' '}
-        <a href="https://cli.github.com" rel="noopener noreferrer">
-          GitHub CLI
-        </a>{' '}
-        and Node 24:
-      </p>
+      <p>To rebuild this version yourself with Node 24:</p>
       <pre><code
           >{
             `git clone ${build.repoUrl}.git
-cd hideouts.io${build.sha ? `\ngit checkout ${build.short}` : ''}
+cd hideouts.io-public${build.sha ? `\ngit checkout ${build.short}` : ''}
 npm ci
-GITHUB_TOKEN=$(gh auth token) npm run content
 npm run build`
           }</code
         ></pre>
-      <p>Pages whose README has changed since this build will differ, and so will the build details on this page.</p>
+      <p>This uses the pinned page content in the source commit. Build details on this page reflect your local run.</p>
 
       <AnchorHeading id="sources">Source repositories</AnchorHeading>
       <div class="table-scroll" tabindex="0" role="region" aria-label="Source repositories">

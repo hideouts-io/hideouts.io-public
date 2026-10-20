@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1017.966 755.4999999999999" width="1017.966" height="755.4999999999999" style="--bg:#ffffff;--fg:#1b1f24;--accent:#0f766e;--surface:#f5f7f9;--border:#d5dbe1">
+<style>
+  
+  text { font-family: '-apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Inter, sans-serif', system-ui, sans-serif; }
+  svg {
+    /* Derived from --bg and --fg (overridable via --line, --accent, etc.) */
+    --_text:          var(--fg);
+    --_text-sec:      var(--muted, color-mix(in srgb, var(--fg) 60%, var(--bg)));
+    --_text-muted:    var(--muted, color-mix(in srgb, var(--fg) 40%, var(--bg)));
+    --_text-faint:    color-mix(in srgb, var(--fg) 25%, var(--bg));
+    --_line:          var(--line, color-mix(in srgb, var(--fg) 50%, var(--bg)));
+    --_arrow:         var(--accent, color-mix(in srgb, var(--fg) 85%, var(--bg)));
+    --_node-fill:     var(--surface, color-mix(in srgb, var(--fg) 3%, var(--bg)));
+    --_node-stroke:   var(--border, color-mix(in srgb, var(--fg) 20%, var(--bg)));
+    --_group-fill:    var(--bg);
+    --_group-hdr:     color-mix(in srgb, var(--fg) 5%, var(--bg));
+    --_inner-stroke:  color-mix(in srgb, var(--fg) 12%, var(--bg));
+    --_key-badge:     color-mix(in srgb, var(--fg) 10%, var(--bg));
+  }
+</style>
+<defs>
+  <marker id="arrowhead" markerWidth="8" markerHeight="5" refX="7" refY="2.5" orient="auto">
+    <polygon points="0 0, 8 2.5, 0 5" fill="var(--_arrow)" stroke="var(--_arrow)" stroke-width="0.75" stroke-linejoin="round" />
+  </marker>
+  <marker id="arrowhead-start" markerWidth="8" markerHeight="5" refX="1" refY="2.5" orient="auto-start-reverse">
+    <polygon points="8 0, 0 2.5, 8 5" fill="var(--_arrow)" stroke="var(--_arrow)" stroke-width="0.75" stroke-linejoin="round" />
+  </marker>
+</defs>
+<polyline class="edge" data-from="FS" data-to="DE" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="383.6438333333333,76.9 383.6438333333333,124.9" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="DE" data-to="FC" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="383.6438333333333,161.8 383.6438333333333,209.8" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="FC" data-to="MQ" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Mach-O or bundle" points="359.6091666666667,246.70000000000002 359.6091666666667,258.70000000000005 235.25799999999998,258.70000000000005 235.258,339" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="FC" data-to="RQ" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="plist or other file" points="407.6785,246.70000000000002 407.6785,258.70000000000005 622.504,258.70000000000005 622.5039999999999,339" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="MQ" data-to="SEC" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="235.258,375.9 235.258,405.9 118.773,405.9 118.773,435.9" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="MQ" data-to="MACHO" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="235.258,375.9 235.258,405.9 351.743,405.9 351.743,435.9" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="RQ" data-to="CARVE" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="622.5039999999999,375.9 622.504,435.9" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="SEC" data-to="NORMALIZE" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="118.773,472.79999999999995 118.773,490.79999999999995 487.1235,490.79999999999995 487.1235,508.79999999999995" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="MACHO" data-to="NORMALIZE" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="351.743,472.79999999999995 351.743,490.79999999999995 487.1235,490.79999999999995 487.1235,508.79999999999995" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="CARVE" data-to="NORMALIZE" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="622.504,472.79999999999995 622.504,490.79999999999995 487.1235,490.79999999999995 487.1235,508.79999999999995" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="POLICY" data-to="NORMALIZE" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="872.5169999999999,472.79999999999995 872.5169999999999,490.79999999999995 487.1235,490.79999999999995 487.1235,508.79999999999995" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="NORMALIZE" data-to="STORE" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="487.1235,545.6999999999999 487.12350000000004,593.6999999999999" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="STORE" data-to="UI" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="487.12350000000004,630.5999999999999 487.12350000000004,654.5999999999999 378.23375,654.5999999999999 378.23375,678.5999999999999" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="STORE" data-to="EXPORT" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="487.12350000000004,630.5999999999999 487.12350000000004,654.5999999999999 596.01325,654.5999999999999 596.01325,678.5999999999999" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<g class="edge-label" data-from="FC" data-to="MQ" data-label="Mach-O or bundle">
+  <rect x="184.75799999999998" y="265.70000000000005" width="100.81000000000003" height="30.3" rx="2" ry="2" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+  <text x="235.163" y="280.85" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-sec)" dy="3.8499999999999996">Mach-O or bundle</text>
+</g>
+<g class="edge-label" data-from="FC" data-to="RQ" data-label="plist or other file">
+  <rect x="577.004" y="265.70000000000005" width="90.71200000000003" height="30.3" rx="2" ry="2" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+  <text x="622.36" y="280.85" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-sec)" dy="3.8499999999999996">plist or other file</text>
+</g>
+<g class="node" data-id="FS" data-label="Filesystem roots" data-shape="rectangle">
+  <rect x="314.1333333333333" y="40" width="139.02100000000002" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="383.6438333333333" y="58.45" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Filesystem roots</text>
+</g>
+<g class="node" data-id="DE" data-label="Directory enumerator" data-shape="rectangle">
+  <rect x="299.31333333333333" y="124.9" width="168.661" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="383.6438333333333" y="143.35000000000002" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Directory enumerator</text>
+</g>
+<g class="node" data-id="FC" data-label="Fast file classifier" data-shape="rectangle">
+  <rect x="311.5398333333333" y="209.8" width="144.20800000000003" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="383.6438333333333" y="228.25" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Fast file classifier</text>
+</g>
+<g class="node" data-id="MQ" data-label="Signed-code queue" data-shape="rectangle">
+  <rect x="157.226" y="339" width="156.06400000000002" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="235.258" y="357.45" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Signed-code queue</text>
+</g>
+<g class="node" data-id="RQ" data-label="Raw-file queue" data-shape="rectangle">
+  <rect x="559.2919999999999" y="339" width="126.424" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="622.5039999999999" y="357.45" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Raw-file queue</text>
+</g>
+<g class="node" data-id="SEC" data-label="Security.framework" data-shape="rectangle">
+  <rect x="40" y="435.9" width="157.546" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="118.773" y="454.34999999999997" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Security.framework</text>
+</g>
+<g class="node" data-id="MACHO" data-label="Mach-O slice and SuperBlob parser" data-shape="rectangle">
+  <rect x="225.546" y="435.9" width="252.394" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="351.743" y="454.34999999999997" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Mach-O slice and SuperBlob parser</text>
+</g>
+<g class="node" data-id="CARVE" data-label="Bounded plist and strings carver" data-shape="rectangle">
+  <rect x="505.94" y="435.9" width="233.128" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="622.504" y="454.34999999999997" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Bounded plist and strings carver</text>
+</g>
+<g class="node" data-id="NORMALIZE" data-label="Evidence normalization" data-shape="rectangle">
+  <rect x="397.606" y="508.79999999999995" width="179.03499999999994" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="487.1235" y="527.25" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Evidence normalization</text>
+</g>
+<g class="node" data-id="POLICY" data-label="RunningBoard policy catalog" data-shape="rectangle">
+  <rect x="767.068" y="435.9" width="210.898" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="872.5169999999999" y="454.34999999999997" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">RunningBoard policy catalog</text>
+</g>
+<g class="node" data-id="STORE" data-label="Indexed result store" data-shape="rectangle">
+  <rect x="407.6095" y="593.6999999999999" width="159.02800000000002" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="487.12350000000004" y="612.15" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Indexed result store</text>
+</g>
+<g class="node" data-id="UI" data-label="SwiftUI interface" data-shape="rectangle">
+  <rect x="310.94624999999996" y="678.5999999999999" width="134.57500000000002" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="378.23375" y="697.05" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">SwiftUI interface</text>
+</g>
+<g class="node" data-id="EXPORT" data-label="JSON, CSV, and coverage exports" data-shape="rectangle">
+  <rect x="473.52125" y="678.5999999999999" width="244.984" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="596.01325" y="697.05" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">JSON, CSV, and coverage exports</text>
+</g>
+</svg>

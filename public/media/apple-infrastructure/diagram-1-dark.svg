@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880.9849999999999 599.7" width="880.9849999999999" height="599.7" style="--bg:#0f1216;--fg:#e7eaee;--accent:#5eead4;--surface:#161b21;--border:#2a313a">
+<style>
+  
+  text { font-family: '-apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Inter, sans-serif', system-ui, sans-serif; }
+  svg {
+    /* Derived from --bg and --fg (overridable via --line, --accent, etc.) */
+    --_text:          var(--fg);
+    --_text-sec:      var(--muted, color-mix(in srgb, var(--fg) 60%, var(--bg)));
+    --_text-muted:    var(--muted, color-mix(in srgb, var(--fg) 40%, var(--bg)));
+    --_text-faint:    color-mix(in srgb, var(--fg) 25%, var(--bg));
+    --_line:          var(--line, color-mix(in srgb, var(--fg) 50%, var(--bg)));
+    --_arrow:         var(--accent, color-mix(in srgb, var(--fg) 85%, var(--bg)));
+    --_node-fill:     var(--surface, color-mix(in srgb, var(--fg) 3%, var(--bg)));
+    --_node-stroke:   var(--border, color-mix(in srgb, var(--fg) 20%, var(--bg)));
+    --_group-fill:    var(--bg);
+    --_group-hdr:     color-mix(in srgb, var(--fg) 5%, var(--bg));
+    --_inner-stroke:  color-mix(in srgb, var(--fg) 12%, var(--bg));
+    --_key-badge:     color-mix(in srgb, var(--fg) 10%, var(--bg));
+  }
+</style>
+<defs>
+  <marker id="arrowhead" markerWidth="8" markerHeight="5" refX="7" refY="2.5" orient="auto">
+    <polygon points="0 0, 8 2.5, 0 5" fill="var(--_arrow)" stroke="var(--_arrow)" stroke-width="0.75" stroke-linejoin="round" />
+  </marker>
+  <marker id="arrowhead-start" markerWidth="8" markerHeight="5" refX="1" refY="2.5" orient="auto-start-reverse">
+    <polygon points="8 0, 0 2.5, 8 5" fill="var(--_arrow)" stroke="var(--_arrow)" stroke-width="0.75" stroke-linejoin="round" />
+  </marker>
+</defs>
+<g class="subgraph" data-id="AppleCloud" data-label="Apple Cloud / Service Infrastructure">
+  <rect x="390.64" y="259.20000000000005" width="363.23600000000005" height="300.5" rx="0" ry="0" fill="var(--_group-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <rect x="390.64" y="259.20000000000005" width="363.23600000000005" height="28" rx="0" ry="0" fill="var(--_group-hdr)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <text x="402.64" y="273.20000000000005" font-size="12" font-weight="600" fill="var(--_text-sec)" dy="4.199999999999999">Apple Cloud / Service Infrastructure</text>
+</g>
+<g class="subgraph" data-id="Mac" data-label="macOS">
+  <rect x="281.829" y="40" width="559.156" height="96.9" rx="0" ry="0" fill="var(--_group-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <rect x="281.829" y="40" width="559.156" height="28" rx="0" ry="0" fill="var(--_group-hdr)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <text x="293.829" y="54" font-size="12" font-weight="600" fill="var(--_text-sec)" dy="4.199999999999999">macOS</text>
+</g>
+<polyline class="edge" data-from="Mac" data-to="AppleCloud" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="HTTPS / network requests" points="393.271,136.9 393.271,178.9 572.258,178.9 572.258,259.20000000000005" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="Relay" data-to="Akamai" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="207.283875,227.8 207.283875,258.65 82.464,258.65 82.464,289.5" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="Relay" data-to="Cloudflare" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="207.283875,227.8 207.283875,258.65 204.284,258.65 204.284,289.5" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="Relay" data-to="Fastly" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="207.283875,227.8 207.283875,258.65 323.14,258.65 323.14,289.5" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="Akamai" data-to="Internet" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="82.464,326.4 82.464,343.55 202.802,343.55 202.802,360.70000000000005" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="Cloudflare" data-to="Internet" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="204.284,326.4 204.284,343.55 202.802,343.55 202.802,360.70000000000005" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="Fastly" data-to="Internet" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="323.14,326.4 323.14,343.55 202.802,343.55 202.802,360.70000000000005" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="NSP" data-to="Relay" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="383.27099999999996,120.9 383.271,178.9 207.283875,178.9 207.283875,190.9" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="Services" data-to="Daiquiri" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="574.1105,343.3 574.1105,405.00000000000006" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="Daiquiri" data-to="K8s" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="574.1105,441.9000000000001 574.1105,465.9000000000001 484.3015,465.9000000000001 484.3015,489.9000000000001" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="Daiquiri" data-to="AWS" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="574.1105,441.9000000000001 574.1105,465.9000000000001 663.9195,465.9000000000001 663.9195,489.9000000000001" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<g class="edge-label" data-from="Mac" data-to="AppleCloud" data-label="HTTPS / network requests">
+  <rect x="500.7580000000001" y="185.9" width="142.39000000000001" height="30.3" rx="2" ry="2" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+  <text x="571.9530000000001" y="201.05" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-sec)" dy="3.8499999999999996">HTTPS / network requests</text>
+</g>
+<g class="node" data-id="Relay" data-label="Apple Private Relay ingress" data-shape="rectangle">
+  <rect x="104.428375" y="190.9" width="205.71099999999998" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="207.283875" y="209.35000000000002" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Apple Private Relay ingress</text>
+</g>
+<g class="node" data-id="Akamai" data-label="Akamai" data-shape="rectangle">
+  <rect x="40" y="289.5" width="84.928" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="82.464" y="307.95" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Akamai</text>
+</g>
+<g class="node" data-id="Cloudflare" data-label="Cloudflare" data-shape="rectangle">
+  <rect x="152.928" y="289.5" width="102.71199999999999" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="204.284" y="307.95" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Cloudflare</text>
+</g>
+<g class="node" data-id="Fastly" data-label="Fastly" data-shape="rectangle">
+  <rect x="283.64" y="289.5" width="79" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="323.14" y="307.95" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Fastly</text>
+</g>
+<g class="node" data-id="Internet" data-label="Internet destination" data-shape="rectangle">
+  <rect x="126.62249999999999" y="360.70000000000005" width="152.359" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="202.802" y="379.15000000000003" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Internet destination</text>
+</g>
+<g class="node" data-id="Services" data-label="Apple Services
+News · App Store · Account Services" data-shape="rectangle">
+  <rect x="442.7265" y="289.5" width="262.76800000000003" height="53.800000000000004" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="574.1105" y="316.4" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="574.1105" dy="-3.9000000000000012">Apple Services</tspan><tspan x="574.1105" dy="16.900000000000002">News · App Store · Account Services</tspan></text>
+</g>
+<g class="node" data-id="Daiquiri" data-label="Daiquiri" data-shape="rectangle">
+  <rect x="530.1645" y="405.00000000000006" width="87.892" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="574.1105" y="423.45000000000005" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Daiquiri</text>
+</g>
+<g class="node" data-id="K8s" data-label="Kubernetes-hosted
+service instances" data-shape="rectangle">
+  <rect x="406.64" y="489.9000000000001" width="155.32299999999998" height="53.800000000000004" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="484.3015" y="516.8000000000001" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="484.3015" dy="-3.9000000000000012">Kubernetes-hosted</tspan><tspan x="484.3015" dy="16.900000000000002">service instances</tspan></text>
+</g>
+<g class="node" data-id="AWS" data-label="AWS-hosted
+service instances" data-shape="rectangle">
+  <rect x="589.963" y="489.9000000000001" width="147.913" height="53.800000000000004" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="663.9195" y="516.8000000000001" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="663.9195" dy="-3.9000000000000012">AWS-hosted</tspan><tspan x="663.9195" dy="16.900000000000002">service instances</tspan></text>
+</g>
+<g class="node" data-id="NW" data-label="Network.framework" data-shape="rectangle">
+  <rect x="496.71299999999997" y="84" width="156.06400000000002" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="574.745" y="102.45" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Network.framework</text>
+</g>
+<g class="node" data-id="MDNS" data-label="mDNSResponder" data-shape="rectangle">
+  <rect x="680.777" y="84" width="144.208" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="752.8810000000001" y="102.45" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">mDNSResponder</text>
+</g>
+<g class="node" data-id="NSP" data-label="networkserviceproxy" data-shape="rectangle">
+  <rect x="297.829" y="84" width="170.88399999999996" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="383.27099999999996" y="102.45" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">networkserviceproxy</text>
+</g>
+</svg>

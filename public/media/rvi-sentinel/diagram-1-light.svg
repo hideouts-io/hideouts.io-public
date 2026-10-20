@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 601.0068333333332 783.4999999999999" width="601.0068333333332" height="783.4999999999999" style="--bg:#ffffff;--fg:#1b1f24;--accent:#0f766e;--surface:#f5f7f9;--border:#d5dbe1">
+<style>
+  
+  text { font-family: '-apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Inter, sans-serif', system-ui, sans-serif; }
+  svg {
+    /* Derived from --bg and --fg (overridable via --line, --accent, etc.) */
+    --_text:          var(--fg);
+    --_text-sec:      var(--muted, color-mix(in srgb, var(--fg) 60%, var(--bg)));
+    --_text-muted:    var(--muted, color-mix(in srgb, var(--fg) 40%, var(--bg)));
+    --_text-faint:    color-mix(in srgb, var(--fg) 25%, var(--bg));
+    --_line:          var(--line, color-mix(in srgb, var(--fg) 50%, var(--bg)));
+    --_arrow:         var(--accent, color-mix(in srgb, var(--fg) 85%, var(--bg)));
+    --_node-fill:     var(--surface, color-mix(in srgb, var(--fg) 3%, var(--bg)));
+    --_node-stroke:   var(--border, color-mix(in srgb, var(--fg) 20%, var(--bg)));
+    --_group-fill:    var(--bg);
+    --_group-hdr:     color-mix(in srgb, var(--fg) 5%, var(--bg));
+    --_inner-stroke:  color-mix(in srgb, var(--fg) 12%, var(--bg));
+    --_key-badge:     color-mix(in srgb, var(--fg) 10%, var(--bg));
+  }
+</style>
+<defs>
+  <marker id="arrowhead" markerWidth="8" markerHeight="5" refX="7" refY="2.5" orient="auto">
+    <polygon points="0 0, 8 2.5, 0 5" fill="var(--_arrow)" stroke="var(--_arrow)" stroke-width="0.75" stroke-linejoin="round" />
+  </marker>
+  <marker id="arrowhead-start" markerWidth="8" markerHeight="5" refX="1" refY="2.5" orient="auto-start-reverse">
+    <polygon points="8 0, 0 2.5, 8 5" fill="var(--_arrow)" stroke="var(--_arrow)" stroke-width="0.75" stroke-linejoin="round" />
+  </marker>
+</defs>
+<g class="subgraph" data-id="Hosts" data-label="Authorized capture host">
+  <rect x="69.4212333333333" y="199.2" width="372.869" height="113.80000000000001" rx="0" ry="0" fill="var(--_group-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <rect x="69.4212333333333" y="199.2" width="372.869" height="28" rx="0" ry="0" fill="var(--_group-hdr)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <text x="81.4212333333333" y="213.2" font-size="12" font-weight="600" fill="var(--_text-sec)" dy="4.199999999999999">Authorized capture host</text>
+</g>
+<polyline class="edge" data-from="Capture" data-to="GUI" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="157.0989833333333,367 157.0989833333333,355 40.04,355 40.04,88.9 252.68266666666665,88.9 252.68266666666665,76.9" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="GUI" data-to="Analyzer" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="320.39806666666664,76.9 320.39806666666664,427.9 368.9432833333333,427.9 368.9432833333333,451.9" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="Capture" data-to="Analyzer" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="206.1184833333333,403.9 206.1184833333333,427.9 368.9432833333333,427.9 368.9432833333333,451.9" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="Analyzer" data-to="Tshark" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="368.94328333333334,488.79999999999995 368.94328333333334,536.8" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="Tshark" data-to="Metadata" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="368.94328333333334,573.6999999999999 368.94328333333334,621.6999999999999" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="Metadata" data-to="Report" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="368.9432833333333,658.5999999999999 368.9432833333333,682.5999999999999 148.48783333333333,682.5999999999999 148.48783333333333,706.5999999999999" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="Metadata" data-to="Baseline" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="368.9432833333333,658.5999999999999 368.9432833333333,682.5999999999999 421.4718333333333,682.5999999999999 421.4718333333333,706.5999999999999" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="Device" data-to="Mac" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="USB" points="100.69040000000001,76.9 100.69040000000001,112.9 109.6130333333333,112.9 109.6130333333333,181.2 141.39456666666663,181.2 141.39456666666663,243.2" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="Device" data-to="Cross" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="USB" points="140.11473333333333,76.9 140.11473333333333,112.9 290.65024999999997,112.9 290.65024999999997,181.2 329.6575666666667,181.2 329.6575666666667,243.2" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="GUI" data-to="Mac" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="orchestrates" points="297.82626666666664,76.9 297.82626666666664,100.9 227.22424999999998,100.9 227.22424999999998,181.2 197.36789999999996,181.2 197.36789999999996,243.2" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="GUI" data-to="Cross" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="orchestrates" points="342.96986666666663,76.9 342.96986666666663,112.9 423.4536166666666,112.9 423.4536166666666,181.2 377.9739,181.2 377.9739,243.2" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="Mac" data-to="Capture" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="169.3812333333333,297 169.3812333333333,332 206.1184833333333,332 206.1184833333333,367" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="Cross" data-to="Capture" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="353.81573333333336,297 353.81573333333336,332 206.1184833333333,332 206.1184833333333,367" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<g class="edge-label" data-from="Device" data-to="Mac" data-label="USB">
+  <rect x="89.6130333333333" y="119.9" width="39.03399999999999" height="30.3" rx="2" ry="2" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+  <text x="109.1300333333333" y="135.05" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-sec)" dy="3.8499999999999996">USB</text>
+</g>
+<g class="edge-label" data-from="Device" data-to="Cross" data-label="USB">
+  <rect x="270.65024999999997" y="119.9" width="39.03399999999999" height="30.3" rx="2" ry="2" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+  <text x="290.16724999999997" y="135.05" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-sec)" dy="3.8499999999999996">USB</text>
+</g>
+<g class="edge-label" data-from="GUI" data-to="Mac" data-label="orchestrates">
+  <rect x="187.22424999999998" y="119.9" width="79.42600000000002" height="30.3" rx="2" ry="2" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+  <text x="226.93725" y="135.05" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-sec)" dy="3.8499999999999996">orchestrates</text>
+</g>
+<g class="edge-label" data-from="GUI" data-to="Cross" data-label="orchestrates">
+  <rect x="383.4536166666666" y="119.9" width="79.42600000000002" height="30.3" rx="2" ry="2" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+  <text x="423.16661666666664" y="135.05" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-sec)" dy="3.8499999999999996">orchestrates</text>
+</g>
+<g class="node" data-id="Device" data-label="iPhone / iPad" data-shape="rectangle">
+  <rect x="61.26606666666668" y="40" width="118.27299999999998" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="120.40256666666667" y="58.45" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">iPhone / iPad</text>
+</g>
+<g class="node" data-id="Capture" data-label="PCAP / PCAPNG evidence" data-shape="rectangle">
+  <rect x="108.07948333333331" y="367" width="196.07799999999997" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="206.1184833333333" y="385.45" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">PCAP / PCAPNG evidence</text>
+</g>
+<g class="node" data-id="Tshark" data-label="tshark field extraction" data-shape="rectangle">
+  <rect x="284.9832833333333" y="536.8" width="167.92000000000002" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="368.9432833333333" y="555.25" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">tshark field extraction</text>
+</g>
+<g class="node" data-id="GUI" data-label="PySide6 capture + analysis GUI" data-shape="rectangle">
+  <rect x="207.53906666666666" y="40" width="225.718" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="320.39806666666664" y="58.45" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">PySide6 capture + analysis GUI</text>
+</g>
+<g class="node" data-id="Analyzer" data-label="analyze.py CLI engine" data-shape="rectangle">
+  <rect x="282.7602833333333" y="451.9" width="172.36599999999999" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="368.9432833333333" y="470.34999999999997" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">analyze.py CLI engine</text>
+</g>
+<g class="node" data-id="Metadata" data-label="IP / ports / DNS / TLS SNI / QUIC heuristics" data-shape="rectangle">
+  <rect x="226.44428333333337" y="621.6999999999999" width="284.9979999999999" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="368.9432833333333" y="640.15" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">IP / ports / DNS / TLS SNI / QUIC heuristics</text>
+</g>
+<g class="node" data-id="Report" data-label="Current JSON + CSV reports" data-shape="rectangle">
+  <rect x="43.038833333333336" y="706.5999999999999" width="210.898" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="148.48783333333333" y="725.05" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Current JSON + CSV reports</text>
+</g>
+<g class="node" data-id="Baseline" data-label="Persistent findings_master.json baseline" data-shape="rectangle">
+  <rect x="281.9368333333333" y="706.5999999999999" width="279.06999999999994" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="421.4718333333333" y="725.05" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Persistent findings_master.json baseline</text>
+</g>
+<g class="node" data-id="Mac" data-label="macOS
+rvictl + rvi0 + tcpdump" data-shape="rectangle">
+  <rect x="85.4212333333333" y="243.2" width="167.92000000000002" height="53.800000000000004" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="169.3812333333333" y="270.09999999999997" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="169.3812333333333" dy="-3.9000000000000012">macOS</tspan><tspan x="169.3812333333333" dy="16.900000000000002">rvictl + rvi0 + tcpdump</tspan></text>
+</g>
+<g class="node" data-id="Cross" data-label="Linux / Windows
+gh2o/rvi_capture" data-shape="rectangle">
+  <rect x="281.3412333333333" y="243.2" width="144.949" height="53.800000000000004" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="353.81573333333336" y="270.09999999999997" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="353.81573333333336" dy="-3.9000000000000012">Linux / Windows</tspan><tspan x="353.81573333333336" dy="16.900000000000002">gh2o/rvi_capture</tspan></text>
+</g>
+</svg>

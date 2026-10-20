@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 460" width="100%" height="100%">
+  <rect width="920" height="460" fill="#0d1117" rx="10"/>
+  <rect x="20" y="20" width="880" height="420" fill="#161b22" stroke="#30363d" stroke-width="1.5" rx="8"/>
+  <text x="40" y="55" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,monospace" font-size="16" font-weight="bold">ARCHITECTURE: Apple Restore Engine (ramrod) Execution Chain</text>
+  <text x="40" y="80" fill="#8b949e" font-family="-apple-system,BlinkMacSystemFont,monospace" font-size="12">Source: Mach-O Load Commands, Binary Symbols, and Entitlements Analysis</text>
+
+  <!-- Box 1: Invocations -->
+  <rect x="40" y="110" width="260" height="300" fill="#0d1117" stroke="#388bfd" rx="6"/>
+  <text x="55" y="135" fill="#58a6ff" font-family="SFMono-Regular,Consolas,monospace" font-size="13" font-weight="bold">1. ramrod Operations</text>
+  <text x="55" y="165" fill="#7ee787" font-family="SFMono-Regular,Consolas,monospace" font-size="11">--restore / --restore+art</text>
+  <text x="55" y="185" fill="#e6edf3" font-family="SFMono-Regular,Consolas,monospace" font-size="11">Applies system image &amp; ART</text>
+  <text x="55" y="215" fill="#7ee787" font-family="SFMono-Regular,Consolas,monospace" font-size="11">--erase</text>
+  <text x="55" y="235" fill="#e6edf3" font-family="SFMono-Regular,Consolas,monospace" font-size="11">Reconstructs APFS containers</text>
+  <text x="55" y="265" fill="#7ee787" font-family="SFMono-Regular,Consolas,monospace" font-size="11">--preflight / --query</text>
+  <text x="55" y="285" fill="#e6edf3" font-family="SFMono-Regular,Consolas,monospace" font-size="11">Interrogates ZhuGe hardware ID</text>
+  <text x="55" y="315" fill="#7ee787" font-family="SFMono-Regular,Consolas,monospace" font-size="11">--sendtunabletables</text>
+  <text x="55" y="335" fill="#e6edf3" font-family="SFMono-Regular,Consolas,monospace" font-size="11">Flashes voltage/clock matrices</text>
+  <text x="55" y="365" fill="#7ee787" font-family="SFMono-Regular,Consolas,monospace" font-size="11">--stashExpectedFWVersion</text>
+  <text x="55" y="385" fill="#e6edf3" font-family="SFMono-Regular,Consolas,monospace" font-size="11">Writes NVRAM/Preboot targets</text>
+
+  <!-- Box 2: Plugins -->
+  <rect x="330" y="110" width="260" height="300" fill="#0d1117" stroke="#d29922" rx="6"/>
+  <text x="345" y="135" fill="#f0883e" font-family="SFMono-Regular,Consolas,monospace" font-size="13" font-weight="bold">2. patchd Plugin Pipeline</text>
+  <text x="345" y="165" fill="#f0883e" font-family="SFMono-Regular,Consolas,monospace" font-size="11">patchd_macos_patch</text>
+  <text x="345" y="185" fill="#e6edf3" font-family="SFMono-Regular,Consolas,monospace" font-size="11">Entry point for update patcher</text>
+  <text x="345" y="215" fill="#f0883e" font-family="SFMono-Regular,Consolas,monospace" font-size="11">patchd_macos_seal_system_volume</text>
+  <text x="345" y="235" fill="#e6edf3" font-family="SFMono-Regular,Consolas,monospace" font-size="11">Traverses tree &amp; seals SSV</text>
+  <text x="345" y="265" fill="#f0883e" font-family="SFMono-Regular,Consolas,monospace" font-size="11">patchd_macos_fixup_preboot</text>
+  <text x="345" y="285" fill="#e6edf3" font-family="SFMono-Regular,Consolas,monospace" font-size="11">Populates EFI Preboot assets</text>
+  <text x="345" y="315" fill="#f0883e" font-family="SFMono-Regular,Consolas,monospace" font-size="11">patchd_macos_check_efi_features</text>
+  <text x="345" y="335" fill="#e6edf3" font-family="SFMono-Regular,Consolas,monospace" font-size="11">Verifies ROM capabilities</text>
+  <text x="345" y="365" fill="#f0883e" font-family="SFMono-Regular,Consolas,monospace" font-size="11">patchd_macos_set_bless_to_fail_back</text>
+  <text x="345" y="385" fill="#e6edf3" font-family="SFMono-Regular,Consolas,monospace" font-size="11">Enables fallback boot on error</text>
+
+  <!-- Box 3: Hardware UserClients -->
+  <rect x="620" y="110" width="260" height="300" fill="#0d1117" stroke="#a371f7" rx="6"/>
+  <text x="635" y="135" fill="#bc8cff" font-family="SFMono-Regular,Consolas,monospace" font-size="13" font-weight="bold">3. Direct Hardware Access</text>
+  <text x="635" y="165" fill="#bc8cff" font-family="SFMono-Regular,Consolas,monospace" font-size="11">AppleNVMeUpdateUC</text>
+  <text x="635" y="185" fill="#e6edf3" font-family="SFMono-Regular,Consolas,monospace" font-size="11">Raw NAND controller flashing</text>
+  <text x="635" y="215" fill="#bc8cff" font-family="SFMono-Regular,Consolas,monospace" font-size="11">AppleHPMUserClient</text>
+  <text x="635" y="235" fill="#e6edf3" font-family="SFMono-Regular,Consolas,monospace" font-size="11">Type-C Power Delivery chip</text>
+  <text x="635" y="265" fill="#bc8cff" font-family="SFMono-Regular,Consolas,monospace" font-size="11">AppleImage3NORAccessUserClient</text>
+  <text x="635" y="285" fill="#e6edf3" font-family="SFMono-Regular,Consolas,monospace" font-size="11">SPI NOR ROM read/write</text>
+  <text x="635" y="315" fill="#bc8cff" font-family="SFMono-Regular,Consolas,monospace" font-size="11">AppleSMCClient</text>
+  <text x="635" y="335" fill="#e6edf3" font-family="SFMono-Regular,Consolas,monospace" font-size="11">System Management Controller</text>
+  <text x="635" y="365" fill="#bc8cff" font-family="SFMono-Regular,Consolas,monospace" font-size="11">IOAESAcceleratorUserClient</text>
+  <text x="635" y="385" fill="#e6edf3" font-family="SFMono-Regular,Consolas,monospace" font-size="11">Hardware AES FDR crypto keys</text>
+</svg>

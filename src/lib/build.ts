@@ -26,8 +26,8 @@ const runId = env.GITHUB_RUN_ID;
 const TRIGGERS: Record<string, string> = {
   push: 'a push to main',
   pull_request: 'a pull request',
-  schedule: 'the nightly content sync',
-  repository_dispatch: 'a project README update',
+  schedule: 'nightly validation',
+  repository_dispatch: 'a project update validation',
   workflow_dispatch: 'a manual run',
 };
 

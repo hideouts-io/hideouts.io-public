@@ -5,11 +5,10 @@ This repository is the website only. To contribute to an app or a research proje
 ## Before you start
 
 - Node 24 or later (`nvm use` reads `.nvmrc`).
-- Optional: a GitHub token (`export GITHUB_TOKEN=$(gh auth token)`) so content fetches aren't rate-limited.
+- A GitHub token is needed only for a deliberate content refresh.
 
 ```sh
 npm ci
-npm run content
 npm test
 npm run preview
 ```
@@ -17,7 +16,7 @@ npm run preview
 ## Making changes
 
 - **Project copy** (names, taglines, highlights, categories, traits) lives in [`src/data/projects.ts`](src/data/projects.ts). Keep every claim traceable to the project's README. Don't describe capabilities a tool doesn't have.
-- **Project details** (README, releases, license, stars) come from GitHub. Fix them in the project's repository, not here.
+- **Project details** (README, releases, license, stars) come from reviewed GitHub snapshots. Fix them in the project's repository, then propose a separate reviewed snapshot update here.
 - **Adding a repository** to the site is a deliberate decision: see "The allowlist" in the [README](README.md).
 - **No inline scripts, inline event handlers, or inline `style` attributes.** The Content Security Policy blocks them. Use `src/scripts/site.ts` and CSS classes.
 - **No third-party requests**: no external fonts, images, scripts, analytics, or embeds.

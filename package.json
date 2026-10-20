@@ -11,7 +11,7 @@
     "content": "npm run content:fetch && npm run content:render",
     "icons": "node scripts/render-icons.ts",
     "dev": "astro dev",
-    "build": "astro build && pagefind --site dist --quiet",
+    "build": "node scripts/check-site-snapshot.ts && astro build && node scripts/apply-site-snapshot.ts && pagefind --site dist --quiet",
     "preview": "astro preview",
     "astro": "astro",
     "check:allowlist": "node scripts/check-allowlist.ts",

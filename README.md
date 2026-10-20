@@ -2,11 +2,11 @@
 
 Source for [hideouts.io](https://hideouts.io), the home of the open-source macOS and iOS privacy and security apps and research published at [github.com/hideouts-io](https://github.com/hideouts-io).
 
-It's a static [Astro](https://astro.build) site. Project pages are generated from each repository's README at build time, so GitHub stays the source of truth: update a README and the site follows on the next build.
+It's a static [Astro](https://astro.build) site. Project pages use reviewed snapshots of each repository's README. A README change reaches the site through a separate reviewed content update.
 
 - **Only allowlisted software repositories are published.**
 - **Dark by default.** The site ignores the device's light/dark setting and always opens dark; the header toggle switches to light and remembers that choice in the browser only.
-- **No tracking and no third-party requests.** No analytics, no cookies, no external fonts or images. README images are copied onto the site at build time.
+- **No tracking and no third-party requests.** No analytics, no cookies, no external fonts or images. README images are included in the reviewed site snapshot.
 - **Strict Content Security Policy.** Scripts and styles are allowed by hash only, with no `unsafe-inline`.
 
 ## Local development
@@ -15,9 +15,7 @@ Requires Node 24 or later (see [`.nvmrc`](.nvmrc); `nvm use` picks it up).
 
 ```sh
 npm ci
-export GITHUB_TOKEN=$(gh auth token)   # optional locally, required in CI
-npm run content                        # fetch + render the allowlisted repos
-npm run build                          # build dist/ and the search index
+npm run build                          # verify the pinned snapshot, then build dist/ and search
 npm run verify                         # allowlist + internal link checks
 npm run preview                        # serve dist/ at http://localhost:4321
 ```
@@ -34,7 +32,7 @@ npm test    # lint, format check, type check, build, allowlist + link checks
 | --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `npm run content:fetch`           | Downloads README, metadata, latest release, contribution files, and README images for each allowlisted repo into `.cache/github/`.                                                                                      |
 | `npm run content:render`          | Renders READMEs to HTML (GitHub alerts, diagrams, syntax highlighting), makes responsive WebP images (640/1200/2000px), and generates share images. Output goes to `src/generated/`, `public/media/`, and `public/og/`. |
-| `npm run build`                   | `astro build`, then the Pagefind search index.                                                                                                                                                                          |
+| `npm run build`                   | `astro build`, verify and apply the reviewed site snapshot, then build the Pagefind search index.                                                                                                                       |
 | `npm run verify`                  | `check:allowlist` + `check:links`.                                                                                                                                                                                      |
 | `npm run check:allowlist`         | Fails if anything outside the allowlist appears in `dist/`.                                                                                                                                                             |
 | `npm run check:links`             | Fails if any internal link, image, or `#anchor` in `dist/` doesn't resolve.                                                                                                                                             |
@@ -43,11 +41,13 @@ npm test    # lint, format check, type check, build, allowlist + link checks
 | `npm run typecheck`               | `astro check`: TypeScript and Astro diagnostics.                                                                                                                                                                        |
 | `npm test`                        | All of the above except fetching content.                                                                                                                                                                               |
 
-Generated files (`.cache/`, `src/generated/`, `public/media/`, `public/og/`, `src/styles/shiki.generated.css`) are git-ignored and rebuilt on every CI run.
+The reviewed snapshot (`src/generated/`, `public/media/`, `public/og/`, `src/styles/shiki.generated.css`, and `site-snapshot/`) is committed with the site. The build checks every pinned file against `site-snapshot/manifest.txt`. `.cache/` is local only and is not used by ordinary or production builds.
 
-### When GitHub is unavailable
+### Refreshing project content
 
-The fetch step never leaves a half-written cache: each repository downloads into a temporary folder and replaces the old copy only when it's complete. If the API fails for a repository that has a cached copy (locally, or restored from the CI cache), the build keeps that copy and prints a warning. It fails only when there's nothing to fall back on, or when an allowlisted repository has been deleted or made private: stale copies of those are never published.
+`npm run content` fetches and renders the allowlisted repositories for review. It is a separate update operation, not a build step. Review its text, images, links, and generated outputs, then update and review the snapshot manifest and page fragments before merging. A changed or missing pinned file makes the normal build fail.
+
+The fetch step never leaves a half-written local cache: each repository downloads into a temporary folder and replaces the old copy only when it's complete. If the API fails for a repository that has a cached copy, the fetch can keep that copy and print a warning. It fails when there is nothing to fall back on, or when an allowlisted repository has been deleted or made private: stale copies of those are never published.
 
 A repository's **homepage** setting is linked ("Project site") only if it currently responds; a 4xx/5xx drops the link with a warning, so the site never points at a dead page.
 
@@ -85,7 +85,7 @@ It only warns when a README mentions another public repository that isn't listed
    },
    ```
 
-3. Run `npm run content && npm run build && npm run verify` and review the page.
+3. Refresh and review the content snapshot, its manifest, and the page; then run `npm run build && npm run verify`.
 
 The fields you write by hand (name, tagline, summary, highlights, traits, categories) are the curated layer. Everything else comes from GitHub: description, license, stars, latest release and checksums, last commit date, README, screenshots, logo, and whether the repo has Issues, Discussions, a contributing guide, and private vulnerability reporting.
 
@@ -126,7 +126,7 @@ This removes the heading and everything under it, up to the next heading of the 
 | `repository_dispatch` (`content-update`) | No               | Advisory            |
 | Manual (`workflow_dispatch`)             | Yes              | Blocking            |
 
-The nightly run validates the latest READMEs without publishing. A content-update dispatch also validates only:
+The nightly run validates the reviewed snapshot without publishing. A content-update dispatch also validates only; it does not fetch new README content:
 
 ```sh
 gh api repos/hideouts-io/hideouts.io-public/dispatches -f event_type=content-update

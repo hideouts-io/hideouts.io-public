@@ -1,0 +1,571 @@
+<main id="main" class="flex-1"><section class="relative overflow-hidden border-b border-line"><div class="hero-bg"></div><div class="container-x relative pt-8 pb-14 sm:pb-16"><nav aria-label="Breadcrumb" class="text-sm text-ink-3"><ol class="flex items-center gap-2"><li><a href="/apps/" class="hover:text-ink">Apps</a></li><li aria-hidden="true">/</li><li aria-current="page" class="truncate text-ink-2">Volume Mount Troubleshooter</li></ol></nav><div class="mt-10 grid gap-10 lg:grid-cols-[1.25fr_1fr]"><div><div class="flex flex-col items-start gap-5 sm:flex-row sm:items-center"><img src="/media/volume-mount-troubleshooter/img-03-640.webp" alt="" width="96" height="96" class="size-20 sm:size-24 shrink-0 object-contain"><div class="min-w-0"><h1 class="text-3xl font-semibold tracking-[-0.025em] text-ink sm:text-[2.75rem] sm:leading-tight">Volume Mount Troubleshooter</h1><div class="mt-3 flex flex-wrap gap-1.5"><span class="chip chip-accent"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class><rect x="3" y="4.5" width="18" height="11.5" rx="1.8"/><path d="M1.5 19.5h21"/><path d="M9.5 16v3.5M14.5 16v3.5"/></svg>macOS</span><span class="chip">Pre-1.0</span><span class="chip">Non-destructive</span><span class="chip">No network access</span></div></div></div><p class="mt-8 text-xl leading-8 font-medium tracking-tight text-pretty text-ink">Diagnose and mount external drives without risking them.</p><p class="mt-3 max-w-2xl leading-7 text-pretty text-ink-2">A native utility for identifying external storage and explicitly inspecting, mounting read-only, or safely ejecting a volume, with APFS and FileVault detection and every command shown in a built-in console.</p><p class="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-ink-3"><span>Categories:</span><a href="/apps/?category=diagnostics" class="text-ink-2 underline decoration-line-strong underline-offset-4 hover:text-ink">Diagnostics</a><a href="/apps/?category=utilities" class="text-ink-2 underline decoration-line-strong underline-offset-4 hover:text-ink">Utilities</a></p><p class="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-ink-3"><span>Topics:</span><a href="/topics/apfs/" class="font-mono text-ink-2 underline decoration-line-strong underline-offset-4 hover:text-ink">apfs</a><a href="/topics/appkit/" class="font-mono text-ink-2 underline decoration-line-strong underline-offset-4 hover:text-ink">appkit</a><a href="/topics/apple-silicon/" class="font-mono text-ink-2 underline decoration-line-strong underline-offset-4 hover:text-ink">apple-silicon</a><a href="/topics/macos/" class="font-mono text-ink-2 underline decoration-line-strong underline-offset-4 hover:text-ink">macos</a></p><div class="mt-8 flex flex-wrap gap-3"><a href="https://github.com/hideouts-io/VolumeMountTroubleshooter/releases/tag/v0.3.0" class="btn btn-primary" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class><path d="M12 3.5v12M7 11l5 5 5-5M4.5 20.5h15"/></svg> Download v0.3.0</a><a href="#quick-start" class="btn btn-ghost">Installation guide</a><a href="https://github.com/hideouts-io/VolumeMountTroubleshooter" class="btn btn-ghost" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class><path fill="currentColor" stroke="none" d="M12 1.5a10.5 10.5 0 0 0-3.32 20.46c.53.1.72-.23.72-.5v-1.86c-2.92.64-3.54-1.24-3.54-1.24-.48-1.21-1.17-1.54-1.17-1.54-.95-.65.08-.64.08-.64 1.06.08 1.61 1.08 1.61 1.08.94 1.6 2.46 1.14 3.06.87.1-.68.37-1.14.66-1.4-2.33-.27-4.78-1.17-4.78-5.19 0-1.14.41-2.08 1.08-2.82-.11-.26-.47-1.33.1-2.77 0 0 .88-.28 2.89 1.08a10 10 0 0 1 5.26 0c2-1.36 2.88-1.08 2.88-1.08.58 1.44.22 2.51.11 2.77.67.74 1.08 1.68 1.08 2.82 0 4.03-2.46 4.92-4.8 5.18.38.33.72.97.72 1.96v2.9c0 .28.19.61.73.5A10.5 10.5 0 0 0 12 1.5Z"/></svg> View on GitHub</a></div><!-- Download facts, next to the button (Objective-See pattern) --><div class="mt-5 space-y-2 text-sm text-ink-3"><p class="flex flex-wrap items-center gap-x-2 gap-y-1"><span class="font-mono text-ink-2">v0.3.0</span><span aria-hidden="true">·</span><time datetime="2026-09-01T05:04:23Z">Sep 1, 2026</time><span aria-hidden="true">·</span><span><span class="sr-only">Requires </span>macOS 13 or later, Apple silicon or Intel (universal)</span><span aria-hidden="true">·</span><a href="https://github.com/hideouts-io/VolumeMountTroubleshooter/releases" class="underline decoration-line-strong underline-offset-4 hover:text-ink" rel="noopener noreferrer">Changelog</a><span aria-hidden="true">·</span><a href="https://github.com/hideouts-io/VolumeMountTroubleshooter" class="underline decoration-line-strong underline-offset-4 hover:text-ink" rel="noopener noreferrer">Source</a></p><p class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="shrink-0"><path d="M12 2.8 4.5 5.6v5.7c0 4.6 3.1 8.6 7.5 9.9 4.4-1.3 7.5-5.3 7.5-9.9V5.6Z"/><path d="m9 12 2.2 2.2L15.5 10"/></svg><span>Ad-hoc signed · not notarized</span></p><details class="group/sha max-w-2xl rounded-lg border border-line bg-surface/60"><summary class="flex cursor-pointer items-center gap-2 px-3 py-2 text-ink-2 hover:text-ink [&amp;::-webkit-details-marker]:hidden"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="shrink-0"><path d="M12 11v3.5a8 8 0 0 1-1.6 4.8M8.5 9.5a3.5 3.5 0 0 1 7 0v3M5.5 16.5a13 13 0 0 0 .5-4V9.5a6 6 0 0 1 10.3-4.2M18 9.5v3c0 2.8-.5 5.5-1.6 8M8.9 21a11 11 0 0 0 1.4-2.5"/></svg>SHA-256 checksums<span class="ml-auto text-xs transition-transform group-open/sha:rotate-180" aria-hidden="true">▾</span></summary><div class="space-y-3 border-t border-line px-3 py-3"><ul class="space-y-2"><li><p class="text-xs text-ink-2">VolumeMountTroubleshooter-v0.3.0-macOS-universal.zip</p><code class="block font-mono text-[0.6875rem] break-all text-ink-3 select-all">1bec519e8e3ce3f5880ea8e908fdfbe58114b2e2f739ef5821ef75b685a44bcd</code></li></ul><p class="text-xs">Check a download with <code class="font-mono text-ink-2">shasum -a 256 VolumeMountTroubleshooter-v0.3.0-macOS-universal.zip</code> and compare the result. <a href="/verify/" class="text-accent underline underline-offset-4">Full verification guide</a></p></div></details></div></div><aside class="flex flex-col gap-4" aria-label="Project details"><div class="card border-l-2 p-5 [border-left-color:var(--accent)]"><p class="flex items-center gap-2 text-sm font-semibold text-ink"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="text-accent"><path d="M12 2.8 4.5 5.6v5.7c0 4.6 3.1 8.6 7.5 9.9 4.4-1.3 7.5-5.3 7.5-9.9V5.6Z"/><path d="m9 12 2.2 2.2L15.5 10"/></svg> Scope &amp; boundaries</p><p class="mt-2 text-sm leading-6 text-ink-2">Volume Mount Troubleshooter is a native macOS utility for identifying attached external storage, selecting one user-facing volume, and explicitly inspecting, mounting, unmounting, or safely ejecting it. It does not erase, partition, format, repair, force-eject, unlock encrypted storage, collect credentials, or prove that a disk is healthy. Every operational command and exit status is visible in the built-in console.</p></div><dl class="card divide-y divide-line text-sm"><div class="flex items-center justify-between gap-4 px-5 py-3"><dt class="flex items-center gap-2 text-ink-3"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8Z"/><circle cx="7.5" cy="7.5" r="1.3"/></svg>Status</dt><dd class="text-right text-ink">Pre-1.0 · v0.3.0</dd></div><div class="flex items-center justify-between gap-4 px-5 py-3"><dt class="flex items-center gap-2 text-ink-3"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Released</dt><dd class="text-right text-ink">Sep 1, 2026</dd></div><div class="flex items-center justify-between gap-4 px-5 py-3"><dt class="flex items-center gap-2 text-ink-3"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Last commit</dt><dd class="text-right text-ink">Oct 8, 2026</dd></div><div class="flex items-center justify-between gap-4 px-5 py-3"><dt class="flex items-center gap-2 text-ink-3"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class><path d="m8 7-5 5 5 5M16 7l5 5-5 5M13.5 4.5l-3 15"/></svg>Language</dt><dd class="text-right text-ink">Swift</dd></div><div class="flex items-center justify-between gap-4 px-5 py-3"><dt class="flex items-center gap-2 text-ink-3"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class><path d="M12 3v18M5 21h14M5 7h14M5 7l-3 7a3.5 3.5 0 0 0 6 0Zm14 0-3 7a3.5 3.5 0 0 0 6 0Z"/></svg>License</dt><dd class="text-right text-ink">MIT</dd></div><div class="flex items-center justify-between gap-4 px-5 py-3"><dt class="flex items-center gap-2 text-ink-3"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9Z"/></svg>GitHub stars</dt><dd class="text-right text-ink">1</dd></div></dl></aside></div></div></section><section class="container-x grid gap-4 pt-14 lg:grid-cols-[minmax(0,1fr)_20rem]" aria-label="Highlights and resources"><ul class="grid content-start gap-3 sm:grid-cols-2"><li class="card flex gap-3 p-4 text-sm leading-6 text-ink-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="mt-1 shrink-0 text-accent"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>Read-only mounting for sensitive media</li><li class="card flex gap-3 p-4 text-sm leading-6 text-ink-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="mt-1 shrink-0 text-accent"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>APFS container and FileVault detection</li><li class="card flex gap-3 p-4 text-sm leading-6 text-ink-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="mt-1 shrink-0 text-accent"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>Disk Arbitration monitoring, SMART and USB evidence</li><li class="card flex gap-3 p-4 text-sm leading-6 text-ink-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="mt-1 shrink-0 text-accent"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>Redacted reports for sharing</li></ul><nav class="card p-5" aria-labelledby="resources-heading"><h2 id="resources-heading" class="text-sm font-semibold text-ink">Resources</h2><ul class="mt-3 space-y-1 text-sm"><li><a href="https://github.com/hideouts-io/VolumeMountTroubleshooter" class="flex items-center gap-2.5 rounded-lg px-2 py-1.5 -mx-2 text-ink-2 hover:bg-surface-2 hover:text-ink" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="shrink-0 text-ink-3"><path fill="currentColor" stroke="none" d="M12 1.5a10.5 10.5 0 0 0-3.32 20.46c.53.1.72-.23.72-.5v-1.86c-2.92.64-3.54-1.24-3.54-1.24-.48-1.21-1.17-1.54-1.17-1.54-.95-.65.08-.64.08-.64 1.06.08 1.61 1.08 1.61 1.08.94 1.6 2.46 1.14 3.06.87.1-.68.37-1.14.66-1.4-2.33-.27-4.78-1.17-4.78-5.19 0-1.14.41-2.08 1.08-2.82-.11-.26-.47-1.33.1-2.77 0 0 .88-.28 2.89 1.08a10 10 0 0 1 5.26 0c2-1.36 2.88-1.08 2.88-1.08.58 1.44.22 2.51.11 2.77.67.74 1.08 1.68 1.08 2.82 0 4.03-2.46 4.92-4.8 5.18.38.33.72.97.72 1.96v2.9c0 .28.19.61.73.5A10.5 10.5 0 0 0 12 1.5Z"/></svg>Source code<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="ml-auto text-ink-3"><path d="M7 17 17 7M8 7h9v9"/></svg></a></li><li><a href="https://github.com/hideouts-io/VolumeMountTroubleshooter#readme" class="flex items-center gap-2.5 rounded-lg px-2 py-1.5 -mx-2 text-ink-2 hover:bg-surface-2 hover:text-ink" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="shrink-0 text-ink-3"><path d="M14 2.5H6.5a2 2 0 0 0-2 2v15a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V8Z"/><path d="M14 2.5V8h5.5M8.5 13h7M8.5 17h7"/></svg>Documentation (README)<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="ml-auto text-ink-3"><path d="M7 17 17 7M8 7h9v9"/></svg></a></li><li><a href="https://github.com/hideouts-io/VolumeMountTroubleshooter/releases" class="flex items-center gap-2.5 rounded-lg px-2 py-1.5 -mx-2 text-ink-2 hover:bg-surface-2 hover:text-ink" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="shrink-0 text-ink-3"><path d="M12 3.5v12M7 11l5 5 5-5M4.5 20.5h15"/></svg>Releases<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="ml-auto text-ink-3"><path d="M7 17 17 7M8 7h9v9"/></svg></a></li><li><a href="https://github.com/hideouts-io/VolumeMountTroubleshooter/issues" class="flex items-center gap-2.5 rounded-lg px-2 py-1.5 -mx-2 text-ink-2 hover:bg-surface-2 hover:text-ink" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="shrink-0 text-ink-3"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>Issues<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="ml-auto text-ink-3"><path d="M7 17 17 7M8 7h9v9"/></svg></a></li><li><a href="https://github.com/hideouts-io/.github/blob/main/CONTRIBUTING.md" class="flex items-center gap-2.5 rounded-lg px-2 py-1.5 -mx-2 text-ink-2 hover:bg-surface-2 hover:text-ink" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="shrink-0 text-ink-3"><path d="m8 7-5 5 5 5M16 7l5 5-5 5M13.5 4.5l-3 15"/></svg>Contributing guide (shared)<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="ml-auto text-ink-3"><path d="M7 17 17 7M8 7h9v9"/></svg></a></li><li><a href="https://github.com/hideouts-io/VolumeMountTroubleshooter/blob/main/LICENSE" class="flex items-center gap-2.5 rounded-lg px-2 py-1.5 -mx-2 text-ink-2 hover:bg-surface-2 hover:text-ink" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="shrink-0 text-ink-3"><path d="M12 3v18M5 21h14M5 7h14M5 7l-3 7a3.5 3.5 0 0 0 6 0Zm14 0-3 7a3.5 3.5 0 0 0 6 0Z"/></svg>License (MIT)<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="ml-auto text-ink-3"><path d="M7 17 17 7M8 7h9v9"/></svg></a></li><li><a href="https://github.com/hideouts-io/VolumeMountTroubleshooter/security/advisories/new" class="flex items-center gap-2.5 rounded-lg px-2 py-1.5 -mx-2 text-ink-2 hover:bg-surface-2 hover:text-ink" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="shrink-0 text-ink-3"><rect x="4.5" y="10.5" width="15" height="10.5" rx="2.2"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg>Report a vulnerability<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="ml-auto text-ink-3"><path d="M7 17 17 7M8 7h9v9"/></svg></a></li></ul></nav></section><section class="pt-14" aria-labelledby="shots-heading"><div class="container-x flex items-end justify-between gap-4"><h2 id="shots-heading" class="text-lg font-semibold text-ink">Screenshots</h2><p class="text-xs text-ink-3 print:hidden">Select an image to view full size</p></div><div class="container-x mt-5 overflow-x-auto pb-4 [scrollbar-width:thin]" role="region" aria-label="Screenshot gallery" tabindex="0"><ul class="flex snap-x snap-mandatory gap-4"><li class="w-[85%] shrink-0 snap-start sm:w-[46%] lg:w-[31%]"><a href="/media/volume-mount-troubleshooter/img-01.webp" data-lightbox data-caption="Volume Mount Troubleshooter main window with the application logo" class="card block overflow-hidden rounded-xl hover:border-line-strong"><img src="/media/volume-mount-troubleshooter/img-01.webp" srcset="/media/volume-mount-troubleshooter/img-01-640.webp 640w, /media/volume-mount-troubleshooter/img-01-1200.webp 1200w, /media/volume-mount-troubleshooter/img-01.webp 2000w" sizes="(min-width: 1024px) 400px, (min-width: 640px) 46vw, 85vw" alt="Volume Mount Troubleshooter main window with the application logo" width="2000" height="1543" loading="lazy" decoding="async" class="aspect-[16/10] w-full bg-surface-2 object-cover object-top"></a><p class="mt-2 line-clamp-2 text-xs leading-5 text-ink-3">Volume Mount Troubleshooter main window with the application logo</p></li></ul></div></section><section class="container-x pt-10" aria-labelledby="dl-heading"><div class="card p-5 sm:p-6"><div class="flex flex-wrap items-baseline justify-between gap-2"><h2 id="dl-heading" class="font-semibold text-ink">Downloads · <span class="font-mono">v0.3.0</span></h2><a href="https://github.com/hideouts-io/VolumeMountTroubleshooter/releases/tag/v0.3.0" class="text-sm text-accent" rel="noopener noreferrer">Release notes <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="inline"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div><ul class="mt-4 divide-y divide-line"><li class="flex flex-col gap-1 py-3 sm:flex-row sm:items-center sm:gap-4"><a href="https://github.com/hideouts-io/VolumeMountTroubleshooter/releases/download/v0.3.0/VolumeMountTroubleshooter-v0.3.0-macOS-universal.zip" class="inline-flex min-w-0 items-center gap-2 text-sm font-medium text-ink hover:text-accent" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="shrink-0 text-ink-3"><path d="M12 3.5v12M7 11l5 5 5-5M4.5 20.5h15"/></svg><span class="truncate">VolumeMountTroubleshooter-v0.3.0-macOS-universal.zip</span></a><span class="text-xs text-ink-3 sm:ml-auto">1.6 MB</span><code class="block truncate font-mono text-[0.6875rem] text-ink-3 sm:max-w-[22rem]" title="SHA-256 1bec519e8e3ce3f5880ea8e908fdfbe58114b2e2f739ef5821ef75b685a44bcd">sha256:1bec519e8e3ce3f5880ea8e908fdfbe58114b2e2f739ef5821ef75b685a44bcd</code></li><li class="flex flex-col gap-1 py-3 sm:flex-row sm:items-center sm:gap-4"><a href="https://github.com/hideouts-io/VolumeMountTroubleshooter/releases/download/v0.3.0/VolumeMountTroubleshooter-v0.3.0-SHA256SUMS.txt" class="inline-flex min-w-0 items-center gap-2 text-sm font-medium text-ink hover:text-accent" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="shrink-0 text-ink-3"><path d="M12 3.5v12M7 11l5 5 5-5M4.5 20.5h15"/></svg><span class="truncate">VolumeMountTroubleshooter-v0.3.0-SHA256SUMS.txt</span></a><span class="text-xs text-ink-3 sm:ml-auto">119 B</span><code class="block truncate font-mono text-[0.6875rem] text-ink-3 sm:max-w-[22rem]" title="SHA-256 d84d9b70f31a4a50de3f2f78c59e18c9114745b2b66abf587ed045806c6a91cd">sha256:d84d9b70f31a4a50de3f2f78c59e18c9114745b2b66abf587ed045806c6a91cd</code></li></ul><p class="mt-3 text-xs text-ink-3">Verify after downloading: <code class="font-mono">shasum -a 256 VolumeMountTroubleshooter-v0.3.0-macOS-universal.zip</code> · <a href="/verify/" class="text-accent underline underline-offset-4">How to verify a download</a></p></div></section><section class="container-x pt-16" aria-label="Documentation"><div class="flex flex-wrap items-baseline justify-between gap-2 border-b border-line pb-4"><p class="text-2xl font-semibold tracking-tight text-ink">Documentation</p><a href="https://github.com/hideouts-io/VolumeMountTroubleshooter#readme" class="inline-flex items-center gap-1 text-sm text-ink-3 hover:text-ink" rel="noopener noreferrer">Synced from the README on GitHub · Oct 8, 2026<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class><path d="M7 17 17 7M8 7h9v9"/></svg></a></div><div class="mt-10"><div class="grid gap-12 lg:grid-cols-[15rem_minmax(0,1fr)]"><nav class="toc hidden lg:block" aria-label="On this page"><div data-toc-scroll class="sticky top-24 max-h-[calc(100dvh-8rem)] overflow-y-auto pr-2"><p class="text-xs font-semibold tracking-wider text-ink-3 uppercase">On this page</p><ul class="mt-3 space-y-0.5 border-l border-line text-sm"><li><a href="#overview" class="-ml-px block border-l border-transparent py-1 leading-5 text-ink-2 hover:border-line-strong hover:text-ink pl-3">Overview</a></li><li><a href="#screenshots" class="-ml-px block border-l border-transparent py-1 leading-5 text-ink-2 hover:border-line-strong hover:text-ink pl-3">Screenshots</a></li><li><a href="#executive-summary" class="-ml-px block border-l border-transparent py-1 leading-5 text-ink-2 hover:border-line-strong hover:text-ink pl-3">Executive Summary</a></li><li><a href="#safety-interpretation" class="-ml-px block border-l border-transparent py-1 leading-5 text-ink-2 hover:border-line-strong hover:text-ink pl-3">Safety Interpretation</a></li><li><a href="#architecture" class="-ml-px block border-l border-transparent py-1 leading-5 text-ink-2 hover:border-line-strong hover:text-ink pl-3">Architecture</a></li><li><a href="#requirements" class="-ml-px block border-l border-transparent py-1 leading-5 text-ink-2 hover:border-line-strong hover:text-ink pl-3">Requirements</a></li><li><a href="#quick-start" class="-ml-px block border-l border-transparent py-1 leading-5 text-ink-2 hover:border-line-strong hover:text-ink pl-3">Quick Start</a></li><li><a href="#using-the-application" class="-ml-px block border-l border-transparent py-1 leading-5 text-ink-2 hover:border-line-strong hover:text-ink pl-3">Using the Application</a></li><li><a href="#volume-discovery-and-selection" class="-ml-px block border-l border-transparent py-1 leading-5 text-ink-2 hover:border-line-strong hover:text-ink pl-3">Volume Discovery and Selection</a></li><li><a href="#normal-and-read-only-mounting" class="-ml-px block border-l border-transparent py-1 leading-5 text-ink-2 hover:border-line-strong hover:text-ink pl-3">Normal and Read-Only Mounting</a></li><li><a href="#encryption-boundary" class="-ml-px block border-l border-transparent py-1 leading-5 text-ink-2 hover:border-line-strong hover:text-ink pl-3">Encryption Boundary</a></li><li><a href="#hardware-smart-and-usb-evidence" class="-ml-px block border-l border-transparent py-1 leading-5 text-ink-2 hover:border-line-strong hover:text-ink pl-3">Hardware, SMART, and USB Evidence</a></li><li><a href="#disk-arbitration-monitoring" class="-ml-px block border-l border-transparent py-1 leading-5 text-ink-2 hover:border-line-strong hover:text-ink pl-3">Disk Arbitration Monitoring</a></li><li><a href="#safe-eject" class="-ml-px block border-l border-transparent py-1 leading-5 text-ink-2 hover:border-line-strong hover:text-ink pl-3">Safe Eject</a></li><li><a href="#command-reference" class="-ml-px block border-l border-transparent py-1 leading-5 text-ink-2 hover:border-line-strong hover:text-ink pl-3">Command Reference</a></li><li><a href="#direct-observation-vs-interpretation" class="-ml-px block border-l border-transparent py-1 leading-5 text-ink-2 hover:border-line-strong hover:text-ink pl-3">Direct Observation vs. Interpretation</a></li><li><a href="#errors-and-guided-explanations" class="-ml-px block border-l border-transparent py-1 leading-5 text-ink-2 hover:border-line-strong hover:text-ink pl-3">Errors and Guided Explanations</a></li><li><a href="#privacy-and-report-redaction" class="-ml-px block border-l border-transparent py-1 leading-5 text-ink-2 hover:border-line-strong hover:text-ink pl-3">Privacy and Report Redaction</a></li><li><a href="#development-and-testing" class="-ml-px block border-l border-transparent py-1 leading-5 text-ink-2 hover:border-line-strong hover:text-ink pl-3">Development and Testing</a></li><li><a href="#repository-layout" class="-ml-px block border-l border-transparent py-1 leading-5 text-ink-2 hover:border-line-strong hover:text-ink pl-3">Repository Layout</a></li><li><a href="#current-limitations" class="-ml-px block border-l border-transparent py-1 leading-5 text-ink-2 hover:border-line-strong hover:text-ink pl-3">Current Limitations</a></li><li><a href="#troubleshooting" class="-ml-px block border-l border-transparent py-1 leading-5 text-ink-2 hover:border-line-strong hover:text-ink pl-3">Troubleshooting</a></li><li><a href="#uninstall" class="-ml-px block border-l border-transparent py-1 leading-5 text-ink-2 hover:border-line-strong hover:text-ink pl-3">Uninstall</a></li><li><a href="#responsible-use" class="-ml-px block border-l border-transparent py-1 leading-5 text-ink-2 hover:border-line-strong hover:text-ink pl-3">Responsible Use</a></li><li><a href="#project-status-and-license" class="-ml-px block border-l border-transparent py-1 leading-5 text-ink-2 hover:border-line-strong hover:text-ink pl-3">Project Status and License</a></li></ul></div></nav><div class="min-w-0"><details class="card mb-8 p-4 lg:hidden"><summary class="cursor-pointer text-sm font-medium text-ink">On this page</summary><ul class="mt-3 space-y-1.5 text-sm"><li><a href="#overview" class="text-ink-2 hover:text-ink">Overview</a></li><li><a href="#screenshots" class="text-ink-2 hover:text-ink">Screenshots</a></li><li><a href="#executive-summary" class="text-ink-2 hover:text-ink">Executive Summary</a></li><li><a href="#safety-interpretation" class="text-ink-2 hover:text-ink">Safety Interpretation</a></li><li><a href="#architecture" class="text-ink-2 hover:text-ink">Architecture</a></li><li><a href="#requirements" class="text-ink-2 hover:text-ink">Requirements</a></li><li><a href="#quick-start" class="text-ink-2 hover:text-ink">Quick Start</a></li><li><a href="#using-the-application" class="text-ink-2 hover:text-ink">Using the Application</a></li><li><a href="#volume-discovery-and-selection" class="text-ink-2 hover:text-ink">Volume Discovery and Selection</a></li><li><a href="#normal-and-read-only-mounting" class="text-ink-2 hover:text-ink">Normal and Read-Only Mounting</a></li><li><a href="#encryption-boundary" class="text-ink-2 hover:text-ink">Encryption Boundary</a></li><li><a href="#hardware-smart-and-usb-evidence" class="text-ink-2 hover:text-ink">Hardware, SMART, and USB Evidence</a></li><li><a href="#disk-arbitration-monitoring" class="text-ink-2 hover:text-ink">Disk Arbitration Monitoring</a></li><li><a href="#safe-eject" class="text-ink-2 hover:text-ink">Safe Eject</a></li><li><a href="#command-reference" class="text-ink-2 hover:text-ink">Command Reference</a></li><li><a href="#direct-observation-vs-interpretation" class="text-ink-2 hover:text-ink">Direct Observation vs. Interpretation</a></li><li><a href="#errors-and-guided-explanations" class="text-ink-2 hover:text-ink">Errors and Guided Explanations</a></li><li><a href="#privacy-and-report-redaction" class="text-ink-2 hover:text-ink">Privacy and Report Redaction</a></li><li><a href="#development-and-testing" class="text-ink-2 hover:text-ink">Development and Testing</a></li><li><a href="#repository-layout" class="text-ink-2 hover:text-ink">Repository Layout</a></li><li><a href="#current-limitations" class="text-ink-2 hover:text-ink">Current Limitations</a></li><li><a href="#troubleshooting" class="text-ink-2 hover:text-ink">Troubleshooting</a></li><li><a href="#uninstall" class="text-ink-2 hover:text-ink">Uninstall</a></li><li><a href="#responsible-use" class="text-ink-2 hover:text-ink">Responsible Use</a></li><li><a href="#project-status-and-license" class="text-ink-2 hover:text-ink">Project Status and License</a></li></ul></details><article class="prose-readme max-w-[48rem]" data-pagefind-body data-pagefind-meta="title:Volume Mount Troubleshooter" data-pagefind-filter="kind:App"><hr>
+<div class="heading-wrap level-2"><h2 id="overview">Overview</h2><a class="heading-anchor" href="#overview" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: Overview</span></a></div>
+<p>Volume Mount Troubleshooter turns the normal macOS storage-diagnostic workflow into a small native GUI. The application discovers external physical disks through <code>diskutil</code>, resolves APFS containers into user-facing volumes, and presents a selector rather than issuing a mount request against every connected disk.</p>
+<p>When an explicit action is pressed, the app displays each command as it runs and preserves:</p>
+<ul>
+<li>the exact executable and arguments;</li>
+<li>combined command output;</li>
+<li>the process exit status;</li>
+<li>the selected physical disk and volume identifiers;</li>
+<li>the selected action;</li>
+<li>encryption and locked state;</li>
+<li>overall SMART status, optional detailed health counters, and USB link information;</li>
+<li>mount-point and writable-state verification;</li>
+<li>recent Disk Arbitration errors and faults; and</li>
+<li>a bounded explanation tied to the observed error text.</li>
+</ul>
+<p>The app uses only Apple frameworks and fixed Apple command-line tools for its required functionality. It has no required package-manager dependencies and makes no network requests. If an existing <code>smartctl</code> installation is found at a known fixed path, the app can read additional health counters without installing or updating anything.</p>
+<hr>
+<div class="heading-wrap level-2"><h2 id="screenshots">Screenshots</h2><a class="heading-anchor" href="#screenshots" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: Screenshots</span></a></div>
+<div class="heading-wrap level-3"><h3 id="main-window">Main window</h3><a class="heading-anchor" href="#main-window" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: Main window</span></a></div>
+<p><img src="/media/volume-mount-troubleshooter/img-01.webp" alt="Volume Mount Troubleshooter main window with the application logo" srcset="/media/volume-mount-troubleshooter/img-01-640.webp 640w, /media/volume-mount-troubleshooter/img-01-1200.webp 1200w, /media/volume-mount-troubleshooter/img-01.webp 2000w" sizes="(min-width: 1024px) 768px, calc(100vw - 2rem)" width="2000" height="1543" loading="lazy" decoding="async"></p>
+<p>The main window keeps selection, explicit actions, privacy controls, current status, and the live command console in one view.</p>
+<div class="heading-wrap level-3"><h3 id="volume-selector">Volume selector</h3><a class="heading-anchor" href="#volume-selector" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: Volume selector</span></a></div>
+<p><img src="/media/volume-mount-troubleshooter/img-02.webp" alt="Volume selector showing APFS and ExFAT volumes on the attached external disk" srcset="/media/volume-mount-troubleshooter/img-02-640.webp 640w, /media/volume-mount-troubleshooter/img-02-1200.webp 1200w, /media/volume-mount-troubleshooter/img-02.webp 2000w" sizes="(min-width: 1024px) 768px, calc(100vw - 2rem)" width="2000" height="1543" loading="lazy" decoding="async"></p>
+<p>The selector shows one entry per user-facing volume, including the current device identifier, filesystem, mount state, and encryption state. Device identifiers are transient and are rediscovered on refresh.</p>
+<hr>
+<div class="heading-wrap level-2"><h2 id="executive-summary">Executive Summary</h2><a class="heading-anchor" href="#executive-summary" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: Executive Summary</span></a></div>
+<p>Volume Mount Troubleshooter currently provides:</p>
+<ul>
+<li>a selector containing one entry per user-facing external volume;</li>
+<li>typed parsing of <code>diskutil</code> and APFS property-list output;</li>
+<li>per-disk failure isolation that preserves exact errors while retaining usable volumes from other disks;</li>
+<li>exclusion of APFS Preboot, Recovery, VM, Update, xART, and Hardware helper volumes;</li>
+<li>explicit Inspect, Mount Read-Only, Mount Normally, Unmount Volume, and Safe Eject Disk controls;</li>
+<li>a confirmation boundary before unmounting a writable volume for read-only remounting;</li>
+<li>APFS/FileVault encryption and locked-state detection without password handling;</li>
+<li>bounded unlock-transition retries with visible progress and hardware-path matching;</li>
+<li>Finder-only reveal for mounted vendor unlocker volumes without launching their applications;</li>
+<li>SMART status plus optional temperature, media-error, unsafe-shutdown, power-on-hour, and percentage-used reporting;</li>
+<li>selected-storage controller, hub, USB device/bridge and IOMedia ancestry with exact current BSD correlation;</li>
+<li>negotiated USB link-rate observations and explicit transport coverage;</li>
+<li>recent <code>diskarbitrationd</code> error and fault collection;</li>
+<li>native Disk Arbitration notification handling for attached and disconnected devices, including immediate stale-selector removal;</li>
+<li>exact post-mount verification of mount point and writable state;</li>
+<li>guided explanations for common mount and eject failures;</li>
+<li>confirmed whole-disk Safe Eject;</li>
+<li>privacy-redacted clipboard and saved reports; and</li>
+<li>a terminal-style live console with Stop, Copy Report, Save Report, and Show Volumes controls.</li>
+</ul>
+<div class="heading-wrap level-3"><h3 id="operational-interpretation">Operational interpretation</h3><a class="heading-anchor" href="#operational-interpretation" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: Operational interpretation</span></a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-scroll" tabindex="0"><table><thead><tr><th>Observation</th><th>What the app concludes</th><th>What the app does not conclude</th></tr></thead><tbody><tr><td>IOMedia publishes the selected BSD disk</td><td>Current block media has an exact registry ancestry.</td><td>A product name alone identifies a disk, bridge chipset or chassis port.</td></tr><tr><td><code>diskutil</code> lists an external physical disk</td><td>Disk Arbitration published the device as external storage.</td><td>Every partition contains a supported or healthy filesystem.</td></tr><tr><td>SMART reports <code>Verified</code></td><td>The transport returned that SMART status.</td><td>The disk cannot fail or contains no latent errors.</td></tr><tr><td>SMART reports <code>Not Supported</code></td><td>SMART was unavailable through the current path.</td><td>The disk is healthy or unhealthy.</td></tr><tr><td>IOKit reports <code>10.0 Gb/s</code></td><td>The USB link negotiated that signaling rate.</td><td>The filesystem or SSD will transfer data at 10 Gb/s.</td></tr><tr><td>A volume is encrypted and locked</td><td>macOS reports an encryption boundary that blocks mounting.</td><td>The volume is damaged or unauthorized.</td></tr><tr><td><code>diskutil mount</code> exits successfully</td><td>The mount request returned success.</td><td>The requested state is accepted until the mount point and writable state are verified.</td></tr></tbody></table></div>
+<hr>
+<div class="heading-wrap level-2"><h2 id="safety-interpretation">Safety Interpretation</h2><a class="heading-anchor" href="#safety-interpretation" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: Safety Interpretation</span></a></div>
+<p>The app separates inspection, mounting, and whole-device ejection.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-scroll" tabindex="0"><table><thead><tr><th>Action</th><th>Target</th><th align="right">State change</th><th align="right">Confirmation</th></tr></thead><tbody><tr><td>Refresh or automatic detection</td><td>External disk metadata</td><td align="right">None</td><td align="right">No</td></tr><tr><td>Inspect</td><td>Selected disk and volume</td><td align="right">None</td><td align="right">No</td></tr><tr><td>Mount Normally</td><td>Selected volume only</td><td align="right">Mounts the volume</td><td align="right">Explicit button</td></tr><tr><td>Mount Read-Only on an unmounted volume</td><td>Selected volume only</td><td align="right">Mounts read-only</td><td align="right">Explicit button</td></tr><tr><td>Read-only remount of a writable mounted volume</td><td>Selected volume only</td><td align="right">Unmounts, then mounts read-only</td><td align="right">Additional warning dialog</td></tr><tr><td>Unmount Volume</td><td>Selected volume only</td><td align="right">Unmounts only that volume</td><td align="right">Explicit button</td></tr><tr><td>Safe Eject Disk</td><td>Selected volume's whole physical disk</td><td align="right">Ejects the disk and sibling volumes</td><td align="right">Additional warning dialog</td></tr><tr><td>Save Report</td><td>User-selected destination</td><td align="right">Writes one text report</td><td align="right">Standard save dialog</td></tr></tbody></table></div>
+<p>The application never constructs or runs repair, erase, partition, format, force-eject, unlock, or <code>sudo</code> commands. A failed mount remains a failure with its original output visible; the app does not silently switch to a different mode.</p>
+<hr>
+<div class="heading-wrap level-2"><h2 id="architecture">Architecture</h2><a class="heading-anchor" href="#architecture" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: Architecture</span></a></div>
+<figure class="diagram"><img src="/media/volume-mount-troubleshooter/diagram-1-light.svg" alt="Diagram" width="1428" height="1615" class="diagram-light" loading="lazy"><img src="/media/volume-mount-troubleshooter/diagram-1-dark.svg" alt="Diagram" width="1428" height="1615" class="diagram-dark" loading="lazy"></figure>
+<p><code>DiskScanner</code> accepts only typed property-list structures with required identifiers. Additive unrelated fields are ignored, while missing required fields or malformed output produce explicit errors.</p>
+<hr>
+<div class="heading-wrap level-2"><h2 id="requirements">Requirements</h2><a class="heading-anchor" href="#requirements" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: Requirements</span></a></div>
+<ul>
+<li>macOS 13 or newer;</li>
+<li>an Apple Silicon (<code>arm64</code>) or Intel (<code>x86_64</code>) Mac;</li>
+<li>Xcode or the Xcode command-line tools for building;</li>
+<li>a standard signed-in user account; and</li>
+<li>an external storage device visible to macOS.</li>
+</ul>
+<p>No Homebrew packages, third-party frameworks, network services, kernel extensions, launch agents, launch daemons, or administrator privileges are required. The optional expanded SMART display uses an existing <code>smartctl</code> executable when available; it is not required for volume discovery, inspection, mounting, unmounting, or ejection.</p>
+<hr>
+<div class="heading-wrap level-2"><h2 id="quick-start">Quick Start</h2><a class="heading-anchor" href="#quick-start" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: Quick Start</span></a></div>
+<p>Clone and build from source:</p>
+<div class="code-wrap" data-kind="terminal"><div class="code-bar"><span class="code-lang">Terminal</span></div><pre class="shiki shiki-themes github-light github-dark-dimmed sk-1cqee4" tabindex="0" data-lang="sh"><code class="language-sh"><span class="line"><span class="sk-yh2ys2">git</span><span class="sk-1cxcxs"> clone</span><span class="sk-1cxcxs"> https://github.com/hideouts-io/VolumeMountTroubleshooter.git</span></span>
+<span class="line"><span class="sk-1xptx7">cd</span><span class="sk-1cxcxs"> VolumeMountTroubleshooter</span></span>
+<span class="line"><span class="sk-yh2ys2">chmod</span><span class="sk-1cxcxs"> +x</span><span class="sk-1cxcxs"> build.sh</span></span>
+<span class="line"><span class="sk-yh2ys2">./build.sh</span></span>
+<span class="line"><span class="sk-yh2ys2">open</span><span class="sk-1cxcxs"> "build/Volume Mount Troubleshooter.app"</span></span></code></pre></div>
+<p>The build script:</p>
+<ol>
+<li>creates the <code>.app</code> bundle under <code>build/</code>;</li>
+<li>compiles separate <code>arm64</code> and <code>x86_64</code> slices for macOS 13+;</li>
+<li>combines the slices into one universal executable with Apple <code>lipo</code>;</li>
+<li>verifies that both architectures are present;</li>
+<li>links AppKit and Disk Arbitration;</li>
+<li>runs the built-in parser and privacy-redaction self-test;</li>
+<li>applies an ad-hoc code signature to the completed universal bundle; and</li>
+<li>verifies the bundle with strict code-signature validation.</li>
+</ol>
+<p>The generated application is:</p>
+<div class="code-wrap" data-kind="code"><div class="code-bar"><span class="code-lang">text</span></div><pre class="shiki shiki-themes github-light github-dark-dimmed sk-1cqee4" tabindex="0" data-lang=""><code class="language-text"><span class="line"><span class="sk-wvjl67">build/Volume Mount Troubleshooter.app</span></span></code></pre></div>
+<p>Normal app launches require native execution through <code>LSRequiresNativeExecution</code>: <code>arm64</code> on Apple Silicon and <code>x86_64</code> on Intel Macs. Rosetta translation is not a supported launch mode. <a href="https://developer.apple.com/documentation/apple-silicon/building-a-universal-macos-binary" rel="noopener noreferrer">Apple's native launch guidance</a></p>
+<p>The historical v0.2 <code>macos-arm64</code> release asset remains Apple-Silicon-only. The v0.3.0 release is universal when its filename ends in <code>macOS-universal.zip</code> and its checksum matches the accompanying <code>SHA256SUMS.txt</code> file.</p>
+<hr>
+<div class="heading-wrap level-2"><h2 id="using-the-application">Using the Application</h2><a class="heading-anchor" href="#using-the-application" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: Using the Application</span></a></div>
+<ol>
+<li>Attach the external disk.</li>
+<li>Wait for the selector to refresh, or press <strong>Refresh</strong>.</li>
+<li>Choose one user-facing volume.</li>
+<li>Review its current mount, encryption, size, transport, SMART, and APFS-role summary.</li>
+<li>Press exactly one action: <strong>Inspect</strong>, <strong>Mount Read-Only</strong>, <strong>Mount Normally</strong>, <strong>Unmount Volume</strong>, or <strong>Safe Eject Disk</strong>.</li>
+<li>Review the exact commands, output, exit statuses, verification result, and any guided explanation.</li>
+<li>Use <strong>Show Volumes</strong> to open <code>/Volumes</code> in Finder.</li>
+<li>Use <strong>Copy Report</strong> or <strong>Save Report…</strong> to preserve the result.</li>
+</ol>
+<p><strong>Inspect</strong> is the Return-key default and never mounts or unmounts the volume. The <strong>Stop</strong> button terminates the active command and cancels the remaining workflow. It does not continue to a state-changing command after cancellation.</p>
+<hr>
+<div class="heading-wrap level-2"><h2 id="volume-discovery-and-selection">Volume Discovery and Selection</h2><a class="heading-anchor" href="#volume-discovery-and-selection" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: Volume Discovery and Selection</span></a></div>
+<p>Discovery begins with structured external-physical-disk inventory:</p>
+<div class="code-wrap" data-kind="terminal"><div class="code-bar"><span class="code-lang">Terminal</span></div><pre class="shiki shiki-themes github-light github-dark-dimmed sk-1cqee4" tabindex="0" data-lang="sh"><code class="language-sh"><span class="line"><span class="sk-yh2ys2">/usr/sbin/diskutil</span><span class="sk-1cxcxs"> list</span><span class="sk-1xptx7"> -plist</span><span class="sk-1cxcxs"> external</span><span class="sk-1cxcxs"> physical</span></span></code></pre></div>
+<p>For each external physical disk, the app reads typed disk and partition information. If a partition is an APFS physical store, its synthesized container and volumes are resolved using:</p>
+<div class="code-wrap" data-kind="terminal"><div class="code-bar"><span class="code-lang">Terminal</span></div><pre class="shiki shiki-themes github-light github-dark-dimmed sk-1cqee4" tabindex="0" data-lang="sh"><code class="language-sh"><span class="line"><span class="sk-yh2ys2">/usr/sbin/diskutil</span><span class="sk-1cxcxs"> apfs</span><span class="sk-1cxcxs"> list</span><span class="sk-1xptx7"> -plist</span><span class="sk-1cxcxs"> /dev/diskN</span></span></code></pre></div>
+<p>Each physical disk is scanned within its own failure boundary. If <code>diskutil info</code>, partition decoding, or APFS discovery fails for one disk, the console records that disk identifier and the exact command error, exit status, and output. The selector still displays usable volumes discovered on other physical disks. Cancellation still stops the complete inventory, and failure of the initial external-disk list remains fatal because no reliable per-disk inventory exists in that case.</p>
+<p>Only user-facing filesystems are selectable. APFS infrastructure roles such as Preboot, Recovery, VM, Update, xART, and Hardware are intentionally excluded. Microsoft Reserved partitions and partitions without a recognized filesystem are also excluded.</p>
+<p>Disk identifiers are rediscovered on every refresh. The app does not assume identifiers such as <code>disk4s3</code> remain stable after reconnecting or restarting.</p>
+<div class="heading-wrap level-3"><h3 id="automatic-detection">Automatic detection</h3><a class="heading-anchor" href="#automatic-detection" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: Automatic detection</span></a></div>
+<p>The app registers native Disk Arbitration appeared and disappeared callbacks. When macOS publishes a disk object, the appeared callback schedules a fresh typed inventory after a short debounce interval. When a disk disappears, the app immediately removes that device and its volumes from the in-memory snapshot and selector, clears a stale selection, and disables the action controls until the user deliberately selects another available volume. A follow-up inventory then reconciles the complete device list.</p>
+<p>If a disk disappears while an inventory is already running, the app cancels and invalidates that inventory so its older result cannot restore the removed selector entry. It then performs one follow-up refresh. Storage inventory commands time out after 15 seconds so a vendor unlock transition cannot leave the selector waiting indefinitely.</p>
+<p>When a virtual unlocker is present without its matching data disk, the app retries discovery five times at two-second intervals. The visible progression advances from <strong>Unlocker detected</strong> through <strong>Waiting for data disk</strong> to the discovered volume name, such as <strong>Extreme SSD ready</strong>. Association uses the shared macOS device-tree path rather than vendor names or transient <code>diskN</code> identifiers.</p>
+<p>Automatic detection refreshes the selector. It never automatically mounts, unmounts, unlocks, repairs, or ejects a device.</p>
+<hr>
+<div class="heading-wrap level-2"><h2 id="normal-and-read-only-mounting">Normal and Read-Only Mounting</h2><a class="heading-anchor" href="#normal-and-read-only-mounting" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: Normal and Read-Only Mounting</span></a></div>
+<div class="heading-wrap level-3"><h3 id="normal-mount">Normal mount</h3><a class="heading-anchor" href="#normal-mount" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: Normal mount</span></a></div>
+<p><strong>Mount Normally</strong> is enabled only for an unlocked, unmounted selected volume and runs:</p>
+<div class="code-wrap" data-kind="terminal"><div class="code-bar"><span class="code-lang">Terminal</span></div><pre class="shiki shiki-themes github-light github-dark-dimmed sk-1cqee4" tabindex="0" data-lang="sh"><code class="language-sh"><span class="line"><span class="sk-yh2ys2">/usr/sbin/diskutil</span><span class="sk-1cxcxs"> mount</span><span class="sk-1cxcxs"> /dev/diskNsN</span></span></code></pre></div>
+<div class="heading-wrap level-3"><h3 id="read-only-mount">Read-only mount</h3><a class="heading-anchor" href="#read-only-mount" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: Read-only mount</span></a></div>
+<p>For an unlocked, unmounted selected volume, <strong>Mount Read-Only</strong> runs:</p>
+<div class="code-wrap" data-kind="terminal"><div class="code-bar"><span class="code-lang">Terminal</span></div><pre class="shiki shiki-themes github-light github-dark-dimmed sk-1cqee4" tabindex="0" data-lang="sh"><code class="language-sh"><span class="line"><span class="sk-yh2ys2">/usr/sbin/diskutil</span><span class="sk-1cxcxs"> mount</span><span class="sk-1cxcxs"> readOnly</span><span class="sk-1cxcxs"> /dev/diskNsN</span></span></code></pre></div>
+<p>If the selected volume is already mounted writable, macOS cannot convert that live mount merely by repeating <code>mount readOnly</code>. The app displays a warning and, only after confirmation, runs:</p>
+<div class="code-wrap" data-kind="terminal"><div class="code-bar"><span class="code-lang">Terminal</span></div><pre class="shiki shiki-themes github-light github-dark-dimmed sk-1cqee4" tabindex="0" data-lang="sh"><code class="language-sh"><span class="line"><span class="sk-yh2ys2">/usr/sbin/diskutil</span><span class="sk-1cxcxs"> unmount</span><span class="sk-1cxcxs"> /dev/diskNsN</span></span>
+<span class="line"><span class="sk-yh2ys2">/usr/sbin/diskutil</span><span class="sk-1cxcxs"> mount</span><span class="sk-1cxcxs"> readOnly</span><span class="sk-1cxcxs"> /dev/diskNsN</span></span></code></pre></div>
+<p>After either mode, the app decodes fresh <code>diskutil info -plist</code> output. Success requires a non-empty mount point. Read-only success additionally requires macOS to report that the mounted volume is not writable.</p>
+<p><strong>Unmount Volume</strong> is enabled only while the selected volume is mounted and targets that volume alone:</p>
+<div class="code-wrap" data-kind="terminal"><div class="code-bar"><span class="code-lang">Terminal</span></div><pre class="shiki shiki-themes github-light github-dark-dimmed sk-1cqee4" tabindex="0" data-lang="sh"><code class="language-sh"><span class="line"><span class="sk-yh2ys2">/usr/sbin/diskutil</span><span class="sk-1cxcxs"> unmount</span><span class="sk-1cxcxs"> /dev/diskNsN</span></span></code></pre></div>
+<p>Read-only is a requested and verified mount property, not a guarantee that the underlying device received no writes before the app started. Hardware, firmware, filesystem checks performed elsewhere, and earlier mounts remain outside this app's control.</p>
+<hr>
+<div class="heading-wrap level-2"><h2 id="encryption-boundary">Encryption Boundary</h2><a class="heading-anchor" href="#encryption-boundary" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: Encryption Boundary</span></a></div>
+<p>The scanner reads APFS and <code>diskutil</code> encryption metadata, including:</p>
+<ul>
+<li>APFS encryption state;</li>
+<li>FileVault state;</li>
+<li>locked or unlocked state; and</li>
+<li>the current mount point.</li>
+</ul>
+<p>If the selected volume is encrypted and locked, the app stops before mounting and directs the user to Finder or Disk Utility. It does not invoke <code>diskutil apfs unlockVolume</code>, display a custom password field, read standard input, inspect the keychain, or store credentials.</p>
+<p>Some hardware-encrypted external drives first expose a small read-only virtual CD containing a vendor unlocker. The app excludes that helper media from the volume selector, explains that it is not the data volume, and waits for Disk Arbitration to publish the full-size unlocked disk. <strong>Show Unlocker in Finder</strong> reveals only the mounted helper directory; it does not open the vendor application, request credentials, or inspect their contents. Once the real filesystem appears, the existing normal or read-only selected-volume mount workflow applies.</p>
+<p>An encrypted and unlocked volume may be mounted normally or read-only like any other selected volume.</p>
+<hr>
+<div class="heading-wrap level-2"><h2 id="hardware-smart-and-usb-evidence">Hardware, SMART, and USB Evidence</h2><a class="heading-anchor" href="#hardware-smart-and-usb-evidence" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: Hardware, SMART, and USB Evidence</span></a></div>
+<div class="heading-wrap level-3"><h3 id="selected-physical-connection">Selected physical connection</h3><a class="heading-anchor" href="#selected-physical-connection" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: Selected physical connection</span></a></div>
+<p>The connection display traces the selected storage device from its current whole-disk <code>IOMedia</code> BSD name upward through the IOService registry. Reports show a readable controller, port, hub and storage-device path, negotiated speed, storage protocol and concise coverage limits. Internal registry/location IDs, driver classes and descriptor codes are omitted from both the display and reports. Product names never establish disk identity. <code>diskutil</code> remains authoritative for storage inventory; APFS physical-store records associate synthesized volumes with physical disks. Multi-store APFS containers produce an explicit unsupported-mapping failure and no selectable target; ambiguous registry parents produce unresolved transport coverage. Every storage action revalidates the captured media identity and backing-store mapping before using a current disk number.</p>
+<p>Inspect revalidates the selected volume's backing store, device-tree ancestry and current media registry ID. Disk numbers and registry IDs are transient; a replaced media service requires refreshing and selecting the device again. Transport observations are also refreshed with the existing Disk Arbitration inventory flow.</p>
+<p>USB product and vendor names describe the enumerated storage device/bridge. They do not establish the internal bridge chipset, SATA/NVMe mapping, cable capability, power availability or chassis port label. Coverage reports distinguish observed data, unavailable properties and unsupported Thunderbolt/USB4 link-rate enrichment. An unenumerated dock or adapter cannot be excluded merely because no USB hub node was observed.</p>
+<div class="heading-wrap level-3"><h3 id="smart">SMART</h3><a class="heading-anchor" href="#smart" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: SMART</span></a></div>
+<p>SMART status comes from <code>diskutil info</code> for the selected volume's external whole disk. Many USB-to-storage bridges return <code>Not Supported</code>. The app reports that limitation rather than converting it into a passing health result.</p>
+<p>For expanded health data, the app checks fixed locations for an existing <code>smartctl</code> executable and, when found, runs the read-only display command:</p>
+<div class="code-wrap" data-kind="terminal"><div class="code-bar"><span class="code-lang">Terminal</span></div><pre class="shiki shiki-themes github-light github-dark-dimmed sk-1cqee4" tabindex="0" data-lang="sh"><code class="language-sh"><span class="line"><span class="sk-yh2ys2">/opt/homebrew/sbin/smartctl</span><span class="sk-1xptx7"> --all</span><span class="sk-1xptx7"> --json</span><span class="sk-1cxcxs"> /dev/diskN</span></span></code></pre></div>
+<p>The exact executable path may instead be <code>/usr/local/sbin</code>, <code>/usr/local/bin</code>, <code>/opt/local/sbin</code>, or a future bundled resource. The app does not search arbitrary <code>PATH</code> entries, install smartmontools, enable SMART, start tests, or change device settings. The <code>--all</code> and <code>--json</code> options request display-only health information in structured form.</p>
+<p>The raw JSON is decoded but is not copied wholesale into the console because it can contain device model and serial identifiers. The app displays only the recognized health counters, collector path, and exit status; exported reports apply the existing privacy redaction rules.</p>
+<p>When the device and bridge expose them, the app displays:</p>
+<ul>
+<li>current temperature in degrees Celsius;</li>
+<li>media and data-integrity error count;</li>
+<li>unsafe or unexpected shutdown count;</li>
+<li>power-on hours; and</li>
+<li>percentage used.</li>
+</ul>
+<p>NVMe values come from the controller's SMART/Health Information log. Temperature, power-on hours and endurance use normalized structured fields such as <code>temperature.current</code>, <code>power_on_time.hours</code>, and <code>endurance_used.current_percent</code>, or the corresponding NVMe fields. Packed ATA raw attributes are never interpreted as Celsius, hours or percentages. Only retained error/shutdown counters use conservative vendor attribute names, with an explicit vendor-data caveat. <a href="https://github.com/smartmontools/smartmontools/blob/master/smartmontools/ataprint.cpp" rel="noopener noreferrer">ATA JSON field mapping</a>, <a href="https://www.smartmontools.org/static/doxygen/nvmeprint_8cpp_source.html" rel="noopener noreferrer">NVMe JSON field mapping</a></p>
+<p>Missing data is shown as unavailable, never as zero. A bridge may suppress, cache, translate, or mislabel drive data; percentage used is not the same as percentage remaining and may exceed 100 on an over-endurance NVMe device. These counters are evidence reported through the current drive/bridge path, not an independent health verdict.</p>
+<div class="heading-wrap level-3"><h3 id="usb-link-speed">USB link speed</h3><a class="heading-anchor" href="#usb-link-speed" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: USB link speed</span></a></div>
+<p>The native IOKit scanner reads <code>UsbLinkSpeed</code> only at USB devices in the selected media's ancestry. The selected storage rate comes from the device directly above a proven mass-storage interface; a hub's rate is reported separately. <code>bcdUSB</code> describes a protocol revision and is never converted into an advertised maximum speed. Missing negotiated-rate or capability evidence is shown explicitly. These registry properties vary across macOS versions and hardware.</p>
+<p>Only allowlisted properties from the selected path are collected. Serial numbers, session IDs and unrelated USB devices are not collected by the transport scanner. PlugSense's <a href="https://github.com/yasir24s/PlugSense/tree/eb3b4e73927c02dfa65abb66f6a6038fb9b90303/Sources/PlugSenseKit" rel="noopener noreferrer">probe and registry APIs</a> were inspected as a reference. PlugSense is GPL-3.0; this MIT project uses an independent native implementation without copied code, tests, assets or dependencies.</p>
+<p>The reported link rate is not a benchmark. Cable quality, bridge behavior, queue depth, filesystem overhead, thermals, and the storage medium determine real transfer performance.</p>
+<hr>
+<div class="heading-wrap level-2"><h2 id="disk-arbitration-monitoring">Disk Arbitration Monitoring</h2><a class="heading-anchor" href="#disk-arbitration-monitoring" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: Disk Arbitration Monitoring</span></a></div>
+<p>After the mount attempt, the app requests error and fault entries emitted by <code>diskarbitrationd</code> during the previous 15 minutes:</p>
+<div class="code-wrap" data-kind="terminal"><div class="code-bar"><span class="code-lang">Terminal</span></div><pre class="shiki shiki-themes github-light github-dark-dimmed sk-1cqee4" tabindex="0" data-lang="sh"><code class="language-sh"><span class="line"><span class="sk-yh2ys2">/usr/bin/log</span><span class="sk-1cxcxs"> show</span><span class="sk-12cj2w"> \</span></span>
+<span class="line"><span class="sk-1xptx7">  --last</span><span class="sk-1cxcxs"> 15m</span><span class="sk-12cj2w"> \</span></span>
+<span class="line"><span class="sk-1xptx7">  --style</span><span class="sk-1cxcxs"> compact</span><span class="sk-12cj2w"> \</span></span>
+<span class="line"><span class="sk-1xptx7">  --predicate</span><span class="sk-1cxcxs"> 'process == "diskarbitrationd" AND (messageType == error OR messageType == fault)'</span></span></code></pre></div>
+<p>An empty result means no matching retained error or fault entry was returned for that time window. It does not prove that no earlier failure occurred, that every storage event was logged, or that the filesystem is healthy.</p>
+<hr>
+<div class="heading-wrap level-2"><h2 id="safe-eject">Safe Eject</h2><a class="heading-anchor" href="#safe-eject" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: Safe Eject</span></a></div>
+<p><strong>Safe Eject Disk</strong> targets the whole external physical disk associated with the selected volume:</p>
+<div class="code-wrap" data-kind="terminal"><div class="code-bar"><span class="code-lang">Terminal</span></div><pre class="shiki shiki-themes github-light github-dark-dimmed sk-1cqee4" tabindex="0" data-lang="sh"><code class="language-sh"><span class="line"><span class="sk-yh2ys2">/usr/sbin/diskutil</span><span class="sk-1cxcxs"> eject</span><span class="sk-1cxcxs"> /dev/diskN</span></span></code></pre></div>
+<p>The app warns that sibling volumes on the same physical disk are included. It does not use <code>force</code>, and it preserves <code>Resource busy</code> or other failures rather than masking them.</p>
+<p>Safe Eject should be used only after closing files and applications that are using every volume on that disk.</p>
+<hr>
+<div class="heading-wrap level-2"><h2 id="command-reference">Command Reference</h2><a class="heading-anchor" href="#command-reference" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: Command Reference</span></a></div>
+<p>The application constructs commands only from fixed absolute executable paths, fixed arguments, and typed disk identifiers returned by macOS.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-scroll" tabindex="0"><table><thead><tr><th>Purpose</th><th>Command</th></tr></thead><tbody><tr><td>Typed external disk inventory</td><td><code>/usr/sbin/diskutil list -plist external physical</code></td></tr><tr><td>Typed disk or volume details</td><td><code>/usr/sbin/diskutil info -plist /dev/diskNsN</code></td></tr><tr><td>Typed APFS inventory</td><td><code>/usr/sbin/diskutil apfs list -plist /dev/diskN</code></td></tr><tr><td>Optional expanded SMART JSON</td><td><code>&#x3C;known smartctl path> --all --json /dev/diskN</code></td></tr><tr><td>Recent Disk Arbitration errors</td><td><code>/usr/bin/log show --last 15m ...</code></td></tr><tr><td>Selected-volume unmount</td><td><code>/usr/sbin/diskutil unmount /dev/diskNsN</code></td></tr><tr><td>Selected-volume read-only mount</td><td><code>/usr/sbin/diskutil mount readOnly /dev/diskNsN</code></td></tr><tr><td>Selected-volume normal mount</td><td><code>/usr/sbin/diskutil mount /dev/diskNsN</code></td></tr><tr><td>Whole external disk eject</td><td><code>/usr/sbin/diskutil eject /dev/diskN</code></td></tr></tbody></table></div>
+<p>No user-entered text is interpolated into a shell command. <code>Process</code> receives the executable path and argument array directly.</p>
+<p>Selected-path collection uses native <code>IOBSDNameMatching</code>, unique <code>IOMedia</code> matching and IOService parent iteration rather than a shell command or a general USB inventory.</p>
+<hr>
+<section class="panel panel-interpret" data-label="Observation vs. interpretation"><div class="heading-wrap level-2"><h2 id="direct-observation-vs-interpretation">Direct Observation vs. Interpretation</h2><a class="heading-anchor" href="#direct-observation-vs-interpretation" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: Direct Observation vs. Interpretation</span></a></div>
+<p>The app keeps raw command evidence and guided interpretation separate.</p>
+<div class="heading-wrap level-3"><h3 id="direct-observations">Direct observations</h3><a class="heading-anchor" href="#direct-observations" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: Direct observations</span></a></div>
+<ul>
+<li>exact command and argument rendering;</li>
+<li>command output and exit status;</li>
+<li>typed disk, partition, APFS-container, and APFS-volume fields;</li>
+<li>mount point and writable-volume state;</li>
+<li>encryption, FileVault, and locked fields;</li>
+<li>overall SMART status and any detailed controller/vendor counters returned through the current storage path;</li>
+<li>selected-storage IOMedia ancestry, USB identity and negotiated link properties; and</li>
+<li>recent retained Disk Arbitration error and fault entries.</li>
+</ul>
+<div class="heading-wrap level-3"><h3 id="derived-interpretations">Derived interpretations</h3><a class="heading-anchor" href="#derived-interpretations" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: Derived interpretations</span></a></div>
+<ul>
+<li>helper APFS roles are excluded from the selector;</li>
+<li>a selected volume is labeled mounted or unmounted;</li>
+<li>encryption fields are summarized as unencrypted, encrypted/unlocked, or encrypted/locked;</li>
+<li>IOKit link bits per second are formatted as Mb/s or Gb/s;</li>
+<li>a mount is accepted only after post-command verification; and</li>
+<li>known error-text signatures select bounded troubleshooting guidance.</li>
+</ul>
+<div class="heading-wrap level-3"><h3 id="not-established">Not established</h3><a class="heading-anchor" href="#not-established" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: Not established</span></a></div>
+<ul>
+<li>physical disk health beyond the returned SMART and vendor/controller fields;</li>
+<li>filesystem integrity;</li>
+<li>data recoverability;</li>
+<li>authorization to access encrypted contents;</li>
+<li>absence of prior unsafe removal or write activity;</li>
+<li>real storage throughput;</li>
+<li>completeness of Unified Log retention; or</li>
+<li>safety of running repair tools.</li>
+</ul>
+<hr>
+</section><div class="heading-wrap level-2"><h2 id="errors-and-guided-explanations">Errors and Guided Explanations</h2><a class="heading-anchor" href="#errors-and-guided-explanations" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: Errors and Guided Explanations</span></a></div>
+<p>The console always retains the exact error and exit status. Guided text is added only after matching the observed result.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-scroll" tabindex="0"><table><thead><tr><th>Matched evidence</th><th>Guidance</th></tr></thead><tbody><tr><td>Encrypted or locked</td><td>Unlock through Finder or Disk Utility; no credentials are collected by this app.</td></tr><tr><td><code>Resource busy</code> or <code>in use</code></td><td>Close files and applications; do not force-eject.</td></tr><tr><td>Missing or disappeared device</td><td>Refresh because the disk identifier may have changed.</td></tr><tr><td>Unsupported or unrecognized filesystem</td><td>Preserve the device and inspect it before any erase or repair.</td></tr><tr><td><code>fsck</code> or filesystem check active</td><td>Wait for the active check; the app does not start a repair.</td></tr><tr><td>Permission or authorization denial</td><td>Use Finder or Disk Utility so macOS can present its native authorization UI.</td></tr><tr><td>Read-only or write-protected media</td><td>Read-only access may work; writable mounting is unavailable.</td></tr><tr><td>Exit status <code>0</code> without verified mount state</td><td>Treat the result as failed verification and review <code>diskutil</code> plus Disk Arbitration evidence.</td></tr><tr><td>No known signature</td><td>Preserve the exact output as authoritative evidence; no speculative cause is substituted.</td></tr></tbody></table></div>
+<p>Command-launch failures, malformed property lists, missing required fields, cancellation, and report-write errors are all surfaced explicitly. A per-disk discovery failure produces a partial-inventory warning rather than discarding successfully decoded volumes from other disks.</p>
+<hr>
+<div class="heading-wrap level-2"><h2 id="privacy-and-report-redaction">Privacy and Report Redaction</h2><a class="heading-anchor" href="#privacy-and-report-redaction" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: Privacy and Report Redaction</span></a></div>
+<p><strong>Redact shared reports</strong> is enabled by default. Copying or saving then redacts:</p>
+<ul>
+<li>the signed-in username within <code>/Users/...</code> paths;</li>
+<li>USB and storage serial-number fields;</li>
+<li>IOKit session identifiers;</li>
+<li>hardware UIDs;</li>
+<li>disk and volume UUID fields; and</li>
+<li>UUID-shaped values elsewhere in the report.</li>
+</ul>
+<p>Redaction applies to the copied or saved report. The live console remains diagnostic evidence and may still contain volume names, mount points, device identifiers, filenames emitted by macOS, and log metadata. Review every report before sharing it.</p>
+<p>Inspect renders fresh selected-volume and whole-disk observations as a compact summary, with unknown encryption, writability and SMART fields stated explicitly. It omits raw UUID fields and unrelated disk listings while retaining executed commands, exit statuses and failure output. Disk Arbitration log queries match the selected volume or its physical disk by a complete BSD identifier; entries without those identifiers remain outside correlated log coverage.</p>
+<p>Disabling report redaction is an explicit user choice. Reports are written only to the destination selected in the standard macOS save panel.</p>
+<p>The app does not transmit reports, telemetry, disk metadata, or credentials over the network.</p>
+<hr>
+<div class="heading-wrap level-2"><h2 id="development-and-testing">Development and Testing</h2><a class="heading-anchor" href="#development-and-testing" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: Development and Testing</span></a></div>
+<div class="heading-wrap level-3"><h3 id="build-self-test-sign-and-verify">Build, self-test, sign, and verify</h3><a class="heading-anchor" href="#build-self-test-sign-and-verify" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: Build, self-test, sign, and verify</span></a></div>
+<div class="code-wrap" data-kind="terminal"><div class="code-bar"><span class="code-lang">Terminal</span></div><pre class="shiki shiki-themes github-light github-dark-dimmed sk-1cqee4" tabindex="0" data-lang="sh"><code class="language-sh"><span class="line"><span class="sk-yh2ys2">./build.sh</span></span></code></pre></div>
+<p>The build script automatically runs:</p>
+<div class="code-wrap" data-kind="terminal"><div class="code-bar"><span class="code-lang">Terminal</span></div><pre class="shiki shiki-themes github-light github-dark-dimmed sk-1cqee4" tabindex="0" data-lang="sh"><code class="language-sh"><span class="line"><span class="sk-yh2ys2">"build/Volume Mount Troubleshooter.app/Contents/MacOS/VolumeMountTroubleshooter"</span><span class="sk-12cj2w"> \</span></span>
+<span class="line"><span class="sk-1xptx7">  --self-test</span></span></code></pre></div>
+<p>The self-test covers:</p>
+<ul>
+<li>strict property-list decoding;</li>
+<li>nested virtual-CD partition discovery;</li>
+<li>unlocker-to-data-disk hardware-path association;</li>
+<li>unlock-transition progression messages and bounded command timeouts;</li>
+<li>disconnected whole-disk and child-volume snapshot removal;</li>
+<li>disk identifier descendant matching without prefix collisions;</li>
+<li>coexistence of usable volumes and exact per-disk scan failures;</li>
+<li>explicit-action availability for unmounted, writable-mounted, locked, and absent selections;</li>
+<li>standardized NVMe and conservative ATA expanded-SMART JSON parsing;</li>
+<li>physical-store correlation, ambiguous APFS mappings, USB endpoint attribution, unavailable-media errors and transport cancellation;</li>
+<li>privacy redaction of serial numbers and UUIDs.</li>
+</ul>
+<div class="heading-wrap level-3"><h3 id="universal-release-archive-and-checksum">Universal release archive and checksum</h3><a class="heading-anchor" href="#universal-release-archive-and-checksum" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: Universal release archive and checksum</span></a></div>
+<div class="code-wrap" data-kind="terminal"><div class="code-bar"><span class="code-lang">Terminal</span></div><pre class="shiki shiki-themes github-light github-dark-dimmed sk-1cqee4" tabindex="0" data-lang="sh"><code class="language-sh"><span class="line"><span class="sk-yh2ys2">./script/build_release.sh</span></span></code></pre></div>
+<p>This produces two ignored files under <code>dist/</code>:</p>
+<div class="code-wrap" data-kind="code"><div class="code-bar"><span class="code-lang">text</span></div><pre class="shiki shiki-themes github-light github-dark-dimmed sk-1cqee4" tabindex="0" data-lang=""><code class="language-text"><span class="line"><span class="sk-wvjl67">VolumeMountTroubleshooter-vVERSION-macOS-universal.zip</span></span>
+<span class="line"><span class="sk-wvjl67">VolumeMountTroubleshooter-vVERSION-SHA256SUMS.txt</span></span></code></pre></div>
+<p>The packaging script rebuilds the app, verifies its universal architecture set and strict ad-hoc signature, creates the ZIP, generates its SHA-256 checksum, extracts the ZIP into a temporary directory, re-verifies the signature, architectures and required native launch policy, and runs the self-tests from the extracted bundle.</p>
+<p>You can repeat the checksum verification with:</p>
+<div class="code-wrap" data-kind="terminal"><div class="code-bar"><span class="code-lang">Terminal</span></div><pre class="shiki shiki-themes github-light github-dark-dimmed sk-1cqee4" tabindex="0" data-lang="sh"><code class="language-sh"><span class="line"><span class="sk-1xptx7">cd</span><span class="sk-1cxcxs"> dist</span></span>
+<span class="line"><span class="sk-yh2ys2">shasum</span><span class="sk-1xptx7"> -a</span><span class="sk-1xptx7"> 256</span><span class="sk-1xptx7"> -c</span><span class="sk-1cxcxs"> VolumeMountTroubleshooter-v</span><span class="sk-1xptx7">*</span><span class="sk-1cxcxs">-SHA256SUMS.txt</span></span></code></pre></div>
+<p>Ad-hoc signing detects accidental bundle changes but is not Developer ID signing or Apple notarization.</p>
+<div class="heading-wrap level-3"><h3 id="github-actions">GitHub Actions</h3><a class="heading-anchor" href="#github-actions" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: GitHub Actions</span></a></div>
+<p>The <a href="https://github.com/hideouts-io/VolumeMountTroubleshooter/blob/main/.github/workflows/macos-ci.yml" rel="noopener noreferrer"><code>macOS CI</code> workflow</a> runs on every branch push, pull request, <code>v*</code> tag push, and manual dispatch. It:</p>
+<ol>
+<li>builds the universal app on GitHub's Apple Silicon <code>macos-15</code> runner;</li>
+<li>runs self-tests and strict signature verification;</li>
+<li>packages the app and produces a SHA-256 checksum;</li>
+<li>uploads the ZIP and checksum as immutable workflow artifacts;</li>
+<li>downloads that exact package on <code>macos-15-intel</code> and repeats checksum, architecture, signature, and native Intel self-test validation; and</li>
+<li>after a <code>v*</code> tag passes every validation job, creates the GitHub Release with both assets and publishes it atomically.</li>
+</ol>
+<p>A <code>v*</code> tag must exactly match <code>CFBundleShortVersionString</code>, such as tag <code>v0.3.0</code> for app version <code>0.3.0</code>, or the release workflow fails before packaging. GitHub documents <code>macos-15</code> as arm64 and <code>macos-15-intel</code> as Intel runner labels, while artifact uploads expose a SHA-256 digest in addition to the project's downloadable checksum file. <a href="https://docs.github.com/en/actions/how-tos/write-workflows/choose-where-workflows-run/choose-the-runner-for-a-job" rel="noopener noreferrer">GitHub-hosted runner reference</a>, <a href="https://docs.github.com/en/actions/tutorials/store-and-share-data" rel="noopener noreferrer">workflow artifact validation</a></p>
+<div class="heading-wrap level-3"><h3 id="live-read-only-scanner-integration-test">Live read-only scanner integration test</h3><a class="heading-anchor" href="#live-read-only-scanner-integration-test" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: Live read-only scanner integration test</span></a></div>
+<div class="code-wrap" data-kind="terminal"><div class="code-bar"><span class="code-lang">Terminal</span></div><pre class="shiki shiki-themes github-light github-dark-dimmed sk-1cqee4" tabindex="0" data-lang="sh"><code class="language-sh"><span class="line"><span class="sk-yh2ys2">"build/Volume Mount Troubleshooter.app/Contents/MacOS/VolumeMountTroubleshooter"</span><span class="sk-12cj2w"> \</span></span>
+<span class="line"><span class="sk-1xptx7">  --scan-test</span></span></code></pre></div>
+<p>This test inventories attached external disks, parses user-facing volumes, and reports overall and expanded SMART, USB, mount, and encryption metadata. It does not mount, unmount, repair, erase, or eject anything.</p>
+<div class="heading-wrap level-3"><h3 id="manual-verification">Manual verification</h3><a class="heading-anchor" href="#manual-verification" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: Manual verification</span></a></div>
+<div class="code-wrap" data-kind="terminal"><div class="code-bar"><span class="code-lang">Terminal</span></div><pre class="shiki shiki-themes github-light github-dark-dimmed sk-1cqee4" tabindex="0" data-lang="sh"><code class="language-sh"><span class="line"><span class="sk-yh2ys2">/usr/bin/plutil</span><span class="sk-1xptx7"> -lint</span><span class="sk-1cxcxs"> Info.plist</span></span>
+<span class="line"><span class="sk-yh2ys2">/usr/bin/codesign</span><span class="sk-1xptx7"> --verify</span><span class="sk-1xptx7"> --deep</span><span class="sk-1xptx7"> --strict</span><span class="sk-1xptx7"> --verbose=2</span><span class="sk-12cj2w"> \</span></span>
+<span class="line"><span class="sk-1cxcxs">  "build/Volume Mount Troubleshooter.app"</span></span></code></pre></div>
+<p>Normal mount, read-only mount, explicit unmount, writable-volume unmount/remount, Safe Eject Disk, and physical hot-plug behavior require deliberate testing with a disposable external test device. Do not validate those state-changing paths against irreplaceable evidence media.</p>
+<div class="heading-wrap level-3"><h3 id="hardware-test-matrix">Hardware test matrix</h3><a class="heading-anchor" href="#hardware-test-matrix" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: Hardware test matrix</span></a></div>
+<p>The <a href="https://github.com/hideouts-io/VolumeMountTroubleshooter/blob/main/docs/HARDWARE_TEST_MATRIX.md" rel="noopener noreferrer">hardware test matrix</a> defines repeatable cases for unencrypted and encrypted APFS, ExFAT, NTFS, virtual unlockers, multiple disks with an isolated failure, disconnect-during-scan behavior, busy volumes, USB hubs, and verified read-only remounts. Each case records the exact build, macOS version, drive, bridge, connection path, expected result, observed result, and privacy-reviewed evidence.</p>
+<p>Matrix rows remain <code>NOT RUN</code>, <code>BLOCKED</code>, <code>FAIL</code>, or <code>HISTORICAL</code> until the behavior is deliberately exercised on disposable hardware. A parser self-test, successful build, or unobserved field is never counted as hardware validation.</p>
+<hr>
+<div class="heading-wrap level-2"><h2 id="repository-layout">Repository Layout</h2><a class="heading-anchor" href="#repository-layout" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: Repository Layout</span></a></div>
+<div class="code-wrap" data-kind="code"><div class="code-bar"><span class="code-lang">text</span></div><pre class="shiki shiki-themes github-light github-dark-dimmed sk-1cqee4" tabindex="0" data-lang=""><code class="language-text"><span class="line"><span class="sk-wvjl67">VolumeMountTroubleshooter/</span></span>
+<span class="line"><span class="sk-wvjl67">├── .github/workflows/macos-ci.yml # Universal build and release validation</span></span>
+<span class="line"><span class="sk-wvjl67">├── AppDelegate.swift       # AppKit window, controls, actions, and workflow</span></span>
+<span class="line"><span class="sk-wvjl67">├── assets/AppIcon.png      # Canonical project logo source</span></span>
+<span class="line"><span class="sk-wvjl67">├── assets/AppIcon.icns     # Multi-resolution macOS application icon</span></span>
+<span class="line"><span class="sk-wvjl67">├── Diagnostics.swift       # Typed models, plist decoding, redaction, guidance</span></span>
+<span class="line"><span class="sk-wvjl67">├── PhysicalTransport.swift # Selected-path model, coverage and bounded explanations</span></span>
+<span class="line"><span class="sk-wvjl67">├── TransportScanner.swift  # Read-only exact BSD/IOMedia ancestry collector</span></span>
+<span class="line"><span class="sk-wvjl67">├── TransportSelfTests.swift # Correlation, unavailable-media and privacy checks</span></span>
+<span class="line"><span class="sk-wvjl67">├── docs/HARDWARE_TEST_MATRIX.md # Physical-device validation cases and records</span></span>
+<span class="line"><span class="sk-wvjl67">├── SystemConnectors.swift  # Process, disk scanner, Disk Arbitration monitor</span></span>
+<span class="line"><span class="sk-wvjl67">├── main.swift              # Application entry point and test modes</span></span>
+<span class="line"><span class="sk-wvjl67">├── Info.plist              # macOS bundle metadata</span></span>
+<span class="line"><span class="sk-wvjl67">├── build.sh                # Build, self-test, signing, and verification</span></span>
+<span class="line"><span class="sk-wvjl67">├── script/build_release.sh # Universal ZIP and SHA-256 generation</span></span>
+<span class="line"><span class="sk-wvjl67">├── script/build_and_run.sh # Build and launch entrypoint for local debugging</span></span>
+<span class="line"><span class="sk-wvjl67">├── script/verify_release.sh # Extracted release and native-slice verification</span></span>
+<span class="line"><span class="sk-wvjl67">├── README.md               # Project documentation</span></span>
+<span class="line"><span class="sk-wvjl67">├── LICENSE                 # MIT software license</span></span>
+<span class="line"><span class="sk-wvjl67">└── .gitignore              # Excludes generated build output</span></span></code></pre></div>
+<p>Generated applications under <code>build/</code> and release files under <code>dist/</code> are intentionally not tracked by Git.</p>
+<hr>
+<div class="heading-wrap level-2"><h2 id="current-limitations">Current Limitations</h2><a class="heading-anchor" href="#current-limitations" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: Current Limitations</span></a></div>
+<ul>
+<li>The app is ad-hoc signed, not Developer ID signed, notarized, or distributed as a DMG or installer package.</li>
+<li>Only external physical storage published by <code>diskutil</code> is considered. Internal disks, disk images, network shares, and cloud-storage providers are outside scope.</li>
+<li>Transport ancestry requires current IOMedia. A device that has not published a BSD disk cannot be associated with the selected storage path.</li>
+<li>Multi-store APFS volumes have no single attributed transport path; Thunderbolt/USB4 link-rate and advertised maximum-rate enrichment remain unsupported or unavailable.</li>
+<li>SMART is frequently unavailable through USB bridges; expanded counters also require an existing compatible <code>smartctl</code> collector.</li>
+<li>USB link speed is not storage throughput.</li>
+<li>Locked encrypted volumes must be unlocked outside the app.</li>
+<li>The app does not identify or install third-party filesystem drivers.</li>
+<li>The app does not repair filesystems or evaluate whether repair is safe.</li>
+<li>Unified Log results depend on retention, privacy redaction, and the selected 15-minute window.</li>
+<li>Automatic detection reacts to Disk Arbitration appeared and disappeared events but does not auto-mount.</li>
+<li>Read-only guarantees begin only after the app verifies the requested read-only mount state.</li>
+</ul>
+<hr>
+<div class="heading-wrap level-2"><h2 id="troubleshooting">Troubleshooting</h2><a class="heading-anchor" href="#troubleshooting" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: Troubleshooting</span></a></div>
+<div class="heading-wrap level-3"><h3 id="no-volume-appears-in-the-selector">No volume appears in the selector</h3><a class="heading-anchor" href="#no-volume-appears-in-the-selector" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: No volume appears in the selector</span></a></div>
+<p>Run the same layers manually:</p>
+<div class="code-wrap" data-kind="terminal"><div class="code-bar"><span class="code-lang">Terminal</span></div><pre class="shiki shiki-themes github-light github-dark-dimmed sk-1cqee4" tabindex="0" data-lang="sh"><code class="language-sh"><span class="line"><span class="sk-yh2ys2">/usr/sbin/system_profiler</span><span class="sk-1cxcxs"> SPUSBDataType</span><span class="sk-1cxcxs"> SPThunderboltDataType</span><span class="sk-1xptx7"> -detailLevel</span><span class="sk-1cxcxs"> mini</span></span>
+<span class="line"><span class="sk-yh2ys2">/usr/sbin/diskutil</span><span class="sk-1cxcxs"> list</span><span class="sk-1cxcxs"> external</span><span class="sk-1cxcxs"> physical</span></span>
+<span class="line"><span class="sk-yh2ys2">/usr/sbin/ioreg</span><span class="sk-1xptx7"> -r</span><span class="sk-1xptx7"> -c</span><span class="sk-1cxcxs"> IOBlockStorageDevice</span><span class="sk-1xptx7"> -l</span><span class="sk-1xptx7"> -w0</span></span></code></pre></div>
+<ul>
+<li>If no layer sees the device, check the cable, enclosure, adapter, hub power, and port.</li>
+<li>If System Profiler sees hardware but <code>diskutil</code> does not, macOS has not published a usable external disk.</li>
+<li>If <code>diskutil</code> sees the disk but the selector is empty, the disk may lack a recognized user-facing filesystem or may contain only excluded helper partitions.</li>
+</ul>
+<div class="heading-wrap level-3"><h3 id="the-volume-is-locked">The volume is locked</h3><a class="heading-anchor" href="#the-volume-is-locked" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: The volume is locked</span></a></div>
+<p>Unlock it through Finder or Disk Utility, then press <strong>Refresh</strong>. Do not send a password or recovery key to this application or include one in a report.</p>
+<div class="heading-wrap level-3"><h3 id="a-sandisk-or-western-digital-unlocker-volume-appears">A SanDisk or Western Digital unlocker volume appears</h3><a class="heading-anchor" href="#a-sandisk-or-western-digital-unlocker-volume-appears" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: A SanDisk or Western Digital unlocker volume appears</span></a></div>
+<p>The small read-only unlocker is a virtual CD, not the data filesystem. Use <strong>Show Unlocker in Finder</strong> if you need to locate it, then deliberately open the vendor utility yourself. Complete the vendor unlock and watch the five-attempt progress indicator until the full-size volume appears. Pressing <strong>Refresh</strong> restarts the retry budget; the app never launches the utility or submits, reads, or stores its password.</p>
+<div class="heading-wrap level-3"><h3 id="read-only-remount-fails-with-resource-busy">Read-only remount fails with <code>Resource busy</code></h3><a class="heading-anchor" href="#read-only-remount-fails-with-resource-busy" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: Read-only remount fails with Resource busy</span></a></div>
+<p>Close Finder windows, Terminal working directories, documents, media applications, backup tools, indexing jobs, and any process using the selected mount point. Retry without force-unmounting.</p>
+<div class="heading-wrap level-3"><h3 id="the-mount-command-succeeds-but-verification-fails">The mount command succeeds but verification fails</h3><a class="heading-anchor" href="#the-mount-command-succeeds-but-verification-fails" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: The mount command succeeds but verification fails</span></a></div>
+<p>Treat the operation as unsuccessful. Review the fresh <code>diskutil info -plist</code> result and recent Disk Arbitration errors. Disk identifiers may also have changed during reconnect or device reset.</p>
+<div class="heading-wrap level-3"><h3 id="smart-says-not-supported">SMART says <code>Not Supported</code></h3><a class="heading-anchor" href="#smart-says-not-supported" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: SMART says Not Supported</span></a></div>
+<p>That result is common through USB bridges and does not establish health. Expanded counters may still be unavailable because the bridge blocks SMART pass-through, <code>smartctl</code> is absent, or the current user cannot access the health interface. The app reports the reason it observed without requesting administrator credentials. Use hardware-appropriate vendor diagnostics or a direct interface when health assessment is required.</p>
+<hr>
+<div class="heading-wrap level-2"><h2 id="uninstall">Uninstall</h2><a class="heading-anchor" href="#uninstall" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: Uninstall</span></a></div>
+<p>The app installs no background service or privileged helper. Quit it and remove the generated bundle:</p>
+<div class="code-wrap" data-kind="terminal"><div class="code-bar"><span class="code-lang">Terminal</span></div><pre class="shiki shiki-themes github-light github-dark-dimmed sk-1cqee4" tabindex="0" data-lang="sh"><code class="language-sh"><span class="line"><span class="sk-yh2ys2">rm</span><span class="sk-1xptx7"> -rf</span><span class="sk-1cxcxs"> "build/Volume Mount Troubleshooter.app"</span></span></code></pre></div>
+<p>Delete the cloned repository separately if the source is no longer needed. Saved reports remain wherever the user chose to write them.</p>
+<hr>
+<div class="heading-wrap level-2"><h2 id="responsible-use">Responsible Use</h2><a class="heading-anchor" href="#responsible-use" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: Responsible Use</span></a></div>
+<p>Use Volume Mount Troubleshooter only with storage you own or are authorized to examine. Mounting can expose private data to applications running under the signed-in account. Ejecting a disk affects every sibling volume on that physical device.</p>
+<p>For forensic evidence, prefer a validated hardware write blocker and an evidence-handling procedure appropriate to the investigation. A software read-only mount is useful operational protection, but it is not a substitute for hardware-enforced write blocking, acquisition hashes, chain of custody, or verified forensic tooling.</p>
+<p>Preserve original error output before attempting repair. Never erase or format a device merely because macOS cannot mount it.</p>
+<hr>
+<div class="heading-wrap level-2"><h2 id="project-status-and-license">Project Status and License</h2><a class="heading-anchor" href="#project-status-and-license" data-pagefind-ignore=""><span aria-hidden="true">#</span><span class="sr-only">Link to section: Project Status and License</span></a></div>
+<p>Volume Mount Troubleshooter is an early native macOS utility. The source builds as one universal <code>arm64 + x86_64</code> app. Parser self-tests, a live read-only scanner test, deterministic ZIP and checksum generation, strict ad-hoc signature verification, and native CI validation on Apple Silicon and Intel runners are available in this repository.</p>
+<p>The project has no required third-party runtime dependencies, no telemetry, no network access, and no privileged helper. Expanded SMART collection is an optional integration with an existing smartmontools installation and is not bundled by the current build.</p>
+<p>Volume Mount Troubleshooter is released under the <a href="https://github.com/hideouts-io/VolumeMountTroubleshooter/blob/main/LICENSE" rel="noopener noreferrer">MIT License</a>. Anyone may freely use, copy, modify, merge, publish, distribute, sublicense, or sell copies of the software, including for commercial purposes, provided the copyright and license notice remain with copies or substantial portions. The software is provided without warranty.</p></article></div></div></div></section><section class="container-x pt-24" aria-labelledby="more-heading"><h2 id="more-heading" class="text-lg font-semibold text-ink">Related apps</h2><ul class="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3"><li><article class="card card-link group flex h-full flex-col p-5" data-platforms="iOS macOS" data-categories="developer forensics diagnostics"><div class="flex items-start gap-4"><img src="/media/ios-developer-toolkit/img-23-640.webp" alt="" width="96" height="96" class="size-12 rounded-[0.8rem] shrink-0 border border-line bg-surface-2 object-cover"><div class="min-w-0"><h3 class="font-semibold tracking-tight text-ink"><a href="/apps/ios-developer-toolkit/" class="stretched-link">iOS Developer Toolkit</a></h3><p class="mt-1 text-sm leading-6 text-ink-2">The all-in-one iPhone and iPad workbench for your Mac.</p></div></div><div class="mt-auto flex flex-wrap items-center gap-1.5 pt-5"><span class="chip chip-ios"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class><rect x="6.5" y="2.5" width="11" height="19" rx="2.6"/><path d="M10.5 5h3"/></svg>iOS</span><span class="chip chip-accent"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class><rect x="3" y="4.5" width="18" height="11.5" rx="1.8"/><path d="M1.5 19.5h21"/><path d="M9.5 16v3.5M14.5 16v3.5"/></svg>macOS</span><span class="chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class><path d="m8 7-5 5 5 5M16 7l5 5-5 5M13.5 4.5l-3 15"/></svg>Python</span><span class="chip font-mono" title="Pre-1.0">v0.3.4</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="ml-auto text-ink-3 transition-transform group-hover:translate-x-0.5 group-hover:text-accent"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div></article></li><li><article class="card card-link group flex h-full flex-col p-5" data-platforms="iOS macOS" data-categories="developer forensics diagnostics"><div class="flex items-start gap-4"><img src="/media/ios-developer-toolkit-swift/img-11-640.webp" alt="" width="96" height="96" class="size-12 shrink-0 object-contain"><div class="min-w-0"><h3 class="font-semibold tracking-tight text-ink"><a href="/apps/ios-developer-toolkit-swift/" class="stretched-link">iOS Developer Toolkit (Swift)</a></h3><p class="mt-1 text-sm leading-6 text-ink-2">The iPhone and iPad workbench, rebuilt as a native Mac app.</p></div></div><div class="mt-auto flex flex-wrap items-center gap-1.5 pt-5"><span class="chip chip-ios"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class><rect x="6.5" y="2.5" width="11" height="19" rx="2.6"/><path d="M10.5 5h3"/></svg>iOS</span><span class="chip chip-accent"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class><rect x="3" y="4.5" width="18" height="11.5" rx="1.8"/><path d="M1.5 19.5h21"/><path d="M9.5 16v3.5M14.5 16v3.5"/></svg>macOS</span><span class="chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class><path d="m8 7-5 5 5 5M16 7l5 5-5 5M13.5 4.5l-3 15"/></svg>Swift</span><span class="chip font-mono" title="Released">v1.0.0</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="ml-auto text-ink-3 transition-transform group-hover:translate-x-0.5 group-hover:text-accent"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div></article></li><li><article class="card card-link group flex h-full flex-col p-5" data-platforms="macOS" data-categories="diagnostics"><div class="flex items-start gap-4"><img src="/branding/system-profiler-explorer/app-icon.png" alt="" width="96" height="96" class="size-12 shrink-0 object-contain"><div class="min-w-0"><h3 class="font-semibold tracking-tight text-ink"><a href="/apps/system-profiler-explorer/" class="stretched-link">System Profiler Explorer</a></h3><p class="mt-1 text-sm leading-6 text-ink-2">Understand what your Mac reports about itself.</p></div></div><div class="mt-auto flex flex-wrap items-center gap-1.5 pt-5"><span class="chip chip-accent"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class><rect x="3" y="4.5" width="18" height="11.5" rx="1.8"/><path d="M1.5 19.5h21"/><path d="M9.5 16v3.5M14.5 16v3.5"/></svg>macOS</span><span class="chip"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class><path d="m8 7-5 5 5 5M16 7l5 5-5 5M13.5 4.5l-3 15"/></svg>Swift</span><span class="chip font-mono" title="Pre-1.0">v0.1.2</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="ml-auto text-ink-3 transition-transform group-hover:translate-x-0.5 group-hover:text-accent"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div></article></li></ul></section></main>
