@@ -291,7 +291,7 @@ jobs:
       - name: Upload encrypted intermediate
         id: upload_cipher
         if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main'
-        uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: encrypted-site-input-${{ github.run_id }}-${{ github.run_attempt }}
           path: ${{ runner.temp }}/encrypted-site.cms
@@ -638,7 +638,7 @@ jobs:
       # upload-pages-artifact v5 uses this same pinned action on artifact.tar.
       - name: Upload the checked Pages tar
         id: upload
-        uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: github-pages-${{ github.run_id }}-${{ github.run_attempt }}
           path: ${{ runner.temp }}/artifact.tar
