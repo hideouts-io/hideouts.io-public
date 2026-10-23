@@ -430,6 +430,10 @@ async function renderProject(p: Project) {
         }
         // Links: keep anchors, map repo-relative paths to GitHub, allowlisted repos to site pages.
         if (node.tagName === 'a') {
+          // Keep this one source README reference on the official OpenBSD manual.
+          if (p.slug === 'man-pages-catalog' && node.properties.href === 'https://mandoc.bsd.lv/man/mandoc.1.html') {
+            node.properties.href = 'https://man.openbsd.org/mandoc.1';
+          }
           const href = String(node.properties.href ?? '');
           if (!href || href.startsWith('#') || href.startsWith('mailto:')) return;
           if (imageUrl[href]) {
