@@ -431,7 +431,7 @@ jobs:
           expected_zip_sha=$(printf '%s' "$CIPHER_DIGEST" | sed 's/^sha256://')
           [[ "$expected_zip_sha" =~ ^[a-f0-9]{64}$ ]]
           gh api "repos/$GITHUB_REPOSITORY/actions/artifacts/$CIPHER_ID" |
-            jq -e --arg name "$CIPHER_NAME" --arg digest "$CIPHER_DIGEST" --arg sha "$GITHUB_SHA" --argjson run "$GITHUB_RUN_ID" \
+            jq -e --arg name "$CIPHER_NAME" --arg digest "sha256:$expected_zip_sha" --arg sha "$GITHUB_SHA" --argjson run "$GITHUB_RUN_ID" \
               '.name == $name and .expired == false and .digest == $digest and .workflow_run.id == $run and .workflow_run.head_sha == $sha' > /dev/null
           curl --fail --silent --show-error --location --max-time 180 --max-filesize 600000000 \
             --header "Authorization: Bearer $GH_TOKEN" --header 'Accept: application/vnd.github+json' \
@@ -697,7 +697,7 @@ jobs:
           zip_sha=$(printf '%s' "$ARTIFACT_DIGEST" | sed 's/^sha256://')
           [[ "$zip_sha" =~ ^[a-f0-9]{64}$ ]]
           gh api "repos/$GITHUB_REPOSITORY/actions/artifacts/$ARTIFACT_ID" |
-            jq -e --arg name "$ARTIFACT_NAME" --arg digest "$ARTIFACT_DIGEST" --arg sha "$GITHUB_SHA" --argjson run "$GITHUB_RUN_ID" \
+            jq -e --arg name "$ARTIFACT_NAME" --arg digest "sha256:$zip_sha" --arg sha "$GITHUB_SHA" --argjson run "$GITHUB_RUN_ID" \
               '.name == $name and .expired == false and .digest == $digest and .workflow_run.id == $run and .workflow_run.head_sha == $sha' > /dev/null
           curl --fail --silent --show-error --location --max-time 120 --max-filesize 600000000 \
             --header "Authorization: Bearer $GH_TOKEN" --header 'Accept: application/vnd.github+json' \
