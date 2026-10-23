@@ -9,7 +9,7 @@ import { fmtDate } from '../lib/content';
 const changes = [
   {
     date: '2026-10-23',
-    text: 'Clarified Decision Continuity’s browser storage and optional local source connection.',
+    text: 'Clarified Decision Continuity’s browser storage and local JSON import.',
   },
   { date: '2026-09-29', text: 'Added the table of what the site stores or sends, and how to check it yourself.' },
   { date: '2026-09-25', text: 'hideouts.io launched with this policy.' },
@@ -34,7 +34,7 @@ const jsonLd = pageGraph(
   <PageHeader
     eyebrow="Privacy"
     title="This site collects nothing."
-    lead="No cookies, analytics, trackers, or fingerprinting. Decision Continuity keeps your work in this browser and connects to a local source only if you choose one."
+    lead="No cookies, analytics, trackers, or fingerprinting. Decision Continuity keeps your work in this browser and reads a JSON export only when you choose one."
   />
   <div class="container-x pt-12">
     <div class="prose-readme max-w-[46rem]">
@@ -82,8 +82,8 @@ const jsonLd = pageGraph(
               <th scope="row">Requests to other sites</th>
               <td>
                 <strong>No third-party website requests.</strong> Site files and search load from hideouts.io. Decision
-                Continuity can request <code>http://127.0.0.1</code> on a port you choose when you explicitly connect a
-                local source. README images are copied here at build time.
+                Continuity reads a JSON export you select in your browser; the file is not uploaded. README images are
+                copied here at build time.
               </td>
             </tr>
             <tr>
@@ -129,7 +129,7 @@ const jsonLd = pageGraph(
         <li>
           Open the <strong>Network</strong> tab and reload a main site page. Every request goes to{' '}
           <code>hideouts.io</code>. Try a search: its requests use files under <code>/pagefind/</code> and do not
-          contain what you typed. In Decision Continuity, a local source request appears only after you connect one.
+          contain what you typed. In Decision Continuity, inspecting a selected JSON export makes no upload request.
         </li>
         <li>
           Open the <strong>Storage</strong> tab (Safari, Firefox) or <strong>Application</strong> tab (Chrome, Edge).

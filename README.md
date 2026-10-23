@@ -6,7 +6,7 @@ It's a static [Astro](https://astro.build) site. Project pages use reviewed snap
 
 - **Only allowlisted software repositories feed the catalog pages.**
 - **Dark by default.** The site ignores the device's light/dark setting and always opens dark; the header toggle switches to light and remembers that choice in the browser only.
-- **No tracking and no third-party website requests.** No analytics, no cookies, no external fonts or images. README images are included in the reviewed site snapshot. The separate Decision Continuity app stores sessions in the browser and can connect to a user-selected local source.
+- **No tracking and no third-party website requests.** No analytics, no cookies, no external fonts or images. README images are included in the reviewed site snapshot. The separate Decision Continuity app stores sessions in the browser and supports local JSON export and import without uploading files.
 - **Strict Content Security Policy on the main site pages.** Scripts and styles are allowed by hash only, with no `unsafe-inline`. The separate Decision Continuity app does not inherit the Astro page policy.
 
 ## Local development

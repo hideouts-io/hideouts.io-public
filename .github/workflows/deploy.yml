@@ -167,7 +167,7 @@ jobs:
                   raise ValueError("missing summary")
               table = report.split("\n## ", 1)[0]
               values = []
-              for label in ("Total", "Errors"):
+              for label in ("Total", "Timeouts", "Errors"):
                   matches = re.findall(r"(?m)^\|[^|\n]*" + label + r"\s*\|\s*(\d+)\s*\|", table)
                   if len(matches) != 1:
                       raise ValueError("missing count")
@@ -180,8 +180,8 @@ jobs:
             echo 'External link report could not be summarized'
             exit 1
           fi
-          read -r total errors <<< "$counts"
-          printf 'External links checked=%s errors=%s status=%s\n' "$total" "$errors" "$status"
+          read -r total timeouts errors <<< "$counts"
+          printf 'External links checked=%s timeouts=%s errors=%s status=%s\n' "$total" "$timeouts" "$errors" "$status"
           if [[ "$total" == 0 ]]; then
             echo 'External link check found zero links'
             exit 1
@@ -764,7 +764,7 @@ jobs:
                   raise ValueError("missing summary")
               table = report.split("\n## ", 1)[0]
               values = []
-              for label in ("Total", "Errors"):
+              for label in ("Total", "Timeouts", "Errors"):
                   matches = re.findall(r"(?m)^\|[^|\n]*" + label + r"\s*\|\s*(\d+)\s*\|", table)
                   if len(matches) != 1:
                       raise ValueError("missing count")
@@ -777,8 +777,8 @@ jobs:
             echo 'External link report could not be summarized'
             exit 1
           fi
-          read -r total errors <<< "$counts"
-          printf 'External links checked=%s errors=%s status=%s\n' "$total" "$errors" "$status"
+          read -r total timeouts errors <<< "$counts"
+          printf 'External links checked=%s timeouts=%s errors=%s status=%s\n' "$total" "$timeouts" "$errors" "$status"
           if [[ "$total" == 0 ]]; then
             echo 'External link check found zero links'
             exit 1
