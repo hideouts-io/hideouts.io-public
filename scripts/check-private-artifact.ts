@@ -503,8 +503,6 @@ async function main(): Promise<void> {
   const reviews = new Map(policy.binary_reviews.map((review) => [review.path, review]));
   const findings: Findings = { forbidden: 0, unsupported: 0, unreviewed: 0, malformed: 0 };
   const context: Context = { policy, reviews, images, searchFiles, findings };
-  if (!(await lstat(join(buildRoot, '.cache/github'))).isDirectory())
-    throw new Error('publication content cache missing');
   const sourceFiles = await walk(buildRoot, ['dist']);
   const inspectedPaths = new Set<string>();
   for (const file of sourceFiles) {
