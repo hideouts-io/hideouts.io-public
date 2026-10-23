@@ -43,16 +43,17 @@ const jsonLd = pageGraph(
   <PageHeader
     eyebrow="Colophon"
     title="How this site is built"
-    lead="hideouts.io is static HTML built in public from open source. This page shows exactly which build you’re looking at and how it was made, so you can check it."
+    lead="The main site is static HTML built in public from open-source code. Decision Continuity is included as a separate browser app. This page shows which site build you’re looking at."
   />
 
   <div class="container-x grid grid-cols-[minmax(0,1fr)] gap-12 pt-12 lg:grid-cols-[minmax(0,1fr)_22rem]">
     <div class="prose-readme max-w-[46rem]">
       <AnchorHeading id="content">Where the content comes from</AnchorHeading>
       <p>
-        Every app and research page is generated from a reviewed snapshot of its GitHub repository’s README. A README
-        change reaches this site after a separate content update and review. Builds run on every change to the site,
-        nightly at 06:17 UTC, and whenever a project asks for validation, using the same pinned content.
+        Every listed macOS and iOS app and research page is generated from a reviewed snapshot of its GitHub
+        repository’s README. A README change reaches this site after a separate content update and review. Builds run on
+        every change to the site, nightly at 06:17 UTC, and whenever a project asks for validation, using the same
+        pinned content.
       </p>
       <p>
         Only the {sources.length} repositories on an explicit allowlist can enter the reviewed snapshot. Images from
@@ -60,6 +61,11 @@ const jsonLd = pageGraph(
       </p>
 
       <AnchorHeading id="browser">What runs in your browser</AnchorHeading>
+      <p>
+        These details describe the main site pages. <a href="/decision-continuity/">Decision Continuity</a> is a
+        separate browser app with its own scripts and locally stored session records; its compiled files are included in
+        this site build, while its source is managed separately.
+      </p>
       <ul>
         <li>Plain HTML and one stylesheet. Every page works without JavaScript.</li>
         <li>
@@ -82,8 +88,9 @@ const jsonLd = pageGraph(
 
       <AnchorHeading id="csp">Content Security Policy</AnchorHeading>
       <p>
-        Every page carries this policy in a <code>&lt;meta&gt;</code> tag. The browser refuses anything it doesn’t
-        allow, including scripts from other sites and any inline script or style that isn’t hashed.
+        The main site pages carry this policy in a <code>&lt;meta&gt;</code> tag. The browser refuses anything it
+        doesn’t allow, including scripts from other sites and any inline script or style that isn’t hashed. The separate
+        Decision Continuity app does not inherit this Astro page policy.
       </p>
       <pre><code>{policy.join(';\n')}</code></pre>
       <p>
@@ -205,7 +212,7 @@ npm run build`
         <p class="mt-4 flex items-start gap-2 border-t border-line pt-4 text-xs leading-5 text-ink-3">
           <Icon name="code" size={12} class="mt-0.5 shrink-0" />
           <span>
-            The site’s code is open source under the MIT License.{' '}
+            The main site’s Astro code is open source under the MIT License.{' '}
             <a href={build.repoUrl} class="underline hover:text-ink" rel="noopener noreferrer">
               View the code
             </a>

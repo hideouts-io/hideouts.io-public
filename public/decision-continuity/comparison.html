@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f4f3ef" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <title>Comparison packet · Decision Continuity</title>
+    <script type="module" crossorigin src="/decision-continuity/assets/comparison-D4lzIHkE.js"></script>
+    <link rel="modulepreload" crossorigin href="/decision-continuity/assets/app-ready-Dn4yRzBf.js">
+    <link rel="modulepreload" crossorigin href="/decision-continuity/assets/uncertainty-basis-render-DmxSuIZ_.js">
+    <link rel="stylesheet" crossorigin href="/decision-continuity/assets/app-ready-CcTNIA2v.css">
+  </head>
+  <body class="app-shell packet-page">
+    <a class="skip-link" href="#main">Skip to comparison packet</a>
+    <aside class="app-sidebar" aria-label="Application navigation">
+      <a class="app-identity" href="./impact.html?format=6" aria-label="Decision Continuity workspace"><span class="continuity-mark" aria-hidden="true"></span><span class="app-identity-copy"><strong>Decision Continuity</strong><small>Evidence. Reasoning. Reassessment.</small></span></a>
+      <p class="nav-caption">Workspaces</p>
+      <nav class="app-route-nav" aria-label="Choose a workspace">
+        <a id="nav-workspace" data-testid="nav-workspace" href="./impact.html?format=6"><span class="nav-symbol" aria-hidden="true">◈</span><span>Decision workspace<small>Shared evidence &amp; reassessment</small></span></a>
+        <a id="nav-single" data-testid="nav-single" href="./decisions.html?format=4"><span class="nav-symbol" aria-hidden="true">□</span><span>Single decision<small>Write your original basis</small></span></a>
+        <a id="nav-guided" data-testid="nav-guided" href="./"><span class="nav-symbol" aria-hidden="true">↗</span><span>Guided example<small>Learn with a complete case</small></span></a>
+        <a id="nav-comparison" data-testid="nav-comparison" href="./comparison.html" aria-current="page"><span class="nav-symbol" aria-hidden="true">⇄</span><span>Comparison packet<small>Read-only local inspection</small></span></a>
+      </nav>
+      <p class="nav-caption">In this inspector</p>
+      <nav class="app-section-nav" aria-label="Packet sections">
+        <a href="#packet-intake" data-workspace-section="packet-intake" data-testid="nav-packet-intake"><span aria-hidden="true">01</span>Choose a packet</a>
+        <a href="#packet-result" data-workspace-section="packet-result" data-testid="nav-packet-result"><span aria-hidden="true">02</span>Inspect the explanation</a>
+      </nav>
+      <div class="app-sidebar-footer"><p class="app-environment"><span class="environment-dot" aria-hidden="true"></span>Local · read-only</p><p>The selected file stays in memory. Reload clears the explanation.</p><span class="capability-note">No upload, history restore, source refresh or AI service.</span></div>
+    </aside>
+    <div class="app-content">
+      <p id="app-loading" data-testid="app-loading" class="shell" role="status">Loading comparison inspector…</p>
+      <noscript><p class="shell">Enable JavaScript to inspect a local comparison packet.</p></noscript>
+      <main inert id="main" class="app-main shell authored-page" tabindex="-1">
+        <section class="intro workspace-intro" aria-labelledby="page-title">
+          <div><p class="workspace-kicker">Comparison packet <span>Preserve the exact question</span></p><h1 id="page-title" class="workspace-title">Two recorded states.<br /><span>One inspectable explanation.</span></h1><p class="intro-description">Open a selected comparison independently of its saved rehearsal. Follow the exact evidence, recorded scope, review questions and human outcomes at each endpoint.</p><div class="intro-metadata"><span>One decision</span><span>Frozen endpoints</span><span>Read-only inspection</span></div></div>
+          <aside class="scenario-note" aria-label="Inspection boundary"><span class="scope-label">Public synthetic demonstration</span><h2>A portable record.<br />A bounded perspective.</h2><p>Validation checks the included records and their references. It cannot authenticate their origin, prove the upstream history is complete, or establish operational assurance.</p><span class="scenario-reference">Human responsibility remains with the recorded decision.</span></aside>
+        </section>
+        <section id="packet-intake" class="panel authored-panel packet-intake" tabindex="-1" aria-labelledby="packet-intake-title">
+          <p class="eyebrow">01 / Inspect a local file</p><h2 id="packet-intake-title">Bring the selected comparison.</h2>
+          <p id="packet-input-help" class="section-lede">In a v6 or v7 decision workspace, choose a decision and From / To recorded states, then download the selected comparison. Choose that JSON packet here. This input accepts comparison packet v1 for decision history, or v2 including the selected evidence questions and human responses. It does not accept a complete operational history or a source file.</p>
+          <form id="packet-form" data-testid="packet-form" class="authored-form">
+            <div class="form-field"><label for="packet-file">Synthetic comparison packet · JSON · up to 1 MiB</label><input id="packet-file" data-testid="packet-file" type="file" accept=".json,application/json" aria-describedby="packet-input-help" required /></div>
+            <div class="packet-actions"><button id="packet-inspect" data-testid="packet-inspect" class="btn primary" type="submit">Inspect comparison →</button><button id="packet-clear" data-testid="packet-clear" class="btn secondary" type="button">Clear inspection</button><a class="section-next" href="./impact.html?format=6">Open decision workspace →</a></div>
+          </form>
+          <p id="packet-status" data-testid="packet-status" class="basis-note" role="status" aria-live="polite">Choose a local synthetic packet. Nothing is uploaded or written to browser storage.</p>
+          <div id="packet-error" data-testid="packet-error" class="message error-message" role="alert" hidden></div>
+        </section>
+        <div class="packet-actions packet-print-controls"><button id="packet-print" data-testid="packet-print" class="btn secondary" type="button" disabled>Print explanation ↓</button><p class="basis-note">Printing includes the explanation, exact endpoint records and inspection limits. It does not alter the packet or saved history.</p></div>
+        <section id="packet-result" data-testid="packet-result" class="packet-result" tabindex="-1" aria-labelledby="packet-result-title" hidden>
+          <div id="packet-metadata" data-testid="packet-metadata" class="panel authored-panel packet-metadata"></div>
+          <section id="basis-review-brief" data-testid="basis-review-brief" class="basis-review-brief" aria-labelledby="basis-brief-title" hidden></section>
+          <div class="basis-columns"><article id="basis-historical" data-testid="basis-historical" class="basis-snapshot" aria-label="From recorded state"></article><article id="basis-latest" data-testid="basis-latest" class="basis-snapshot basis-current" aria-label="To recorded state"></article></div>
+          <section id="basis-differences" data-testid="basis-differences" class="basis-differences" aria-label="Comparison of selected recorded states"></section>
+        </section>
+      </main>
+      <footer class="site-footer"><div class="footer-inner"><p>Decision Continuity · synthetic comparison inspector</p><p>Inspectable records. Accountable human decisions.</p></div></footer>
+    </div>
+  </body>
+</html>
