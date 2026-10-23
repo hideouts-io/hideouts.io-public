@@ -169,6 +169,17 @@ test('clean output records a deterministic complete tree manifest', () => {
   }
 });
 
+test('committed snapshot source passes without a content refresh cache', () => {
+  const root = fixture();
+  try {
+    rmSync(join(root, 'build', '.cache'), { recursive: true });
+    const result = check(root);
+    assert.equal(result.status, 0, result.stderr);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
 test('private marker in Markdown and encoded output fails without logging the marker', () => {
   const root = fixture();
   try {
