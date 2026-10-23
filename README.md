@@ -4,10 +4,10 @@ Source for [hideouts.io](https://hideouts.io), the home of the open-source macOS
 
 It's a static [Astro](https://astro.build) site. Project pages use reviewed snapshots of each repository's README. A README change reaches the site through a separate reviewed content update.
 
-- **Only allowlisted software repositories are published.**
+- **Only allowlisted software repositories feed the catalog pages.**
 - **Dark by default.** The site ignores the device's light/dark setting and always opens dark; the header toggle switches to light and remembers that choice in the browser only.
-- **No tracking and no third-party requests.** No analytics, no cookies, no external fonts or images. README images are included in the reviewed site snapshot.
-- **Strict Content Security Policy.** Scripts and styles are allowed by hash only, with no `unsafe-inline`.
+- **No tracking and no third-party website requests.** No analytics, no cookies, no external fonts or images. README images are included in the reviewed site snapshot. The separate Decision Continuity app stores sessions in the browser and can connect to a user-selected local source.
+- **Strict Content Security Policy on the main site pages.** Scripts and styles are allowed by hash only, with no `unsafe-inline`. The separate Decision Continuity app does not inherit the Astro page policy.
 
 ## Local development
 
@@ -205,8 +205,9 @@ src/
   scripts/site.ts      theme toggle, copy buttons, table of contents, filters, lightbox, search
   styles/global.css    design tokens (dark and light), README styles
 public/                favicon, CNAME, robots.txt, security.txt, _headers, og.png
+  decision-continuity/  separately built browser app served at /decision-continuity/
 ```
 
 ## License
 
-The site's source code is released under the [MIT License](LICENSE). Project content belongs to each project and is published under that project's own license. Apple, macOS, and iOS are trademarks of Apple Inc.; hideouts is not affiliated with Apple.
+The main Astro site's source code is released under the [MIT License](LICENSE). The Decision Continuity browser bundle is built from a separate source project; this README does not state a license for it. Listed project content belongs to each project and is published under that project's own license. Apple, macOS, and iOS are trademarks of Apple Inc.; hideouts is not affiliated with Apple.

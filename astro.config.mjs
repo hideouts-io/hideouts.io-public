@@ -42,6 +42,12 @@ export default defineConfig({
   redirects: { '/apps/drive-explorer/': '/apps/drivetrace/' },
   integrations: [
     sitemap({
+      customPages: [
+        'https://hideouts.io/decision-continuity/',
+        'https://hideouts.io/decision-continuity/decisions.html',
+        'https://hideouts.io/decision-continuity/impact.html',
+        'https://hideouts.io/decision-continuity/comparison.html',
+      ],
       serialize(item) {
         const date = LASTMOD[new URL(item.url).pathname];
         return date ? { ...item, lastmod: date } : item;

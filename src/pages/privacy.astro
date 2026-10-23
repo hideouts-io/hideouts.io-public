@@ -7,6 +7,10 @@ import { fmtDate } from '../lib/content';
 
 // Newest first. Add an entry whenever what the site stores or sends changes.
 const changes = [
+  {
+    date: '2026-10-23',
+    text: 'Clarified Decision Continuity’s browser storage and optional local source connection.',
+  },
   { date: '2026-09-29', text: 'Added the table of what the site stores or sends, and how to check it yourself.' },
   { date: '2026-09-25', text: 'hideouts.io launched with this policy.' },
 ];
@@ -14,7 +18,8 @@ const jsonLd = pageGraph(
   webPage({
     name: 'Privacy',
     path: '/privacy/',
-    description: 'hideouts.io collects nothing: no cookies, no analytics, no trackers, no third-party requests.',
+    description:
+      'hideouts.io uses no cookies, analytics, or trackers. Decision Continuity keeps sessions in your browser.',
     extra: { about: { '@type': 'Thing', name: 'Privacy policy' }, dateModified: changes[0].date },
   }),
   [{ name: 'Privacy', path: '/privacy/' }],
@@ -24,12 +29,12 @@ const jsonLd = pageGraph(
 <Base
   jsonLd={jsonLd}
   title="Privacy"
-  description="hideouts.io collects nothing: no cookies, no analytics, no trackers, no third-party requests."
+  description="hideouts.io uses no cookies, analytics, or trackers. Decision Continuity keeps sessions in your browser."
 >
   <PageHeader
     eyebrow="Privacy"
     title="This site collects nothing."
-    lead="No cookies, no analytics, no trackers, no fingerprinting, no third-party requests. That’s the whole policy; the rest of this page explains how it’s enforced."
+    lead="No cookies, analytics, trackers, or fingerprinting. Decision Continuity keeps your work in this browser and connects to a local source only if you choose one."
   />
   <div class="container-x pt-12">
     <div class="prose-readme max-w-[46rem]">
@@ -56,8 +61,9 @@ const jsonLd = pageGraph(
             <tr>
               <th scope="row">Local storage</th>
               <td>
-                <strong>Only if you pick the light theme.</strong> One key, <code>theme</code>, set to{' '}
-                <code>light</code>. It’s deleted when you switch back to dark, and it never leaves your device.
+                <strong>Main site pages:</strong> one <code>theme</code> key if you choose light mode; it is removed
+                when you switch back to dark. <strong>Decision Continuity:</strong> session records stay in this browser
+                so you can resume or export them.
               </td>
             </tr>
             <tr>
@@ -75,8 +81,9 @@ const jsonLd = pageGraph(
             <tr>
               <th scope="row">Requests to other sites</th>
               <td>
-                <strong>None.</strong> Scripts, styles, fonts, images, diagrams, and the search index all load from
-                hideouts.io. README images are copied here at build time.
+                <strong>No third-party website requests.</strong> Site files and search load from hideouts.io. Decision
+                Continuity can request <code>http://127.0.0.1</code> on a port you choose when you explicitly connect a
+                local source. README images are copied here at build time.
               </td>
             </tr>
             <tr>
@@ -120,25 +127,25 @@ const jsonLd = pageGraph(
           <strong>Tools → Browser Tools → Web Developer Tools</strong>.
         </li>
         <li>
-          Open the <strong>Network</strong> tab and reload the page. Every request goes to <code>hideouts.io</code>. Try
-          a search: the only requests are for files under <code>/pagefind/</code>, and none of them contains what you
-          typed.
+          Open the <strong>Network</strong> tab and reload a main site page. Every request goes to{' '}
+          <code>hideouts.io</code>. Try a search: its requests use files under <code>/pagefind/</code> and do not
+          contain what you typed. In Decision Continuity, a local source request appears only after you connect one.
         </li>
         <li>
           Open the <strong>Storage</strong> tab (Safari, Firefox) or <strong>Application</strong> tab (Chrome, Edge).
-          Cookies are empty. Local storage is empty, or holds only <code>theme</code> if you’ve switched to light.
+          Cookies are empty. Main site pages use only <code>theme</code>; Decision Continuity saves session records
+          here.
         </li>
         <li>
-          To see the rules the browser enforces, view the page source and find the <code>Content-Security-Policy</code>{' '}
-          tag near the top.
+          On a main site page, view the source to find its <code>Content-Security-Policy</code> tag near the top.
         </li>
       </ol>
 
       <AnchorHeading id="how-its-enforced">How it’s enforced</AnchorHeading>
       <ul>
         <li>
-          A strict <strong>Content Security Policy</strong> only allows scripts, styles, images, and connections from
-          this origin, and scripts only by hash.
+          On the main site pages, a strict <strong>Content Security Policy</strong> only allows scripts, styles, images,
+          and connections from this origin, and scripts only by hash.
         </li>
         <li>
           <code>Referrer-Policy: no-referrer</code> means sites you follow a link to aren’t told you came from here.

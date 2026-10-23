@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f4f3ef" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <title>Single decision · Decision Continuity</title>
+    <script type="module" crossorigin src="/decision-continuity/assets/decisions-C0QHKa9_.js"></script>
+    <link rel="modulepreload" crossorigin href="/decision-continuity/assets/app-ready-Dn4yRzBf.js">
+    <link rel="modulepreload" crossorigin href="/decision-continuity/assets/recovery-ui-z9eA3IQh.js">
+    <link rel="stylesheet" crossorigin href="/decision-continuity/assets/app-ready-CcTNIA2v.css">
+  </head>
+  <body class="app-shell">
+    <a class="skip-link" href="#main">Skip to decision workspace</a>
+    <aside class="app-sidebar" aria-label="Application navigation">
+      <a class="app-identity" href="./impact.html?format=6" aria-label="Decision Continuity workspace"><span class="continuity-mark" aria-hidden="true"></span><span class="app-identity-copy"><strong>Decision Continuity</strong><small>Evidence. Reasoning. Reassessment.</small></span></a>
+      <p class="nav-caption">Workspaces</p>
+      <nav class="app-route-nav" aria-label="Choose a workspace">
+        <a id="nav-workspace" data-testid="nav-workspace" href="./impact.html?format=6"><span class="nav-symbol" aria-hidden="true">◈</span><span>Decision workspace<small>Shared evidence &amp; reassessment</small></span></a>
+        <a id="nav-single" data-testid="nav-single" href="./decisions.html?format=4" aria-current="page"><span class="nav-symbol" aria-hidden="true">□</span><span>Single decision<small>Write your original basis</small></span></a>
+        <a id="nav-guided" data-testid="nav-guided" href="./"><span class="nav-symbol" aria-hidden="true">↗</span><span>Guided example<small>Learn with a complete case</small></span></a>
+      </nav>
+      <p class="nav-caption">In this workspace</p>
+      <nav class="app-section-nav" aria-label="Workspace sections">
+          <a href="#creation" data-workspace-section="creation" data-testid="nav-creation"><span aria-hidden="true">01</span>Original decision</a>
+          <a href="#authored-decision-section" data-workspace-section="authored-decision-section" data-testid="nav-authored-decision-section"><span aria-hidden="true">02</span>Current decision</a>
+          <a href="#authored-evidence-section" data-workspace-section="authored-evidence-section" data-testid="nav-authored-evidence-section"><span aria-hidden="true">03</span>Source & comparison</a>
+          <a href="#authored-impact-section" data-workspace-section="authored-impact-section" data-testid="nav-authored-impact-section"><span aria-hidden="true">04</span>Dependency rule</a>
+          <a href="#authored-review-section" data-workspace-section="authored-review-section" data-testid="nav-authored-review-section"><span aria-hidden="true">05</span>Human review</a>
+          <a href="#authored-history-section" data-workspace-section="authored-history-section" data-testid="nav-authored-history-section"><span aria-hidden="true">06</span>History & export</a>
+          <a href="#recovery-section" data-workspace-section="recovery-section" data-testid="nav-recovery-section"><span aria-hidden="true">07</span>Import a history</a>
+      </nav>
+      <div class="compatibility-nav"><p class="nav-caption">Earlier workflows</p><nav aria-label="Compatible earlier workflows"><a href="./decisions.html" data-testid="nav-single-legacy">Single capture · v3</a><a id="nav-legacy" href="./impact.html" data-testid="nav-shared-legacy">Shared source · v5</a></nav></div>
+      <div class="app-sidebar-footer"><p class="app-environment"><span class="environment-dot" aria-hidden="true"></span>Local · synthetic</p><p>Your browser holds this history. Export a copy to keep or transfer it.</p><span class="capability-note">No cloud account, live source connection or AI service.</span></div>
+    </aside>
+    <div class="app-content">
+    <p id="app-loading" data-testid="app-loading" class="shell" role="status">Loading Decision Continuity…</p>
+    <noscript><p class="shell">Enable JavaScript to use this interactive demonstration.</p></noscript>
+    <main inert id="main" class="app-main shell authored-page" tabindex="-1">
+      <section class="intro workspace-intro" aria-labelledby="page-title"><div><p class="workspace-kicker">Single decision <span>Author your basis</span></p><h1 id="page-title" class="workspace-title">A decision worth<br /><span>being able to explain.</span></h1><p class="intro-description">Write what you approved and why. Preserve its source, compare a later version, and record what follows without losing the original reasoning.</p><div class="intro-metadata"><span>Original scope</span><span>Separate declarations</span><span>Human outcomes</span></div></div><aside class="scenario-note" aria-label="Workspace scope"><span class="scope-label">Synthetic workspace</span><h2 id="workspace-scope-title">One decision.<br />One explicit request rule.</h2><p id="workspace-scope-description">This earlier format supports one source and one later capture. Its rule checks requested write access against a read-only request assumption. Explanatory prose does not execute a rule.</p></aside></section>
+      <div class="quick-start" aria-label="How this workspace works"><div><span>01</span><strong>Explain the approval</strong><p>Scope, rationale and a fictional reviewer establish the original basis.</p></div><div><span>02</span><strong>Preserve the change</strong><p>Enter a later source version. Requests and declared grants stay separate.</p></div><div><span>03</span><strong>Record what follows</strong><p>A human outcome appends to history. The original remains inspectable.</p></div></div>
+      <section class="session-bar" aria-label="Saved synthetic decisions">
+        <div class="session-picker"><label for="authored-select">Saved decision</label><select id="authored-select" data-testid="authored-select"><option value="">Create a decision</option></select></div>
+        <a id="authored-new" class="btn secondary compact" href="./decisions.html" data-testid="authored-new">New decision ＋</a>
+        <a class="btn secondary compact" href="./decisions.html?format=4" data-testid="new-continuity">Repeated reassessment →</a>
+        <a class="btn secondary compact" href="./impact.html" data-testid="shared-impact">Shared source impact →</a>
+        <p class="session-hint">Records stay in this browser and origin. Export to transfer history. Use fictional codes and synthetic material; do not enter identities or confidential evidence.</p>
+      </section>
+
+      <div id="authored-error" data-testid="authored-error" class="message error-message" role="alert" hidden></div>
+      <div id="authored-feedback" class="message feedback-message" role="status" aria-live="polite"></div>
+      <section id="creation" class="panel authored-panel" tabindex="-1" aria-labelledby="creation-title">
+        <p class="eyebrow">01 / Establish the original basis</p><h2 id="creation-title">What are you approving, and why?</h2>
+        <p id="creation-description" class="section-lede">Create an original synthetic approval. The baseline requests documents:read only; declared grants are entered independently. Nothing is authenticated or observed at runtime.</p>
+        <form id="authored-create-form" data-testid="authored-create-form" class="authored-form">
+          <div class="authored-grid">
+            <div class="form-field"><label for="create-title">Decision title</label><input id="create-title" data-testid="create-title" required minlength="3" maxlength="120" placeholder="Fictional research assistant approval" aria-describedby="title-hint" /><small id="title-hint">Use a precise title so another reviewer can identify the decision.</small></div>
+            <div class="form-field"><label for="create-actor">Fictional reviewer code</label><input id="create-actor" data-testid="create-actor" required pattern="[A-Z][A-Z0-9_\-]{1,31}" maxlength="32" placeholder="REVIEWER_A" aria-describedby="actor-hint" /><small id="actor-hint">Assigned for this rehearsal only. This code is not proof of identity or consent.</small></div>
+          </div>
+          <div class="form-field"><label for="create-statement">Original approval and scope</label><textarea id="create-statement" data-testid="create-statement" required minlength="16" maxlength="1000" rows="2" placeholder="Approve synthetic document summarization within a read-only scope."></textarea></div>
+          <div class="form-field"><label for="create-rationale">Original rationale</label><textarea id="create-rationale" data-testid="create-rationale" required minlength="16" maxlength="2000" rows="2" placeholder="Explain why this scope is justified by the fictional baseline."></textarea></div>
+          <div class="form-field"><label for="create-assumption">Why the read-only request assumption matters</label><textarea id="create-assumption" data-testid="create-assumption" required minlength="16" maxlength="1000" rows="2" placeholder="The approval relies on the source requesting documents:read only."></textarea><small id="assumption-rule-hint">Structured rule: request-remains-read-only. A later documents:write request warrants reassessment; grants are a separate fact.</small></div>
+          <div class="authored-grid">
+            <div class="form-field"><label for="create-source">Synthetic source name</label><input id="create-source" data-testid="create-source" required minlength="3" maxlength="120" placeholder="Fictional permissions manifest" /></div>
+            <div class="form-field"><label for="create-time">Baseline capture · UTC</label><input id="create-time" data-testid="create-time" type="datetime-local" required aria-describedby="time-hint" /><small id="time-hint">Interpreted as UTC; must not be in the future.</small></div>
+          </div>
+          <fieldset><legend>Baseline declared grants · independent of the request</legend><label><input id="create-grant-read" data-testid="create-grant-read" type="checkbox" checked />documents:read</label><label><input id="create-grant-write" data-testid="create-grant-write" type="checkbox" />documents:write</label></fieldset>
+          <div class="form-field"><label for="create-note">Baseline source note</label><textarea id="create-note" data-testid="create-note" required minlength="16" maxlength="1000" rows="2" placeholder="Describe the fictional capture and its evidence limits."></textarea></div>
+          <label class="synthetic-ack"><input id="create-synthetic" data-testid="create-synthetic" type="checkbox" required />This is synthetic material and a fictional reviewer, with no confidential or personal information.</label>
+          <button id="authored-create" data-testid="authored-create" class="btn primary" type="submit">Create &amp; preserve the original basis →</button>
+        </form>
+      </section>
+      <div id="authored-workspace" hidden>
+        <section id="authored-decision-section" class="panel authored-panel" aria-labelledby="authored-title" tabindex="-1">
+          <div class="section-heading"><div><p class="eyebrow">Original basis → current scope</p><h2 id="authored-title" data-testid="authored-title"></h2></div><span id="authored-status" data-testid="authored-status" class="badge"></span></div>
+          <p id="authored-current" data-testid="authored-current" class="decision-statement"></p>
+          <p id="authored-next" data-testid="authored-next" class="section-lede"></p>
+          <div id="continuity-summary" class="continuity-summary" hidden>
+            <h3 id="continuity-answer" data-testid="continuity-answer"></h3>
+            <dl><dt>What changed</dt><dd id="continuity-change" data-testid="continuity-change"></dd><dt>Why it matters</dt><dd id="continuity-why" data-testid="continuity-why"></dd><dt>What remains unknown</dt><dd id="continuity-unknown"></dd><dt>Who is responsible</dt><dd id="continuity-owner"></dd><dt>Recorded outcome</dt><dd id="continuity-outcome-summary" data-testid="continuity-outcome-summary"></dd></dl>
+          </div>
+          <details class="original-decision"><summary>Inspect the immutable original approval</summary><div id="authored-original" data-testid="authored-original"></div></details>
+        </section>
+        <section id="authored-evidence-section" class="workspace-section" aria-labelledby="authored-evidence-title" tabindex="-1">
+          <div class="section-heading"><div><p class="eyebrow">02 / Compare the source</p><h2 id="authored-evidence-title">See what changed.</h2><p id="authored-source-name" class="section-lede"></p></div></div>
+          <div class="source-grid"><article class="source-card"><h3 id="comparison-basis-title">Original baseline</h3><div id="authored-baseline" data-testid="authored-baseline"></div></article><article class="source-card"><h3>Later version</h3><div id="authored-changed" data-testid="authored-changed"></div></article></div>
+          <section id="capture-panel" class="panel authored-panel" aria-labelledby="capture-title"><h3 id="capture-title">Record one later synthetic capture.</h3><p id="capture-description" class="section-lede">A new capture is immutable. It does not open a review or change the decision automatically.</p>
+            <form id="authored-capture-form" class="authored-form">
+              <div class="form-field"><label for="authored-capture-time">Later capture · UTC</label><input id="authored-capture-time" data-testid="authored-capture-time" type="datetime-local" required /></div>
+              <div class="permission-inputs">
+                <fieldset><legend>Requested access</legend><label><input id="authored-request-read" data-testid="authored-request-read" type="checkbox" checked />documents:read</label><label><input id="authored-request-write" data-testid="authored-request-write" type="checkbox" />documents:write</label><label id="continuity-request-delete-label" hidden><input id="authored-request-delete" data-testid="authored-request-delete" type="checkbox" />documents:delete · synthetic</label></fieldset>
+                <fieldset><legend>Declared granted access</legend><label><input id="authored-grant-read" data-testid="authored-grant-read" type="checkbox" checked />documents:read</label><label><input id="authored-grant-write" data-testid="authored-grant-write" type="checkbox" />documents:write</label><label id="continuity-grant-delete-label" hidden><input id="authored-grant-delete" data-testid="authored-grant-delete" type="checkbox" />documents:delete · synthetic</label></fieldset>
+              </div>
+              <div class="form-field"><label for="authored-note">Later source note</label><textarea id="authored-note" data-testid="authored-note" required minlength="16" maxlength="1000" rows="3" placeholder="What changed in this synthetic source, and what can it not establish?"></textarea></div>
+              <button id="authored-capture" data-testid="authored-capture" class="btn primary" type="submit">Preserve &amp; compare version →</button>
+            </form>
+          </section>
+        </section>
+        <section id="authored-impact-section" class="panel authored-panel" aria-labelledby="authored-impact-title" tabindex="-1"><p class="eyebrow">03 / Follow the dependency</p><h2 id="authored-impact-title">Why this decision is affected.</h2><p id="authored-assumption" data-testid="authored-assumption" class="section-lede"></p><p id="authored-impact" data-testid="authored-impact" class="section-lede"></p><p id="authored-path" data-testid="authored-path" class="history-meta"></p><details id="continuity-references" hidden><summary>Inspect exact dependency and review references</summary><p id="continuity-reference-content" class="history-meta"></p></details></section>
+        <section id="authored-review-section" class="panel authored-panel" aria-labelledby="authored-review-title" tabindex="-1"><p class="eyebrow">04 / Human reassessment</p><h2 id="authored-review-title">You record what follows.</h2><p id="authored-review-context" class="section-lede"></p><button id="authored-open-review" data-testid="authored-open-review" type="button" class="btn primary" disabled>Open assigned review →</button>
+          <form id="authored-review-form" data-testid="authored-review-form" class="authored-form" hidden>
+            <div class="form-field"><label for="authored-reviewer">Assigned fictional reviewer</label><input id="authored-reviewer" data-testid="authored-reviewer" readonly /></div>
+            <div class="form-field"><label for="authored-outcome">Outcome</label><select id="authored-outcome" data-testid="authored-outcome" required><option value="">Choose an outcome</option><option value="reaffirm">Reaffirm</option><option value="revise">Revise</option><option value="withdraw">Withdraw</option><option value="defer">Defer</option></select><small id="authored-outcome-explanation" aria-live="polite"></small></div>
+            <fieldset id="continuity-boundary" hidden aria-describedby="boundary-hint"><legend>Accepted request boundary for the revised decision</legend><label><input id="boundary-read" data-testid="boundary-read" type="checkbox" />documents:read</label><label><input id="boundary-write" data-testid="boundary-write" type="checkbox" />documents:write</label><label><input id="boundary-delete" data-testid="boundary-delete" type="checkbox" />documents:delete · synthetic</label><small id="boundary-hint">Select at least one. This records which requests the next comparison accepts; it does not grant access or establish runtime behavior. Reaffirm retains the prior boundary; defer sets no new basis; withdraw ends the approval.</small></fieldset>
+            <div class="form-field"><label for="authored-rationale">Accountable rationale</label><textarea id="authored-rationale" data-testid="authored-rationale" required minlength="16" maxlength="2000" rows="3" placeholder="Link your outcome to the evidence. Record uncertainty and any limits."></textarea></div>
+            <div class="form-field"><label for="authored-statement">Resulting decision scope or interim action</label><textarea id="authored-statement" data-testid="authored-statement" required minlength="16" maxlength="1000" rows="2" placeholder="State the resulting scope, or what evidence is needed before deciding."></textarea></div>
+            <button id="authored-record-outcome" data-testid="authored-record-outcome" class="btn primary" type="submit">Append outcome to history →</button>
+          </form>
+        </section>
+        <section id="authored-history-section" class="workspace-section" aria-labelledby="authored-history-title" tabindex="-1"><div class="section-heading"><div><p class="eyebrow">05 / Preserve the reasoning</p><h2 id="authored-history-title">Every basis. Every outcome.</h2></div><button id="authored-export" data-testid="authored-export" class="btn secondary" type="button">Export history ↓</button></div><ol id="authored-history" data-testid="authored-history" class="authored-history"></ol></section>
+      </div>
+      <details id="recovery-section" class="recovery-panel panel" data-testid="import-panel" tabindex="-1">
+        <summary data-testid="import-toggle">Import history <span>Inspect, then restore</span></summary>
+        <p id="import-hint">Choose a Decision Continuity JSON export, maximum 1 MiB. Nothing is uploaded. Inspection writes nothing; confirmation restores only a missing record and opens its workspace. Different existing history cannot be overwritten.</p>
+        <form id="import-form"><div class="form-field"><label for="import-file">History export</label><input id="import-file" data-testid="import-file" type="file" accept=".json,application/json" required aria-describedby="import-hint" /></div><button id="inspect-import" data-testid="inspect-import" class="btn secondary compact" type="submit">Inspect export</button></form>
+        <div id="import-error" data-testid="import-error" class="message error-message" role="alert" hidden></div>
+        <div id="import-preview" data-testid="import-preview" hidden><h2>Review before restoring</h2><p id="import-summary" data-testid="import-summary" class="recovery-summary" role="status" aria-live="polite"></p><p>Consistency checks do not prove authenticity. Synthetic reviewer codes are not authenticated; browser storage is editable.</p><button id="confirm-import" data-testid="confirm-import" class="btn primary compact" type="button" disabled>Restore &amp; open session</button></div>
+      </details>
+      <p class="authored-boundary">Synthetic technical demonstration. No live source checks, real access revocation, authentication, remote sharing or operational assurance.</p>
+    </main>
+    </div>
+  </body>
+</html>

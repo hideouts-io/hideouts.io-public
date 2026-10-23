@@ -36,6 +36,11 @@ const builtOn = new Date(build.time).toLocaleDateString('en-US', {
           </a>
         </li>
         <li>
+          <a class="hover:text-ink" href="/decision-continuity/" data-testid="decision-continuity-link">
+            Decision Continuity
+          </a>
+        </li>
+        <li>
           <a class="hover:text-ink" href="/contribute/">
             Contribute
           </a>
@@ -95,7 +100,7 @@ const builtOn = new Date(build.time).toLocaleDateString('en-US', {
   </div>
   <div class="container-x flex flex-col gap-2 border-t border-line py-6 text-xs text-ink-3 sm:flex-row sm:justify-between">
     <p>
-      © {year} hideouts.io. Projects are released under their own open-source licenses.
+      © {year} hideouts.io. Listed macOS and iOS projects have their own licenses.
       <span class="block sm:mt-1">
         Built{' '}
         {build.commitUrl && (
