@@ -1,4 +1,5 @@
 // Progressive enhancements only. Every page works without JavaScript.
+import { searchResultKind } from '../lib/search-result-kind';
 
 const root = document.documentElement;
 // Dark unless the visitor has switched to light with the toggle.
@@ -292,7 +293,7 @@ if (dialog) {
       top.className = 'flex items-center gap-2';
       const kind = document.createElement('span');
       kind.className = 'chip';
-      kind.textContent = d.filters?.kind?.[0] ?? 'Page';
+      kind.textContent = searchResultKind(d.url);
       const title = document.createElement('span');
       title.className = 'truncate font-medium text-ink';
       title.textContent = d.meta?.title ?? d.url;

@@ -3,13 +3,12 @@
 import type { Generated } from '../lib/content';
 interface Props {
   gh: Generated;
-  /** Title and section label for search results. */
+  /** Title for search results. */
   title: string;
-  kind: 'App' | 'Research';
   /** Allow h3 entries in the TOC (research articles). */
   deep?: boolean;
 }
-const { gh, title, kind, deep = false } = Astro.props;
+const { gh, title, deep = false } = Astro.props;
 const toc = gh.toc.filter(
   (t) => t.depth === 2 || (deep && t.depth === 3 && gh.toc.filter((x) => x.depth === 2).length < 6),
 );
@@ -59,7 +58,6 @@ const hasToc = toc.length > 2;
       class="prose-readme max-w-[48rem]"
       data-pagefind-body
       data-pagefind-meta={`title:${title}`}
-      data-pagefind-filter={`kind:${kind}`}
       set:html={gh.html}
     />
     <slot name="after" />
