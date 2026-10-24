@@ -129,7 +129,7 @@ const jsonLd = pageGraph(
 
       <AnchorHeading id="reproduce">Reproduce this build</AnchorHeading>
       <p>To rebuild this version yourself with Node 24:</p>
-      <pre><code
+      <pre data-pagefind-ignore><code
           >{
             `git clone ${build.repoUrl}.git
 cd hideouts.io-public${build.sha ? `\ngit checkout ${build.short}` : ''}
@@ -170,7 +170,7 @@ npm run build`
       </div>
     </div>
 
-    <aside aria-labelledby="build-heading">
+    <aside aria-labelledby="build-heading" data-pagefind-ignore>
       <div class="card sticky top-24 p-5">
         <h2 id="build-heading" class="text-sm font-semibold text-ink">
           This build

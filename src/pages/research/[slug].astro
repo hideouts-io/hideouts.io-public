@@ -154,7 +154,7 @@ const jsonLd = {
   </header>
 
   <section class="container-x pt-12">
-    <ReadmeBody gh={gh} title={e.name} kind="Research" deep>
+    <ReadmeBody gh={gh} title={e.name} deep>
       {e.findings?.length ? <KeyFindings findings={e.findings} bottomLine={e.bottomLine} jumpTo={e.jumpTo} /> : null}
       {evidenceFirst && (
         <aside class="callout callout-note mb-10 max-w-[48rem]">
