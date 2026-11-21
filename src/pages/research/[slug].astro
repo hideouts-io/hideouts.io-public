@@ -7,7 +7,7 @@ import KeyFindings from '../../components/KeyFindings.astro';
 import CiteThis from '../../components/CiteThis.astro';
 import { linkedTopics, topicHref } from '../../lib/topics';
 import ResearchCard from '../../components/ResearchCard.astro';
-import { researchEntries, fmtDate, type Entry } from '../../lib/content';
+import { researchEntries, fmtDate, releaseStatus, type Entry } from '../../lib/content';
 import { siteUrl, breadcrumbs, organization } from '../../lib/seo';
 
 export function getStaticPaths() {
@@ -134,6 +134,14 @@ const jsonLd = {
           </ul>
         )}
         <div class="mt-8 flex flex-wrap gap-3">
+          {e.siteLink && (
+            <>
+              <a href={e.siteLink.href} class="btn btn-primary">
+                <Icon name="arrow-right" size={16} /> {e.siteLink.label}
+              </a>
+              <span class="chip self-center">{releaseStatus(gh).label}</span>
+            </>
+          )}
           <a href={gh.htmlUrl} class="btn btn-ghost" rel="noopener noreferrer">
             <Icon name="github" size={16} /> Evidence &amp; source files
           </a>

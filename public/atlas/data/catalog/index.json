@@ -1,0 +1,362 @@
+{
+  "version": 1,
+  "checkedAt": "2026-11-21T12:00:41.665474+00:00",
+  "title": "Local Evidence Atlas · Research preview · All location records",
+  "totalRecords": 102274,
+  "geographicRecords": 102272,
+  "unmappedRecords": 2,
+  "separateNonGeographicCoverageRecords": 1,
+  "layers": [
+    {
+      "id": "lte",
+      "label": "LTE position estimates",
+      "count": 38511,
+      "locatedCount": 38511,
+      "unmappedCount": 0,
+      "coordinateRole": "Apple LTE cell-position estimate; not an independently verified antenna/site location",
+      "url": "lte.json",
+      "bytes": 7367164,
+      "sha256": "facb08f63ca735845a3931997c48954a8284af080153572a0030ca976ac7af11"
+    },
+    {
+      "id": "nr",
+      "label": "NR position estimates",
+      "count": 100,
+      "locatedCount": 100,
+      "unmappedCount": 0,
+      "coordinateRole": "Apple NR cell-position estimate; not an independently verified antenna/site location",
+      "url": "nr.json",
+      "bytes": 26756,
+      "sha256": "d4d1d22e8e28c6a614368bf899b6c2d55c6990a733d2627999284f354357783f"
+    },
+    {
+      "id": "coverage",
+      "label": "Coverage grids",
+      "count": 60168,
+      "locatedCount": 60168,
+      "unmappedCount": 0,
+      "coordinateRole": "Derived coverage-grid center/bounds; not cell/tower/site coordinates and not an identifier-to-site join",
+      "url": "coverage.json",
+      "bytes": 15961604,
+      "sha256": "82aed3b9896d0e8e221d98adf98d1c7f3d709394d3f79c6e9c8d0de0f8cbd0fa"
+    },
+    {
+      "id": "outliers",
+      "label": "Six preserved PCI outliers",
+      "count": 6,
+      "locatedCount": 6,
+      "unmappedCount": 0,
+      "coordinateRole": "Coverage-grid position of an out-of-usual-radio-domain raw PCI; not a physical site or a full cell identity",
+      "url": "outliers.json",
+      "bytes": 1749,
+      "sha256": "b78b76734dc49bc8a71ccc2fd24adb594d6a4139b0897f749ca5da9ae5af49ea"
+    },
+    {
+      "id": "flyover",
+      "label": "334 resolved Flyover tours",
+      "count": 334,
+      "locatedCount": 334,
+      "unmappedCount": 0,
+      "coordinateRole": "Virtual Flyover camera anchor; native angles interpreted as radians; not device position or cell site",
+      "url": "flyover.json",
+      "bytes": 90680,
+      "sha256": "e2430305e6b8ba1e6cfe2a28cd353f791cd6a8ef00c691ac794345a8470dbb4f"
+    },
+    {
+      "id": "flyoverCatalog",
+      "label": "Flyover map-resource catalog",
+      "count": 1432,
+      "locatedCount": 1431,
+      "unmappedCount": 1,
+      "coordinateRole": "Flyover catalog/map-resource anchor; radian interpretation supported by public legacy parser, not Apple specification; one unmapped tour index",
+      "url": "flyoverCatalog.json",
+      "bytes": 396176,
+      "sha256": "9b9129f5dc37b649e7b8e20517e27ba65f4e04c7bc6177cbc67253c4a163082b"
+    },
+    {
+      "id": "wifi",
+      "label": "400 saved Wi-Fi response estimates",
+      "count": 400,
+      "locatedCount": 400,
+      "unmappedCount": 0,
+      "coordinateRole": "Apple Wi-Fi position estimate from a saved public-area Nearby response; not a locally observed access point or verified physical site",
+      "url": "wifi.json",
+      "bytes": 90350,
+      "sha256": "d21c8b3092a9c8413e83c20fff3ba000ba46528c501609cab5ba8c64ed7afcfb"
+    },
+    {
+      "id": "smallCells",
+      "label": "915 official streetlight small-cell locations",
+      "count": 915,
+      "locatedCount": 915,
+      "unmappedCount": 0,
+      "coordinateRole": "City-published streetlight-pole small-cell location; no published carrier, technology, active status or accuracy; no cell-identity link established",
+      "url": "smallCells.json",
+      "bytes": 332915,
+      "sha256": "cf762951408a6442f976af707dc4d758c0844e3883824b85bb961940c0d7af9d"
+    },
+    {
+      "id": "registeredSites",
+      "label": "405 antenna/wireless permit address records",
+      "count": 405,
+      "locatedCount": 405,
+      "unmappedCount": 0,
+      "coordinateRole": "LADBS antenna/cellular/wireless permit ADDRESS/PIN reference point; may describe proposals, alterations, DAS, removals or expired work; not a surveyed or verified active antenna position",
+      "url": "registeredSites.json",
+      "bytes": 600423,
+      "sha256": "83d897de3a14c83f52341de67fa151651362a7b97a6489ea311cef0075e62811"
+    },
+    {
+      "id": "independentLte",
+      "label": "Independent LTE estimate — one exact public key",
+      "count": 1,
+      "locatedCount": 1,
+      "unmappedCount": 0,
+      "coordinateRole": "OpenCellID mirror estimated LTE cell position associated by exact public radio/MCC/MNC/TAC/full CI; provider range is reception/coverage extent, not horizontal accuracy; no PCI or physical antenna/site verification",
+      "url": "independentLte.json",
+      "bytes": 1248,
+      "sha256": "5690dc8791e74ef9366424fe28b90092c5f17028db2f7488f97b033f2d5476af"
+    },
+    {
+      "id": "independentNr",
+      "label": "Independent NR source estimate",
+      "count": 1,
+      "locatedCount": 1,
+      "unmappedCount": 0,
+      "coordinateRole": "Independently sourced NR cell-position estimate for an exact radio/MCC/MNC/TAC/NCI lookup. It is not a surveyed antenna position; provider range is not native horizontal accuracy. PCI is explicitly missing.",
+      "url": "independentNr.json",
+      "bytes": 1115,
+      "sha256": "a1c188d5279fad8d0ea11695a99ae2ac99e0137c225cf4ab61d88a6b57d3dbe5"
+    },
+    {
+      "id": "documentedPlans",
+      "label": "Documentary engineering plan",
+      "count": 1,
+      "locatedCount": 0,
+      "unmappedCount": 1,
+      "coordinateRole": "Unplotted documentary engineering-plan text. Original NAD83 planned coordinates are retained separately, with no unverified WGS84 conversion or radio-cell join. Original PDF could not be retrieved or visually checked.",
+      "url": "documentedPlans.json",
+      "bytes": 6029,
+      "sha256": "8ab9d68b191a43fc992247901c4d67e748f0b53eafd0b07719720e308780d71d"
+    }
+  ],
+  "coverageSchema": {
+    "root": "CellularCoverageTile",
+    "messages": {
+      "CellularCoverageTile": {
+        "1": {
+          "label": "limited_service_count",
+          "type": "uint32",
+          "child": null
+        },
+        "2": {
+          "label": "no_service_count",
+          "type": "uint32",
+          "child": null
+        },
+        "3": {
+          "label": "in_service_count",
+          "type": "uint32",
+          "child": null
+        },
+        "4": {
+          "label": "plmns",
+          "type": "message",
+          "child": "Plmn"
+        }
+      },
+      "Plmn": {
+        "1": {
+          "label": "mcc",
+          "type": "uint32",
+          "child": null
+        },
+        "2": {
+          "label": "mnc",
+          "type": "uint32",
+          "child": null
+        },
+        "3": {
+          "label": "limited_service_count",
+          "type": "uint32",
+          "child": null
+        },
+        "4": {
+          "label": "in_service_count",
+          "type": "uint32",
+          "child": null
+        },
+        "5": {
+          "label": "cell_towers",
+          "type": "message",
+          "child": "CellTower"
+        }
+      },
+      "CellTower": {
+        "1": {
+          "label": "gsm",
+          "type": "message",
+          "child": "GsmCellTower"
+        },
+        "2": {
+          "label": "umts",
+          "type": "message",
+          "child": "UmtsCellTower"
+        },
+        "3": {
+          "label": "lte",
+          "type": "message",
+          "child": "LteCellTower"
+        },
+        "4": {
+          "label": "nr",
+          "type": "message",
+          "child": "NrCellTower"
+        }
+      },
+      "GsmCellTower": {
+        "1": {
+          "label": "arfcn",
+          "type": "uint32",
+          "child": null
+        },
+        "2": {
+          "label": "band",
+          "type": "uint32",
+          "child": null
+        },
+        "3": {
+          "label": "count",
+          "type": "uint32",
+          "child": null
+        }
+      },
+      "UmtsCellTower": {
+        "1": {
+          "label": "arfcn",
+          "type": "uint32",
+          "child": null
+        },
+        "2": {
+          "label": "band",
+          "type": "uint32",
+          "child": null
+        },
+        "3": {
+          "label": "count",
+          "type": "uint32",
+          "child": null
+        },
+        "4": {
+          "label": "rsrp",
+          "type": "sint32",
+          "child": null
+        }
+      },
+      "LteCellTower": {
+        "1": {
+          "label": "arfcn",
+          "type": "uint32",
+          "child": null
+        },
+        "2": {
+          "label": "band",
+          "type": "uint32",
+          "child": null
+        },
+        "3": {
+          "label": "count",
+          "type": "uint32",
+          "child": null
+        },
+        "4": {
+          "label": "rsrp",
+          "type": "sint32",
+          "child": null
+        },
+        "5": {
+          "label": "pcis",
+          "type": "message",
+          "child": "PCI"
+        }
+      },
+      "NrCellTower": {
+        "1": {
+          "label": "arfcn",
+          "type": "uint32",
+          "child": null
+        },
+        "2": {
+          "label": "band",
+          "type": "uint32",
+          "child": null
+        },
+        "3": {
+          "label": "count",
+          "type": "uint32",
+          "child": null
+        },
+        "4": {
+          "label": "rsrp",
+          "type": "sint32",
+          "child": null
+        },
+        "5": {
+          "label": "redcap_info",
+          "type": "message",
+          "child": "RedCapInfo"
+        },
+        "6": {
+          "label": "pcis",
+          "type": "message",
+          "child": "PCI"
+        }
+      },
+      "RedCapInfo": {
+        "1": {
+          "label": "config",
+          "type": "uint32",
+          "child": null
+        },
+        "2": {
+          "label": "count",
+          "type": "uint32",
+          "child": null
+        }
+      },
+      "PCI": {
+        "1": {
+          "label": "pci",
+          "type": "uint64",
+          "child": null
+        }
+      }
+    },
+    "wireFormat": "[tag,unsignedRawValue] or [tag,childWireArray]; wire0/2 implied by schema; uint64 values are decimal strings; sint32 is preserved as raw ZigZag and decoded as -(raw&1) XOR (raw>>1)"
+  },
+  "coverageDetailChunkCount": 121,
+  "tourDetailCount": 334,
+  "flyoverCameraFrames": 5286,
+  "pciIndexUrl": "pci/index.json",
+  "nonSpatialUrl": "coverage/nonspatial.json",
+  "carrierRegistryUrl": "carrier-registry.json",
+  "uncertainty": {
+    "lte": "Native byte12 multiplied by1000 metres; not a surveyed-site guarantee",
+    "nr": "Native ALSLocation reported horizontal accuracy in metres; confidence level/calibration unknown",
+    "coverage": "Grid cell bounds only; no site uncertainty circle",
+    "flyover": "Virtual camera and catalog anchors; no site/location uncertainty inferred",
+    "wifi": "Native ALSLocation reported horizontal accuracy in metres; confidence level/calibration unknown; not locally observed AP/site verification"
+  },
+  "interpretation": {
+    "catalog": "All 102,274 mapped-source rows from the sealed Atlas, not towers, devices or visits. Original private evidence remains unchanged. Coverage and tour details load only when requested.",
+    "privacy": "Real nonpersonal technical values retained. Wi-Fi MAC and encoded MAC payloads, private plan/session/path metadata and private tour response paths removed. No personal history, local user/account identifiers or credentials included.",
+    "siteLinks": "Zero independently verified full-identity-to-physical-site links in the reviewed evidence set. Coverage PCI context is not an identity assignment.",
+    "times": "Provider history, permit dates, acquisition dates and unknown observation times are distinct. No device movement timeline is established.",
+    "sourceUse": "Research preview. OpenCellID-derived measurements are CC BY-SA 4.0 with attribution; Apple-feed and other source-specific reuse questions remain unresolved. No independently verified vendor license grant or endorsement is asserted. No blanket license is applied to this mixed-source collection."
+  },
+  "localReviewOnly": false,
+  "publicationAuthorized": true,
+  "externalRuntimeRequests": false,
+  "sourceFilesModified": false,
+  "releaseType": "research-preview"
+}

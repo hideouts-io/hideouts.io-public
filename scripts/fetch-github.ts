@@ -3,6 +3,7 @@
  * GitHub for the allowlisted repositories only, into .cache/github/.
  *
  *   node scripts/fetch-github.ts
+ *   node scripts/fetch-github.ts <allowlisted-slug> <reviewed-commit-sha>
  *
  * Uses GITHUB_TOKEN (or GH_TOKEN) when present. In CI a token is required so a
  * rate-limited anonymous build can never publish a half-empty site.
@@ -18,12 +19,22 @@
 import { mkdir, writeFile, rm, rename, access } from 'node:fs/promises';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { createHash } from 'node:crypto';
 import { GITHUB_OWNER, PROJECTS } from '../src/data/projects.ts';
 import { imageSources } from '../src/lib/image-sources.ts';
 
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
 const CACHE = join(ROOT, '.cache/github');
 const token = process.env.GITHUB_TOKEN || process.env.GH_TOKEN;
+const parameters = process.argv.slice(2);
+if (parameters.length !== 0 && parameters.length !== 2)
+  throw new Error('Usage: fetch-github.ts [allowlisted-slug reviewed-commit-sha]');
+const requestedProject = parameters.length ? PROJECTS.find((project) => project.slug === parameters[0]) : null;
+if (parameters.length && !requestedProject) throw new Error('The requested content project is not allowlisted');
+const sourceRevision = parameters.length ? parameters[1] : null;
+if (sourceRevision !== null && !/^[a-f0-9]{40}$/.test(sourceRevision))
+  throw new Error('A scoped content fetch requires an exact reviewed 40-character commit SHA');
+const selectedProjects = requestedProject ? [requestedProject] : PROJECTS;
 
 if (!token && process.env.CI) {
   console.error('✗ GITHUB_TOKEN is required in CI. Refusing to build from anonymous API calls.');
@@ -40,7 +51,10 @@ const headers: Record<string, string> = {
 class FatalError extends Error {}
 
 async function api(path: string, accept = 'application/vnd.github+json') {
-  const res = await fetch(`https://api.github.com${path}`, { headers: { ...headers, Accept: accept } });
+  const res = await fetch(`https://api.github.com${path}`, {
+    headers: { ...headers, Accept: accept },
+    signal: AbortSignal.timeout(15_000),
+  });
   if (res.status === 404) return null;
   if (!res.ok) {
     const remaining = res.headers.get('x-ratelimit-remaining');
@@ -48,6 +62,12 @@ async function api(path: string, accept = 'application/vnd.github+json') {
     throw new Error(`GitHub API ${res.status} for ${path}${hint}`);
   }
   return accept.includes('raw') ? res.text() : res.json();
+}
+
+/** Preserve legacy optional metadata handling; scoped imports require a complete fresh response. */
+function metadataUnavailable(error: Error): null {
+  if (sourceRevision !== null) throw error;
+  return null;
 }
 
 const IMAGE_RE = [
@@ -100,7 +120,7 @@ const fetchedAt = new Date().toISOString();
  * lacks its own copy. Look them up once; missing or unreachable means "none".
  */
 async function sharedFile(path: string) {
-  const found = await api(`/repos/${GITHUB_OWNER}/.github/contents/${path}`).catch(() => null);
+  const found = await api(`/repos/${GITHUB_OWNER}/.github/contents/${path}`).catch(metadataUnavailable);
   return found?.html_url ?? null;
 }
 const shared = {
@@ -166,33 +186,67 @@ function revisions(commits: any[], limit = 5) {
     .slice(0, limit);
 }
 
-async function fetchProject(p: (typeof PROJECTS)[number]) {
+async function fetchProject(p: (typeof PROJECTS)[number], revision: string | null) {
   const repo = await api(`/repos/${GITHUB_OWNER}/${p.repo}`);
   if (!repo) throw new FatalError(`Allowlisted repo ${p.repo} was not found (renamed, deleted, or private?)`);
   if (repo.private) throw new FatalError(`Allowlisted repo ${p.repo} is private. Refusing to publish it.`);
+  if (
+    revision &&
+    (repo.private !== false ||
+      repo.visibility !== 'public' ||
+      String(repo.full_name).toLowerCase() !== `${GITHUB_OWNER}/${p.repo}`.toLowerCase())
+  )
+    throw new FatalError(`${p.repo}: scoped import requires the exact public allowlisted repository`);
 
   const branch: string = repo.default_branch;
-  const readme: string = (await api(`/repos/${GITHUB_OWNER}/${p.repo}/readme`, 'application/vnd.github.raw')) ?? '';
+  const pinnedCommit = revision ? await api(`/repos/${GITHUB_OWNER}/${p.repo}/commits/${revision}`) : null;
+  if (revision && pinnedCommit?.sha !== revision)
+    throw new FatalError(`${p.repo}: the reviewed source commit could not be verified`);
+  const readmePath = `/repos/${GITHUB_OWNER}/${p.repo}/readme${revision ? `?ref=${revision}` : ''}`;
+  const readmeInfo = revision ? await api(readmePath) : null;
+  const readme: string = (await api(readmePath, 'application/vnd.github.raw')) ?? '';
+  if (
+    revision &&
+    (typeof readme !== 'string' ||
+      !readmeInfo ||
+      typeof readmeInfo.path !== 'string' ||
+      readmeInfo.path !== 'README.md' ||
+      typeof readmeInfo.sha !== 'string' ||
+      !/^[a-f0-9]{40}$/.test(readmeInfo.sha) ||
+      typeof readmeInfo.size !== 'number' ||
+      readmeInfo.size !== Buffer.byteLength(readme) ||
+      createHash('sha1')
+        .update(`blob ${Buffer.byteLength(readme)}\0`)
+        .update(readme)
+        .digest('hex') !== readmeInfo.sha)
+  )
+    throw new FatalError(`${p.repo}: README bytes do not match the reviewed Git blob`);
   const releasePath = p.releaseTag ? `tags/${encodeURIComponent(p.releaseTag)}` : 'latest';
   const release = await api(`/repos/${GITHUB_OWNER}/${p.repo}/releases/${releasePath}`);
   if (p.releaseTag && (!release || release.draft || release.tag_name !== p.releaseTag))
     throw new FatalError(`${p.repo}: configured release ${p.releaseTag} is not published`);
   if (release && typeof release.prerelease !== 'boolean')
     throw new FatalError(`${p.repo}: release ${release.tag_name} has no valid prerelease status`);
-  const commits = await api(`/repos/${GITHUB_OWNER}/${p.repo}/commits?sha=${encodeURIComponent(branch)}&per_page=1`);
-  const updatedAt: string = commits?.[0]?.commit?.committer?.date ?? repo.pushed_at;
+  const commits = pinnedCommit
+    ? [pinnedCommit]
+    : await api(`/repos/${GITHUB_OWNER}/${p.repo}/commits?sha=${encodeURIComponent(branch)}&per_page=1`);
+  const updatedAt: string = revision
+    ? pinnedCommit?.commit?.committer?.date
+    : (commits?.[0]?.commit?.committer?.date ?? repo.pushed_at);
+  if (revision && (typeof updatedAt !== 'string' || !Number.isFinite(Date.parse(updatedAt))))
+    throw new FatalError(`${p.repo}: reviewed source commit has no valid commit date`);
   // Needs a token with repo access; treat "unknown" as not enabled.
   const pvr = token
-    ? await api(`/repos/${GITHUB_OWNER}/${p.repo}/private-vulnerability-reporting`).catch(() => null)
+    ? await api(`/repos/${GITHUB_OWNER}/${p.repo}/private-vulnerability-reporting`).catch(metadataUnavailable)
     : null;
   // Contributing guide, code of conduct, and security policy, if the repo has them.
-  const community = await api(`/repos/${GITHUB_OWNER}/${p.repo}/community/profile`).catch(() => null);
+  const community = await api(`/repos/${GITHUB_OWNER}/${p.repo}/community/profile`).catch(metadataUnavailable);
   // Research: the README's recent revisions, shown as a revision history.
   const history =
     p.kind === 'research'
       ? await api(
-          `/repos/${GITHUB_OWNER}/${p.repo}/commits?sha=${encodeURIComponent(branch)}&path=README.md&per_page=10`,
-        ).catch(() => null)
+          `/repos/${GITHUB_OWNER}/${p.repo}/commits?sha=${encodeURIComponent(revision ?? branch)}&path=README.md&per_page=10`,
+        ).catch(metadataUnavailable)
       : null;
 
   const finalDir = join(CACHE, p.slug);
@@ -213,10 +267,13 @@ async function fetchProject(p: (typeof PROJECTS)[number]) {
 
   let n = 0;
   for (const src of refs) {
-    const target = resolveImage(src, p.repo, branch);
+    const target = resolveImage(src, p.repo, revision ?? branch);
     if (!target) continue;
     const buf = await download(target.url);
-    if (!buf) continue;
+    if (!buf) {
+      if (revision) throw new FatalError(`${p.repo}: a reviewed README image could not be imported`);
+      continue;
+    }
     const ext = (target.url.split(/[?#]/)[0].match(/\.(png|jpe?g|gif|webp|svg)$/i)?.[1] ?? 'png').toLowerCase();
     const file = `img-${String(++n).padStart(2, '0')}.${ext}`;
     await writeFile(join(dir, 'images', file), buf);
@@ -233,6 +290,7 @@ async function fetchProject(p: (typeof PROJECTS)[number]) {
     topics: repo.topics ?? [],
     language: repo.language,
     license: repo.license && repo.license.spdx_id !== 'NOASSERTION' ? repo.license.spdx_id : null,
+    licenseName: repo.license?.name ?? null,
     stars: repo.stargazers_count,
     forks: repo.forks_count,
     openIssues: repo.open_issues_count,
@@ -262,6 +320,16 @@ async function fetchProject(p: (typeof PROJECTS)[number]) {
         }
       : null,
     readmeHistory: Array.isArray(history) ? revisions(history) : [],
+    ...(revision
+      ? {
+          sourceSnapshot: {
+            commitSha: revision,
+            readmePath: readmeInfo.path,
+            readmeBlobSha: readmeInfo.sha,
+            readmeSha256: createHash('sha256').update(readme).digest('hex'),
+          },
+        }
+      : {}),
     images,
   };
   await writeFile(join(dir, 'meta.json'), JSON.stringify(meta, null, 2));
@@ -278,12 +346,16 @@ const exists = (path: string) =>
     () => false,
   );
 const stale: string[] = [];
-for (const p of PROJECTS) {
+for (const p of selectedProjects) {
   process.stdout.write(`→ ${p.repo}\n`);
   try {
-    console.log(`  ✓ ${await fetchProject(p)}`);
+    console.log(`  ✓ ${await fetchProject(p, sourceRevision)}`);
   } catch (err) {
     await rm(join(CACHE, `.${p.slug}.partial`), { recursive: true, force: true });
+    if (sourceRevision !== null) {
+      console.error(`✗ Scoped import failed; no cached revision was substituted: ${(err as Error).message}`);
+      process.exit(1);
+    }
     if (err instanceof FatalError) {
       console.error(`✗ ${err.message}`);
       process.exit(1);
@@ -300,6 +372,6 @@ for (const p of PROJECTS) {
 
 console.log(
   stale.length
-    ? `✓ Fetched ${PROJECTS.length - stale.length}/${PROJECTS.length} repositories; used cached data for: ${stale.join(', ')}`
-    : `✓ Fetched ${PROJECTS.length} allowlisted repositories`,
+    ? `✓ Fetched ${selectedProjects.length - stale.length}/${selectedProjects.length} repositories; used cached data for: ${stale.join(', ')}`
+    : `✓ Fetched ${selectedProjects.length} allowlisted repositories`,
 );

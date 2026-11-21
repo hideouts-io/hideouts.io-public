@@ -1,0 +1,148 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import AnchorHeading from '../components/AnchorHeading.astro';
+import Icon from '../components/Icon.astro';
+import atlasManifest from '../../public/atlas/data/catalog/index.json';
+
+const recordCount = atlasManifest.totalRecords.toLocaleString('en-US');
+const geographicCount = atlasManifest.geographicRecords.toLocaleString('en-US');
+const frameCount = atlasManifest.flyoverCameraFrames.toLocaleString('en-US');
+const layerCount = atlasManifest.layers.length;
+const description =
+  'Explore retained location records with their source evidence: full cell identities, estimates, coverage grids, infrastructure records, and virtual Flyover resources. Research preview.';
+---
+
+<Base title="Local Evidence Atlas" description={description}>
+  <Fragment slot="head">
+    <meta name="robots" content="noindex,nofollow" />
+  </Fragment>
+  <PageHeader
+    eyebrow="Research preview"
+    title="Location records, with the evidence attached."
+    lead="See what each point represents, where it came from, and which connections the evidence supports."
+  >
+    <div class="mt-7 flex flex-wrap gap-3">
+      <a href="/atlas/records/index.html" class="btn btn-primary">
+        Explore all {recordCount} records <Icon name="arrow-right" size={16} />
+      </a>
+      <a href="/research/local-evidence-atlas/" class="btn btn-ghost">
+        Read the case study
+      </a>
+    </div>
+    <p class="mt-5 max-w-2xl text-sm leading-6 text-ink-3">
+      This research preview retains real technical data and its evidence limits. The original unredacted evidence stays
+      private and unchanged; personal hardware and access information is excluded from this separate derivative.
+    </p>
+  </PageHeader>
+
+  <section class="container-x pt-10" aria-labelledby="atlas-scope">
+    <h2 id="atlas-scope" class="text-2xl font-semibold tracking-tight text-ink">
+      A record count is not a tower count.
+    </h2>
+    <dl class="mt-6 grid gap-4 sm:grid-cols-3">
+      <div class="card p-5">
+        <dt class="text-sm text-ink-3">Retained source records</dt>
+        <dd class="mt-2 text-3xl font-semibold tracking-tight text-ink">{recordCount}</dd>
+        <dd class="mt-2 text-sm leading-6 text-ink-2">
+          {geographicCount} have display coordinates; {atlasManifest.unmappedRecords} remain unplotted.
+        </dd>
+      </div>
+      <div class="card p-5">
+        <dt class="text-sm text-ink-3">Distinct source layers</dt>
+        <dd class="mt-2 text-3xl font-semibold tracking-tight text-ink">{layerCount}</dd>
+        <dd class="mt-2 text-sm leading-6 text-ink-2">
+          Returned estimates, grid context, public infrastructure, and virtual map resources retain their different
+          roles.
+        </dd>
+      </div>
+      <div class="card p-5">
+        <dt class="text-sm text-ink-3">Verified identity-to-site links</dt>
+        <dd class="mt-2 text-3xl font-semibold tracking-tight text-ink">0</dd>
+        <dd class="mt-2 text-sm leading-6 text-ink-2">
+          A nearby pole, a shared PCI, or precise-looking coordinates do not establish an antenna location.
+        </dd>
+      </div>
+    </dl>
+  </section>
+
+  <section class="container-x grid gap-4 pt-8 md:grid-cols-2" aria-labelledby="atlas-views">
+    <h2 id="atlas-views" class="sr-only">
+      Choose an evidence view
+    </h2>
+    <article class="card flex flex-col items-start p-6 sm:p-8">
+      <p class="eyebrow">Complete catalog</p>
+      <h3 class="mt-3 text-xl font-semibold tracking-tight text-ink">Follow every retained record.</h3>
+      <p class="mt-3 text-sm leading-7 text-ink-2">
+        Search full LTE ECI and NR NCI values, TAC, PCI, carrier names, places, and public site identifiers. Inspect
+        complete selected source fields. Coverage wire and all {frameCount} virtual camera frames load when requested.
+      </p>
+      <a href="/atlas/records/index.html" class="mt-5 inline-flex items-center gap-2 text-sm font-medium text-accent">
+        Open the full map and catalog <Icon name="arrow-right" size={14} />
+      </a>
+    </article>
+    <article class="card flex flex-col items-start p-6 sm:p-8">
+      <p class="eyebrow">Downtown Los Angeles case</p>
+      <h3 class="mt-3 text-xl font-semibold tracking-tight text-ink">One identity. Two source estimates.</h3>
+      <p class="mt-3 text-sm leading-7 text-ink-2">
+        Compare the actual returned coordinates for NR 310/260, TAC 3960320, NCI 7587668269. Their centers are 69.38 m
+        apart. Neither an assigned PCI nor a physical installation has been independently established.
+      </p>
+      <a href="/atlas/preview/index.html" class="mt-5 inline-flex items-center gap-2 text-sm font-medium text-accent">
+        Inspect the exact NR comparison <Icon name="arrow-right" size={14} />
+      </a>
+    </article>
+  </section>
+
+  <section class="container-x pt-12">
+    <div class="prose-readme max-w-[48rem]">
+      <AnchorHeading id="meaning">Keep the source role attached.</AnchorHeading>
+      <p>
+        A returned LTE, NR, or Wi-Fi position is a service estimate. A coverage-grid center represents an area and its
+        network/channel context. A City pole or permit address is an administrative record. Flyover anchors and camera
+        paths describe virtual map content. Their presence does not establish a visit, a device connection, or a
+        personal movement timeline.
+      </p>
+      <p>
+        Carrier labels explain network codes: 310/260 is associated with T-Mobile, 310/410 with AT&amp;T, and 311/480
+        with Verizon. Assignment dates and unresolved codes remain visible. Names do not identify antenna ownership or a
+        subscriber’s retail plan. PCI searches qualify the same source posting by network, radio, and channel; they do
+        not join a full cell identity to nearby coverage.
+      </p>
+      <AnchorHeading id="method">Read the research before connecting the dots.</AnchorHeading>
+      <p>
+        The <a href="/research/local-evidence-atlas/">case study</a> explains the acquisition sources, native parser
+        evidence, exact identity comparison, remaining gaps, and limits of interpretation. The interactive views render
+        their geography locally, using retained coordinates and generalized land shapes. They make no third-party
+        runtime requests and do not request your location or device access.
+      </p>
+      <p>
+        Observation time is unknown for the mapped rows. Provider database dates, permit dates, and acquisition dates
+        remain distinct. Original NAD83 planned coordinates stay documentary and unplotted. Original evidence and
+        preservation receipts remain separate from this research derivative.
+      </p>
+      <AnchorHeading id="source-use">Source attribution and reuse limits</AnchorHeading>
+      <p>
+        OpenCellID-derived measurements are attributed to{' '}
+        <a href="https://opencellid.org/" rel="noopener noreferrer">
+          OpenCellID
+        </a>
+        , under{' '}
+        <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="noopener noreferrer">
+          CC BY-SA 4.0
+        </a>
+        , via the mcc-mnc.org mirror. Selection, normalized labels, and added interpretations are changes; returned
+        coordinates retain their source digits. This credit does not license the mixed collection as a whole. Apple-feed
+        and other source-specific reuse questions remain unresolved. No independently verified vendor license grant or
+        endorsement is asserted.
+      </p>
+      <p>
+        Read the <a href="/atlas/DATA-NOTICES.md">source and data notices</a>,{' '}
+        <a href="/atlas/LICENSE.txt">scoped code license</a>,{' '}
+        <a href="/atlas/data/catalog/index.json">complete dataset manifest</a>, and{' '}
+        <a href="/atlas/README.md">canonical article source</a>. The separate static explorer carries its own local-only
+        Content Security Policy; the main website’s policy is unchanged.
+      </p>
+    </div>
+  </section>
+</Base>

@@ -8,6 +8,7 @@ It's a static [Astro](https://astro.build) site. Project pages use reviewed snap
 - **Dark by default.** The site ignores the device's light/dark setting and always opens dark; the header toggle switches to light and remembers that choice in the browser only.
 - **No tracking and no third-party website requests.** No analytics, no cookies, no external fonts or images. README images are included in the reviewed site snapshot. The separate Decision Continuity app stores sessions in the browser and supports local JSON export and import without uploading files.
 - **Strict Content Security Policy on the main site pages.** Scripts and styles are allowed by hash only, with no `unsafe-inline`. The separate Decision Continuity app does not inherit the Astro page policy.
+- **Local Evidence Atlas is a separate research explorer.** Its static application and retained research records live in `public/atlas/`, with their own local-only runtime policy. The [source and data notices](public/atlas/DATA-NOTICES.md) and [scoped license](public/atlas/LICENSE.txt) distinguish original code from third-party data; the website's code license does not grant rights in that mixed-source collection.
 
 ## Local development
 
@@ -48,6 +49,15 @@ The reviewed snapshot (`src/generated/`, `public/media/`, `public/og/`, `src/sty
 `npm run content` fetches and renders the allowlisted repositories for review. It is a separate update operation, not a build step. Review its text, images, links, and generated outputs, then update and review the snapshot manifest, page fragments, and colophon source dates before merging. A changed or missing pinned file makes the normal build fail.
 
 The fetch step never leaves a half-written local cache: each repository downloads into a temporary folder and replaces the old copy only when it's complete. If the API fails for a repository that has a cached copy, the fetch can keep that copy and print a warning. It fails when there is nothing to fall back on, or when an allowlisted repository has been deleted or made private: stale copies of those are never published.
+
+A scoped import fetches one allowlisted project at an exact reviewed commit, without refreshing the existing project snapshots:
+
+```sh
+node scripts/fetch-github.ts local-evidence-atlas 1348ca7a1bfda3763265789f68464ce050461c45
+node scripts/render-content.ts local-evidence-atlas
+```
+
+The scoped fetch verifies the README's Git blob identity and SHA-256 and fails on any import error; it never substitutes an older cached revision. Scoped rendering checks that identity again and requires its syntax classes to exist in the reviewed stylesheet, preserving the shared CSS bytes. Review the new generated JSON and Open Graph image, add the actual commit date to the colophon source dates, and update the exact snapshot manifest before running `npm test`. Existing project files and dates remain unchanged.
 
 A repository's **homepage** setting is linked ("Project site") only if it currently responds; a 4xx/5xx drops the link with a warning, so the site never points at a dead page.
 

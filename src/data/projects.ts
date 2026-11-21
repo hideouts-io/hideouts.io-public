@@ -86,6 +86,8 @@ export interface Project {
   releaseTag?: string;
   /** README sections (heading text) to leave off the site. The README itself is untouched. */
   stripSections?: string[];
+  /** Curated link to a site-hosted interactive view, separate from GitHub homepage metadata. */
+  siteLink?: { href: string; label: string };
   /**
    * Earlier names of the repository. GitHub redirects them, so README text that
    * still uses an old name refers to this project, not an unlisted repo.
@@ -661,6 +663,31 @@ export const PROJECTS: Project[] = [
       { label: 'Reproduce and review', id: 'reproduce-and-review' },
     ],
     order: 6,
+  },
+  {
+    slug: 'local-evidence-atlas',
+    repo: 'Local-Evidence-Atlas',
+    kind: 'research',
+    platforms: ['macOS', 'iOS'],
+    name: 'Local Evidence Atlas',
+    tagline: 'Location records, with the evidence attached.',
+    summary:
+      'An interactive research catalog of 102,274 retained location records across 12 source layers, separating returned cell estimates, coverage-grid context, public infrastructure records, and virtual Flyover resources. Full identities and source comparisons remain distinct from independently verified physical sites.',
+    findings: [
+      'The catalog retains 102,274 map-source rows across 12 layers. Additional tour details preserve 5,286 virtual camera frames; these are not tower, device, or visit counts.',
+      'NR 310/260, TAC 3960320, NCI 7587668269 associates two returned position estimates whose centers are 69.38 m apart. Neither an assigned PCI nor an actual installation is independently established.',
+      'LTE tag 5 and NR tag 6 in the examined native coverage parser are repeated PCI messages; the recognized graph has no full ECI, NCI, TAC, or antenna-coordinate field.',
+      'The reviewed evidence contains zero supported measured PCI-to-full-identity links and zero independently verified full-identity-to-installation links.',
+    ],
+    bottomLine:
+      'Exact source identities support an estimate comparison. Proximity, a shared carrier, and overlapping PCI context do not establish an antenna location or a personal movement timeline.',
+    jumpTo: [
+      { label: 'Start with the source', id: 'start-with-the-source' },
+      { label: 'Exact NR comparison', id: 'the-downtown-la-case-one-identity-two-estimates' },
+      { label: 'Source rights and limits', id: 'source-rights-and-publication-status' },
+    ],
+    siteLink: { href: '/location-atlas/', label: 'Explore the interactive Atlas' },
+    order: 7,
   },
 ];
 
