@@ -3,6 +3,7 @@
  * site-ready JSON, images, diagrams, and syntax-highlighting CSS.
  *
  *   node scripts/render-content.ts
+ *   node scripts/render-content.ts <allowlisted-slug>
  *
  * Output:
  *   src/generated/<slug>.json        rendered README HTML, TOC, hero data
@@ -12,6 +13,7 @@
 import { mkdir, readFile, rm, writeFile, copyFile } from 'node:fs/promises';
 import { join, extname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { createHash } from 'node:crypto';
 import sharp from 'sharp';
 import { unified } from 'unified';
 import remarkParse from 'remark-parse';
@@ -41,6 +43,11 @@ const ROOT = fileURLToPath(new URL('..', import.meta.url));
 const CACHE = join(ROOT, '.cache/github');
 const OUT_JSON = join(ROOT, 'src/generated');
 const OUT_MEDIA = join(ROOT, 'public/media');
+const parameters = process.argv.slice(2);
+if (parameters.length > 1) throw new Error('Usage: render-content.ts [allowlisted-slug]');
+const requestedProject = parameters.length ? PROJECTS.find((project) => project.slug === parameters[0]) : null;
+if (parameters.length && !requestedProject) throw new Error('The requested content project is not allowlisted');
+const selectedProjects = requestedProject ? [requestedProject] : PROJECTS;
 
 const styleToClass = transformerStyleToClass({ classPrefix: 'sk-' });
 
@@ -263,6 +270,7 @@ interface Meta {
   repo: string;
   defaultBranch: string;
   images: Record<string, { file: string; repoPath?: string }>;
+  sourceSnapshot?: { commitSha: string; readmePath: string; readmeBlobSha: string; readmeSha256: string };
   [k: string]: any;
 }
 
@@ -282,6 +290,23 @@ async function renderProject(p: Project) {
   const dir = join(CACHE, p.slug);
   const meta: Meta = JSON.parse(await readFile(join(dir, 'meta.json'), 'utf8'));
   let md = await readFile(join(dir, 'README.md'), 'utf8');
+  if (requestedProject && (meta.slug !== p.slug || meta.repo !== p.repo))
+    throw new Error(`${p.slug}: cached source metadata belongs to a different allowlisted project`);
+  if (requestedProject && !meta.sourceSnapshot)
+    throw new Error(`${p.slug}: scoped rendering requires a pinned public source snapshot`);
+  if (
+    meta.sourceSnapshot &&
+    (!/^[a-f0-9]{40}$/.test(meta.sourceSnapshot.commitSha) ||
+      !/^[a-f0-9]{40}$/.test(meta.sourceSnapshot.readmeBlobSha) ||
+      !/^[a-f0-9]{64}$/.test(meta.sourceSnapshot.readmeSha256) ||
+      meta.sourceSnapshot.readmePath !== 'README.md' ||
+      createHash('sha256').update(md).digest('hex') !== meta.sourceSnapshot.readmeSha256 ||
+      createHash('sha1')
+        .update(`blob ${Buffer.byteLength(md)}\0`)
+        .update(md)
+        .digest('hex') !== meta.sourceSnapshot.readmeBlobSha)
+  )
+    throw new Error(`${p.slug}: cached README no longer matches its reviewed source snapshot`);
   const mediaDir = join(OUT_MEDIA, p.slug);
   await rm(mediaDir, { recursive: true, force: true });
   await mkdir(mediaDir, { recursive: true });
@@ -363,7 +388,7 @@ async function renderProject(p: Project) {
 
   const toc: { depth: number; id: string; text: string }[] = [];
   const gallery: (Img & { alt: string; shot: boolean })[] = [];
-  const blobBase = `https://github.com/${GITHUB_OWNER}/${meta.repo}/blob/${meta.defaultBranch}/`;
+  const blobBase = `https://github.com/${GITHUB_OWNER}/${meta.repo}/blob/${meta.sourceSnapshot?.commitSha ?? meta.defaultBranch}/`;
 
   const file = await unified()
     .use(remarkParse)
@@ -436,6 +461,11 @@ async function renderProject(p: Project) {
           }
           const href = String(node.properties.href ?? '');
           if (!href || href.startsWith('#') || href.startsWith('mailto:')) return;
+          // Atlas README app links open the reviewed hosted interface, rather than GitHub HTML source.
+          if (p.slug === 'local-evidence-atlas' && /^\.\/site\/(?:records|preview)\/index\.html$/.test(href)) {
+            node.properties.href = href.replace('./site/', '/atlas/');
+            return;
+          }
           if (imageUrl[href]) {
             node.properties.href = imageUrl[href].src;
             return;
@@ -771,11 +801,17 @@ async function renderOg(p: Project) {
 }
 
 await mkdir(OUT_JSON, { recursive: true });
-for (const p of PROJECTS) {
+for (const p of selectedProjects) {
   await renderProject(p);
   await renderOg(p);
 }
 
 // Shiki: every token color became a class; ship them as one stylesheet.
-await writeFile(join(ROOT, 'src/styles/shiki.generated.css'), styleToClass.getCSS());
-console.log('✓ Rendered content for', PROJECTS.length, 'projects');
+const syntaxStyles = styleToClass.getCSS();
+if (requestedProject) {
+  const reviewedStyles = await readFile(join(ROOT, 'src/styles/shiki.generated.css'), 'utf8');
+  const rules = syntaxStyles.match(/\.[\w-]+\{[^{}]*\}/g) ?? [];
+  if (rules.join('') !== syntaxStyles || rules.some((rule) => !reviewedStyles.includes(rule)))
+    throw new Error('Scoped rendering requires unreviewed syntax styles; review the shared stylesheet explicitly');
+} else await writeFile(join(ROOT, 'src/styles/shiki.generated.css'), syntaxStyles);
+console.log('✓ Rendered content for', selectedProjects.length, 'projects');

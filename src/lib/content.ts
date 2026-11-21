@@ -17,6 +17,9 @@ export interface Generated {
   topics: string[];
   language: string | null;
   license: string | null;
+  licenseName?: string | null;
+  /** Exact reviewed public source revision and independently checked README bytes. */
+  sourceSnapshot?: { commitSha: string; readmePath: string; readmeBlobSha: string; readmeSha256: string };
   stars: number;
   forks: number;
   updatedAt: string;

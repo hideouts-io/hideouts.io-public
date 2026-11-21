@@ -56,10 +56,10 @@ function parseManifest(text: string): SnapshotFile[] {
   }
   const count = (prefix: string): number => paths.filter((path) => path.startsWith(prefix)).length;
   if (
-    files.length !== 357 ||
-    count('src/generated/') !== 19 ||
+    files.length !== 359 ||
+    count('src/generated/') !== 20 ||
     count('public/media/') !== 303 ||
-    count('public/og/') !== 19 ||
+    count('public/og/') !== 20 ||
     count('site-snapshot/data/') !== 1 ||
     count('site-snapshot/pages/') !== PAGE_TARGETS.length ||
     !paths.includes('src/styles/shiki.generated.css') ||

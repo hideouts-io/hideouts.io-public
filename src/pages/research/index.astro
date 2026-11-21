@@ -44,7 +44,7 @@ const jsonLd = pageGraph(
   <PageHeader
     eyebrow="Research"
     title="Evidence-first write‑ups on Apple internals"
-    lead="Every investigation keeps direct observations apart from interpretation, with the original artifacts published alongside."
+    lead="Every investigation keeps direct observations apart from interpretation, with its sources and evidence limits attached."
   >
     <a href="/research/rss.xml" class="mt-6 inline-flex items-center gap-2 text-sm text-ink-2 hover:text-ink">
       <Icon name="doc" size={14} class="text-accent" /> Subscribe via RSS
@@ -53,6 +53,30 @@ const jsonLd = pageGraph(
       <Icon name="tag" size={14} class="text-accent" /> Browse by topic
     </a>
   </PageHeader>
+
+  <section class="container-x pt-10" aria-labelledby="location-atlas-heading">
+    <article class="card p-6 sm:p-8">
+      <p class="eyebrow">Interactive research · Research preview</p>
+      <h2 id="location-atlas-heading" class="mt-3 text-2xl font-semibold tracking-tight text-ink">
+        <a href="/location-atlas/" class="hover:text-accent">
+          Local Evidence Atlas
+        </a>
+      </h2>
+      <p class="mt-3 max-w-3xl text-sm leading-7 text-ink-2">
+        Explore retained location records with their source evidence: full cell identities, returned estimates,
+        coverage-grid context, public infrastructure records, and virtual Flyover resources. Each point keeps its role
+        and uncertainty attached. Source-specific reuse questions and the limits of interpretation remain explicit.
+      </p>
+      <div class="mt-5 flex flex-wrap gap-3">
+        <a href="/atlas/records/index.html" class="btn btn-primary">
+          Explore all location records <Icon name="arrow-right" size={16} />
+        </a>
+        <a href="/location-atlas/" class="btn btn-ghost">
+          Read the scope and evidence
+        </a>
+      </div>
+    </article>
+  </section>
 
   <section class="container-x pt-10">
     {lead && (
