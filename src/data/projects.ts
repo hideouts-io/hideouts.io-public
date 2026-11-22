@@ -683,6 +683,8 @@ export const PROJECTS: Project[] = [
       'Exact source identities support an estimate comparison. Proximity, a shared carrier, and overlapping PCI context do not establish an antenna location or a personal movement timeline.',
     jumpTo: [
       { label: 'Start with the source', id: 'start-with-the-source' },
+      { label: 'Source history', id: 'how-the-investigation-developed' },
+      { label: 'Related research', id: 'related-research' },
       { label: 'Exact NR comparison', id: 'the-downtown-la-case-one-identity-two-estimates' },
       { label: 'Source rights and limits', id: 'source-rights-and-publication-status' },
     ],

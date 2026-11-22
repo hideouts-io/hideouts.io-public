@@ -53,7 +53,7 @@ The fetch step never leaves a half-written local cache: each repository download
 A scoped import fetches one allowlisted project at an exact reviewed commit, without refreshing the existing project snapshots:
 
 ```sh
-node scripts/fetch-github.ts local-evidence-atlas 1348ca7a1bfda3763265789f68464ce050461c45
+node scripts/fetch-github.ts local-evidence-atlas 15f6f2387ee8bf5718fc8f38c26462cc7a909db2
 node scripts/render-content.ts local-evidence-atlas
 ```
 

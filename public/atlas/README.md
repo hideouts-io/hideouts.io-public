@@ -24,6 +24,22 @@ The owner has selected the full-data research release and states that it explain
 
 ## Start with the source
 
+### How the investigation developed
+
+The first lead was a saved boot-log excerpt mentioning `locationd` cache categories such as `coarse-cdma`, `coarse-lte` and `coarse-nr`. The selected entries showed directory enumeration, with only `.` and `..` and a zero file count. That prompted a read-only examination of local location-service caches and map resources. The log did not establish a cellular connection or a serving-cell identity.
+
+The investigation then developed in several stages. The dates below describe review and acquisition work in November 2026, not visits, radio observations or per-record measurement dates.
+
+| Research stage | Where the material came from | What it established |
+| --- | --- | --- |
+| November 10–11: saved-log review | An existing `bootlog.txt` excerpt, including interleaved `locationd` messages | Historical cache-category traversal; a lead to investigate, without recovered cell observations. |
+| November 11 and 19: local map-resource recovery | `ActiveTileGroup.pbd` and `ResourceManifest.pbd` under `/var/db/locationd/Library/Caches/GeoServices/`; `altitude-1424.xml` and `flyover-meta-2.json` under `$HOME/Library/Caches/GeoServices/Resources/` | Catalog entries for cellular coverage and Flyover, 1,432 region/version references and a 334-entry tour index. The small JSON describes coverage/zoom levels. These files describe map resources. |
+| November 12: separate historical-backup inquiry | Previously retained `consolidated.db` exports, kept private | Two identical small databases with no fence records; another with 39 geofence definitions and one beacon-region definition. No serving-cell identities were recovered. These private definitions are separate from the public map. |
+| November 19: deliberate service acquisitions | Metadata lookups for the catalog's tour MUIDs, plus the public-area Apple LTE, ALS and coverage responses described below | Direct animation names and 5,286 camera frames; cell-position estimates and coverage-grid context. The complete camera paths and cellular response bodies were acquired during research. |
+| November 20–21: comparisons and public-site context | City pole/permit feeds, public boundary information and two OpenCellID-derived exact-identity lookups | Additional source comparisons and documentary context, with each coordinate's role preserved. No supported full-identity-to-installation link was established. |
+
+Original logs, historical backups and acquisition receipts remain private. The Atlas presents separately prepared research records and explanations; its large cellular layers should not be read as a dump of the Mac's previously observed connections.
+
 The private research snapshot contains **102,274 heterogeneous rows across 12 layers**. Of those, 102,272 have display coordinates and two remain unmapped. A separate special payload has no geographic position. These are record counts, not a count of towers, devices or visits.
 
 | Source | Retained records | What a position means |
@@ -43,6 +59,25 @@ The local GeoServices files were resource catalogs. The regional cellular data w
 The historical acquisition locators are Apple ALS Nearby (`https://gs-loc.apple.com/clls/wloc`), using ARPC function **3** and NR technology **256**, the unsigned regional LTE file (`https://cl2.apple.com/4/v1/124/60/1240000_0600000_0000000001360104.gz`), and the CELLULAR_COVERAGE_PLMN style-94 response (`https://gspe79-ssl.ls.apple.com/ccc/v1/94/1230549`). These links identify the saved sources; the preview uses retained local data and makes no requests to these endpoints. Direct-feed reuse terms and their applicability remain unresolved.
 
 The protected `tiles_cell` cache remained unexported. The coverage layer came from the saved public response, not that cache. An access limit says nothing about inaccessible contents.
+
+## Related research
+
+These systems and lookup techniques have substantial public precedents. An exact comparison found that **all 334 unique `(muid, region, trip_nr)` tour triples** in the preserved local index also occur among the **335 unique triples** in [SynArchive's public altitude manifest, pinned to its February 10, 2022 commit](https://github.com/SynArchive/Apple-3D-RE-Lightweight/blob/df3e354d1c0f2dc7a35ecb425b0f49973b7d46ee/altitude.xml). This verifies shared catalog references. It does not establish complete manifest equality, viewing history or prior publication of this Atlas's 5,286 later-retrieved camera frames.
+
+| Prior work | Connection to this investigation |
+| --- | --- |
+| [WaveDigger](https://github.com/christianrowlands/wavedigger) | An existing interactive Apple WLOC client for Wi-Fi BSSID, LTE and 5G NR lookups. Returned positions still require evidence before being interpreted as physical antenna sites. |
+| [apple-corelocation-experiments](https://github.com/acheong08/apple-corelocation-experiments) | Public reverse engineering of WLOC, cellular lookup and Wi-Fi tiles, including protobuf definitions recovered through binary inspection. Its messages and builds have their own scope. |
+| [retroplasma's Flyover reverse engineering](https://github.com/retroplasma/flyover-reverse-engineering) | Earlier work on Flyover manifests, tiling and 3D mesh resources. It supplies relevant format history without validating every later resource or camera collection. |
+| [Rye and Levin, *Surveilling the Masses with Wi-Fi-Based Positioning Systems* (2024)](https://www.computer.org/csdl/proceedings-article/sp/2024/313000a241/1WPcZ0zOxna) | Research demonstrating privacy risks from large-scale Apple Wi-Fi positioning queries. Its experiments do not establish activity or compromise on this Mac. |
+| [Leith's iOS location-services study (2026)](https://arxiv.org/html/2610.21597v1) and [decoded study traces](https://github.com/doug-leith/ios-location-services-study-data) | Binary-derived protobuf tooling and controlled measurements of an iPhone 8 running iOS 16.7.11, including WLOC, map/configuration/tile traffic and transmitted sensor data. These are different-device experiments. |
+| [Allan and Warden's iPhoneTracker (2011)](https://petewarden.github.io/iPhoneTracker) | Historical open-source mapping of retained iPhone backup data. Its OS-era records and schemas differ from the geofence-only exports reviewed here. |
+
+### What this Atlas adds
+
+The Atlas adds a specific preserved collection, native-parser cross-checks, explicit coordinate roles, exact-identity comparisons and a tested interface for exploring the evidence together. The [Downtown LA comparison](#the-downtown-la-case-one-identity-two-estimates) connects one full NR identity to two estimates; the [coverage-parser trace](#what-the-parser-resolved) explains why the coverage fields do not complete the identity-to-site chain.
+
+This bounded comparison does not establish first publication of the exact coverage-schema trace, full camera-frame set or combined collection. A measured target PCI and an independently supported physical-site link also remain unresolved. The [missing-link criteria](#what-could-establish-the-missing-links) describe the evidence needed to answer those questions. Prior work's findings retain their own experimental scope; their existence is not evidence of surveillance or remote control on this computer.
 
 ## Read the identifiers before connecting the dots
 
