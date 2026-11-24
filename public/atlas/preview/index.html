@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self' data:; font-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'">
+  <title>Public test-area explorer · Local Evidence Atlas</title>
+  <meta name="description" content="Explore actual public Downtown Los Angeles cellular test records, their coordinate roles, complete identifiers, and evidence limits. A research preview with no external map requests.">
+  <link rel="icon" href="../assets/atlas-mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="preview.css">
+  <script type="module" src="preview.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#explorer">Skip to the explorer</a>
+  <header class="site-header">
+    <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">h.</span><span>hideouts.io <span class="brand-divider">/</span> research preview</span></a>
+    <div class="header-actions"><span class="review-badge">Research preview</span><button id="theme-toggle" data-testid="theme-toggle" class="quiet-button" type="button" aria-label="Switch to light theme">Light theme</button></div>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="page-title">
+      <div class="eyebrow"><span class="status-dot" aria-hidden="true"></span> Local Evidence Atlas / Public test-area explorer</div>
+      <h1 id="page-title">Location records,<br><span>explained.</span></h1>
+      <p class="hero-lead">Real public Downtown Los Angeles test data; <strong>source estimates, not surveyed antennas.</strong> Explore full cell identities, compare coordinates, and see exactly where a connection stops being supported.</p>
+      <div class="scope-strip"><span><strong>5 km</strong> public study radius</span><span><strong>34.05, −118.25</strong> study center</span><span><strong>No external tiles</strong> or device location requests</span></div>
+      <div class="hero-links"><a href="../index.html">Read the research case study <span aria-hidden="true">↗</span></a><a href="../records/index.html">Browse all location records <span aria-hidden="true">→</span></a><a href="../data/preview-data.json" download>Download selected public test records <span aria-hidden="true">↓</span></a></div>
+    </section>
+
+    <section class="reading-guide" aria-labelledby="reading-title">
+      <div><h2 id="reading-title">Read the map as evidence.</h2><p>One point can represent a service’s location estimate, a coverage-grid center, an administrative pole location, or a permit address. Those roles are different, even when the points are close together.</p><p>These public-area cellular records came from deliberate research requests and source comparisons. The original Mac evidence remains private. <a data-testid="preview-source-history" href="../index.html#user-content-how-the-investigation-developed">Read the source history</a> and <a data-testid="preview-related-research" href="../index.html#user-content-related-research">related research</a>.</p></div>
+      <div class="guide-items"><p><strong>Carrier code</strong><span><span class="mono">310/260</span> identifies a network associated with T-Mobile. It is not a person or a device identifier.</span></p><p><strong>Full cell ID</strong><span>An LTE ECI or NR NCI identifies a cell within its network. A complete identity still needs independent evidence to identify an antenna.</span></p><p><strong>PCI</strong><span>A short, reused radio identifier. A PCI listed for a coverage grid remains grid context unless the source explicitly assigns it to a full cell ID.</span></p></div>
+    </section>
+
+    <section id="target-case" class="target-case" aria-labelledby="target-title">
+      <div class="section-heading"><div><div class="eyebrow">A connection we can assess</div><h2 id="target-title">One NCI. Two source estimates.<br>No assigned PCI or verified site.</h2></div><button id="focus-target" data-testid="focus-target" class="primary-button" type="button" disabled>Explore NCI 7587668269 <span aria-hidden="true">→</span></button></div>
+      <p class="section-intro">The public test returns full NR identity <span class="mono">310/260 · NCI 7587668269</span>. Agreement between estimates supports a comparison between sources. It does not establish an antenna position.</p>
+      <div id="target-summary" data-testid="target-summary" class="target-summary"><p class="muted">Loading the two source records and their evidence context…</p></div>
+      <div class="evidence-limit"><span class="limit-icon" aria-hidden="true">!</span><p><strong>A shared PCI of 42 is unassigned context.</strong> Two containing grids list <span class="mono">42, 842</span> and <span class="mono">42, 866</span>. Their overlap does not assign PCI 42 to this NCI. No supported identity-to-physical-site link has been established.</p></div>
+    </section>
+
+    <section id="explorer" class="explorer" aria-labelledby="explorer-title">
+      <div class="section-heading"><div><div class="eyebrow">Explore without losing provenance</div><h2 id="explorer-title">Public test-area records</h2></div><div id="dataset-meta" class="dataset-meta" data-testid="dataset-meta">Loading local dataset…</div></div>
+      <noscript><div class="message error-message"><strong>JavaScript is needed for the interactive explorer.</strong><p>The explanations above and the <a href="../index.html">research case study</a> remain available. You can also <a href="../data/preview-data.json">read the selected public test records</a>. Nothing here requests your location.</p></div></noscript>
+      <div id="load-status" class="message" role="status" data-testid="load-status">Loading actual public test-area records from the research-preview bundle…</div>
+      <div id="load-error" class="message error-message" role="alert" data-testid="load-error" hidden><h3>The dataset could not be loaded.</h3><p id="load-error-detail"></p><p>Open this bundle through its local launcher. A missing or invalid dataset is not replaced with example points.</p><button id="retry-load" type="button" class="secondary-button" data-testid="retry-load">Retry local dataset</button></div>
+      <div id="explorer-content" hidden>
+        <form id="filters" class="filters" role="search" aria-label="Filter public test-area records" novalidate>
+          <div class="search-field"><label for="identity-search">Search a full identity, PCI, grid, or carrier</label><div class="search-row"><input id="identity-search" data-testid="identity-search" name="query" type="search" autocomplete="off" spellcheck="false" placeholder="nci:7587668269 or pci:42" aria-describedby="search-help search-error"><button id="apply-search" data-testid="apply-search" class="primary-button" type="submit">Search</button></div><p id="search-help" class="field-help">Exact searches: <span class="mono">nci:…</span>, <span class="mono">eci:…</span>, <span class="mono">tac:…</span>, <span class="mono">pci:…</span>, <span class="mono">grid:…</span>, <span class="mono">channel:…</span>, <span class="mono">radio:nr</span>. Combine terms with spaces. Carrier names/codes qualify the same posting as PCI, radio, and channel. Other words search selected descriptions and identifiers.</p><p id="search-error" data-testid="search-error" class="field-error" role="alert" hidden></p></div>
+          <div class="filter-fields"><div><label for="carrier-filter">Carrier / network</label><select id="carrier-filter" data-testid="carrier-filter" name="carrier"><option value="">All networks</option></select></div><div><label for="radio-filter">Radio</label><select id="radio-filter" data-testid="radio-filter" name="radio"><option value="">LTE + NR + other records</option><option value="lte">LTE</option><option value="nr">NR / 5G</option><option value="none">No LTE / NR identity</option></select></div><div><label for="layer-filter">Coordinate / source type</label><select id="layer-filter" data-testid="layer-filter" name="layer"><option value="">All record types</option></select></div><div><label for="source-filter">Evidence source</label><select id="source-filter" data-testid="source-filter" name="source"><option value="">All sources</option></select></div></div>
+          <div class="filter-footer"><p>Carrier, radio, and PCI filters must match <strong>the same coverage posting</strong>. A grid match is not a cell-ID assignment.</p><button id="reset-filters" data-testid="reset-filters" class="quiet-button" type="button">Reset filters</button></div>
+        </form>
+
+        <div class="workspace">
+          <section class="plot-panel" aria-labelledby="plot-title">
+            <div class="panel-toolbar"><div><h3 id="plot-title">Geographic coordinate plot</h3><p id="plot-subtitle">Latitude / longitude · public Downtown Los Angeles area</p></div><div class="plot-tools"><button id="zoom-out" data-testid="zoom-out" class="icon-button" type="button" aria-label="Zoom out">−</button><button id="zoom-in" data-testid="zoom-in" class="icon-button" type="button" aria-label="Zoom in">+</button><button id="fit-results" data-testid="fit-results" class="quiet-button" type="button">Fit results</button><button id="study-area" data-testid="study-area" class="quiet-button" type="button">5 km area</button></div></div>
+            <div id="plot-shell" class="plot-shell"><canvas id="coordinate-plot" data-testid="coordinate-plot" tabindex="0" role="img" aria-label="Coordinate plot of the filtered public test records. All points are also available in the record list. Use plus and minus to zoom; arrow keys to pan."></canvas><div class="plot-corner"><span class="north-arrow" aria-hidden="true">↑</span> N</div><div class="plot-notice">Locally drawn coordinates · no external map tiles</div></div>
+            <div id="plot-caption" data-testid="plot-caption" class="plot-caption" aria-live="polite"></div>
+            <div id="plot-legend" class="plot-legend" aria-label="Point legend"></div>
+            <p class="plot-help">Select a point or choose a record from the list. Keyboard: <kbd>+</kbd> / <kbd>−</kbd> zoom; arrow keys pan. Shapes describe source roles. Coordinate precision does not establish site accuracy.</p>
+          </section>
+          <section class="results-panel" aria-labelledby="results-title">
+            <div class="panel-toolbar"><div><h3 id="results-title">Matching records</h3><p id="result-count" data-testid="result-count" role="status"></p></div><button id="download-results" data-testid="download-results" class="quiet-button" type="button">Download JSON <span aria-hidden="true">↓</span></button></div>
+            <p id="result-scope" class="result-scope">Selected public test records only. No private cache history.</p>
+            <div id="record-list" data-testid="record-list" class="record-list"></div>
+            <div id="pagination" class="pagination"><button id="previous-page" data-testid="previous-page" class="secondary-button" type="button">Previous</button><span id="page-label"></span><button id="next-page" data-testid="next-page" class="secondary-button" type="button">Next</button></div>
+          </section>
+        </div>
+        <section id="record-detail" data-testid="record-detail" class="record-detail" aria-labelledby="record-detail-title" tabindex="-1"><div class="detail-empty"><div class="eyebrow">Follow a point to its source</div><h3 id="record-detail-title">Choose a record to inspect it.</h3><p>Full cell IDs, carrier labels, coordinate meaning, coverage postings, and selected source fields appear here. Unknown observation times remain unknown.</p></div></section>
+      </div>
+    </section>
+
+    <section class="method-notes" aria-labelledby="method-title"><div><div class="eyebrow">What this preview can tell you</div><h2 id="method-title">A transparent comparison,<br>with the limits attached.</h2></div><div><p><strong>Retained:</strong> actual public-area coordinates, full LTE/NR identities, network codes, TAC, PCI lists, channels, and useful technical evidence fields. Carrier names are labels for network codes, not a claim about who owns a physical structure.</p><p><strong>Excluded:</strong> personal cache histories, private geofences, identifying Wi-Fi addresses, account or device identifiers, credentials, personal contacts, and private local paths. This is a separate review dataset; the original private Atlas remains unchanged.</p><p><strong>Not established:</strong> a record’s presence on a Mac does not establish a visit, a connection, live tracking, or an individual’s movements. A returned estimate, a permit address, and a surveyed antenna location are different claims. Observation time is shown only when the underlying source supports it.</p><p class="muted">This preview makes no requests to map providers, carrier services, analytics services, or location/device APIs. Source links open only when you choose them.</p></div></section>
+  </main>
+  <footer class="site-footer"><span>Local Evidence Atlas · Research preview</span><a href="../DATA-NOTICES.md">Source and data notices</a><a href="../LICENSE.txt">Code license</a><a href="../index.html">Return to the case study <span aria-hidden="true">↗</span></a></footer>
+</body>
+</html>

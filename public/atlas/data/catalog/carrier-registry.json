@@ -1,0 +1,1006 @@
+{
+  "version": 1,
+  "verifiedAt": "2026-11-21T00:38:37.898490+00:00",
+  "sources": [
+    {
+      "id": "imsi-hni",
+      "title": "US IMSI Administrator live HNI assignments",
+      "url": "https://imsiadmin.com/assignments/hni/",
+      "verifiedAt": "2026-11-21T00:30:33.320981+00:00",
+      "sha256": "a7fa6e46ba1f36ecc3e774774f7d54b599ca5d6900f74e9477415602154164f0"
+    },
+    {
+      "id": "imsi-oversight",
+      "title": "US IMSI Administrator oversight and code structure",
+      "url": "https://imsiadmin.com/",
+      "verifiedAt": "2026-11-21T00:30:33.321421+00:00",
+      "sha256": "f2db3b90111c48a8fee027fae970e0041c2b333a94fc7c73eb7dd1b53fda009c"
+    },
+    {
+      "id": "imsi-cbrs",
+      "title": "US IMSI Administrator shared CBRS assignments",
+      "url": "https://imsiadmin.com/assignments/cbrs/",
+      "verifiedAt": "2026-11-21T00:30:33.321505+00:00",
+      "sha256": "519a08fa469383ff7f1ce4b214f61abca245c167a4a291253267b30546e0cf16"
+    },
+    {
+      "id": "itu-2023",
+      "title": "ITU E.212 MNC list, position on 15 November 2023",
+      "url": "https://www.itu.int/dms_pub/itu-t/opb/sp/T-SP-E.212B-2023-PDF-E.pdf",
+      "verifiedAt": "2026-11-21T00:30:33.321576+00:00",
+      "sha256": "080c1c8ca8db511630c1de129282271eb29be905b42ba4e1f6d6661973e613f2"
+    },
+    {
+      "id": "itu-2018",
+      "title": "ITU E.212 MNC list, position on 15 December 2018",
+      "url": "https://www.itu.int/dms_pub/itu-t/opb/sp/T-SP-E.212B-2018-PDF-E.pdf",
+      "verifiedAt": "2026-11-21T00:37:38.621965+00:00",
+      "sha256": "ea9a9fe9f6587d255ada9391a9e3ad5b3163d2bdf7d34b7ffafbca55748584d0"
+    },
+    {
+      "id": "cnac-mnc",
+      "title": "Canadian Numbering Administrator live IMSI MNC status",
+      "url": "https://cnac.ca/data/MNC_Codes.htm",
+      "verifiedAt": "2026-11-21T00:30:34.786757+00:00",
+      "sha256": "6538b1041cae2b64e85cc6d5b00355b7b8351fbf6c5625f8a5208d80421938d9"
+    },
+    {
+      "id": "bnetza-imsi",
+      "title": "Bundesnetzagentur IMSI blocks, 12 November 2026",
+      "url": "https://www.bundesnetzagentur.de/DE/Fachthemen/Telekommunikation/Nummerierung/IMSI/DL/imsi_zugbloecke.html",
+      "verifiedAt": "2026-11-21T00:30:34.967419+00:00",
+      "sha256": "79cd713c64aad5ba7079d8f5c7f083bf90c6ff9b060384bb91abec6e0e3830aa"
+    },
+    {
+      "id": "arcep-quality",
+      "title": "ARCEP mobile quality data network-code glossary",
+      "url": "https://data.arcep.fr/mobile/mesures_qualite_arcep/",
+      "verifiedAt": "2026-11-21T00:30:35.316463+00:00",
+      "sha256": "7a0649f0bb2f2990ec887bd0f7a3c41485ef28871434f36c93aa590a6230b7a8"
+    },
+    {
+      "id": "ofca-mnc",
+      "title": "OFCA live assignment of mobile network codes",
+      "url": "https://www.ofca.gov.hk/filemanager/ofca/common/datagovhk/mnc_en_sc.csv",
+      "verifiedAt": "2026-11-21T00:31:36.825984+00:00",
+      "sha256": "5f8db3bdd9edfd5f9a4988b08db1c7588b7617b324a88f90a78f09893924ad68"
+    },
+    {
+      "id": "metro-rebrand",
+      "title": "T-Mobile official MetroPCS rebranding announcement, 24 September 2018",
+      "url": "https://www.t-mobile.com/news/press/metro-by-t-mobile",
+      "verifiedAt": "2026-11-21T00:32:50.592188+00:00",
+      "sha256": "389a3ca452c91f7bc6a2119f97c01d629579615607dbdb383d906470b62b1648"
+    },
+    {
+      "id": "telcel-primary",
+      "title": "IFT-hosted Telcel wholesale technical agreements, 2018",
+      "url": "https://www.ift.org.mx/sites/default/files/contenidogeneral/politica-regulatoria/omv2018pift131217906.pdf",
+      "verifiedAt": "2026-11-21T00:32:50.592595+00:00",
+      "sha256": "9db42fa60132b7334f96dc3f9ef8a3ccccd4a3bbeef2d268d238e1d22e7285e4"
+    },
+    {
+      "id": "ooredoo-brand",
+      "title": "Ooredoo Oman official company identity and Nawras rebrand",
+      "url": "https://www.ooredoo.om/en/about-ooredoo/investor-relations/",
+      "verifiedAt": "2026-11-21T00:33:38.500815+00:00",
+      "sha256": "007919a94ad727f51d5e485e50025815e9d37865869839e4e9afaa280867d7b0"
+    },
+    {
+      "id": "mtn-history",
+      "title": "MTN Ghana official Spacefon history",
+      "url": "https://mtn.com.gh/about-home/",
+      "verifiedAt": "2026-11-21T00:33:38.501274+00:00",
+      "sha256": "33498eb00d47ca9ddc7f44908e68d93b47ca519c17a3dc0d8b95bdcc7c68029e"
+    },
+    {
+      "id": "mtn-company",
+      "title": "MTN Ghana official Scancom PLC identity",
+      "url": "https://mtn.com.gh/smp-faqs/",
+      "verifiedAt": "2026-11-21T00:33:38.501364+00:00",
+      "sha256": "c0adbe48f3761dbeb0aa834ea34bce2e8d24f44cb17534ea7e86d2766eac00f2"
+    },
+    {
+      "id": "taiwan-ncc-web-extract",
+      "title": "NCC MNC status dated 1 August 2022, official-source web-search extract (not raw PDF)",
+      "url": "https://www.ncc.gov.tw/chinese/files/14050/%E8%A1%8C%E5%8B%95%E7%B6%B2%E8%B7%AF%E8%AD%98%E5%88%A5%E7%A2%BC%E6%A0%B8%E9%85%8D%E7%8F%BE%E6%B3%81.pdf",
+      "verifiedAt": "2026-11-21T00:36:47.506445+00:00",
+      "sha256": "5cd29ec1dc0a0b269d1f422f714facaa5e582005a0330ca09540cb5cd95892f7"
+    },
+    {
+      "id": "taiwan-ncc-brand-extract",
+      "title": "NCC bilingual Taiwan operator flyer, official-source web-search extract (not raw PDF)",
+      "url": "https://www.ncc.gov.tw/chinese/show_file.aspx?file_sn=62892&table_name=news",
+      "verifiedAt": "2026-11-21T00:36:47.506445+00:00",
+      "sha256": "2e8387d1f703c1b3a7eef96f796e1b4af78c0ecc945383c984dd22ca7fcaf066"
+    }
+  ],
+  "carriers": [
+    {
+      "code": "0/0",
+      "mcc": "0",
+      "mnc": "0",
+      "operatorName": null,
+      "brandName": null,
+      "aliases": [],
+      "status": "unresolved",
+      "sourceIds": [
+        "itu-2023"
+      ],
+      "asOf": null,
+      "note": "Raw source values are retained. No supported public operator assignment was established; do not map this sentinel-like pair to a carrier."
+    },
+    {
+      "code": "1/1",
+      "mcc": "1",
+      "mnc": "1",
+      "operatorName": null,
+      "brandName": null,
+      "aliases": [],
+      "status": "unresolved",
+      "sourceIds": [
+        "itu-2023"
+      ],
+      "asOf": null,
+      "note": "Raw source values are retained. No supported public operator assignment was established; this is not proof of an active network or a location."
+    },
+    {
+      "code": "208/20",
+      "mcc": "208",
+      "mnc": "20",
+      "operatorName": "Bouygues Telecom",
+      "brandName": "Bouygues Telecom",
+      "aliases": [
+        "Bouygues",
+        "BOUY"
+      ],
+      "status": "verified",
+      "sourceIds": [
+        "arcep-quality"
+      ],
+      "asOf": "2026-11-21",
+      "note": "ARCEP's live mobile-data glossary identifies MCC 208 / MNC 20 as Bouygues Telecom in metropolitan France. This is a network label, not a site link."
+    },
+    {
+      "code": "250/1",
+      "mcc": "250",
+      "mnc": "1",
+      "operatorName": "Mobile Telesystems",
+      "brandName": "Mobile Telesystems",
+      "aliases": [],
+      "status": "historical",
+      "sourceIds": [
+        "itu-2023"
+      ],
+      "asOf": "2023-11-15",
+      "note": "ITU assignment-list position on 15 November 2023. Historical status means dated registry evidence; it does not mean the network is inactive. Current assignment continuity was not independently verified. The source stores MCC/MNC as numbers, so leading zeroes are absent. The official assignment uses 250/01; raw 250/1 is preserved."
+    },
+    {
+      "code": "255/1",
+      "mcc": "255",
+      "mnc": "1",
+      "operatorName": "VF UKRAINE PrJSC",
+      "brandName": "VF Ukraine",
+      "aliases": [
+        "VF UKRAINE",
+        "VF Ukraine PrJSC"
+      ],
+      "status": "historical",
+      "sourceIds": [
+        "itu-2023"
+      ],
+      "asOf": "2023-11-15",
+      "note": "ITU assignment-list position on 15 November 2023. Historical status means dated registry evidence; it does not mean the network is inactive. Current assignment continuity was not independently verified. The source stores MCC/MNC as numbers, so leading zeroes are absent. The official assignment uses 255/01; raw 255/1 is preserved. No unsupported retail-brand equivalence is added."
+    },
+    {
+      "code": "255/3",
+      "mcc": "255",
+      "mnc": "3",
+      "operatorName": "Kyivstar PrJSC",
+      "brandName": "Kyivstar",
+      "aliases": [
+        "Kyivstar"
+      ],
+      "status": "historical",
+      "sourceIds": [
+        "itu-2023"
+      ],
+      "asOf": "2023-11-15",
+      "note": "ITU assignment-list position on 15 November 2023. Historical status means dated registry evidence; it does not mean the network is inactive. Current assignment continuity was not independently verified. The source stores MCC/MNC as numbers, so leading zeroes are absent. The official assignment uses 255/03; raw 255/3 is preserved."
+    },
+    {
+      "code": "262/1",
+      "mcc": "262",
+      "mnc": "1",
+      "operatorName": "Telekom Deutschland GmbH",
+      "brandName": "Telekom Deutschland",
+      "aliases": [
+        "Telekom",
+        "Telekom Deutschland"
+      ],
+      "status": "verified",
+      "sourceIds": [
+        "bnetza-imsi"
+      ],
+      "asOf": "2026-11-12",
+      "note": "Bundesnetzagentur assigned-block register dated 12 November 2026 lists 262/01. The numeric source rendering 262/1 is preserved. This does not identify a physical site."
+    },
+    {
+      "code": "262/3",
+      "mcc": "262",
+      "mnc": "3",
+      "operatorName": "Telefónica Germany GmbH & Co. oHG",
+      "brandName": "Telefónica Germany",
+      "aliases": [
+        "Telefonica Germany",
+        "Telefónica Germany"
+      ],
+      "status": "verified",
+      "sourceIds": [
+        "bnetza-imsi"
+      ],
+      "asOf": "2026-11-12",
+      "note": "Bundesnetzagentur assigned-block register dated 12 November 2026 lists 262/03. The numeric source rendering 262/3 is preserved. A code assignment is not a subscriber-brand or physical-site assertion."
+    },
+    {
+      "code": "282/1",
+      "mcc": "282",
+      "mnc": "1",
+      "operatorName": "Geocell Ltd.",
+      "brandName": "Geocell",
+      "aliases": [
+        "Geocell"
+      ],
+      "status": "historical",
+      "sourceIds": [
+        "itu-2023"
+      ],
+      "asOf": "2023-11-15",
+      "note": "ITU assignment-list position on 15 November 2023. Historical status means dated registry evidence; it does not mean the network is inactive. Current assignment continuity was not independently verified. The source stores MCC/MNC as numbers, so leading zeroes are absent. The official assignment uses 282/01; raw 282/1 is preserved. The dated legal name is not silently replaced with a later parent or brand."
+    },
+    {
+      "code": "302/220",
+      "mcc": "302",
+      "mnc": "220",
+      "operatorName": "Telus Mobility",
+      "brandName": "TELUS",
+      "aliases": [
+        "Telus",
+        "TELUS Mobility"
+      ],
+      "status": "verified",
+      "sourceIds": [
+        "cnac-mnc"
+      ],
+      "asOf": "2026-11-21",
+      "note": "Canadian Numbering Administrator live table lists this assignment as In Service. Assignment date is blank; the verification date is not a first-observed date."
+    },
+    {
+      "code": "302/720",
+      "mcc": "302",
+      "mnc": "720",
+      "operatorName": "Rogers Communications Canada Inc. (Wireless)",
+      "brandName": "Rogers",
+      "aliases": [
+        "Rogers",
+        "Rogers Wireless"
+      ],
+      "status": "verified",
+      "sourceIds": [
+        "cnac-mnc"
+      ],
+      "asOf": "2026-11-21",
+      "note": "Canadian Numbering Administrator live table lists this assignment as In Service. This label identifies the registered network and does not establish a serving antenna."
+    },
+    {
+      "code": "310/70",
+      "mcc": "310",
+      "mnc": "70",
+      "operatorName": "AT&T Mobility",
+      "brandName": "AT&T",
+      "aliases": [
+        "ATT",
+        "AT T",
+        "AT&T Mobility"
+      ],
+      "status": "verified",
+      "sourceIds": [
+        "imsi-hni",
+        "imsi-oversight"
+      ],
+      "asOf": "2026-11-21",
+      "note": "Live US IMSI Administrator HNI assignment checked on the lookup verification date. This identifies the registered network assignee, not an antenna owner, observed subscriber brand, or verified physical site. The source stores MCC/MNC as numbers, so leading zeroes are absent. The official assignment uses 310/070; the US administrator explicitly defines 3-digit MNCs. The original 310/70 is retained."
+    },
+    {
+      "code": "310/120",
+      "mcc": "310",
+      "mnc": "120",
+      "operatorName": "T-Mobile USA",
+      "brandName": "T-Mobile",
+      "aliases": [
+        "TMobile",
+        "T Mobile",
+        "T-Mobile USA",
+        "Sprint",
+        "Sprint (historical)"
+      ],
+      "status": "verified",
+      "sourceIds": [
+        "imsi-hni",
+        "imsi-oversight",
+        "itu-2018"
+      ],
+      "asOf": "2026-11-21",
+      "note": "Live US IMSI Administrator HNI assignment checked on the lookup verification date. This identifies the registered network assignee, not an antenna owner, observed subscriber brand, or verified physical site. ITU's list dated 15 December 2018 names Sprint for this same code. Sprint is included as a historical search alias, while the displayed current assignee follows today's US administrator. No exact transition date or assignment history between those snapshots is asserted."
+    },
+    {
+      "code": "310/260",
+      "mcc": "310",
+      "mnc": "260",
+      "operatorName": "T-Mobile USA",
+      "brandName": "T-Mobile",
+      "aliases": [
+        "TMobile",
+        "T Mobile",
+        "T-Mobile USA"
+      ],
+      "status": "verified",
+      "sourceIds": [
+        "imsi-hni",
+        "imsi-oversight"
+      ],
+      "asOf": "2026-11-21",
+      "note": "Live US IMSI Administrator HNI assignment checked on the lookup verification date. This identifies the registered network assignee, not an antenna owner, observed subscriber brand, or verified physical site."
+    },
+    {
+      "code": "310/261",
+      "mcc": "310",
+      "mnc": "261",
+      "operatorName": null,
+      "brandName": null,
+      "aliases": [],
+      "status": "unresolved",
+      "sourceIds": [
+        "imsi-hni"
+      ],
+      "asOf": "2026-11-21",
+      "note": "No exact entry appears in the captured live US HNI directory. Do not inherit T-Mobile from the nearby code 310/260. A missing current entry does not establish that historical source data is false or that a network was never used."
+    },
+    {
+      "code": "310/265",
+      "mcc": "310",
+      "mnc": "265",
+      "operatorName": null,
+      "brandName": null,
+      "aliases": [],
+      "status": "unresolved",
+      "sourceIds": [
+        "imsi-hni"
+      ],
+      "asOf": "2026-11-21",
+      "note": "No exact entry appears in the captured live US HNI directory. Do not inherit T-Mobile from the nearby code 310/260. A missing current entry does not establish that historical source data is false or that a network was never used."
+    },
+    {
+      "code": "310/410",
+      "mcc": "310",
+      "mnc": "410",
+      "operatorName": "AT&T Mobility",
+      "brandName": "AT&T",
+      "aliases": [
+        "ATT",
+        "AT T",
+        "AT&T Mobility"
+      ],
+      "status": "verified",
+      "sourceIds": [
+        "imsi-hni",
+        "imsi-oversight"
+      ],
+      "asOf": "2026-11-21",
+      "note": "Live US IMSI Administrator HNI assignment checked on the lookup verification date. This identifies the registered network assignee, not an antenna owner, observed subscriber brand, or verified physical site."
+    },
+    {
+      "code": "310/450",
+      "mcc": "310",
+      "mnc": "450",
+      "operatorName": "North East Cellular, Inc",
+      "brandName": "North East Cellular",
+      "aliases": [
+        "North East Cellular"
+      ],
+      "status": "verified",
+      "sourceIds": [
+        "imsi-hni",
+        "imsi-oversight"
+      ],
+      "asOf": "2026-11-21",
+      "note": "Live US IMSI Administrator HNI assignment checked on the lookup verification date. This identifies the registered network assignee, not an antenna owner, observed subscriber brand, or verified physical site."
+    },
+    {
+      "code": "310/830",
+      "mcc": "310",
+      "mnc": "830",
+      "operatorName": "T-Mobile USA",
+      "brandName": "T-Mobile",
+      "aliases": [
+        "TMobile",
+        "T Mobile",
+        "T-Mobile USA",
+        "Sprint",
+        "Sprint (historical)"
+      ],
+      "status": "verified",
+      "sourceIds": [
+        "imsi-hni",
+        "imsi-oversight",
+        "itu-2018"
+      ],
+      "asOf": "2026-11-21",
+      "note": "Live US IMSI Administrator HNI assignment checked on the lookup verification date. This identifies the registered network assignee, not an antenna owner, observed subscriber brand, or verified physical site. ITU's list dated 15 December 2018 names Sprint for this same code. Sprint is included as a historical search alias, while the displayed current assignee follows today's US administrator. No exact transition date or assignment history between those snapshots is asserted."
+    },
+    {
+      "code": "311/480",
+      "mcc": "311",
+      "mnc": "480",
+      "operatorName": "Verizon Wireless",
+      "brandName": "Verizon",
+      "aliases": [
+        "Verizon",
+        "Verizon Wireless"
+      ],
+      "status": "verified",
+      "sourceIds": [
+        "imsi-hni",
+        "imsi-oversight"
+      ],
+      "asOf": "2026-11-21",
+      "note": "Live US IMSI Administrator HNI assignment checked on the lookup verification date. This identifies the registered network assignee, not an antenna owner, observed subscriber brand, or verified physical site."
+    },
+    {
+      "code": "311/490",
+      "mcc": "311",
+      "mnc": "490",
+      "operatorName": "T-Mobile USA",
+      "brandName": "T-Mobile",
+      "aliases": [
+        "TMobile",
+        "T Mobile",
+        "T-Mobile USA",
+        "Sprint",
+        "Sprint (historical)"
+      ],
+      "status": "verified",
+      "sourceIds": [
+        "imsi-hni",
+        "imsi-oversight",
+        "itu-2018"
+      ],
+      "asOf": "2026-11-21",
+      "note": "Live US IMSI Administrator HNI assignment checked on the lookup verification date. This identifies the registered network assignee, not an antenna owner, observed subscriber brand, or verified physical site. ITU's list dated 15 December 2018 names Sprint for this same code. Sprint is included as a historical search alias, while the displayed current assignee follows today's US administrator. No exact transition date or assignment history between those snapshots is asserted."
+    },
+    {
+      "code": "311/580",
+      "mcc": "311",
+      "mnc": "580",
+      "operatorName": "T-Mobile USA",
+      "brandName": "T-Mobile",
+      "aliases": [
+        "TMobile",
+        "T Mobile",
+        "T-Mobile USA",
+        "U.S. Cellular",
+        "US Cellular",
+        "UScellular",
+        "U.S. Cellular (historical)"
+      ],
+      "status": "verified",
+      "sourceIds": [
+        "imsi-hni",
+        "imsi-oversight",
+        "itu-2023"
+      ],
+      "asOf": "2026-11-21",
+      "note": "Live US IMSI Administrator HNI assignment checked on the lookup verification date. This identifies the registered network assignee, not an antenna owner, observed subscriber brand, or verified physical site. ITU's list dated 15 November 2023 names U.S. Cellular for this same code. U.S. Cellular is a historical search alias; the current label follows today's US administrator. The change date and any individual source record's historical serving operator remain unverified."
+    },
+    {
+      "code": "311/660",
+      "mcc": "311",
+      "mnc": "660",
+      "operatorName": "MetroPCS Wireless, Inc",
+      "brandName": "Metro by T-Mobile",
+      "aliases": [
+        "MetroPCS",
+        "Metro PCS",
+        "Metro",
+        "Metro by TMobile",
+        "Metro by T-Mobile"
+      ],
+      "status": "verified",
+      "sourceIds": [
+        "imsi-hni",
+        "imsi-oversight",
+        "metro-rebrand"
+      ],
+      "asOf": "2026-11-21",
+      "note": "Live US IMSI Administrator HNI assignment checked on the lookup verification date. This identifies the registered network assignee, not an antenna owner, observed subscriber brand, or verified physical site. The administrator retains the MetroPCS legal name; T-Mobile's 24 September 2018 release establishes the Metro by T-Mobile rebrand. This does not identify the retail plan of a device."
+    },
+    {
+      "code": "311/882",
+      "mcc": "311",
+      "mnc": "882",
+      "operatorName": "T-Mobile USA",
+      "brandName": "T-Mobile",
+      "aliases": [
+        "TMobile",
+        "T Mobile",
+        "T-Mobile USA"
+      ],
+      "status": "verified",
+      "sourceIds": [
+        "imsi-hni",
+        "imsi-oversight"
+      ],
+      "asOf": "2026-11-21",
+      "note": "Live US IMSI Administrator HNI assignment checked on the lookup verification date. This identifies the registered network assignee, not an antenna owner, observed subscriber brand, or verified physical site."
+    },
+    {
+      "code": "312/190",
+      "mcc": "312",
+      "mnc": "190",
+      "operatorName": "T-Mobile USA",
+      "brandName": "T-Mobile",
+      "aliases": [
+        "TMobile",
+        "T Mobile",
+        "T-Mobile USA",
+        "Sprint",
+        "Sprint (historical)"
+      ],
+      "status": "verified",
+      "sourceIds": [
+        "imsi-hni",
+        "imsi-oversight",
+        "itu-2018"
+      ],
+      "asOf": "2026-11-21",
+      "note": "Live US IMSI Administrator HNI assignment checked on the lookup verification date. This identifies the registered network assignee, not an antenna owner, observed subscriber brand, or verified physical site. ITU's list dated 15 December 2018 names Sprint for this same code. Sprint is included as a historical search alias, while the displayed current assignee follows today's US administrator. No exact transition date or assignment history between those snapshots is asserted."
+    },
+    {
+      "code": "312/250",
+      "mcc": "312",
+      "mnc": "250",
+      "operatorName": "T-Mobile USA",
+      "brandName": "T-Mobile",
+      "aliases": [
+        "TMobile",
+        "T Mobile",
+        "T-Mobile USA",
+        "Sprint",
+        "Sprint (historical)"
+      ],
+      "status": "verified",
+      "sourceIds": [
+        "imsi-hni",
+        "imsi-oversight",
+        "itu-2018"
+      ],
+      "asOf": "2026-11-21",
+      "note": "Live US IMSI Administrator HNI assignment checked on the lookup verification date. This identifies the registered network assignee, not an antenna owner, observed subscriber brand, or verified physical site. ITU's list dated 15 December 2018 names Sprint for this same code. Sprint is included as a historical search alias, while the displayed current assignee follows today's US administrator. No exact transition date or assignment history between those snapshots is asserted."
+    },
+    {
+      "code": "313/100",
+      "mcc": "313",
+      "mnc": "100",
+      "operatorName": "AT&T FirstNet",
+      "brandName": "FirstNet",
+      "aliases": [
+        "AT&T",
+        "ATT",
+        "FirstNet",
+        "AT&T FirstNet",
+        "AT T"
+      ],
+      "status": "verified",
+      "sourceIds": [
+        "imsi-hni",
+        "imsi-oversight"
+      ],
+      "asOf": "2026-11-21",
+      "note": "Live US IMSI Administrator HNI assignment checked on the lookup verification date. This identifies the registered network assignee, not an antenna owner, observed subscriber brand, or verified physical site."
+    },
+    {
+      "code": "313/300",
+      "mcc": "313",
+      "mnc": "300",
+      "operatorName": "Southern California Edison",
+      "brandName": "Southern California Edison",
+      "aliases": [
+        "SCE",
+        "Southern California Edison"
+      ],
+      "status": "verified",
+      "sourceIds": [
+        "imsi-hni",
+        "imsi-oversight"
+      ],
+      "asOf": "2026-11-21",
+      "note": "Live US IMSI Administrator HNI assignment checked on the lookup verification date. This identifies the registered network assignee, not an antenna owner, observed subscriber brand, or verified physical site."
+    },
+    {
+      "code": "314/10",
+      "mcc": "314",
+      "mnc": "10",
+      "operatorName": "Boingo Wireless, Inc",
+      "brandName": "Boingo Wireless",
+      "aliases": [
+        "Boingo",
+        "Boingo Wireless"
+      ],
+      "status": "verified",
+      "sourceIds": [
+        "imsi-hni",
+        "imsi-oversight"
+      ],
+      "asOf": "2026-11-21",
+      "note": "Live US IMSI Administrator HNI assignment checked on the lookup verification date. This identifies the registered network assignee, not an antenna owner, observed subscriber brand, or verified physical site. The source stores MCC/MNC as numbers, so leading zeroes are absent. The official assignment uses 314/010; the US administrator explicitly defines 3-digit MNCs. The original 314/10 is retained."
+    },
+    {
+      "code": "314/30",
+      "mcc": "314",
+      "mnc": "30",
+      "operatorName": "Baicells Technologies North America, Inc",
+      "brandName": "Baicells",
+      "aliases": [
+        "Baicells",
+        "Baicells Technologies"
+      ],
+      "status": "verified",
+      "sourceIds": [
+        "imsi-hni",
+        "imsi-oversight"
+      ],
+      "asOf": "2026-11-21",
+      "note": "Live US IMSI Administrator HNI assignment checked on the lookup verification date. This identifies the registered network assignee, not an antenna owner, observed subscriber brand, or verified physical site. The source stores MCC/MNC as numbers, so leading zeroes are absent. The official assignment uses 314/030; the US administrator explicitly defines 3-digit MNCs. The original 314/30 is retained."
+    },
+    {
+      "code": "314/330",
+      "mcc": "314",
+      "mnc": "330",
+      "operatorName": "Nova Labs, Inc",
+      "brandName": "Nova Labs",
+      "aliases": [
+        "Nova Labs"
+      ],
+      "status": "verified",
+      "sourceIds": [
+        "imsi-hni",
+        "imsi-oversight"
+      ],
+      "asOf": "2026-11-21",
+      "note": "Live US IMSI Administrator HNI assignment checked on the lookup verification date. This identifies the registered network assignee, not an antenna owner, observed subscriber brand, or verified physical site."
+    },
+    {
+      "code": "315/10",
+      "mcc": "315",
+      "mnc": "10",
+      "operatorName": null,
+      "brandName": null,
+      "aliases": [
+        "CBRS",
+        "shared HNI",
+        "315-010",
+        "315/010"
+      ],
+      "status": "unresolved",
+      "sourceIds": [
+        "imsi-cbrs",
+        "imsi-oversight"
+      ],
+      "asOf": "2026-11-21",
+      "note": "Verified shared CBRS HNI, officially 315-010. The raw numeric MNC 10 is retained. Many independent operators use it and are distinguished by an IMSI Block Number (IBN); MCC/MNC alone cannot select one operator. No subscriber IMSI or IBN was requested."
+    },
+    {
+      "code": "334/20",
+      "mcc": "334",
+      "mnc": "20",
+      "operatorName": "RADIOMÓVIL DIPSA, S.A. DE C.V.",
+      "brandName": "Telcel",
+      "aliases": [
+        "Telcel",
+        "Radiomovil Dipsa",
+        "Radiomóvil Dipsa"
+      ],
+      "status": "historical",
+      "sourceIds": [
+        "itu-2023",
+        "telcel-primary"
+      ],
+      "asOf": "2023-11-15",
+      "note": "ITU assignment-list position on 15 November 2023. Historical status means dated registry evidence; it does not mean the network is inactive. Current assignment continuity was not independently verified. The source stores MCC/MNC as numbers, so leading zeroes are absent. The official assignment uses 334/020; raw 334/20 is preserved. The IFT-hosted Telcel wholesale agreement explicitly associates Telcel with Radiomóvil Dipsa and PLMN 334-020; it also distinguishes MVNOs from Telcel."
+    },
+    {
+      "code": "334/50",
+      "mcc": "334",
+      "mnc": "50",
+      "operatorName": "GRUPO AT&T CELULLAR, S. DE R.L. DE C.V.",
+      "brandName": "AT&T Mexico",
+      "aliases": [
+        "AT&T",
+        "ATT",
+        "AT&T Mexico",
+        "ATT Mexico",
+        "Grupo AT&T",
+        "AT T"
+      ],
+      "status": "historical",
+      "sourceIds": [
+        "itu-2023"
+      ],
+      "asOf": "2023-11-15",
+      "note": "ITU assignment-list position on 15 November 2023. Historical status means dated registry evidence; it does not mean the network is inactive. Current assignment continuity was not independently verified. The source stores MCC/MNC as numbers, so leading zeroes are absent. The official assignment uses 334/050; raw 334/50 is preserved. The source's legal-name spelling is retained; no current radio or site ownership is inferred."
+    },
+    {
+      "code": "334/90",
+      "mcc": "334",
+      "mnc": "90",
+      "operatorName": "AT&T COMUNICACIONES DIGITALES, S. DE R.L. DE C.V.",
+      "brandName": "AT&T Mexico",
+      "aliases": [
+        "AT&T",
+        "ATT",
+        "AT&T Mexico",
+        "ATT Mexico",
+        "AT T"
+      ],
+      "status": "historical",
+      "sourceIds": [
+        "itu-2023"
+      ],
+      "asOf": "2023-11-15",
+      "note": "ITU assignment-list position on 15 November 2023. Historical status means dated registry evidence; it does not mean the network is inactive. Current assignment continuity was not independently verified. The source stores MCC/MNC as numbers, so leading zeroes are absent. The official assignment uses 334/090; raw 334/90 is preserved."
+    },
+    {
+      "code": "334/140",
+      "mcc": "334",
+      "mnc": "140",
+      "operatorName": "ALTÁN REDES, S.A.P.I. DE C.V.",
+      "brandName": "Altán Redes",
+      "aliases": [
+        "Altan",
+        "Altan Redes",
+        "ALTÁN REDES"
+      ],
+      "status": "historical",
+      "sourceIds": [
+        "itu-2023"
+      ],
+      "asOf": "2023-11-15",
+      "note": "ITU assignment-list position on 15 November 2023. Historical status means dated registry evidence; it does not mean the network is inactive. Current assignment continuity was not independently verified. An underlying wholesale network code does not establish an MVNO's retail brand."
+    },
+    {
+      "code": "390/260",
+      "mcc": "390",
+      "mnc": "260",
+      "operatorName": null,
+      "brandName": null,
+      "aliases": [],
+      "status": "unresolved",
+      "sourceIds": [
+        "itu-2023"
+      ],
+      "asOf": null,
+      "note": "No supported public operator assignment was established. Do not repair the MCC to 310 or inherit T-Mobile merely because MNC 260 matches another network."
+    },
+    {
+      "code": "416/1",
+      "mcc": "416",
+      "mnc": "1",
+      "operatorName": "Fastlink",
+      "brandName": "Fastlink",
+      "aliases": [
+        "Fastlink"
+      ],
+      "status": "historical",
+      "sourceIds": [
+        "itu-2023"
+      ],
+      "asOf": "2023-11-15",
+      "note": "ITU assignment-list position on 15 November 2023. Historical status means dated registry evidence; it does not mean the network is inactive. Current assignment continuity was not independently verified. The source stores MCC/MNC as numbers, so leading zeroes are absent. The official assignment uses 416/01; raw 416/1 is preserved. No later retail-brand name is asserted without a primary relationship source."
+    },
+    {
+      "code": "422/3",
+      "mcc": "422",
+      "mnc": "3",
+      "operatorName": "Oman Qatari Telecommunications Company (Nawras)",
+      "brandName": "Ooredoo Oman",
+      "aliases": [
+        "Nawras",
+        "Ooredoo",
+        "Ooredoo Oman"
+      ],
+      "status": "historical",
+      "sourceIds": [
+        "itu-2023",
+        "ooredoo-brand"
+      ],
+      "asOf": "2023-11-15",
+      "note": "ITU assignment-list position on 15 November 2023. Historical status means dated registry evidence; it does not mean the network is inactive. Current assignment continuity was not independently verified. The source stores MCC/MNC as numbers, so leading zeroes are absent. The official assignment uses 422/03; raw 422/3 is preserved. Ooredoo's company page establishes that Nawras became Ooredoo in 2014; the dated assignment source still uses Nawras. The newer brand does not refresh the assignment date."
+    },
+    {
+      "code": "440/10",
+      "mcc": "440",
+      "mnc": "10",
+      "operatorName": "NTT DOCOMO, INC.",
+      "brandName": "NTT DOCOMO",
+      "aliases": [
+        "NTT DOCOMO",
+        "DOCOMO"
+      ],
+      "status": "historical",
+      "sourceIds": [
+        "itu-2023"
+      ],
+      "asOf": "2023-11-15",
+      "note": "ITU assignment-list position on 15 November 2023. Historical status means dated registry evidence; it does not mean the network is inactive. Current assignment continuity was not independently verified."
+    },
+    {
+      "code": "440/54",
+      "mcc": "440",
+      "mnc": "54",
+      "operatorName": "KDDI Corporation",
+      "brandName": "KDDI",
+      "aliases": [
+        "KDDI"
+      ],
+      "status": "historical",
+      "sourceIds": [
+        "itu-2023"
+      ],
+      "asOf": "2023-11-15",
+      "note": "ITU assignment-list position on 15 November 2023. Historical status means dated registry evidence; it does not mean the network is inactive. Current assignment continuity was not independently verified. No specific retail product or physical antenna is inferred from the assignment."
+    },
+    {
+      "code": "454/0",
+      "mcc": "454",
+      "mnc": "0",
+      "operatorName": "Hong Kong Telecommunications (HKT) Limited",
+      "brandName": "HKT",
+      "aliases": [
+        "HKT",
+        "Hong Kong Telecommunications"
+      ],
+      "status": "verified",
+      "sourceIds": [
+        "ofca-mnc",
+        "itu-2023"
+      ],
+      "asOf": "2026-11-21",
+      "note": "OFCA's current public MNC CSV lists official MNC 00 with this assignee; ITU supplies MCC 454. The raw integer representation 454/0 is retained. No particular CSL/1O1O or subscriber brand is assumed; MVNO remarks must be read from the exact current row, not shifted from an adjacent row."
+    },
+    {
+      "code": "454/6",
+      "mcc": "454",
+      "mnc": "6",
+      "operatorName": "SmarTone Mobile Communications Limited",
+      "brandName": "SmarTone",
+      "aliases": [
+        "SmarTone",
+        "Smartone"
+      ],
+      "status": "verified",
+      "sourceIds": [
+        "ofca-mnc",
+        "itu-2023"
+      ],
+      "asOf": "2026-11-21",
+      "note": "OFCA's current public MNC CSV lists official MNC 06 with this assignee; ITU supplies MCC 454. The raw numeric representation 454/6 is retained. This is not a site link."
+    },
+    {
+      "code": "466/1",
+      "mcc": "466",
+      "mnc": "1",
+      "operatorName": "遠傳電信",
+      "brandName": "Far EasTone",
+      "aliases": [
+        "Far EasTone",
+        "FarEasTone",
+        "遠傳電信"
+      ],
+      "status": "historical",
+      "sourceIds": [
+        "taiwan-ncc-web-extract",
+        "taiwan-ncc-brand-extract"
+      ],
+      "asOf": "2022-08-01",
+      "note": "NCC's table dated 1 August 2022 lists MNC 01 under 遠傳電信 (Far EasTone). The official-source table was available as a web-search extract; direct raw PDF download returned 403 and was not bypassed. Current assignment continuity is unverified; raw 466/1 is retained."
+    },
+    {
+      "code": "466/92",
+      "mcc": "466",
+      "mnc": "92",
+      "operatorName": "中華電信",
+      "brandName": "Chunghwa Telecom",
+      "aliases": [
+        "Chunghwa",
+        "Chunghwa Telecom",
+        "中華電信"
+      ],
+      "status": "historical",
+      "sourceIds": [
+        "taiwan-ncc-web-extract",
+        "taiwan-ncc-brand-extract"
+      ],
+      "asOf": "2022-08-01",
+      "note": "NCC's table dated 1 August 2022 lists MNC 92 under 中華電信 (Chunghwa Telecom). The official-source web-search extract was retained; direct raw PDF download returned 403 and was not bypassed. Current assignment continuity is unverified."
+    },
+    {
+      "code": "466/97",
+      "mcc": "466",
+      "mnc": "97",
+      "operatorName": "台灣大哥大",
+      "brandName": "Taiwan Mobile",
+      "aliases": [
+        "Taiwan Mobile",
+        "台灣大哥大"
+      ],
+      "status": "historical",
+      "sourceIds": [
+        "taiwan-ncc-web-extract",
+        "taiwan-ncc-brand-extract"
+      ],
+      "asOf": "2022-08-01",
+      "note": "NCC's table dated 1 August 2022 lists MNC 97 under 台灣大哥大 (Taiwan Mobile). The official-source web-search extract was retained; direct raw PDF download returned 403 and was not bypassed. Current assignment continuity is unverified."
+    },
+    {
+      "code": "505/1",
+      "mcc": "505",
+      "mnc": "1",
+      "operatorName": "Telstra Corporation Ltd.",
+      "brandName": "Telstra",
+      "aliases": [
+        "Telstra"
+      ],
+      "status": "historical",
+      "sourceIds": [
+        "itu-2023"
+      ],
+      "asOf": "2023-11-15",
+      "note": "ITU assignment-list position on 15 November 2023. Historical status means dated registry evidence; it does not mean the network is inactive. Current assignment continuity was not independently verified. The source stores MCC/MNC as numbers, so leading zeroes are absent. The official assignment uses 505/01; raw 505/1 is preserved. A newer ACMA register was located but retrieval timed out; it was not substituted with an unverified current label."
+    },
+    {
+      "code": "620/1",
+      "mcc": "620",
+      "mnc": "1",
+      "operatorName": "Spacefon",
+      "brandName": "MTN Ghana",
+      "aliases": [
+        "Spacefon",
+        "MTN",
+        "MTN Ghana",
+        "Scancom"
+      ],
+      "status": "historical",
+      "sourceIds": [
+        "itu-2023",
+        "mtn-history",
+        "mtn-company"
+      ],
+      "asOf": "2023-11-15",
+      "note": "ITU assignment-list position on 15 November 2023. Historical status means dated registry evidence; it does not mean the network is inactive. Current assignment continuity was not independently verified. The source stores MCC/MNC as numbers, so leading zeroes are absent. The official assignment uses 620/01; raw 620/1 is preserved. MTN Ghana's own history and company identity pages support the Spacefon/Scancom/MTN relationship. A regulator test-system host also lists 620-01 as MTN Ghana, but is not treated as a current authoritative production register."
+    },
+    {
+      "code": "864/400",
+      "mcc": "864",
+      "mnc": "400",
+      "operatorName": null,
+      "brandName": null,
+      "aliases": [],
+      "status": "unresolved",
+      "sourceIds": [
+        "itu-2023"
+      ],
+      "asOf": null,
+      "note": "No supported public operator assignment was established. Preserve the original pair without inventing a carrier or treating an unusual code as evidence of maliciousness."
+    }
+  ]
+}

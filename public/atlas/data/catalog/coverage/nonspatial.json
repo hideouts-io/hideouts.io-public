@@ -1,0 +1,1 @@
+{"version":1,"columns":["id","sourceOrdinal","rawKey","rawKeyHex","dbOffset","payloadBytes","payloadSha256","wire"],"rows":[["C60168",60168,"9223372036854775807","ffffffffffffff7f",39025649,4,"e0fd04623f7738dbbe388fd1c42f00f3219283dc19d904c228cb20d22c3a22cf",[[1,2],[2,10]]]],"coordinateRole":"Non-geographic MAXINT64 record; no map point assigned"}
